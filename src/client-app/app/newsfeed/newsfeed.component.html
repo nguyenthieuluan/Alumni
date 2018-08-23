@@ -1,0 +1,303 @@
+﻿<div [@routerTransition]>
+
+    <!-- Top Header-Profile -->
+
+    <app-header-profile></app-header-profile>
+
+    <!-- ... end Top Header-Profile -->
+    <!--<div class="container">
+          <app-advertiserment-top></app-advertiserment-top>
+    </div>-->
+
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Main Content -->
+
+            <div class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+                <div id="newsfeed-items-grid">
+
+                    <div class="ui-block">
+
+                        <!-- News Feed Form  -->
+
+                        <div class="news-feed-form">
+                            <post-editor (onPostAdded)="addPost($event)"></post-editor>
+
+                        </div>
+
+                        <!-- ... end News Feed Form  -->
+                    </div>
+
+                </div>
+                <post-detail  *ngFor="let item of posts" [post]="item"></post-detail>
+                <a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">
+                    <svg class="olymp-three-dots-icon">
+                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- ... end Main Content -->
+            <!-- Left Sidebar -->
+
+            <div class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-12 col-12">
+
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Intro</h6>
+                    </div>
+                    <div class="ui-block-content">
+
+                        <!-- W-Personal-Info -->
+
+                        <ul class="widget w-personal-info item-block">
+                            <li>
+                                <span class="title">About:</span>
+                                <span class="text">Đây là trang kết nối các bạn sinh viên ĐH GTVT đã ra trường. Được quản lý bởi đội ngũ các cán bộ trong Ban Đào Tạo và Hội cựu sinh viên trường ĐH GTVT.</span>
+                            </li>
+                            <li>
+                                <span class="title">Address:</span>
+                                <span class="text">450 Lê Văn Việt, Tăng Nhơn Phú A, Quận 9, Hồ Chí Minh.</span>
+                            </li>
+                            <li>
+                                <span class="title">Phone:</span>
+                                <span class="text">028 3896 6798</span>
+                            </li>
+                        </ul>
+
+                        <!-- .. end W-Personal-Info -->
+                        <!-- W-Socials -->
+
+                        <div class="widget w-socials">
+                            <h6 class="title">Other Social Networks:</h6>
+                            <a href="#" class="social-item bg-facebook">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                Facebook
+                            </a>
+                            <a href="#" class="social-item bg-twitter">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                                Twitter
+                            </a>
+                            <a href="#" class="social-item bg-dribbble">
+                                <i class="fab fa-dribbble" aria-hidden="true"></i>
+                                Dribbble
+                            </a>
+                        </div>
+
+
+                        <!-- ... end W-Socials -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ... end Left Sidebar -->
+            <!-- Right Sidebar -->
+
+            <div class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-12 col-12">
+
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Friends (2)</h6>
+                    </div>
+                    <div class="ui-block-content">
+
+                        <!-- W-Faved-Page -->
+
+                        <ul class="widget w-faved-page js-zoom-gallery">
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar38-sm.jpg" alt="author">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar24-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar36-sm.jpg" alt="author">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar35-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar34-sm.jpg" alt="author">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar33-sm.jpg" alt="author">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar32-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar31-sm.jpg" alt="author">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar30-sm.jpg" alt="author">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar29-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar28-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar27-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar26-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="theme/img/avatar25-sm.jpg" alt="user">
+                                </a>
+                            </li>
+                            <li class="all-users">
+                                <a href="#">+74</a>
+                            </li>
+                        </ul>
+
+                        <!-- .. end W-Faved-Page -->
+                    </div>
+                </div>
+
+                <div class="ui-block">
+                    <div class="ui-block-title">
+                        <h6 class="title">Favourite Pages</h6>
+                    </div>
+
+                    <!-- W-Friend-Pages-Added -->
+
+                    <ul class="widget w-friend-pages-added notification-list friend-requests">
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="theme/img/avatar41-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">The Marina Bar</a>
+                                <span class="chat-message-item">Restaurant / Bar</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+                                <a href="#">
+                                    <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                                </a>
+                            </span>
+
+                        </li>
+
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="theme/img/avatar42-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">Tapronus Rock</a>
+                                <span class="chat-message-item">Rock Band</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+                                <a href="#">
+                                    <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                                </a>
+                            </span>
+
+                        </li>
+
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="theme/img/avatar43-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">Pixel Digital Design</a>
+                                <span class="chat-message-item">Company</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+                                <a href="#">
+                                    <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                                </a>
+                            </span>
+                        </li>
+
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="theme/img/avatar44-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">Thompson’s Custom Clothing Boutique</a>
+                                <span class="chat-message-item">Clothing Store</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+                                <a href="#">
+                                    <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                                </a>
+                            </span>
+
+                        </li>
+
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="theme/img/avatar45-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">Crimson Agency</a>
+                                <span class="chat-message-item">Company</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+                                <a href="#">
+                                    <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                                </a>
+                            </span>
+                        </li>
+
+                        <li class="inline-items">
+                            <div class="author-thumb">
+                                <img src="theme/img/avatar46-sm.jpg" alt="author">
+                            </div>
+                            <div class="notification-event">
+                                <a href="#" class="h6 notification-friend">Mannequin Angel</a>
+                                <span class="chat-message-item">Clothing Store</span>
+                            </div>
+                            <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
+                                <a href="#">
+                                    <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <!-- .. end W-Friend-Pages-Added -->
+                </div>
+
+
+            </div>
+
+            <!-- ... end Right Sidebar -->
+
+        </div>
+    </div>
+
+
+</div>

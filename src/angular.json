@@ -1,0 +1,494 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "admin": {
+      "root": "",
+      "sourceRoot": "client-admin",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "wwwroot/dist",
+            "index": "client-admin/index.html",
+            "main": "client-admin/main.ts",
+            "tsConfig": "client-admin/tsconfig.json",
+            "polyfills": "client-admin/polyfills.ts",
+            "assets": [
+              "client-admin/assets",
+              "client-admin/favicon.ico",
+              {
+                "glob": "abp.signalr.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              },
+              {
+                "glob": "abp.signalr-client.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              }
+            ],
+            "styles": [
+              "client-admin/assets/fonts/roboto/roboto.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
+              "node_modules/toastr/build/toastr.css",
+              "node_modules/node-waves/dist/waves.css",
+              "client-admin/bsb-theme/css/materialize.css",
+              "client-admin/bsb-theme/css/style.css",
+              "client-admin/bsb-theme/css/themes/all-themes.css",
+              "client-admin/shared/core.less"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-migrate/dist/jquery-migrate.min.js",
+              "node_modules/js-cookie/src/js.cookie.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/lodash/lodash.min.js",
+              "node_modules/moment/min/moment.min.js",
+              "node_modules/@aspnet/signalr/dist/browser/signalr.min.js",
+              "node_modules/toastr/toastr.js",
+              "node_modules/sweetalert/dist/sweetalert.min.js",
+              "node_modules/block-ui/jquery.blockUI.js",
+              "node_modules/spin.js/spin.min.js",
+              "node_modules/spin.js/jquery.spin.js",
+              "node_modules/push.js/bin/push.min.js",
+              "node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
+              "node_modules/node-waves/dist/waves.min.js",
+              "node_modules/jquery-countto/jquery.countTo.js",
+              "node_modules/raphael/raphael.min.js",
+              "node_modules/morris.js/morris.min.js",
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
+              "node_modules/flot/jquery.flot.js",
+              "node_modules/flot/jquery.flot.resize.js",
+              "node_modules/flot/jquery.flot.pie.js",
+              "node_modules/flot/jquery.flot.categories.js",
+              "node_modules/flot/jquery.flot.time.js",
+              "node_modules/jquery-sparkline/jquery.sparkline.min.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/abp.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js",
+              "client-admin/bsb-theme/js/admin.js",
+              "client-admin/bsb-theme/js/demo.js",
+              "client-admin/bsb-theme/js/jquery.validate.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "client-admin/environments/environment.ts",
+                  "with": "client-admin/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "client-admin/environments/environment.ts",
+                  "with": "client-admin/environments/environment.hmr.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "admin:build:production"
+            },
+            "hmr": {
+              "browserTarget": "admin:build:hmr"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "admin:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-migrate/dist/jquery-migrate.min.js",
+              "node_modules/js-cookie/src/js.cookie.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/lodash/lodash.min.js",
+              "node_modules/moment/min/moment.min.js",
+              "node_modules/@aspnet/signalr/dist/browser/signalr.min.js",
+              "node_modules/toastr/toastr.js",
+              "node_modules/sweetalert/dist/sweetalert.min.js",
+              "node_modules/block-ui/jquery.blockUI.js",
+              "node_modules/spin.js/spin.min.js",
+              "node_modules/spin.js/jquery.spin.js",
+              "node_modules/push.js/bin/push.min.js",
+              "node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
+              "node_modules/node-waves/dist/waves.min.js",
+              "node_modules/jquery-countto/jquery.countTo.js",
+              "node_modules/raphael/raphael.min.js",
+              "node_modules/morris.js/morris.min.js",
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
+              "node_modules/flot/jquery.flot.js",
+              "node_modules/flot/jquery.flot.resize.js",
+              "node_modules/flot/jquery.flot.pie.js",
+              "node_modules/flot/jquery.flot.categories.js",
+              "node_modules/flot/jquery.flot.time.js",
+              "node_modules/jquery-sparkline/jquery.sparkline.min.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/abp.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js",
+              "src/bsb-theme/js/admin.js",
+              "src/bsb-theme/js/demo.js",
+              "src/bsb-theme/js/jquery.validate.js"
+            ],
+            "styles": [
+              "src/assets/fonts/roboto/roboto.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
+              "node_modules/toastr/build/toastr.css",
+              "node_modules/node-waves/dist/waves.css",
+              "src/bsb-theme/css/materialize.css",
+              "src/bsb-theme/css/style.css",
+              "src/bsb-theme/css/themes/all-themes.css",
+              "src/shared/core.less"
+            ],
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              {
+                "glob": "abp.signalr.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              },
+              {
+                "glob": "abp.signalr-client.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "client-admin/tsconfig.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
+    },
+    "app": {
+      "root": "",
+      "sourceRoot": "client-app",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "wwwroot/dist",
+            "index": "client-app/index.html",
+            "main": "client-app/main.ts",
+            "tsConfig": "client-app/tsconfig.json",
+            "polyfills": "client-app/polyfills.ts",
+            "assets": [
+              "client-app/assets",
+              "client-app/theme",
+              "client-app/favicon.ico",
+              {
+                "glob": "abp.signalr.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              },
+              {
+                "glob": "abp.signalr-client.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              }
+            ],
+            "styles": [
+              "client-app/assets/fonts/roboto/roboto.css",
+              //"node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
+              "node_modules/toastr/build/toastr.css",
+              "node_modules/node-waves/dist/waves.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "client-app/theme/css/bootstrap-reboot.css",
+              "client-app/theme/css/bootstrap.css",
+              "client-app/theme/css/bootstrap-grid.css",
+              "client-app/theme/css/base.css",
+              "client-app/theme/css/main.css",
+              "client-app/theme/css/fonts.min.css",
+              "client-app/shared/core.less"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-migrate/dist/jquery-migrate.min.js",
+              "node_modules/js-cookie/src/js.cookie.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/lodash/lodash.min.js",
+              "node_modules/moment/min/moment.min.js",
+              "node_modules/@aspnet/signalr/dist/browser/signalr.min.js",
+              "node_modules/toastr/toastr.js",
+              "node_modules/sweetalert/dist/sweetalert.min.js",
+              "node_modules/block-ui/jquery.blockUI.js",
+              "node_modules/spin.js/spin.min.js",
+              "node_modules/spin.js/jquery.spin.js",
+              "node_modules/push.js/bin/push.min.js",
+              "node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
+              "node_modules/node-waves/dist/waves.min.js",
+              "node_modules/jquery-countto/jquery.countTo.js",
+              "node_modules/raphael/raphael.min.js",
+              "node_modules/morris.js/morris.min.js",
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
+              "node_modules/flot/jquery.flot.js",
+              "node_modules/flot/jquery.flot.resize.js",
+              "node_modules/flot/jquery.flot.pie.js",
+              "node_modules/flot/jquery.flot.categories.js",
+              "node_modules/flot/jquery.flot.time.js",
+              "node_modules/jquery-sparkline/jquery.sparkline.min.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/abp.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js",
+              "client-app/theme/js/jquery.appear.js",
+              "client-app/theme/js/jquery.mousewheel.js",
+              "client-app/theme/js/perfect-scrollbar.js",
+              "client-app/theme/js/jquery.matchHeight.js",
+              "client-app/theme/js/svgxuse.js",
+              "client-app/theme/js/imagesloaded.pkgd.js",
+              "client-app/theme/js/Headroom.js",
+              "client-app/theme/js/velocity.js",
+              "client-app/theme/js/ScrollMagic.js",
+              "client-app/theme/js/jquery.waypoints.js",
+              "client-app/theme/js/jquery.countTo.js",
+              "client-app/theme/js/material.min.js",
+              "client-app/theme/js/popper.min.js",
+              "client-app/theme/js/bootstrap-select.js",
+              "client-app/theme/js/smooth-scroll.js",
+              "client-app/theme/js/selectize.js",
+              "client-app/theme/js/swiper.jquery.js",
+              "client-app/theme/js/daterangepicker.js",
+              "client-app/theme/js/simplecalendar.js",
+              "client-app/theme/js/fullcalendar.js",
+              "client-app/theme/js/isotope.pkgd.js",
+              "client-app/theme/js/ajax-pagination.js",
+              "client-app/theme/js/Chart.js",
+              "client-app/theme/js/chartjs-plugin-deferred.js",
+              "client-app/theme/js/circle-progress.js",
+              "client-app/theme/js/loader.js",
+              "client-app/theme/js/run-chart.js",
+              "client-app/theme/js/jquery.magnific-popup.js",
+              "client-app/theme/js/jquery.gifplayer.js",
+              "client-app/theme/js/mediaelement-and-player.js",
+              "client-app/theme/js/mediaelement-playlist-plugin.min.js",
+              "client-app/theme/js/sticky-sidebar.js",
+              "client-app/theme/js/base-init.js",
+              "client-app/theme/fonts/fontawesome-all.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "client-app/environments/environment.ts",
+                  "with": "client-app/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "hmr": {
+              "fileReplacements": [
+                {
+                  "replace": "client-app/environments/environment.ts",
+                  "with": "client-app/environments/environment.hmr.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app:build:production"
+            },
+            "hmr": {
+              "browserTarget": "app:build:hmr"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/jquery-migrate/dist/jquery-migrate.min.js",
+              "node_modules/js-cookie/src/js.cookie.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
+              "node_modules/lodash/lodash.min.js",
+              "node_modules/moment/min/moment.min.js",
+              "node_modules/@aspnet/signalr/dist/browser/signalr.min.js",
+              "node_modules/toastr/toastr.js",
+              "node_modules/sweetalert/dist/sweetalert.min.js",
+              "node_modules/block-ui/jquery.blockUI.js",
+              "node_modules/spin.js/spin.min.js",
+              "node_modules/spin.js/jquery.spin.js",
+              "node_modules/push.js/bin/push.min.js",
+              "node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
+              "node_modules/node-waves/dist/waves.min.js",
+              "node_modules/jquery-countto/jquery.countTo.js",
+              "node_modules/raphael/raphael.min.js",
+              "node_modules/morris.js/morris.min.js",
+              "node_modules/chart.js/dist/Chart.bundle.min.js",
+              "node_modules/flot/jquery.flot.js",
+              "node_modules/flot/jquery.flot.resize.js",
+              "node_modules/flot/jquery.flot.pie.js",
+              "node_modules/flot/jquery.flot.categories.js",
+              "node_modules/flot/jquery.flot.time.js",
+              "node_modules/jquery-sparkline/jquery.sparkline.min.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/abp.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+              "node_modules/abp-web-resources/Abp/Framework/scripts/libs/abp.moment.js",
+              "src/bsb-theme/js/admin.js",
+              "src/bsb-theme/js/demo.js",
+              "src/bsb-theme/js/jquery.validate.js"
+            ],
+            "styles": [
+              "src/assets/fonts/roboto/roboto.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
+              "node_modules/toastr/build/toastr.css",
+              "node_modules/node-waves/dist/waves.css",
+              "src/bsb-theme/css/materialize.css",
+              "src/bsb-theme/css/style.css",
+              "src/bsb-theme/css/themes/all-themes.css",
+              "src/shared/core.less"
+            ],
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              {
+                "glob": "abp.signalr.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              },
+              {
+                "glob": "abp.signalr-client.js",
+                "input": "node_modules/abp-web-resources/Abp/Framework/scripts/libs",
+                "output": "/assets/abp"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "client-app/tsconfig.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
+    },
+    "admin-e2e": {
+      "root": "",
+      "sourceRoot": "",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "admin:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "e2e/tsconfig.json"
+            ],
+            "exclude": []
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "styleext": "css"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  }
+}

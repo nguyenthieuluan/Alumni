@@ -1,0 +1,52 @@
+﻿<app-header-profile></app-header-profile>
+<div class="container">
+    <div class="row">
+        <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
+           <router-outlet></router-outlet>
+        </div>
+        <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
+            <div class="ui-block">
+
+
+
+                <!-- Your Profile  -->
+
+                <div class="your-profile">
+                    <div class="ui-block-title ">
+                        <span class="text-bold title">Manage Profile</span>
+                    </div>
+
+                    <ul class="your-profile-menu">
+                        <li>
+                            <a [routerLink]="['/app/setting/profile']">Personal Information</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/setting/picture']">Picture Settings</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/setting/account']">Account Settings</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/setting/education']">Education and Employement</a>
+                        </li>
+                    </ul>
+                    <div class="ui-block-title ">
+                        <span class="text-bold title">Manage Pages</span>
+                    </div>
+                    <ul class="your-profile-menu">
+                        <li>
+                            <a  [routerLink]="['/app/setting/pages']">Page list</a>
+                        </li>
+                    </ul>
+                  
+                </div>
+
+                <!-- ... end Your Profile  -->
+
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+

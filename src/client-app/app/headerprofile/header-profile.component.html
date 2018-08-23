@@ -1,0 +1,52 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="ui-block">
+                <div class="top-header top-header-favorit">
+                    <div class="top-header-thumb">
+                        <img [src]="appSession.user.profile.coverUrl" alt="nature">
+                        <div class="top-header-author">
+                            <div class="author-thumb">
+                                <img [src]="appSession.user.profile.pictureUrl" alt="author">
+                            </div>
+                            <div class="author-content">
+                                <a href="#" class="h3 author-name">{{ appSession.user.name }}</a>
+                                <div class="country">@{{appSession.user.userName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <div class="row">
+                            <div class="col col-xl-8 m-auto col-lg-8 col-md-12">
+                                <ul class="profile-menu">
+                                    <li>
+                                        <a [routerLink]="['/app/newsfeed']" [routerLinkActive]="['active']">TIMELINE</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/app/events']" [routerLinkActive]="['active']">EVENTS</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/app/pages']" [routerLinkActive]="['active']">PAGES</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/app/posts']" [routerLinkActive]="['active']">POSTS</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/app/friends']" [routerLinkActive]="['active']">FRIENDS</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/app/setting']" [routerLinkActive]="['active']">SETTINGS</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="control-block-button">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

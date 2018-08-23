@@ -1,0 +1,94 @@
+﻿<div class="ui-block">
+    <div class="ui-block-title">
+        <h6 class="title">Your pages</h6>
+    </div>
+    <div class="ui-block-content">
+
+
+        <!-- Personal Account Settings Form -->
+      
+        <div class="row">
+            <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6" *ngIf="model.pageCredit>0">
+
+                <!-- Friend Item -->
+
+                <div class="friend-item friend-groups create-group" data-mh="friend-groups-item" style="height: 396px;">
+
+                    <a [routerLink]="['/app/setting/create-page']" class="full-block" data-toggle="modal" data-target="#create-friend-group-1"></a>
+                    <div class="content">
+
+                        <a [routerLink]="['/app/setting/create-page']" class="  btn btn-control bg-blue">
+                            <svg class="olymp-plus-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-plus-icon"></use></svg>
+                        </a>
+
+                        <div class="author-content">
+                            <a href="#" class="h5 author-name">Create a page</a>
+                            <div class="country">Page credit remains: 6</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ... end Friend Item -->
+            </div>
+
+            <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6" *ngFor="let p of model.pages">
+                <div class="ui-block page-list" data-mh="friend-groups-item" style="height: 396px;position: relative;">
+
+                    <!-- Friend Item -->
+                    <div class="friend-header-thumb" style="position: absolute;">
+                        <img alt="friend" src="theme/img/friend1.jpg">
+                    </div>
+                    <div class="friend-item friend-groups">
+
+                        <div class="friend-item-content">
+                          
+                            
+                            <div class="friend-avatar">
+                                <div class="author-thumb">
+                                    <img src="theme/img/logo.png" alt="">
+                                </div>
+                                <div class="author-content">
+                                    <a href="#" class="h5 author-name">{{p.name}}</a>
+                                    <div class="country">{{p.description}}</div>
+                                </div>
+                            </div>
+                            <div class="friend-count" >
+                                <a href="#" class="friend-count-item">
+                                    <div class="h6">{{p.likeCount}}</div>
+                                    <div class="title">Likes</div>
+                                </a>
+                                <a href="#" class="friend-count-item">
+                                    <div class="h6">{{p.followCount}}</div>
+                                    <div class="title">Followers</div>
+                                </a>
+                               
+                            </div>
+                         
+                            <div class="control-block-button">
+                                <a [routerLink]="['/app/page',p.userName,'posts']" class="  btn btn-control bg-blue" tooltip="View posts">
+                                    <svg class="olymp-happy-faces-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+                                </a>
+
+                                <a  [routerLink]="['/app/page',p.userName,'setting']" class="btn btn-control btn-grey-lighter"  tooltip="View settings">
+                                    <svg class="olymp-settings-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-settings-icon"></use></svg>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ... end Friend Item -->
+                </div>
+            </div>
+          
+        </div>
+    
+
+        <!-- ... end Personal Account Settings Form  -->
+
+    </div>
+</div>
+
+<div materialInput bsEl></div>

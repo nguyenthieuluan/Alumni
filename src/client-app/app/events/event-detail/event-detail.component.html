@@ -1,0 +1,537 @@
+﻿
+<div class="container">
+    <div class="row">
+
+        <!-- Main Content -->
+
+        <div class="col col-xl-7 order-xl-1 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+            <div class="ui-block" id="accordion">
+                <div class="ui-block-title bg-blue">
+                    <h6 class="title c-white">Event Detail</h6>
+                </div>
+
+                <form class="ui-block-content row">
+
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input disabled class="form-control" type="text" value="New York Comix Con is having the best panels this year!">
+                        </div>
+                    </div>
+
+                    <!--due date posting-->
+                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <div class="row">
+
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group date-time-picker label-floating is-focused">
+                                    <label class="control-label">Start</label>
+                                    <input disabled name="datetimepicker" value="10/24/2018">
+                                    <span class="input-group-addon">
+                                        <svg class="olymp-calendar-icon icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group date-time-picker label-floating is-focused">
+                                    <label class="control-label">End</label>
+                                    <input disabled name="datetimepicker" value="10/26/2018">
+                                    <span class="input-group-addon">
+                                        <svg class="olymp-calendar-icon icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-calendar-icon"></use></svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--End due date posting-->
+                    <!--Location-->
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="control-label">Location</label>
+                            <input disabled class="form-control" type="text" value="Lorem ipsum dolor si">
+                        </div>
+                    </div>
+
+                    <!--Description-->
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea disabled class="form-control" style="height: 240px">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...
+                                </textarea>
+                        </div>
+                    </div>
+
+                    <!--organizer-->
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col col-md-3">Organizer</label>
+                                <div class="post__author author vcard inline-items col col-md-9">
+                                    <img alt="author" src="../../../theme/img/faved-page1.jpg" class="avatar">
+                                    <div class="author-date not-uppercase">
+                                        <a class="h6 post__author-name fn" href="#">Jack Scorpio</a>
+                                        <div class="author_prof">
+                                            Author
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Co-operator-->
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="control-label col col-md-3">Co-operator</label>
+                                <div class="col col-md-9">
+                                    <div class="row">
+                                        <div class="post__author author vcard inline-items">
+                                            <img alt="author" src="../../../theme/img/faved-page4.jpg" class="avatar">
+                                            <div class="author-date not-uppercase">
+                                                <a class="h6 post__author-name fn" href="#">Jack Scorpio</a>
+                                                <div class="author_prof">
+                                                    Host
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post__author author vcard inline-items">
+                                            <img alt="author" src="../../../theme/img/faved-page2.jpg" class="avatar">
+                                            <div class="author-date not-uppercase">
+                                                <a class="h6 post__author-name fn" href="#">Jack Scorpio</a>
+                                                <div class="author_prof">
+                                                    Author
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Participate sponsor-->
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="row">
+                            <div class="col col-xs-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <label class="control-label">Guests</label>
+                                    <div class="ui-block-title row">
+                                        <a data-toggle="modal" data-target="#myModal">
+                                            <div class="title" [routerLink]="['all']">INTERESTED (3851)</div>
+                                            <div class="title" [routerLink]="['requests']">GOING (1954)</div>
+                                            <div class="title" [routerLink]="['requests']">INVITED (383)</div>
+                                        </a>
+                                    </div>
+
+                                    <!--<div class="author-thumb">
+                                        <img src="../../../theme/img/avatar49-sm.jpg" alt="author">
+                                        <a href="#" class="h6 notification-friend">Tony Stevens</a>
+                                    </div>
+                                    <div class="author-thumb">
+                                        <img src="../../../theme/img/avatar50-sm.jpg" alt="author">
+                                        <a href="#" class="h6 notification-friend">Tamara Romanoff</a>
+                                    </div>
+                                    <div class="author-thumb">
+                                        <img src="../../../theme/img/avatar46-sm.jpg" alt="author">
+                                        <a href="#" class="h6 notification-friend">Sarah Hetfield</a>
+                                    </div>-->
+
+                            </div>
+
+                            <div class="col col-xs-12 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <label class="control-label">Sponsor</label>
+                                    <div class="ui-block-title row">
+                                        <div class="title" [routerLink]="['all']">INTERESTED (3)</div>
+                                        <div class="title" [routerLink]="['requests']">GOING (19)</div>
+                                    </div>
+
+                                    <!--<div class="author-thumb">
+                                        <img src="../../theme/../../../theme/img/avatar48-sm.jpg" alt="author">
+                                        <a href="#" class="h6 notification-friend">Tamara Romanoff</a>
+                                    </div>
+                                    <hr />
+                                    <div class="author-thumb">
+                                        <img src="../../theme/../../../theme/img/avatar48-sm.jpg" alt="author">
+                                        <a href="#" class="h6 notification-friend">Sarah Hetfield</a>
+                                    </div>-->
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!--Buttont-->
+                    <div class="col col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="container row">
+                            <button class="btn btn-sm btn-primary col col-md-3">
+                                Interested
+                            </button>
+                            <button class="btn btn-sm btn-info c-grey col col-md-3">
+                                Going
+                            </button>
+                            <div class="col"></div>
+                            <button class="btn btn-sm btn-border-think c-grey col col-md-3">
+                                Sponsor
+                            </button>
+                        </div>
+                    </div>
+
+                    <!--modal-->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog" style="width: 575px; height: 493px">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <div class="row">
+                                        <a href="#" class="col">NTERESTED (385)</a>
+                                        <a href="#" class="col">GOING (195)</a>
+                                        <a href="#" class="col">INVITED (38)</a>
+
+                                        <button type="button" class="close col" data-dismiss="modal">&times;</button>
+                                    </div>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="ui-block" style="overflow: auto; height: 400px;">
+
+                                        <ul class="notification-list list-group">
+                                            <li>
+                                                <div class="author-thumb">
+                                                    <img src="../../theme/img/avatar16-sm.jpg" alt="author">
+                                                </div>
+                                                <div class="notification-event">
+                                                    <a href="#" class="h6 notification-friend">Tony Stevens</a>
+                                                </div>
+                                                <span class="notification-icon">
+                                                    <a href="#" class="accept-request">
+                                                        <span class="icon-add">
+                                                            <svg class="olymp-happy-face-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                                        </span>
+                                                        Add friend
+                                                    </a>
+
+                                                </span>
+
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                    <svg class="olymp-little-delete"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="author-thumb">
+                                                    <img src="../../theme/img/avatar18-sm.jpg" alt="author">
+                                                </div>
+                                                <div class="notification-event">
+                                                    <a href="#" class="h6 notification-friend">Stagg Clothing</a>
+                                                </div>
+                                                <span class="notification-icon">
+                                                    <a href="#" class="accept-request">
+                                                        <span class="icon-add">
+                                                            <svg class="olymp-happy-face-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                                        </span>
+                                                        Add friend
+                                                    </a>
+
+
+                                                </span>
+
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                    <svg class="olymp-little-delete"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="author-thumb">
+                                                    <img src="../../theme/img/avatar16-sm.jpg" alt="author">
+                                                </div>
+                                                <div class="notification-event">
+                                                    <a href="#" class="h6 notification-friend">Tony Stevens</a>
+                                                </div>
+                                                <span class="notification-icon">
+                                                    <a href="#" class="accept-request">
+                                                        <span class="icon-add">
+                                                            <svg class="olymp-happy-face-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                                        </span>
+                                                        Add friend
+                                                    </a>
+
+                                                </span>
+
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                    <svg class="olymp-little-delete"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="author-thumb">
+                                                    <img src="../../theme/img/avatar18-sm.jpg" alt="author">
+                                                </div>
+                                                <div class="notification-event">
+                                                    <a href="#" class="h6 notification-friend">Stagg Clothing</a>
+                                                </div>
+                                                <span class="notification-icon">
+                                                    <a href="#" class="accept-request">
+                                                        <span class="icon-add">
+                                                            <svg class="olymp-happy-face-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                                        </span>
+                                                        Add friend
+                                                    </a>
+
+
+                                                </span>
+
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                    <svg class="olymp-little-delete"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="author-thumb">
+                                                    <img src="../../theme/img/avatar16-sm.jpg" alt="author">
+                                                </div>
+                                                <div class="notification-event">
+                                                    <a href="#" class="h6 notification-friend">Tony Stevens</a>
+                                                </div>
+                                                <span class="notification-icon">
+                                                    <a href="#" class="accept-request">
+                                                        <span class="icon-add">
+                                                            <svg class="olymp-happy-face-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                                        </span>
+                                                        Add friend
+                                                    </a>
+
+                                                </span>
+
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                    <svg class="olymp-little-delete"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <div class="author-thumb">
+                                                    <img src="../../theme/img/avatar18-sm.jpg" alt="author">
+                                                </div>
+                                                <div class="notification-event">
+                                                    <a href="#" class="h6 notification-friend">Stagg Clothing</a>
+                                                </div>
+                                                <span class="notification-icon">
+                                                    <a href="#" class="accept-request">
+                                                        <span class="icon-add">
+                                                            <svg class="olymp-happy-face-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-happy-face-icon"></use></svg>
+                                                        </span>
+                                                        Add friend
+                                                    </a>
+
+
+                                                </span>
+
+                                                <div class="more">
+                                                    <svg class="olymp-three-dots-icon"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg>
+                                                    <svg class="olymp-little-delete"><use xlink:href="../theme/svg-icons/sprites/icons.svg#olymp-little-delete"></use></svg>
+                                                </div>
+                                            </li>
+
+
+
+                                        </ul>
+
+                                        <!-- ... end Notification List Frien Requests -->
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- ... end Main Content -->
+
+
+        <!-- Comments -->
+        <div class="col col-xl-5 order-xl-2 col-lg-6 order-lg-2 col-md-12 col-sm-12 col-12">
+            <div class="ui-block">
+                <ul class="comments-list style-2">
+                    <li class="comment-item">
+                        <div class="post__author author vcard">
+                            <img src="../../../theme/img/avatar10-sm.jpg" alt="author">
+
+                            <div class="author-date">
+                                <p><a class="h6 post__author-name fn" href="#">Elaine Dreyfuss</a> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
+                                <a href="#" class="post-add-icon inline-items">
+                                    <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+                                    <span>8</span>
+                                </a>
+
+                                <a href="#" class="reply">Reply</a>
+
+                                <div class="post__date">
+                                    <time class="published" datetime="2017-03-24T18:18">
+                                        5 mins ago
+                                    </time>
+                                </div>
+
+                                <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                            </div>
+
+                        </div>
+
+                    </li>
+                    <li class="comment-item has-children">
+                        <div class="post__author author vcard">
+                            <img src="../../../theme/img/avatar5-sm.jpg" alt="author">
+
+                            <div class="author-date">
+                                <p>
+                                    <a class="h6 post__author-name fn" href="#">Green Goo Rock</a>
+                                    Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugiten, sed quia
+                                    consequuntur magni dolores eos qui ratione voluptatem sequi en lod nesciunt. Neque porro
+                                    quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur adipisci velit en lorem ipsum der.
+                                </p>
+
+                                <a href="#" class="post-add-icon inline-items">
+                                    <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+                                    <span>5</span>
+                                </a>
+                                <a href="#" class="reply">Reply</a>
+
+                                <div class="post__date">
+                                    <time class="published" datetime="2017-03-24T18:18">
+                                        1 hour ago
+                                    </time>
+                                </div>
+
+                                <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                            </div>
+
+                        </div>
+
+                        <ul class="children">
+                            <li class="comment-item">
+                                <div class="post__author author vcard">
+                                    <img src="../../../theme/img/avatar8-sm.jpg" alt="author">
+
+                                    <div class="author-date">
+                                        <p><a class="h6 post__author-name fn" href="#">Diana Jameson</a> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+                                        <a href="#" class="post-add-icon inline-items">
+                                            <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+                                            <span>2</span>
+                                        </a>
+                                        <a href="#" class="reply">Reply</a>
+
+                                        <div class="post__date">
+                                            <time class="published" datetime="2017-03-24T18:18">
+                                                39 mins ago
+                                            </time>
+                                        </div>
+
+                                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                                    </div>
+
+
+                                </div>
+
+                            </li>
+                            <li class="comment-item">
+                                <div class="post__author author vcard">
+                                    <img src="../../../theme/img/avatar2-sm.jpg" alt="author">
+
+                                    <div class="author-date">
+                                        <p><a class="h6 post__author-name fn" href="#">Nicholas Grisom</a> Excepteur sint occaecat cupidatat non proident.</p>
+                                        <a href="#" class="post-add-icon inline-items">
+                                            <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+                                            <span>0</span>
+                                        </a>
+                                        <a href="#" class="reply">Reply</a>
+                                        <div class="post__date">
+                                            <time class="published" datetime="2017-03-24T18:18">
+                                                24 mins ago
+                                            </time>
+                                        </div>
+                                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="comment-item">
+                        <div class="post__author author vcard">
+                            <img src="../../../theme/img/avatar4-sm.jpg" alt="author">
+
+                            <div class="author-date">
+                                <p><a class="h6 post__author-name fn" href="#">Chris Greyson</a> Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
+
+                                <a href="#" class="post-add-icon inline-items">
+                                    <svg class="olymp-heart-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-heart-icon"></use></svg>
+                                    <span>7</span>
+                                </a>
+                                <a href="#" class="reply">Reply</a>
+
+                                <div class="post__date">
+                                    <time class="published" datetime="2017-03-24T18:18">
+                                        1 hour ago
+                                    </time>
+                                </div>
+
+                                <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use></svg></a>
+                            </div>
+
+                        </div>
+
+                    </li>
+                </ul>
+
+
+                <a href="#" class="more-comments">View more comments <span>+</span></a>
+
+                <!-- Comment Form  -->
+
+                <form class="comment-form inline-items">
+
+                    <div class="post__author author vcard inline-items">
+                        <img src="../../../theme/img/author-page.jpg" alt="author">
+
+                        <div class="form-group with-icon-right is-empty">
+                            <textarea class="form-control" placeholder=""></textarea>
+                            <div class="add-options-message">
+                                <a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
+                                    <svg class="olymp-camera-icon">
+                                        <use xlink:href="svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-md-2 btn-primary">Post Comment</button>
+
+                    <button class="btn btn-md-2 btn-border-think c-grey btn-transparent custom-color">Cancel</button>
+
+                </form>
+
+                <!-- ... end Comment Form  -->
+            </div>
+            <!-- ... end Comments -->
+        </div>
+        <!--End Comments-->
+
+    </div>
+
+
+</div>

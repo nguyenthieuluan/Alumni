@@ -1,0 +1,82 @@
+﻿<div class="ui-block">
+    <div class="ui-block-title">
+        <h6 class="title">Account Info</h6>
+    </div>
+    <div class="ui-block-content">
+
+
+        <!-- Personal Account Settings Form -->
+
+        <div class="row">
+
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">Username</label>
+                    <input class="form-control" placeholder="" type="text" [(ngModel)]="profile.userName" disabled>
+                </div>
+
+            </div>
+
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">Email</label>
+                    <input class="form-control" placeholder="" type="email" [(ngModel)]="profile.email" disabled>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ... end Personal Account Settings Form  -->
+
+    </div>
+</div>
+<div class="ui-block">
+    <div class="ui-block-title">
+        <h6 class="title">Password Settings</h6>
+    </div>
+    <div class="ui-block-content">
+
+
+
+        <div class="row">
+
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">Current password</label>
+                    <input class="form-control" placeholder="" type="password" [(ngModel)]="passwordRequest.currentPassword">
+                </div>
+
+            </div>
+
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">New password</label>
+                    <input class="form-control" placeholder="" type="password" [(ngModel)]="passwordRequest.newPassword">
+                </div>
+
+            </div>
+
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">Confirm new password</label>
+                    <input class="form-control" placeholder="" type="password" [(ngModel)]="confirmNewPassword">
+                </div>
+
+
+            </div>
+            
+            <div class="col col-12">
+                <button class="btn btn-primary f-right" (click)="save()">Change password</button>
+            </div>
+        
+
+        </div>
+
+    </div>
+
+</div>
+
+<div materialInput bsEl></div>

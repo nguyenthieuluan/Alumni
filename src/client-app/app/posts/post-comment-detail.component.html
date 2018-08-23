@@ -1,0 +1,44 @@
+﻿<li class="comment-item" [ngClass]="{'has-children':comment.children.length > 0}">
+    <div class="post__author author vcard inline-items">
+        <img [src]="comment.user.pictureUrl" alt="author">
+
+        <div class="author-date comment-content">
+            <a class="post__author-name" href="#">{{comment.user.fullName}}</a>
+            <span class="comment-text" [innerHtml]="comment.commentText"></span>
+        </div>
+        <div class="comment-tools">
+
+            <span class="post__date">
+                <span class="published" title="{{comment.creationTime}}">
+                    {{comment.creationTime | amTimeAgo}}
+                </span>
+            </span>
+            <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)">Reply</a>
+        </div>
+    </div>
+
+    <ul class="children" *ngIf="comment.children.length > 0">
+        <li *ngFor="let ccm of comment.children" class="comment-item">
+            <div class="post__author author vcard inline-items">
+                <img [src]="comment.user.pictureUrl" alt="author">
+
+                <div class="author-date  comment-content">
+                    <a class="post__author-name" href="#">{{ccm.user.fullName}}</a>
+                    <span class="comment-text">{{ccm.commentText}}</span>
+                </div>
+                <div class="comment-tools">
+                    <span class="post__date">
+                        <span class="published" title="{{ccm.creationTime}}">
+                            {{ccm.creationTime | amTimeAgo}}
+                        </span>
+                    </span>
+                    <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)">Reply</a>
+                </div>
+            </div>
+
+
+        </li>
+
+    </ul>
+    <post-comment-editor [post]="post" [parentComment]="comment" (onPostCommentAdded)="addParentComment($event)" *ngIf="editor[comment.id]"></post-comment-editor>
+</li>
