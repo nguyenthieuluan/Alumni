@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevExpress.Xpo" Version="18.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
   </ItemGroup>
@@ -24,8 +25,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="client-app\app\modules\page\community\Layout\page-like.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="client-app\app\modules\page\followers\page-likes.component.ts">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="client-app\app\components\event\" />
     <Folder Include="client-app\app\modules\directory\" />
+    <Folder Include="client-app\app\modules\page\community\Layout\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

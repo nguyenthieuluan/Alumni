@@ -1,0 +1,8 @@
+a {
+    cursor: pointer;
+    color: #888da8;
+}
+
+a.SeeAll:hover {
+    text-decoration: underline;
+}

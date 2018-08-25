@@ -1,1 +1,22 @@
-﻿TODO:add page content
+﻿<div class="row">
+    <div class="col-md-3">
+        <div class="ui-block">
+            <div class="ui-block-title ">
+                <span class="text-bold title">Manage Page</span>
+            </div>
+
+            <ul class="your-profile-menu">
+                <li>
+                    <a [routerLink]="['./info']" [routerLinkActive]="['active']" style="cursor:pointer;">Page Information</a>
+                </li>
+                <li>
+                    <a [routerLink]="['./picture']" [routerLinkActive]="['active']" style="cursor:pointer;">Picture Settings</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>

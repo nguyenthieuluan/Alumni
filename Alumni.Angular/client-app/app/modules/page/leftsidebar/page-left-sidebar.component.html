@@ -1,0 +1,38 @@
+﻿<div id="entity_sidebar" class="row">
+    <div class="col-3 col-xl-3 col-lg-3 col-md-3 col-sm-3">
+        <div class="ui-block">
+            <div class="ui-block-content">
+                <ul class="your-profile-menu item-block">
+                    <li>
+                        <a class="title" routerLink="./home" routerLinkActive="active">Home</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./posts" routerLinkActive="active">Post</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./about" routerLinkActive="active">About</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./events" routerLinkActive="active">Events</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./photos" routerLinkActive="active">Photos</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./videos" routerLinkActive="active">Videos</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./community" routerLinkActive="active">Community</a>
+                    </li>
+                    <li>
+                        <a class="title" routerLink="./infoads" routerLinkActive="active">Info and Ads</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-9 col-xl-9 col-lg-9 col-md-9 col-sm-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>

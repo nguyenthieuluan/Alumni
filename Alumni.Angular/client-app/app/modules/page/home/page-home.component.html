@@ -1,0 +1,75 @@
+﻿
+<div class="container">
+    <div class="row">
+    <!-- Main Content -->
+    <div class="col-8">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div id="newsfeed-items-grid ">
+
+                    <div class="ui-block">
+                        <!-- News Feed Form  -->
+                        <div class="news-feed-form">
+                            <page-post-editor (onPostAdded)="addPost($event)"></page-post-editor>
+                        </div>
+                        <!-- ... end News Feed Form  -->
+                    </div>
+                </div>
+                <!--<post-detail *ngFor="let item of posts" [post]="item"></post-detail>-->
+
+                <div class="col-12 col-md-12">
+                    <a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">
+                        <svg class="olymp-three-dots-icon">
+                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ... end Main Content -->
+
+    <!-- Right Sidebar -->
+
+    <div class="col-4">
+        <div class=" ui-block">
+            <div class="ui-block-content">
+                <ul class="widget w-personal-info item-block">
+                    <li>
+                        <span class="title">About:</span>
+                        <span class="text">Đây là trang kết nối các bạn sinh viên ĐH GTVT đã ra trường. Được quản lý bởi đội ngũ các cán bộ trong Ban Đào Tạo và Hội cựu sinh viên trường ĐH GTVT.</span>
+                    </li>
+                    <li>
+                        <span class="title">Address:</span>
+                        <span class="text">450 Lê Văn Việt, Tăng Nhơn Phú A, Quận 9, Hồ Chí Minh.</span>
+                    </li>
+                    <li>
+                        <span class="title">Phone:</span>
+                        <span class="text">028 3896 6798</span>
+                    </li>
+                </ul>
+                <hr />
+                <a class="SeeAll d-block text-center" routerLink="../about">See All</a>
+            </div>
+        </div>
+
+        <div class="ui-block">
+            <div class="ui-block-title">
+                <h6 class="title">Community</h6>
+            </div>
+            <div class="ui-block-content">
+                <button class="btn btn-primary">
+                    Invite Friends
+                </button>
+                <p>2,060 people like this</p>
+                <p>2,054 people follow this</p>
+            <hr />
+            <a class="SeeAll d-block text-center" routerLink="../community" >See All</a>
+            </div>
+        </div>
+    </div>
+    <!--End Right Sidebar -->
+    </div>
+</div>
+
+

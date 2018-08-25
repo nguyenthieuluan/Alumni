@@ -1,0 +1,11 @@
+#entity_sidebar {
+}
+a {
+    cursor: pointer;
+    font-size: 14px !important;
+    line-height: 18px;
+}
+
+.active {
+    color: #515365;
+}
