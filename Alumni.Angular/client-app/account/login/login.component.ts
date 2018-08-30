@@ -41,9 +41,14 @@ export class LoginComponent extends AppComponentBase {
     }
 
     login(): void {
+        abp.ui.setBusy('#loginAction');
         this.submitting = true;
         this.loginService.authenticate(
-            () => this.submitting = false
+            () => {
+                this.submitting = false;
+                
+                abp.ui.clearBusy('#loginAction');
+            }
         );
     }
 }

@@ -1,0 +1,19 @@
+﻿img#avatar {
+    width: 180px;
+    height: 180px;
+}
+
+img#cover {
+    width: 820px;
+    height: 260px;
+}
+
+button {
+    margin: 5px;
+    color: #515365;
+    cursor: pointer;
+}
+
+.active {
+    color: orangered;
+}

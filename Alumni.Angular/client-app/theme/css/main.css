@@ -2,6 +2,77 @@ html, body, p {
     font-family: 'Roboto', sans-serif;
 }
 
+.btn svg {
+    margin-bottom: 0px;
+    margin-right: 3px;
+}
+
+.btn-n {
+    border: 1px solid;
+    border-radius: 2px;
+    box-sizing: content-box;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    vertical-align: middle;
+    border-color: rgba(0, 0, 0, .4);
+    border-radius: 0;
+    line-height: 26px;
+    padding: 0px 10px;
+    background-clip: padding-box;
+    min-width: 60px;
+}
+
+button.btn {
+     border: 1px solid rgba(0, 0, 0, 0.1); 
+    border-radius: 2px;
+    /*box-sizing: content-box;*/
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    vertical-align: middle;
+     /*border-color: rgba(0, 0, 0, .4);*/ 
+    border-radius: 0;
+    /*line-height: 26px;*/
+    /* padding: 0px 10px; */
+    background-clip: padding-box;
+    /* min-width: 60px; */
+}
+button.btn.btn-n {
+    padding: 0px 10px;
+}
+
+.btn.btn-normal {
+    border: 1px solid;
+    border-radius: 2px;
+    box-sizing: content-box;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    font-weight: bold;
+    justify-content: center;
+    padding: 0 8px;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    vertical-align: middle;
+    background: #f5f6f7;
+    color: #4b4f56;
+    border-color: rgba(0, 0, 0, .4);
+    border-radius: 0;
+    line-height: 26px;
+    padding: 0px 10px;
+    background-clip: padding-box;
+    min-width: 60px;
+}
+
 .header-logo {
     padding: 5px;
     padding-left: 10px;
@@ -17,11 +88,11 @@ html, body, p {
 }
 
     .header .page-title {
-        padding: 20px 50px 20px 15px;
+        padding: 10px 30px 10px 15px;
         text-transform: uppercase;
         float: left;
         height: 100%;
-        width: 215px;
+        min-width: 300px;
     }
 
         .header .page-title .head-title {
@@ -34,19 +105,28 @@ html, body, p {
             font-size: 11px;
         }
 
+.search-bar.w-search {
+    width: 350px;
+    min-height: 70px;
+    background-color: #494c62;
+}
+
 .search-bar .form-group.with-button input {
     height: 100%;
     border: none;
     color: #9a9fbf;
     font-size: 15px;
 }
+
 .global-container {
-    width: 1012px;
-    margin:0 auto;
+    max-width: 1012px;
+    margin: 0 auto;
 }
+
 .container {
-    padding:0;
+    padding: 0;
 }
+
 img.avatar {
     width: 36px;
     height: 36px;
@@ -63,18 +143,19 @@ img.avatar {
 }
 
 .img-cover-half img {
-    width: 524px;
-    height: 200px;
+    width: 100%;
+    height: auto;
 }
 
 .top-header.top-header-favorit .top-header-author {
     left: 50px;
-    bottom: -50px
+    bottom: 15px;
+    height: 60px;
 }
 
 .top-header-thumb img {
     width: 100%;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0;
     overflow: hidden;
     height: 100%;
 }
@@ -83,8 +164,20 @@ img.avatar {
     float: left;
     margin-right: 25px;
     border-radius: 0;
-    margin-bottom: -25px;
+    margin-top: -20px;
+    border: 2px solid #fff;
 }
+
+.top-header .top-header-command {
+    border: 0;
+    margin: 0;
+    padding: 0
+}
+
+    .top-header .top-header-command button {
+        margin: 8px;
+        margin-right: 16px;
+    }
 
 .top-header.top-header-favorit .author-content {
     text-align: left;
@@ -95,9 +188,8 @@ img.avatar {
 
 .top-header-author .author-thumb img {
     width: 100%;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0;
     overflow: hidden;
-    height: 120px !important;
 }
 
 .header-content-wrapper .header-link {
@@ -122,7 +214,9 @@ img.avatar {
 }
 
 .form-group.small-input.with-icon i, .form-group.small-input.with-icon svg {
-    margin-top: 0;
+    margin-top: 5px;
+    font-size: 15px;
+    margin-left: -3px;
 }
 
 .form-group.small-input .input-group-addon {
@@ -168,8 +262,34 @@ img.avatar {
     float: left;
 }
 
+.dropdown-menu {
+    background: #f5f6f7;
+    color: #4b4f56;
+    border-color: rgba(0, 0, 0, .4);
+    border-radius: 0;
+    background-clip: padding-box;
+    padding: 1px 10px;
+}
+
+    .dropdown-menu .dropdown-item {
+        padding: 5px 5px;
+    }
+
 .bootstrap-select.open .dropdown-menu {
     display: block;
+}
+
+.dropdown-toggle::after {
+    display: none;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.4em solid;
+    border-right: 0.4em solid transparent;
+    border-left: 0.4em solid transparent;
+    position: absolute;
 }
 
 .registration-login-form {
@@ -188,8 +308,25 @@ img.avatar {
 .btn.disabled, .btn:disabled {
     background-color: #9a9fbf;
     border-color: #9a9fbf;
-     opacity: 0.8; 
+    opacity: 0.8;
 }
+
+.w-intro.ui-block .ui-block-content {
+    padding: 5px 10px;
+}
+
+.w-intro .ui-block-title {
+    padding: 10px;
+}
+
+.w-intro .item-block li {
+    padding: 10px 0;
+}
+
+.widget + .widget {
+    margin-top: 20px;
+}
+
 .upload-img-holder {
     margin-bottom: 0;
     overflow: hidden;
@@ -222,16 +359,28 @@ img.avatar {
         width: 24px;
     }
 
-.post-block-photo a, .post-block-photo span {
-    float: left;
-    overflow: hidden;
-    padding: 1px;
+.post {
+    padding: 25px 5px;
 }
 
-.post-block-photo a, .post-block-photo span {
-    float: left;
-    overflow: hidden;
-    padding: 1px;
+.post-block-photo {
+    margin: 10px -5px;
+}
+
+    .post-block-photo a img, .post-block-photo span img {
+        border-radius: 0px;
+        width: 100%;
+    }
+
+    .post-block-photo a, .post-block-photo span {
+        float: left;
+        overflow: hidden;
+        padding: 1px;
+    }
+
+.post .content-text {
+    color: #1d2129;
+    margin-bottom: 5px
 }
 
 .more-photos:after {
@@ -373,10 +522,12 @@ img.avatar {
     padding-left: 56px;
     margin-top: 0px;
 }
+
 .page-list .friend-groups .friend-item-content {
     padding: 25px;
     padding-top: 48px;
 }
+
 .page-list .friend-groups .friend-avatar .author-thumb {
     width: 80px;
     height: 80px;
@@ -386,3 +537,207 @@ img.avatar {
     margin-bottom: 25px;
     overflow: hidden;
 }
+
+.page-name-header {
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+}
+
+.no-friends {
+    color: #d7d9e5;
+    padding: 65px 30px;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    .no-friends svg {
+        fill: #d7d9e5;
+        margin-bottom: 20px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .no-friends span {
+        font-size: 14px;
+        display: block;
+    }
+
+.event-item .picture {
+    padding: 0 !important;
+    height: 128px;
+    width: 128px;
+    margin: 0 auto;
+}
+
+.event-item .description {
+    max-width: 360px;
+    font-size: 12px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.event-item .date-event .olymp-small-calendar-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.date-event .day {
+    font-size: 25px;
+    color: #515365;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.date-event .month {
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.friends-left.w-faved-page {
+    overflow: hidden;
+    margin: 0 0 0px 0px;
+}
+
+    .friends-left.w-faved-page li {
+        margin: 0 0 5px 5px;
+        float: left;
+        width: 96px;
+        height: 96px;
+        border-radius: 0;
+        overflow: hidden;
+    }
+
+.popover-body {
+    padding: 0;
+    color: #212529;
+}
+
+.user-link .friend-item {
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.user-link .friend-item-content {
+    padding: 0;
+    text-align: center;
+    position: relative;
+}
+
+.user-link .friend-avatar {
+    margin-top: -49px;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.user-link .author-thumb {
+    margin-right: 0;
+}
+
+.user-link .control-block-button {
+    top: 0;
+    right: 0;
+}
+
+.user-link .friend-avatar .author-thumb img {
+    margin-right: 0;
+}
+
+.user-link .btn {
+    margin-bottom: 15px;
+}
+
+btn btn-secondary btn-sm svg {
+    height: 22px;
+}
+.swal-title {
+    font-size:20px;
+}
+.swal-button.swal-button--confirm {
+    background-color: #ff5e3a;
+}
+/*
+    Custom class for objects
+
+*/
+.user-page-item {
+    height: auto;
+    position: relative;
+    min-height: 250px;
+}
+.user-page-item.create-page {
+    padding-top: 30%;
+    min-height: 250px;
+}
+
+    .user-page-item .upi-item-container {
+        text-align: center;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .user-page-item .upi-item-content {
+        padding: 10px;
+        padding-top: 48px;
+        text-align: center;
+        position: relative;
+    }
+
+    .user-page-item .upi-item-cover-img {
+        position: absolute;
+        border-bottom: 1px solid #e6ecf5;
+        overflow: hidden;
+        max-height: 80px;
+    }
+
+    .user-page-item .upi-item-avatar-img {
+        position: relative;
+        width: 64px;
+        /* height: auto; */
+        margin: 0 auto;
+        margin-top: 48px;
+        margin-bottom: 15px;
+        border-radius: 100%;
+        border: 1px solid #fff;
+        background-color: #fff;
+    }
+
+    .user-page-item .upi-item-avatar-img img {
+        
+        border-radius: 100%;
+    }
+
+    .user-page-item .upi-page-info {
+    }
+
+        .user-page-item .upi-page-info .name {
+        }
+
+        .user-page-item .upi-page-info .description {
+            font-size: 12px;
+        }
+
+    .user-page-item .upi-page-stats {
+        margin: 15px;
+        margin-bottom: 25px;
+    }
+
+        .user-page-item .upi-page-stats .likes {
+            display: inline-block;
+            margin-right: 25px;
+        }
+
+        .user-page-item .upi-page-stats .follows {
+            display: inline-block;
+            margin-right: 0;
+        }
+
+/*.page-name-header {
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    display: block;
+}*/

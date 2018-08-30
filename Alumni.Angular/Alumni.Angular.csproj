@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="client-app\app\components\event\" />
     <Folder Include="client-app\app\modules\directory\" />
+    <Folder Include="client-app\app\modules\page\about\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

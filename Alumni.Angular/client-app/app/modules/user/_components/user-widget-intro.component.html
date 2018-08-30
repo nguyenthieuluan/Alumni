@@ -1,0 +1,72 @@
+﻿<div class="ui-block w-intro" *ngIf="user">
+    <div class="ui-block-title">
+        <h6 class="title">Intro</h6>
+    </div>
+    <div class="ui-block-content">
+
+        <!-- W-Personal-Info -->
+
+        <ul class="widget w-personal-info item-block">
+            <li *ngIf="user.bio">
+                <span class="title">About:</span>
+                <span class="text">
+                    {{user.bio}}
+                </span>
+            </li>
+            <li *ngIf="user.phone">
+                <span class="title">Phone:</span>
+                <span class="text"> {{user.phone}}</span>
+            </li>
+            <li *ngIf="user.email">
+                <span class="title">Email:</span>
+                <span class="text"> {{user.email}}</span>
+            </li>
+            <li *ngIf="user.address">
+                <span class="title">Address:</span>
+                <span class="text"> {{user.address}}</span>
+            </li>
+            <li *ngIf="user.occupation">
+                <span class="title">Occupation:</span>
+                <span class="text"> {{user.occupation}}</span>
+            </li>
+            <li *ngIf="user.studentProfile?.studentId">
+                <span class="title">Student Code:</span>
+                <span class="text"> {{user.studentProfile.studentId}}</span>
+            </li>
+            <li *ngIf="user.studentProfile?.name">
+                <span class="title">Student Real Name:</span>
+                <span class="text"> {{user.studentProfile.name}}</span>
+            </li>
+            <li *ngIf="user.studentProfile?.studentClass">
+                <span class="title">Student Class:</span>
+                <span class="text"> {{user.studentProfile.studentClass}}</span>
+            </li>
+            <li *ngIf="user.studentProfile?.studentDept">
+                <span class="title">Student Department:</span>
+                <span class="text"> {{user.studentProfile.studentDept.name}}</span>
+            </li>
+            <li *ngIf="user.studentProfile?.studentYear">
+                <span class="title">Student Year:</span>
+                <span class="text"> {{user.studentProfile.studentYear.name}}</span>
+            </li>
+        </ul>
+        <!-- .. end W-Personal-Info -->
+        <!-- W-Socials -->
+        <!--<div class="widget w-socials">
+            <h6 class="title">Other Social Networks:</h6>
+            <a href="#" class="social-item bg-facebook">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                Facebook
+            </a>
+            <a href="#" class="social-item bg-twitter">
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+                Twitter
+            </a>
+            <a href="#" class="social-item bg-dribbble">
+                <i class="fab fa-dribbble" aria-hidden="true"></i>
+                Dribbble
+            </a>
+        </div>-->
+        <!-- ... end W-Socials -->
+    </div>
+</div>

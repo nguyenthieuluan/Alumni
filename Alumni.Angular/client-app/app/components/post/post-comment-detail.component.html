@@ -3,7 +3,7 @@
         <img [src]="comment.user.pictureUrl" alt="author">
 
         <div class="author-date comment-content">
-            <a class="post__author-name" href="#">{{comment.user.fullName}}</a>
+            <user-link [user]="comment.user"  [linkClass]="'post__author-name'"></user-link>
             <span class="comment-text" [innerHtml]="comment.commentText"></span>
         </div>
         <div class="comment-tools">
@@ -13,7 +13,7 @@
                     {{comment.creationTime | amTimeAgo}}
                 </span>
             </span>
-            <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)">Reply</a>
+            <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)" *ngIf="appSession.user">Reply</a>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
                 <img [src]="comment.user.pictureUrl" alt="author">
 
                 <div class="author-date  comment-content">
-                    <a class="post__author-name" href="#">{{ccm.user.fullName}}</a>
+                   <user-link [user]="ccm.user" [linkClass]="'post__author-name'"></user-link>
                     <span class="comment-text">{{ccm.commentText}}</span>
                 </div>
                 <div class="comment-tools">
@@ -32,7 +32,7 @@
                             {{ccm.creationTime | amTimeAgo}}
                         </span>
                     </span>
-                    <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)">Reply</a>
+                    <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)" *ngIf="appSession.user">Reply</a>
                 </div>
             </div>
 
@@ -40,5 +40,5 @@
         </li>
 
     </ul>
-    <post-comment-editor [post]="post" [parentComment]="comment" (onPostCommentAdded)="addParentComment($event)" *ngIf="editor[comment.id]"></post-comment-editor>
+    <post-comment-editor [post]="post" [parentComment]="comment" (onPostCommentAdded)="addParentComment($event)" *ngIf="appSession.user && editor[comment.id]"></post-comment-editor>
 </li>

@@ -1,18 +1,19 @@
-﻿<div materialInput class="registration-login-form" id="LoginForm">
+﻿<div class="registration-login-form" id="LoginForm">
 
     <!-- Login-Registration Form  -->
 
-        <div class="title h6">Login to your Account</div>
+        <div class="title h6">Đăng nhập</div>
         <form #loginForm="ngForm"  class="content" method="post" novalidate (ngSubmit)="login()">
             <div class="row">
                 <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">{{l('UserNameOrEmail')}}</label>
-                        <input materialInput [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress"  class="form-control"  autocomplete="off" placeholder="" name="userNameOrEmailAddress" required maxlength="255" type="text">
+                  
+                    <div class="form-group  small-input">
+                        <label class="control-label">Username</label>
+                        <input  [(ngModel)]="loginService.authenticateModel.userNameOrEmailAddress" class="form-control" autocomplete="off" placeholder="" name="userNameOrEmailAddress" required maxlength="255" type="text">
                     </div>
-                    <div class="form-group label-floating is-empty">
-                        <label class="control-label">{{l('Password')}}</label>
-                        <input class="form-control" placeholder="" type="password" [(ngModel)]="loginService.authenticateModel.password"  name="password" required maxlength="32">
+                    <div class="form-group  small-input">
+                        <label class="control-label">Password</label>
+                        <input class="form-control" placeholder="" type="password" [(ngModel)]="loginService.authenticateModel.password" name="password" required maxlength="32">
                     </div>
 
                     <div class="remember">
@@ -20,17 +21,17 @@
                         <div class="checkbox">
                             <label>
                                 <input name="optionsCheckboxes" type="checkbox" [(ngModel)]="loginService.rememberMe" name="rememberMe">
-                                {{l('RememberMe')}}
+                               Ghi nhớ
                             </label>
                         </div>
-                        <a href="#" class="forgot">Forgot my Password</a>
+                        <!--<a href="#" class="forgot">Forgot my Password</a>-->
                     </div>
 
-                    <button class="btn btn-lg btn-primary full-width" type="submit">Login</button>
+                    <button id="loginAction" class="btn btn-lg btn-primary full-width" type="submit">Đăng nhập</button>
 
                     <div class="or"></div>
-                  
-                    <p>Nếu chưa có tài khoản? Vui lòng  <a [routerLink]="['../register']">Đăng ký!</a></p>
+
+                    <p>Nếu chưa có tài khoản? Vui lòng <a [routerLink]="['../register']">Đăng ký!</a></p>
                 </div>
             </div>
         </form>
@@ -38,3 +39,4 @@
     <!-- ... end Login-Registration Form  -->
 </div>
 
+<div materialInput bsEl></div>

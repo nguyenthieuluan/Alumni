@@ -1,55 +1,58 @@
-﻿<app-header-profile></app-header-profile>
-<div class="container">
-    <div class="row">
-        <div class="col col-xl-9 order-xl-2 col-lg-9 order-lg-2 col-md-12 order-md-1 col-sm-12 col-12">
-           <router-outlet></router-outlet>
-        </div>
-        <div class="col col-xl-3 order-xl-1 col-lg-3 order-lg-1 col-md-12 order-md-2 col-sm-12  responsive-display-none">
-            <div class="ui-block">
+﻿<div class="ui-block">
+    <div class="ui-block-title">
+        <h6 class="title">Picture settings</h6>
+    </div>
+    <div class="ui-block-content">
 
 
+        <div class="row">
 
-                <!-- Your Profile  -->
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="widget w-personal-info item-block">
+                    <li>
+                        <span class="h5 title">Avatar</span>
+                        <div class="text">
+                            <img-cropper #cropperP [image]="dP" [settings]="csP" (onCrop)="croppedP($event)"></img-cropper>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="title">Preview</span>
+                        <div class="text">
 
-                <div class="your-profile">
-                    <div class="ui-block-title ">
-                        <span class="text-bold title">Manage Profile</span>
-                    </div>
+                            <div class="img-picture"><img alt="author" [src]="page.pictureUrl || ''"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="widget w-personal-info item-block">
+                    <li>
+                        <span class="h5 title">Cover</span>
+                        <div class="text">
+                            <img-cropper #cropperC [image]="dC" [settings]="csC" (onCrop)="croppedC($event)"></img-cropper>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="title">Preview</span>
+                        <div class="text">
+                            <div class="img-cover-half"><img [src]="page.coverUrl || ''" alt="photo"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 
-                    <ul class="your-profile-menu">
-                        <li>
-                            <a [routerLink]="['/app/setting/profile']">Personal Information</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/app/setting/picture']">Picture Settings</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/app/setting/account']">Account Settings</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/app/setting/education']">Education and Employement</a>
-                        </li>
-                    </ul>
-                    <div class="ui-block-title ">
-                        <span class="text-bold title">Manage Channel</span>
-                    </div>
-                    <ul class="your-profile-menu">
-                        <li>
-                            <a href="28-YourAccount-PersonalInformation.html">Channel list</a>
-                        </li>
-                        <li>
-                            <a href="29-YourAccount-AccountSettings.html">Request new channel</a>
-                        </li>
-                    </ul>
-                  
+                <div class="col col-12">
+                    <button class="btn btn-primary f-right" (click)="save()">Update</button>
                 </div>
 
-                <!-- ... end Your Profile  -->
-
-
             </div>
+
+
         </div>
+
+
     </div>
-    
 </div>
 
+<div materialInput bsEl></div>

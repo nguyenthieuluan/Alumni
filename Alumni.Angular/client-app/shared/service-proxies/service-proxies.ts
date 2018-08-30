@@ -220,109 +220,17 @@ export class PageServiceProxy {
     }
 
     /**
-     * @id (optional) 
-     * @userName (optional) 
-     * @type (optional) 
-     * @email (optional) 
-     * @name (optional) 
-     * @doB (optional) 
-     * @phone (optional) 
-     * @address (optional) 
-     * @country (optional) 
-     * @province (optional) 
-     * @likeCount (optional) 
-     * @followCount (optional) 
-     * @city (optional) 
-     * @occupation (optional) 
-     * @about (optional) 
-     * @description (optional) 
-     * @websiteUrl (optional) 
-     * @facebookUrl (optional) 
-     * @twitterUrl (optional) 
-     * @skypeName (optional) 
-     * @viberNumber (optional) 
-     * @pictureUrl (optional) 
-     * @coverUrl (optional) 
-     * @creationTime (optional) 
-     * @isVerified (optional) 
-     * @userId (optional) 
-     * @isLiked (optional) 
-     * @isFollowed (optional) 
-     * @myRole (optional) 
-     * @isAdmin (optional) 
-     * @isEditor (optional) 
-     * @isModerator (optional) 
+     * @model (optional) 
      * @return Success
      */
-    getPage(id: number | null | undefined, userName: string | null | undefined, type: string | null | undefined, email: string | null | undefined, name: string | null | undefined, doB: moment.Moment | null | undefined, phone: string | null | undefined, address: string | null | undefined, country: string | null | undefined, province: string | null | undefined, likeCount: number | null | undefined, followCount: number | null | undefined, city: string | null | undefined, occupation: string | null | undefined, about: string | null | undefined, description: string | null | undefined, websiteUrl: string | null | undefined, facebookUrl: string | null | undefined, twitterUrl: string | null | undefined, skypeName: string | null | undefined, viberNumber: string | null | undefined, pictureUrl: string | null | undefined, coverUrl: string | null | undefined, creationTime: moment.Moment | null | undefined, isVerified: boolean | null | undefined, userId: number | null | undefined, isLiked: boolean | null | undefined, isFollowed: boolean | null | undefined, myRole: MyRole | null | undefined, isAdmin: boolean | null | undefined, isEditor: boolean | null | undefined, isModerator: boolean | null | undefined): Observable<PageDetailDto> {
-        let url_ = this.baseUrl + "/api/services/app/Page/GetPage?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
-        if (userName !== undefined)
-            url_ += "UserName=" + encodeURIComponent("" + userName) + "&"; 
-        if (type !== undefined)
-            url_ += "Type=" + encodeURIComponent("" + type) + "&"; 
-        if (email !== undefined)
-            url_ += "Email=" + encodeURIComponent("" + email) + "&"; 
-        if (name !== undefined)
-            url_ += "Name=" + encodeURIComponent("" + name) + "&"; 
-        if (doB !== undefined)
-            url_ += "DoB=" + encodeURIComponent(doB ? "" + doB.toJSON() : "") + "&"; 
-        if (phone !== undefined)
-            url_ += "Phone=" + encodeURIComponent("" + phone) + "&"; 
-        if (address !== undefined)
-            url_ += "Address=" + encodeURIComponent("" + address) + "&"; 
-        if (country !== undefined)
-            url_ += "Country=" + encodeURIComponent("" + country) + "&"; 
-        if (province !== undefined)
-            url_ += "Province=" + encodeURIComponent("" + province) + "&"; 
-        if (likeCount !== undefined)
-            url_ += "LikeCount=" + encodeURIComponent("" + likeCount) + "&"; 
-        if (followCount !== undefined)
-            url_ += "FollowCount=" + encodeURIComponent("" + followCount) + "&"; 
-        if (city !== undefined)
-            url_ += "City=" + encodeURIComponent("" + city) + "&"; 
-        if (occupation !== undefined)
-            url_ += "Occupation=" + encodeURIComponent("" + occupation) + "&"; 
-        if (about !== undefined)
-            url_ += "About=" + encodeURIComponent("" + about) + "&"; 
-        if (description !== undefined)
-            url_ += "Description=" + encodeURIComponent("" + description) + "&"; 
-        if (websiteUrl !== undefined)
-            url_ += "WebsiteUrl=" + encodeURIComponent("" + websiteUrl) + "&"; 
-        if (facebookUrl !== undefined)
-            url_ += "FacebookUrl=" + encodeURIComponent("" + facebookUrl) + "&"; 
-        if (twitterUrl !== undefined)
-            url_ += "TwitterUrl=" + encodeURIComponent("" + twitterUrl) + "&"; 
-        if (skypeName !== undefined)
-            url_ += "SkypeName=" + encodeURIComponent("" + skypeName) + "&"; 
-        if (viberNumber !== undefined)
-            url_ += "ViberNumber=" + encodeURIComponent("" + viberNumber) + "&"; 
-        if (pictureUrl !== undefined)
-            url_ += "PictureUrl=" + encodeURIComponent("" + pictureUrl) + "&"; 
-        if (coverUrl !== undefined)
-            url_ += "CoverUrl=" + encodeURIComponent("" + coverUrl) + "&"; 
-        if (creationTime !== undefined)
-            url_ += "CreationTime=" + encodeURIComponent(creationTime ? "" + creationTime.toJSON() : "") + "&"; 
-        if (isVerified !== undefined)
-            url_ += "IsVerified=" + encodeURIComponent("" + isVerified) + "&"; 
-        if (userId !== undefined)
-            url_ += "UserId=" + encodeURIComponent("" + userId) + "&"; 
-        if (isLiked !== undefined)
-            url_ += "IsLiked=" + encodeURIComponent("" + isLiked) + "&"; 
-        if (isFollowed !== undefined)
-            url_ += "IsFollowed=" + encodeURIComponent("" + isFollowed) + "&"; 
-        if (myRole !== undefined)
-            url_ += "MyRole=" + encodeURIComponent("" + myRole) + "&"; 
-        if (isAdmin !== undefined)
-            url_ += "IsAdmin=" + encodeURIComponent("" + isAdmin) + "&"; 
-        if (isEditor !== undefined)
-            url_ += "IsEditor=" + encodeURIComponent("" + isEditor) + "&"; 
-        if (isModerator !== undefined)
-            url_ += "IsModerator=" + encodeURIComponent("" + isModerator) + "&"; 
+    getPage(model: PageDetailDto | null | undefined): Observable<PageDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Page/GetPage";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(model);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -331,7 +239,7 @@ export class PageServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetPage(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -372,6 +280,58 @@ export class PageServiceProxy {
     }
 
     /**
+     * @return Success
+     */
+    getHomePage(): Observable<PageDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Page/GetHomePage";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetHomePage(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetHomePage(<any>response_);
+                } catch (e) {
+                    return <Observable<PageDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetHomePage(response: HttpResponseBase): Observable<PageDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PageDetailDto.fromJS(resultData200) : new PageDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageDetailDto>(<any>null);
+    }
+
+    /**
      * @model (optional) 
      * @return Success
      */
@@ -391,7 +351,7 @@ export class PageServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdatePage(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -429,6 +389,186 @@ export class PageServiceProxy {
             }));
         }
         return _observableOf<PageDetailDto>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    createPageCategory(model: PageCategory | null | undefined): Observable<PageCategory> {
+        let url_ = this.baseUrl + "/api/services/app/Page/CreatePageCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreatePageCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreatePageCategory(<any>response_);
+                } catch (e) {
+                    return <Observable<PageCategory>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageCategory>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreatePageCategory(response: HttpResponseBase): Observable<PageCategory> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PageCategory.fromJS(resultData200) : new PageCategory();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageCategory>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    updatePageCategory(model: PageCategory | null | undefined): Observable<PageCategory> {
+        let url_ = this.baseUrl + "/api/services/app/Page/UpdatePageCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdatePageCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdatePageCategory(<any>response_);
+                } catch (e) {
+                    return <Observable<PageCategory>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageCategory>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdatePageCategory(response: HttpResponseBase): Observable<PageCategory> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PageCategory.fromJS(resultData200) : new PageCategory();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageCategory>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    removePageCategory(model: PageCategory | null | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/Page/RemovePageCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRemovePageCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRemovePageCategory(<any>response_);
+                } catch (e) {
+                    return <Observable<boolean>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<boolean>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processRemovePageCategory(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<boolean>(<any>null);
     }
 
     /**
@@ -672,109 +812,17 @@ export class PageServiceProxy {
     }
 
     /**
-     * @id (optional) 
-     * @userName (optional) 
-     * @type (optional) 
-     * @email (optional) 
-     * @name (optional) 
-     * @doB (optional) 
-     * @phone (optional) 
-     * @address (optional) 
-     * @country (optional) 
-     * @province (optional) 
-     * @likeCount (optional) 
-     * @followCount (optional) 
-     * @city (optional) 
-     * @occupation (optional) 
-     * @about (optional) 
-     * @description (optional) 
-     * @websiteUrl (optional) 
-     * @facebookUrl (optional) 
-     * @twitterUrl (optional) 
-     * @skypeName (optional) 
-     * @viberNumber (optional) 
-     * @pictureUrl (optional) 
-     * @coverUrl (optional) 
-     * @creationTime (optional) 
-     * @isVerified (optional) 
-     * @userId (optional) 
-     * @isLiked (optional) 
-     * @isFollowed (optional) 
-     * @myRole (optional) 
-     * @isAdmin (optional) 
-     * @isEditor (optional) 
-     * @isModerator (optional) 
+     * @model (optional) 
      * @return Success
      */
-    getMembers(id: number | null | undefined, userName: string | null | undefined, type: string | null | undefined, email: string | null | undefined, name: string | null | undefined, doB: moment.Moment | null | undefined, phone: string | null | undefined, address: string | null | undefined, country: string | null | undefined, province: string | null | undefined, likeCount: number | null | undefined, followCount: number | null | undefined, city: string | null | undefined, occupation: string | null | undefined, about: string | null | undefined, description: string | null | undefined, websiteUrl: string | null | undefined, facebookUrl: string | null | undefined, twitterUrl: string | null | undefined, skypeName: string | null | undefined, viberNumber: string | null | undefined, pictureUrl: string | null | undefined, coverUrl: string | null | undefined, creationTime: moment.Moment | null | undefined, isVerified: boolean | null | undefined, userId: number | null | undefined, isLiked: boolean | null | undefined, isFollowed: boolean | null | undefined, myRole: MyRole2 | null | undefined, isAdmin: boolean | null | undefined, isEditor: boolean | null | undefined, isModerator: boolean | null | undefined): Observable<PageMemberDto[]> {
-        let url_ = this.baseUrl + "/api/services/app/Page/GetMembers?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
-        if (userName !== undefined)
-            url_ += "UserName=" + encodeURIComponent("" + userName) + "&"; 
-        if (type !== undefined)
-            url_ += "Type=" + encodeURIComponent("" + type) + "&"; 
-        if (email !== undefined)
-            url_ += "Email=" + encodeURIComponent("" + email) + "&"; 
-        if (name !== undefined)
-            url_ += "Name=" + encodeURIComponent("" + name) + "&"; 
-        if (doB !== undefined)
-            url_ += "DoB=" + encodeURIComponent(doB ? "" + doB.toJSON() : "") + "&"; 
-        if (phone !== undefined)
-            url_ += "Phone=" + encodeURIComponent("" + phone) + "&"; 
-        if (address !== undefined)
-            url_ += "Address=" + encodeURIComponent("" + address) + "&"; 
-        if (country !== undefined)
-            url_ += "Country=" + encodeURIComponent("" + country) + "&"; 
-        if (province !== undefined)
-            url_ += "Province=" + encodeURIComponent("" + province) + "&"; 
-        if (likeCount !== undefined)
-            url_ += "LikeCount=" + encodeURIComponent("" + likeCount) + "&"; 
-        if (followCount !== undefined)
-            url_ += "FollowCount=" + encodeURIComponent("" + followCount) + "&"; 
-        if (city !== undefined)
-            url_ += "City=" + encodeURIComponent("" + city) + "&"; 
-        if (occupation !== undefined)
-            url_ += "Occupation=" + encodeURIComponent("" + occupation) + "&"; 
-        if (about !== undefined)
-            url_ += "About=" + encodeURIComponent("" + about) + "&"; 
-        if (description !== undefined)
-            url_ += "Description=" + encodeURIComponent("" + description) + "&"; 
-        if (websiteUrl !== undefined)
-            url_ += "WebsiteUrl=" + encodeURIComponent("" + websiteUrl) + "&"; 
-        if (facebookUrl !== undefined)
-            url_ += "FacebookUrl=" + encodeURIComponent("" + facebookUrl) + "&"; 
-        if (twitterUrl !== undefined)
-            url_ += "TwitterUrl=" + encodeURIComponent("" + twitterUrl) + "&"; 
-        if (skypeName !== undefined)
-            url_ += "SkypeName=" + encodeURIComponent("" + skypeName) + "&"; 
-        if (viberNumber !== undefined)
-            url_ += "ViberNumber=" + encodeURIComponent("" + viberNumber) + "&"; 
-        if (pictureUrl !== undefined)
-            url_ += "PictureUrl=" + encodeURIComponent("" + pictureUrl) + "&"; 
-        if (coverUrl !== undefined)
-            url_ += "CoverUrl=" + encodeURIComponent("" + coverUrl) + "&"; 
-        if (creationTime !== undefined)
-            url_ += "CreationTime=" + encodeURIComponent(creationTime ? "" + creationTime.toJSON() : "") + "&"; 
-        if (isVerified !== undefined)
-            url_ += "IsVerified=" + encodeURIComponent("" + isVerified) + "&"; 
-        if (userId !== undefined)
-            url_ += "UserId=" + encodeURIComponent("" + userId) + "&"; 
-        if (isLiked !== undefined)
-            url_ += "IsLiked=" + encodeURIComponent("" + isLiked) + "&"; 
-        if (isFollowed !== undefined)
-            url_ += "IsFollowed=" + encodeURIComponent("" + isFollowed) + "&"; 
-        if (myRole !== undefined)
-            url_ += "MyRole=" + encodeURIComponent("" + myRole) + "&"; 
-        if (isAdmin !== undefined)
-            url_ += "IsAdmin=" + encodeURIComponent("" + isAdmin) + "&"; 
-        if (isEditor !== undefined)
-            url_ += "IsEditor=" + encodeURIComponent("" + isEditor) + "&"; 
-        if (isModerator !== undefined)
-            url_ += "IsModerator=" + encodeURIComponent("" + isModerator) + "&"; 
+    getMembers(model: PageDetailDto | null | undefined): Observable<PageMemberDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/Page/GetMembers";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(model);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -783,7 +831,7 @@ export class PageServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetMembers(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -892,52 +940,17 @@ export class PageServiceProxy {
     }
 
     /**
-     * @pageUserName (optional) 
-     * @role (optional) 
-     * @user_UserName (optional) 
-     * @user_EmailAddress (optional) 
-     * @user_IsActive (optional) 
-     * @user_Name (optional) 
-     * @user_FullName (optional) 
-     * @user_LastLoginTime (optional) 
-     * @user_CreationTime (optional) 
-     * @user_RoleNames (optional) 
-     * @user_PictureUrl (optional) 
-     * @user_PictureCoverUrl (optional) 
-     * @user_Id (optional) 
+     * @model (optional) 
      * @return Success
      */
-    removeMember(pageUserName: string | null | undefined, role: Role | null | undefined, user_UserName: string | null | undefined, user_EmailAddress: string | null | undefined, user_IsActive: boolean | null | undefined, user_Name: string | null | undefined, user_FullName: string | null | undefined, user_LastLoginTime: moment.Moment | null | undefined, user_CreationTime: moment.Moment | null | undefined, user_RoleNames: string[] | null | undefined, user_PictureUrl: string | null | undefined, user_PictureCoverUrl: string | null | undefined, user_Id: number | null | undefined): Observable<PageMemberDto[]> {
-        let url_ = this.baseUrl + "/api/services/app/Page/RemoveMember?";
-        if (pageUserName !== undefined)
-            url_ += "PageUserName=" + encodeURIComponent("" + pageUserName) + "&"; 
-        if (role !== undefined)
-            url_ += "Role=" + encodeURIComponent("" + role) + "&"; 
-        if (user_UserName !== undefined)
-            url_ += "User.UserName=" + encodeURIComponent("" + user_UserName) + "&"; 
-        if (user_EmailAddress !== undefined)
-            url_ += "User.EmailAddress=" + encodeURIComponent("" + user_EmailAddress) + "&"; 
-        if (user_IsActive !== undefined)
-            url_ += "User.IsActive=" + encodeURIComponent("" + user_IsActive) + "&"; 
-        if (user_Name !== undefined)
-            url_ += "User.Name=" + encodeURIComponent("" + user_Name) + "&"; 
-        if (user_FullName !== undefined)
-            url_ += "User.FullName=" + encodeURIComponent("" + user_FullName) + "&"; 
-        if (user_LastLoginTime !== undefined)
-            url_ += "User.LastLoginTime=" + encodeURIComponent(user_LastLoginTime ? "" + user_LastLoginTime.toJSON() : "") + "&"; 
-        if (user_CreationTime !== undefined)
-            url_ += "User.CreationTime=" + encodeURIComponent(user_CreationTime ? "" + user_CreationTime.toJSON() : "") + "&"; 
-        if (user_RoleNames !== undefined)
-            user_RoleNames && user_RoleNames.forEach(item => { url_ += "User.RoleNames=" + encodeURIComponent("" + item) + "&"; });
-        if (user_PictureUrl !== undefined)
-            url_ += "User.PictureUrl=" + encodeURIComponent("" + user_PictureUrl) + "&"; 
-        if (user_PictureCoverUrl !== undefined)
-            url_ += "User.PictureCoverUrl=" + encodeURIComponent("" + user_PictureCoverUrl) + "&"; 
-        if (user_Id !== undefined)
-            url_ += "User.Id=" + encodeURIComponent("" + user_Id) + "&"; 
+    removeMember(model: PageMemberDto | null | undefined): Observable<PageMemberDto[]> {
+        let url_ = this.baseUrl + "/api/services/app/Page/RemoveMember";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(model);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -946,7 +959,7 @@ export class PageServiceProxy {
             })
         };
 
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processRemoveMember(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1003,121 +1016,17 @@ export class PostServiceProxy {
     }
 
     /**
-     * @id (optional) 
-     * @contentText (optional) 
-     * @title (optional) 
-     * @comments (optional) 
-     * @postData_Pictures (optional) 
-     * @postData_MediaLinks (optional) 
-     * @postData_Theme (optional) 
-     * @postData_Feeling (optional) 
-     * @postData_Sticker (optional) 
-     * @author_UserName (optional) 
-     * @author_EmailAddress (optional) 
-     * @author_IsActive (optional) 
-     * @author_Name (optional) 
-     * @author_FullName (optional) 
-     * @author_LastLoginTime (optional) 
-     * @author_CreationTime (optional) 
-     * @author_RoleNames (optional) 
-     * @author_PictureUrl (optional) 
-     * @author_PictureCoverUrl (optional) 
-     * @author_Id (optional) 
-     * @publishType (optional) 
-     * @dateCreated (optional) 
-     * @stats_PostId (optional) 
-     * @stats_Hits (optional) 
-     * @stats_Reacts (optional) 
-     * @stats_Shares (optional) 
-     * @stats_Reposts (optional) 
-     * @stats_Stats_IsHit (optional) 
-     * @stats_Stats_IsReaction (optional) 
-     * @stats_Stats_IsRepost (optional) 
-     * @stats_Stats_IsShare (optional) 
-     * @stats_Stats_ReactionType (optional) 
-     * @stats_UserId (optional) 
+     * @postDetailDto (optional) 
      * @return Success
      */
-    getPost(id: number | null | undefined, contentText: string | null | undefined, title: string | null | undefined, comments: any[] | null | undefined, postData_Pictures: any[] | null | undefined, postData_MediaLinks: any[] | null | undefined, postData_Theme: string | null | undefined, postData_Feeling: string | null | undefined, postData_Sticker: string | null | undefined, author_UserName: string | null | undefined, author_EmailAddress: string | null | undefined, author_IsActive: boolean | null | undefined, author_Name: string | null | undefined, author_FullName: string | null | undefined, author_LastLoginTime: moment.Moment | null | undefined, author_CreationTime: moment.Moment | null | undefined, author_RoleNames: string[] | null | undefined, author_PictureUrl: string | null | undefined, author_PictureCoverUrl: string | null | undefined, author_Id: number | null | undefined, publishType: string | null | undefined, dateCreated: moment.Moment | null | undefined, stats_PostId: number | null | undefined, stats_Hits: number | null | undefined, stats_Reacts: number | null | undefined, stats_Shares: number | null | undefined, stats_Reposts: number | null | undefined, stats_Stats_IsHit: boolean | null | undefined, stats_Stats_IsReaction: boolean | null | undefined, stats_Stats_IsRepost: boolean | null | undefined, stats_Stats_IsShare: boolean | null | undefined, stats_Stats_ReactionType: ReactionType | null | undefined, stats_UserId: number | null | undefined): Observable<PostDetailDto> {
-        let url_ = this.baseUrl + "/api/services/app/Post/GetPost?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
-        if (contentText !== undefined)
-            url_ += "ContentText=" + encodeURIComponent("" + contentText) + "&"; 
-        if (title !== undefined)
-            url_ += "Title=" + encodeURIComponent("" + title) + "&"; 
-        if (comments !== undefined)
-            comments && comments.forEach((item, index) => { 
-                for (let attr in item)
-                    url_ += "Comments[" + index + "]." + attr + "=" + encodeURIComponent("" + item[attr]) + "&";
-            });
-        if (postData_Pictures !== undefined)
-            postData_Pictures && postData_Pictures.forEach((item, index) => { 
-                for (let attr in item)
-                    url_ += "PostData.Pictures[" + index + "]." + attr + "=" + encodeURIComponent("" + item[attr]) + "&";
-            });
-        if (postData_MediaLinks !== undefined)
-            postData_MediaLinks && postData_MediaLinks.forEach((item, index) => { 
-                for (let attr in item)
-                    url_ += "PostData.MediaLinks[" + index + "]." + attr + "=" + encodeURIComponent("" + item[attr]) + "&";
-            });
-        if (postData_Theme !== undefined)
-            url_ += "PostData.Theme=" + encodeURIComponent("" + postData_Theme) + "&"; 
-        if (postData_Feeling !== undefined)
-            url_ += "PostData.Feeling=" + encodeURIComponent("" + postData_Feeling) + "&"; 
-        if (postData_Sticker !== undefined)
-            url_ += "PostData.Sticker=" + encodeURIComponent("" + postData_Sticker) + "&"; 
-        if (author_UserName !== undefined)
-            url_ += "Author.UserName=" + encodeURIComponent("" + author_UserName) + "&"; 
-        if (author_EmailAddress !== undefined)
-            url_ += "Author.EmailAddress=" + encodeURIComponent("" + author_EmailAddress) + "&"; 
-        if (author_IsActive !== undefined)
-            url_ += "Author.IsActive=" + encodeURIComponent("" + author_IsActive) + "&"; 
-        if (author_Name !== undefined)
-            url_ += "Author.Name=" + encodeURIComponent("" + author_Name) + "&"; 
-        if (author_FullName !== undefined)
-            url_ += "Author.FullName=" + encodeURIComponent("" + author_FullName) + "&"; 
-        if (author_LastLoginTime !== undefined)
-            url_ += "Author.LastLoginTime=" + encodeURIComponent(author_LastLoginTime ? "" + author_LastLoginTime.toJSON() : "") + "&"; 
-        if (author_CreationTime !== undefined)
-            url_ += "Author.CreationTime=" + encodeURIComponent(author_CreationTime ? "" + author_CreationTime.toJSON() : "") + "&"; 
-        if (author_RoleNames !== undefined)
-            author_RoleNames && author_RoleNames.forEach(item => { url_ += "Author.RoleNames=" + encodeURIComponent("" + item) + "&"; });
-        if (author_PictureUrl !== undefined)
-            url_ += "Author.PictureUrl=" + encodeURIComponent("" + author_PictureUrl) + "&"; 
-        if (author_PictureCoverUrl !== undefined)
-            url_ += "Author.PictureCoverUrl=" + encodeURIComponent("" + author_PictureCoverUrl) + "&"; 
-        if (author_Id !== undefined)
-            url_ += "Author.Id=" + encodeURIComponent("" + author_Id) + "&"; 
-        if (publishType !== undefined)
-            url_ += "PublishType=" + encodeURIComponent("" + publishType) + "&"; 
-        if (dateCreated !== undefined)
-            url_ += "DateCreated=" + encodeURIComponent(dateCreated ? "" + dateCreated.toJSON() : "") + "&"; 
-        if (stats_PostId !== undefined)
-            url_ += "Stats.PostId=" + encodeURIComponent("" + stats_PostId) + "&"; 
-        if (stats_Hits !== undefined)
-            url_ += "Stats.Hits=" + encodeURIComponent("" + stats_Hits) + "&"; 
-        if (stats_Reacts !== undefined)
-            url_ += "Stats.Reacts=" + encodeURIComponent("" + stats_Reacts) + "&"; 
-        if (stats_Shares !== undefined)
-            url_ += "Stats.Shares=" + encodeURIComponent("" + stats_Shares) + "&"; 
-        if (stats_Reposts !== undefined)
-            url_ += "Stats.Reposts=" + encodeURIComponent("" + stats_Reposts) + "&"; 
-        if (stats_Stats_IsHit !== undefined)
-            url_ += "Stats.Stats.IsHit=" + encodeURIComponent("" + stats_Stats_IsHit) + "&"; 
-        if (stats_Stats_IsReaction !== undefined)
-            url_ += "Stats.Stats.IsReaction=" + encodeURIComponent("" + stats_Stats_IsReaction) + "&"; 
-        if (stats_Stats_IsRepost !== undefined)
-            url_ += "Stats.Stats.IsRepost=" + encodeURIComponent("" + stats_Stats_IsRepost) + "&"; 
-        if (stats_Stats_IsShare !== undefined)
-            url_ += "Stats.Stats.IsShare=" + encodeURIComponent("" + stats_Stats_IsShare) + "&"; 
-        if (stats_Stats_ReactionType !== undefined)
-            url_ += "Stats.Stats.ReactionType=" + encodeURIComponent("" + stats_Stats_ReactionType) + "&"; 
-        if (stats_UserId !== undefined)
-            url_ += "Stats.UserId=" + encodeURIComponent("" + stats_UserId) + "&"; 
+    getPost(postDetailDto: PostDetailDto | null | undefined): Observable<PostDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetPost";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(postDetailDto);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -1126,7 +1035,7 @@ export class PostServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetPost(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1169,7 +1078,7 @@ export class PostServiceProxy {
     /**
      * @return Success
      */
-    getNewsFeedPosts(): Observable<PostDetailDto[]> {
+    getNewsFeedPosts(): Observable<PagedResultDtoOfPostDetailDto> {
         let url_ = this.baseUrl + "/api/services/app/Post/GetNewsFeedPosts";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1182,21 +1091,21 @@ export class PostServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetNewsFeedPosts(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
                     return this.processGetNewsFeedPosts(<any>response_);
                 } catch (e) {
-                    return <Observable<PostDetailDto[]>><any>_observableThrow(e);
+                    return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<PostDetailDto[]>><any>_observableThrow(response_);
+                return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetNewsFeedPosts(response: HttpResponseBase): Observable<PostDetailDto[]> {
+    protected processGetNewsFeedPosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -1207,11 +1116,7 @@ export class PostServiceProxy {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (resultData200 && resultData200.constructor === Array) {
-                result200 = [];
-                for (let item of resultData200)
-                    result200.push(PostDetailDto.fromJS(item));
-            }
+            result200 = resultData200 ? PagedResultDtoOfPostDetailDto.fromJS(resultData200) : new PagedResultDtoOfPostDetailDto();
             return _observableOf(result200);
             }));
         } else if (status === 401) {
@@ -1223,7 +1128,119 @@ export class PostServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<PostDetailDto[]>(<any>null);
+        return _observableOf<PagedResultDtoOfPostDetailDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getHomepagePosts(): Observable<PagedResultDtoOfPostDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetHomepagePosts";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetHomepagePosts(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetHomepagePosts(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetHomepagePosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PagedResultDtoOfPostDetailDto.fromJS(resultData200) : new PagedResultDtoOfPostDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfPostDetailDto>(<any>null);
+    }
+
+    /**
+     * @request (optional) 
+     * @return Success
+     */
+    getUserTimelinePosts(request: UserTimelinePostRequest | null | undefined): Observable<PagedResultDtoOfPostDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetUserTimelinePosts";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(request);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetUserTimelinePosts(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetUserTimelinePosts(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetUserTimelinePosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PagedResultDtoOfPostDetailDto.fromJS(resultData200) : new PagedResultDtoOfPostDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfPostDetailDto>(<any>null);
     }
 
     /**
@@ -1347,121 +1364,17 @@ export class PostServiceProxy {
     }
 
     /**
-     * @id (optional) 
-     * @contentText (optional) 
-     * @title (optional) 
-     * @comments (optional) 
-     * @postData_Pictures (optional) 
-     * @postData_MediaLinks (optional) 
-     * @postData_Theme (optional) 
-     * @postData_Feeling (optional) 
-     * @postData_Sticker (optional) 
-     * @author_UserName (optional) 
-     * @author_EmailAddress (optional) 
-     * @author_IsActive (optional) 
-     * @author_Name (optional) 
-     * @author_FullName (optional) 
-     * @author_LastLoginTime (optional) 
-     * @author_CreationTime (optional) 
-     * @author_RoleNames (optional) 
-     * @author_PictureUrl (optional) 
-     * @author_PictureCoverUrl (optional) 
-     * @author_Id (optional) 
-     * @publishType (optional) 
-     * @dateCreated (optional) 
-     * @stats_PostId (optional) 
-     * @stats_Hits (optional) 
-     * @stats_Reacts (optional) 
-     * @stats_Shares (optional) 
-     * @stats_Reposts (optional) 
-     * @stats_Stats_IsHit (optional) 
-     * @stats_Stats_IsReaction (optional) 
-     * @stats_Stats_IsRepost (optional) 
-     * @stats_Stats_IsShare (optional) 
-     * @stats_Stats_ReactionType (optional) 
-     * @stats_UserId (optional) 
+     * @postDetailDto (optional) 
      * @return Success
      */
-    deletePost(id: number | null | undefined, contentText: string | null | undefined, title: string | null | undefined, comments: any[] | null | undefined, postData_Pictures: any[] | null | undefined, postData_MediaLinks: any[] | null | undefined, postData_Theme: string | null | undefined, postData_Feeling: string | null | undefined, postData_Sticker: string | null | undefined, author_UserName: string | null | undefined, author_EmailAddress: string | null | undefined, author_IsActive: boolean | null | undefined, author_Name: string | null | undefined, author_FullName: string | null | undefined, author_LastLoginTime: moment.Moment | null | undefined, author_CreationTime: moment.Moment | null | undefined, author_RoleNames: string[] | null | undefined, author_PictureUrl: string | null | undefined, author_PictureCoverUrl: string | null | undefined, author_Id: number | null | undefined, publishType: string | null | undefined, dateCreated: moment.Moment | null | undefined, stats_PostId: number | null | undefined, stats_Hits: number | null | undefined, stats_Reacts: number | null | undefined, stats_Shares: number | null | undefined, stats_Reposts: number | null | undefined, stats_Stats_IsHit: boolean | null | undefined, stats_Stats_IsReaction: boolean | null | undefined, stats_Stats_IsRepost: boolean | null | undefined, stats_Stats_IsShare: boolean | null | undefined, stats_Stats_ReactionType: ReactionType2 | null | undefined, stats_UserId: number | null | undefined): Observable<boolean> {
-        let url_ = this.baseUrl + "/api/services/app/Post/DeletePost?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
-        if (contentText !== undefined)
-            url_ += "ContentText=" + encodeURIComponent("" + contentText) + "&"; 
-        if (title !== undefined)
-            url_ += "Title=" + encodeURIComponent("" + title) + "&"; 
-        if (comments !== undefined)
-            comments && comments.forEach((item, index) => { 
-                for (let attr in item)
-                    url_ += "Comments[" + index + "]." + attr + "=" + encodeURIComponent("" + item[attr]) + "&";
-            });
-        if (postData_Pictures !== undefined)
-            postData_Pictures && postData_Pictures.forEach((item, index) => { 
-                for (let attr in item)
-                    url_ += "PostData.Pictures[" + index + "]." + attr + "=" + encodeURIComponent("" + item[attr]) + "&";
-            });
-        if (postData_MediaLinks !== undefined)
-            postData_MediaLinks && postData_MediaLinks.forEach((item, index) => { 
-                for (let attr in item)
-                    url_ += "PostData.MediaLinks[" + index + "]." + attr + "=" + encodeURIComponent("" + item[attr]) + "&";
-            });
-        if (postData_Theme !== undefined)
-            url_ += "PostData.Theme=" + encodeURIComponent("" + postData_Theme) + "&"; 
-        if (postData_Feeling !== undefined)
-            url_ += "PostData.Feeling=" + encodeURIComponent("" + postData_Feeling) + "&"; 
-        if (postData_Sticker !== undefined)
-            url_ += "PostData.Sticker=" + encodeURIComponent("" + postData_Sticker) + "&"; 
-        if (author_UserName !== undefined)
-            url_ += "Author.UserName=" + encodeURIComponent("" + author_UserName) + "&"; 
-        if (author_EmailAddress !== undefined)
-            url_ += "Author.EmailAddress=" + encodeURIComponent("" + author_EmailAddress) + "&"; 
-        if (author_IsActive !== undefined)
-            url_ += "Author.IsActive=" + encodeURIComponent("" + author_IsActive) + "&"; 
-        if (author_Name !== undefined)
-            url_ += "Author.Name=" + encodeURIComponent("" + author_Name) + "&"; 
-        if (author_FullName !== undefined)
-            url_ += "Author.FullName=" + encodeURIComponent("" + author_FullName) + "&"; 
-        if (author_LastLoginTime !== undefined)
-            url_ += "Author.LastLoginTime=" + encodeURIComponent(author_LastLoginTime ? "" + author_LastLoginTime.toJSON() : "") + "&"; 
-        if (author_CreationTime !== undefined)
-            url_ += "Author.CreationTime=" + encodeURIComponent(author_CreationTime ? "" + author_CreationTime.toJSON() : "") + "&"; 
-        if (author_RoleNames !== undefined)
-            author_RoleNames && author_RoleNames.forEach(item => { url_ += "Author.RoleNames=" + encodeURIComponent("" + item) + "&"; });
-        if (author_PictureUrl !== undefined)
-            url_ += "Author.PictureUrl=" + encodeURIComponent("" + author_PictureUrl) + "&"; 
-        if (author_PictureCoverUrl !== undefined)
-            url_ += "Author.PictureCoverUrl=" + encodeURIComponent("" + author_PictureCoverUrl) + "&"; 
-        if (author_Id !== undefined)
-            url_ += "Author.Id=" + encodeURIComponent("" + author_Id) + "&"; 
-        if (publishType !== undefined)
-            url_ += "PublishType=" + encodeURIComponent("" + publishType) + "&"; 
-        if (dateCreated !== undefined)
-            url_ += "DateCreated=" + encodeURIComponent(dateCreated ? "" + dateCreated.toJSON() : "") + "&"; 
-        if (stats_PostId !== undefined)
-            url_ += "Stats.PostId=" + encodeURIComponent("" + stats_PostId) + "&"; 
-        if (stats_Hits !== undefined)
-            url_ += "Stats.Hits=" + encodeURIComponent("" + stats_Hits) + "&"; 
-        if (stats_Reacts !== undefined)
-            url_ += "Stats.Reacts=" + encodeURIComponent("" + stats_Reacts) + "&"; 
-        if (stats_Shares !== undefined)
-            url_ += "Stats.Shares=" + encodeURIComponent("" + stats_Shares) + "&"; 
-        if (stats_Reposts !== undefined)
-            url_ += "Stats.Reposts=" + encodeURIComponent("" + stats_Reposts) + "&"; 
-        if (stats_Stats_IsHit !== undefined)
-            url_ += "Stats.Stats.IsHit=" + encodeURIComponent("" + stats_Stats_IsHit) + "&"; 
-        if (stats_Stats_IsReaction !== undefined)
-            url_ += "Stats.Stats.IsReaction=" + encodeURIComponent("" + stats_Stats_IsReaction) + "&"; 
-        if (stats_Stats_IsRepost !== undefined)
-            url_ += "Stats.Stats.IsRepost=" + encodeURIComponent("" + stats_Stats_IsRepost) + "&"; 
-        if (stats_Stats_IsShare !== undefined)
-            url_ += "Stats.Stats.IsShare=" + encodeURIComponent("" + stats_Stats_IsShare) + "&"; 
-        if (stats_Stats_ReactionType !== undefined)
-            url_ += "Stats.Stats.ReactionType=" + encodeURIComponent("" + stats_Stats_ReactionType) + "&"; 
-        if (stats_UserId !== undefined)
-            url_ += "Stats.UserId=" + encodeURIComponent("" + stats_UserId) + "&"; 
+    deletePost(postDetailDto: PostDetailDto | null | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/Post/DeletePost";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(postDetailDto);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -1470,7 +1383,7 @@ export class PostServiceProxy {
             })
         };
 
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processDeletePost(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1590,7 +1503,7 @@ export class PostServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdateStat(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1726,7 +1639,7 @@ export class RoleServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1771,16 +1684,17 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    delete(id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/Role/Delete?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    delete(input: EntityDtoOfInt32 | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Role/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -1788,7 +1702,7 @@ export class RoleServiceProxy {
             })
         };
 
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1845,7 +1759,7 @@ export class RoleServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetAllPermissions(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1890,16 +1804,17 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    get(id: number | null | undefined): Observable<RoleDto> {
-        let url_ = this.baseUrl + "/api/services/app/Role/Get?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    get(input: EntityDtoOfInt32 | null | undefined): Observable<RoleDto> {
+        let url_ = this.baseUrl + "/api/services/app/Role/Get";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -1908,7 +1823,7 @@ export class RoleServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGet(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -1953,19 +1868,17 @@ export class RoleServiceProxy {
     }
 
     /**
-     * @skipCount (optional) 
-     * @maxResultCount (optional) 
+     * @input (optional) 
      * @return Success
      */
-    getAll(skipCount: number | null | undefined, maxResultCount: number | null | undefined): Observable<PagedResultDtoOfRoleDto> {
-        let url_ = this.baseUrl + "/api/services/app/Role/GetAll?";
-        if (skipCount !== undefined)
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount !== undefined)
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+    getAll(input: PagedResultRequestDto | null | undefined): Observable<PagedResultDtoOfRoleDto> {
+        let url_ = this.baseUrl + "/api/services/app/Role/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -1974,7 +1887,7 @@ export class RoleServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2046,7 +1959,7 @@ export class SessionServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetCurrentLoginInformations(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2166,7 +2079,7 @@ export class StudentProfileServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetStudentProfile(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2222,7 +2135,7 @@ export class StudentProfileServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdateStudentProfile(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2335,16 +2248,17 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    delete(id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/Tenant/Delete?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    delete(input: EntityDtoOfInt32 | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Tenant/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -2352,7 +2266,7 @@ export class TenantServiceProxy {
             })
         };
 
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2394,16 +2308,17 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    get(id: number | null | undefined): Observable<TenantDto> {
-        let url_ = this.baseUrl + "/api/services/app/Tenant/Get?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    get(input: EntityDtoOfInt32 | null | undefined): Observable<TenantDto> {
+        let url_ = this.baseUrl + "/api/services/app/Tenant/Get";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -2412,7 +2327,7 @@ export class TenantServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGet(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2457,19 +2372,17 @@ export class TenantServiceProxy {
     }
 
     /**
-     * @skipCount (optional) 
-     * @maxResultCount (optional) 
+     * @input (optional) 
      * @return Success
      */
-    getAll(skipCount: number | null | undefined, maxResultCount: number | null | undefined): Observable<PagedResultDtoOfTenantDto> {
-        let url_ = this.baseUrl + "/api/services/app/Tenant/GetAll?";
-        if (skipCount !== undefined)
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount !== undefined)
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+    getAll(input: PagedResultRequestDto | null | undefined): Observable<PagedResultDtoOfTenantDto> {
+        let url_ = this.baseUrl + "/api/services/app/Tenant/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -2478,7 +2391,7 @@ export class TenantServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2542,7 +2455,7 @@ export class TenantServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2930,7 +2843,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -2975,16 +2888,17 @@ export class UserServiceProxy {
     }
 
     /**
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    delete(id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/User/Delete?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    delete(input: EntityDtoOfInt64 | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/User/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -2992,7 +2906,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3049,7 +2963,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetRoles(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3154,43 +3068,17 @@ export class UserServiceProxy {
     }
 
     /**
-     * @userName (optional) 
-     * @emailAddress (optional) 
-     * @isActive (optional) 
-     * @fullName (optional) 
-     * @avatarPictureUrl (optional) 
-     * @coverPictureUrl (optional) 
-     * @statusMessage (optional) 
-     * @lastLoginTime (optional) 
-     * @creationTime (optional) 
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    getUserTop(userName: string | null | undefined, emailAddress: string | null | undefined, isActive: boolean | null | undefined, fullName: string | null | undefined, avatarPictureUrl: string | null | undefined, coverPictureUrl: string | null | undefined, statusMessage: string | null | undefined, lastLoginTime: moment.Moment | null | undefined, creationTime: moment.Moment | null | undefined, id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/User/GetUserTop?";
-        if (userName !== undefined)
-            url_ += "UserName=" + encodeURIComponent("" + userName) + "&"; 
-        if (emailAddress !== undefined)
-            url_ += "EmailAddress=" + encodeURIComponent("" + emailAddress) + "&"; 
-        if (isActive !== undefined)
-            url_ += "IsActive=" + encodeURIComponent("" + isActive) + "&"; 
-        if (fullName !== undefined)
-            url_ += "FullName=" + encodeURIComponent("" + fullName) + "&"; 
-        if (avatarPictureUrl !== undefined)
-            url_ += "AvatarPictureUrl=" + encodeURIComponent("" + avatarPictureUrl) + "&"; 
-        if (coverPictureUrl !== undefined)
-            url_ += "CoverPictureUrl=" + encodeURIComponent("" + coverPictureUrl) + "&"; 
-        if (statusMessage !== undefined)
-            url_ += "StatusMessage=" + encodeURIComponent("" + statusMessage) + "&"; 
-        if (lastLoginTime !== undefined)
-            url_ += "LastLoginTime=" + encodeURIComponent(lastLoginTime ? "" + lastLoginTime.toJSON() : "") + "&"; 
-        if (creationTime !== undefined)
-            url_ += "CreationTime=" + encodeURIComponent(creationTime ? "" + creationTime.toJSON() : "") + "&"; 
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    getUserTop(input: UserTopDto | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/User/GetUserTop";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -3198,7 +3086,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetUserTop(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3240,46 +3128,17 @@ export class UserServiceProxy {
     }
 
     /**
-     * @userName (optional) 
-     * @emailAddress (optional) 
-     * @isActive (optional) 
-     * @name (optional) 
-     * @fullName (optional) 
-     * @lastLoginTime (optional) 
-     * @creationTime (optional) 
-     * @roleNames (optional) 
-     * @pictureUrl (optional) 
-     * @pictureCoverUrl (optional) 
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    getUserInfo(userName: string | null | undefined, emailAddress: string | null | undefined, isActive: boolean | null | undefined, name: string | null | undefined, fullName: string | null | undefined, lastLoginTime: moment.Moment | null | undefined, creationTime: moment.Moment | null | undefined, roleNames: string[] | null | undefined, pictureUrl: string | null | undefined, pictureCoverUrl: string | null | undefined, id: number | null | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/services/app/User/GetUserInfo?";
-        if (userName !== undefined)
-            url_ += "UserName=" + encodeURIComponent("" + userName) + "&"; 
-        if (emailAddress !== undefined)
-            url_ += "EmailAddress=" + encodeURIComponent("" + emailAddress) + "&"; 
-        if (isActive !== undefined)
-            url_ += "IsActive=" + encodeURIComponent("" + isActive) + "&"; 
-        if (name !== undefined)
-            url_ += "Name=" + encodeURIComponent("" + name) + "&"; 
-        if (fullName !== undefined)
-            url_ += "FullName=" + encodeURIComponent("" + fullName) + "&"; 
-        if (lastLoginTime !== undefined)
-            url_ += "LastLoginTime=" + encodeURIComponent(lastLoginTime ? "" + lastLoginTime.toJSON() : "") + "&"; 
-        if (creationTime !== undefined)
-            url_ += "CreationTime=" + encodeURIComponent(creationTime ? "" + creationTime.toJSON() : "") + "&"; 
-        if (roleNames !== undefined)
-            roleNames && roleNames.forEach(item => { url_ += "RoleNames=" + encodeURIComponent("" + item) + "&"; });
-        if (pictureUrl !== undefined)
-            url_ += "PictureUrl=" + encodeURIComponent("" + pictureUrl) + "&"; 
-        if (pictureCoverUrl !== undefined)
-            url_ += "PictureCoverUrl=" + encodeURIComponent("" + pictureCoverUrl) + "&"; 
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    getUserInfo(input: UserInfoDto | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/User/GetUserInfo";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -3287,7 +3146,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetUserInfo(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3329,16 +3188,17 @@ export class UserServiceProxy {
     }
 
     /**
-     * @id (optional) 
+     * @input (optional) 
      * @return Success
      */
-    get(id: number | null | undefined): Observable<UserDto> {
-        let url_ = this.baseUrl + "/api/services/app/User/Get?";
-        if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+    get(input: EntityDtoOfInt64 | null | undefined): Observable<UserDto> {
+        let url_ = this.baseUrl + "/api/services/app/User/Get";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -3347,7 +3207,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGet(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3392,19 +3252,17 @@ export class UserServiceProxy {
     }
 
     /**
-     * @skipCount (optional) 
-     * @maxResultCount (optional) 
+     * @input (optional) 
      * @return Success
      */
-    getAll(skipCount: number | null | undefined, maxResultCount: number | null | undefined): Observable<PagedResultDtoOfUserDto> {
-        let url_ = this.baseUrl + "/api/services/app/User/GetAll?";
-        if (skipCount !== undefined)
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
-        if (maxResultCount !== undefined)
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+    getAll(input: PagedResultRequestDto | null | undefined): Observable<PagedResultDtoOfUserDto> {
+        let url_ = this.baseUrl + "/api/services/app/User/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
+        const content_ = JSON.stringify(input);
+
         let options_ : any = {
+            body: content_,
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
@@ -3413,7 +3271,7 @@ export class UserServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3485,7 +3343,7 @@ export class UserProfileServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetCurrentProfile(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3500,6 +3358,66 @@ export class UserProfileServiceProxy {
     }
 
     protected processGetCurrentProfile(response: HttpResponseBase): Observable<UserProfileDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? UserProfileDto.fromJS(resultData200) : new UserProfileDto();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<UserProfileDto>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    userPublicProfile(model: UserProfileDto | null | undefined): Observable<UserProfileDto> {
+        let url_ = this.baseUrl + "/api/services/app/UserProfile/UserPublicProfile";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUserPublicProfile(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUserPublicProfile(<any>response_);
+                } catch (e) {
+                    return <Observable<UserProfileDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<UserProfileDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUserPublicProfile(response: HttpResponseBase): Observable<UserProfileDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -3545,7 +3463,7 @@ export class UserProfileServiceProxy {
             })
         };
 
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processUpdateUserProfile(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -3661,7 +3579,7 @@ export class UserProfileServiceProxy {
             })
         };
 
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
             return this.processGetUserPagesDto(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
@@ -4034,6 +3952,7 @@ export class PageDetailDto implements IPageDetailDto {
     isAdmin: boolean | undefined;
     isEditor: boolean | undefined;
     isModerator: boolean | undefined;
+    categories: PageCategory[] | undefined;
 
     constructor(data?: IPageDetailDto) {
         if (data) {
@@ -4078,6 +3997,11 @@ export class PageDetailDto implements IPageDetailDto {
             this.isAdmin = data["isAdmin"];
             this.isEditor = data["isEditor"];
             this.isModerator = data["isModerator"];
+            if (data["categories"] && data["categories"].constructor === Array) {
+                this.categories = [];
+                for (let item of data["categories"])
+                    this.categories.push(PageCategory.fromJS(item));
+            }
         }
     }
 
@@ -4122,6 +4046,11 @@ export class PageDetailDto implements IPageDetailDto {
         data["isAdmin"] = this.isAdmin;
         data["isEditor"] = this.isEditor;
         data["isModerator"] = this.isModerator;
+        if (this.categories && this.categories.constructor === Array) {
+            data["categories"] = [];
+            for (let item of this.categories)
+                data["categories"].push(item.toJSON());
+        }
         return data; 
     }
 
@@ -4166,6 +4095,66 @@ export interface IPageDetailDto {
     isAdmin: boolean | undefined;
     isEditor: boolean | undefined;
     isModerator: boolean | undefined;
+    categories: PageCategory[] | undefined;
+}
+
+export class PageCategory implements IPageCategory {
+    guid: string | undefined;
+    page: string | undefined;
+    code: string | undefined;
+    name: string | undefined;
+    listOrder: number | undefined;
+
+    constructor(data?: IPageCategory) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.guid = data["guid"];
+            this.page = data["page"];
+            this.code = data["code"];
+            this.name = data["name"];
+            this.listOrder = data["listOrder"];
+        }
+    }
+
+    static fromJS(data: any): PageCategory {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageCategory();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["guid"] = this.guid;
+        data["page"] = this.page;
+        data["code"] = this.code;
+        data["name"] = this.name;
+        data["listOrder"] = this.listOrder;
+        return data; 
+    }
+
+    clone(): PageCategory {
+        const json = this.toJSON();
+        let result = new PageCategory();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPageCategory {
+    guid: string | undefined;
+    page: string | undefined;
+    code: string | undefined;
+    name: string | undefined;
+    listOrder: number | undefined;
 }
 
 export class PageMemberDto implements IPageMemberDto {
@@ -4310,6 +4299,93 @@ export interface IUserInfoDto {
     id: number | undefined;
 }
 
+export class PostDetailDto implements IPostDetailDto {
+    id: number | undefined;
+    contentText: string | undefined;
+    category: string | undefined;
+    title: string | undefined;
+    comments: PostCommentDetailDto[] | undefined;
+    postData: PostData | undefined;
+    author: UserInfoDto | undefined;
+    publishType: string | undefined;
+    dateCreated: moment.Moment | undefined;
+    stats: PostStatDto | undefined;
+
+    constructor(data?: IPostDetailDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.contentText = data["contentText"];
+            this.category = data["category"];
+            this.title = data["title"];
+            if (data["comments"] && data["comments"].constructor === Array) {
+                this.comments = [];
+                for (let item of data["comments"])
+                    this.comments.push(PostCommentDetailDto.fromJS(item));
+            }
+            this.postData = data["postData"] ? PostData.fromJS(data["postData"]) : <any>undefined;
+            this.author = data["author"] ? UserInfoDto.fromJS(data["author"]) : <any>undefined;
+            this.publishType = data["publishType"];
+            this.dateCreated = data["dateCreated"] ? moment(data["dateCreated"].toString()) : <any>undefined;
+            this.stats = data["stats"] ? PostStatDto.fromJS(data["stats"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): PostDetailDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PostDetailDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["contentText"] = this.contentText;
+        data["category"] = this.category;
+        data["title"] = this.title;
+        if (this.comments && this.comments.constructor === Array) {
+            data["comments"] = [];
+            for (let item of this.comments)
+                data["comments"].push(item.toJSON());
+        }
+        data["postData"] = this.postData ? this.postData.toJSON() : <any>undefined;
+        data["author"] = this.author ? this.author.toJSON() : <any>undefined;
+        data["publishType"] = this.publishType;
+        data["dateCreated"] = this.dateCreated ? this.dateCreated.toISOString() : <any>undefined;
+        data["stats"] = this.stats ? this.stats.toJSON() : <any>undefined;
+        return data; 
+    }
+
+    clone(): PostDetailDto {
+        const json = this.toJSON();
+        let result = new PostDetailDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPostDetailDto {
+    id: number | undefined;
+    contentText: string | undefined;
+    category: string | undefined;
+    title: string | undefined;
+    comments: PostCommentDetailDto[] | undefined;
+    postData: PostData | undefined;
+    author: UserInfoDto | undefined;
+    publishType: string | undefined;
+    dateCreated: moment.Moment | undefined;
+    stats: PostStatDto | undefined;
+}
+
 export class PostCommentDetailDto implements IPostCommentDetailDto {
     id: number | undefined;
     postId: number | undefined;
@@ -4391,330 +4467,6 @@ export interface IPostCommentDetailDto {
     children: PostCommentDetailDto[] | undefined;
     userId: number | undefined;
     user: UserInfoDto | undefined;
-}
-
-export class Picture implements IPicture {
-    id: number | undefined;
-    pictureBinary: string | undefined;
-    mimeType: string | undefined;
-    seoFilename: string | undefined;
-    fileSize: number | undefined;
-    isNew: boolean | undefined;
-    pictureUrl: string | undefined;
-    width: number | undefined;
-    height: number | undefined;
-    thumbUrl: string | undefined;
-    guid: string | undefined;
-
-    constructor(data?: IPicture) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.pictureBinary = data["pictureBinary"];
-            this.mimeType = data["mimeType"];
-            this.seoFilename = data["seoFilename"];
-            this.fileSize = data["fileSize"];
-            this.isNew = data["isNew"];
-            this.pictureUrl = data["pictureUrl"];
-            this.width = data["width"];
-            this.height = data["height"];
-            this.thumbUrl = data["thumbUrl"];
-            this.guid = data["guid"];
-        }
-    }
-
-    static fromJS(data: any): Picture {
-        data = typeof data === 'object' ? data : {};
-        let result = new Picture();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["pictureBinary"] = this.pictureBinary;
-        data["mimeType"] = this.mimeType;
-        data["seoFilename"] = this.seoFilename;
-        data["fileSize"] = this.fileSize;
-        data["isNew"] = this.isNew;
-        data["pictureUrl"] = this.pictureUrl;
-        data["width"] = this.width;
-        data["height"] = this.height;
-        data["thumbUrl"] = this.thumbUrl;
-        data["guid"] = this.guid;
-        return data; 
-    }
-
-    clone(): Picture {
-        const json = this.toJSON();
-        let result = new Picture();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IPicture {
-    id: number | undefined;
-    pictureBinary: string | undefined;
-    mimeType: string | undefined;
-    seoFilename: string | undefined;
-    fileSize: number | undefined;
-    isNew: boolean | undefined;
-    pictureUrl: string | undefined;
-    width: number | undefined;
-    height: number | undefined;
-    thumbUrl: string | undefined;
-    guid: string | undefined;
-}
-
-export class SocialMedia implements ISocialMedia {
-    url: string | undefined;
-    title: string | undefined;
-    description: string | undefined;
-    previewPicture: Picture | undefined;
-    previewPictureUrl: string | undefined;
-    embedHtml: string | undefined;
-    mediaId: string | undefined;
-    isSupported: boolean | undefined;
-    isGeneric: boolean | undefined;
-    provider: ISocialMediaProvider | undefined;
-    creationTime: moment.Moment | undefined;
-    tenantId: number | undefined;
-    id: number | undefined;
-
-    constructor(data?: ISocialMedia) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.url = data["url"];
-            this.title = data["title"];
-            this.description = data["description"];
-            this.previewPicture = data["previewPicture"] ? Picture.fromJS(data["previewPicture"]) : <any>undefined;
-            this.previewPictureUrl = data["previewPictureUrl"];
-            this.embedHtml = data["embedHtml"];
-            this.mediaId = data["mediaId"];
-            this.isSupported = data["isSupported"];
-            this.isGeneric = data["isGeneric"];
-            this.provider = data["provider"] ? ISocialMediaProvider.fromJS(data["provider"]) : <any>undefined;
-            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
-            this.tenantId = data["tenantId"];
-            this.id = data["id"];
-        }
-    }
-
-    static fromJS(data: any): SocialMedia {
-        data = typeof data === 'object' ? data : {};
-        let result = new SocialMedia();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["url"] = this.url;
-        data["title"] = this.title;
-        data["description"] = this.description;
-        data["previewPicture"] = this.previewPicture ? this.previewPicture.toJSON() : <any>undefined;
-        data["previewPictureUrl"] = this.previewPictureUrl;
-        data["embedHtml"] = this.embedHtml;
-        data["mediaId"] = this.mediaId;
-        data["isSupported"] = this.isSupported;
-        data["isGeneric"] = this.isGeneric;
-        data["provider"] = this.provider ? this.provider.toJSON() : <any>undefined;
-        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
-        data["tenantId"] = this.tenantId;
-        data["id"] = this.id;
-        return data; 
-    }
-
-    clone(): SocialMedia {
-        const json = this.toJSON();
-        let result = new SocialMedia();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface ISocialMedia {
-    url: string | undefined;
-    title: string | undefined;
-    description: string | undefined;
-    previewPicture: Picture | undefined;
-    previewPictureUrl: string | undefined;
-    embedHtml: string | undefined;
-    mediaId: string | undefined;
-    isSupported: boolean | undefined;
-    isGeneric: boolean | undefined;
-    provider: ISocialMediaProvider | undefined;
-    creationTime: moment.Moment | undefined;
-    tenantId: number | undefined;
-    id: number | undefined;
-}
-
-export class ISocialMediaProvider implements IISocialMediaProvider {
-    provider: string | undefined;
-    systemName: string | undefined;
-    regExUrl: string | undefined;
-    regExMediaId: string | undefined;
-    embedHtml: string | undefined;
-    supportApi: boolean | undefined;
-    apiUrl: string | undefined;
-
-    constructor(data?: IISocialMediaProvider) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.provider = data["provider"];
-            this.systemName = data["systemName"];
-            this.regExUrl = data["regExUrl"];
-            this.regExMediaId = data["regExMediaId"];
-            this.embedHtml = data["embedHtml"];
-            this.supportApi = data["supportApi"];
-            this.apiUrl = data["apiUrl"];
-        }
-    }
-
-    static fromJS(data: any): ISocialMediaProvider {
-        data = typeof data === 'object' ? data : {};
-        let result = new ISocialMediaProvider();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["provider"] = this.provider;
-        data["systemName"] = this.systemName;
-        data["regExUrl"] = this.regExUrl;
-        data["regExMediaId"] = this.regExMediaId;
-        data["embedHtml"] = this.embedHtml;
-        data["supportApi"] = this.supportApi;
-        data["apiUrl"] = this.apiUrl;
-        return data; 
-    }
-
-    clone(): ISocialMediaProvider {
-        const json = this.toJSON();
-        let result = new ISocialMediaProvider();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IISocialMediaProvider {
-    provider: string | undefined;
-    systemName: string | undefined;
-    regExUrl: string | undefined;
-    regExMediaId: string | undefined;
-    embedHtml: string | undefined;
-    supportApi: boolean | undefined;
-    apiUrl: string | undefined;
-}
-
-export class PostDetailDto implements IPostDetailDto {
-    id: number | undefined;
-    contentText: string | undefined;
-    title: string | undefined;
-    comments: PostCommentDetailDto[] | undefined;
-    postData: PostData | undefined;
-    author: UserInfoDto | undefined;
-    publishType: string | undefined;
-    dateCreated: moment.Moment | undefined;
-    stats: PostStatDto | undefined;
-
-    constructor(data?: IPostDetailDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.contentText = data["contentText"];
-            this.title = data["title"];
-            if (data["comments"] && data["comments"].constructor === Array) {
-                this.comments = [];
-                for (let item of data["comments"])
-                    this.comments.push(PostCommentDetailDto.fromJS(item));
-            }
-            this.postData = data["postData"] ? PostData.fromJS(data["postData"]) : <any>undefined;
-            this.author = data["author"] ? UserInfoDto.fromJS(data["author"]) : <any>undefined;
-            this.publishType = data["publishType"];
-            this.dateCreated = data["dateCreated"] ? moment(data["dateCreated"].toString()) : <any>undefined;
-            this.stats = data["stats"] ? PostStatDto.fromJS(data["stats"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): PostDetailDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new PostDetailDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["contentText"] = this.contentText;
-        data["title"] = this.title;
-        if (this.comments && this.comments.constructor === Array) {
-            data["comments"] = [];
-            for (let item of this.comments)
-                data["comments"].push(item.toJSON());
-        }
-        data["postData"] = this.postData ? this.postData.toJSON() : <any>undefined;
-        data["author"] = this.author ? this.author.toJSON() : <any>undefined;
-        data["publishType"] = this.publishType;
-        data["dateCreated"] = this.dateCreated ? this.dateCreated.toISOString() : <any>undefined;
-        data["stats"] = this.stats ? this.stats.toJSON() : <any>undefined;
-        return data; 
-    }
-
-    clone(): PostDetailDto {
-        const json = this.toJSON();
-        let result = new PostDetailDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IPostDetailDto {
-    id: number | undefined;
-    contentText: string | undefined;
-    title: string | undefined;
-    comments: PostCommentDetailDto[] | undefined;
-    postData: PostData | undefined;
-    author: UserInfoDto | undefined;
-    publishType: string | undefined;
-    dateCreated: moment.Moment | undefined;
-    stats: PostStatDto | undefined;
 }
 
 export class PostData implements IPostData {
@@ -4859,6 +4611,196 @@ export interface IPostStatDto {
     userId: number | undefined;
 }
 
+export class Picture implements IPicture {
+    id: number | undefined;
+    guid: string | undefined;
+    pictureBinary: string | undefined;
+    mimeType: string | undefined;
+    seoFilename: string | undefined;
+    fileSize: number | undefined;
+    isNew: boolean | undefined;
+    width: number | undefined;
+    height: number | undefined;
+    pictureUrl: string | undefined;
+    thumbUrl: string | undefined;
+    mediaHost: string | undefined;
+    ext: string | undefined;
+    path: string | undefined;
+    pathUrl: string | undefined;
+
+    constructor(data?: IPicture) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.guid = data["guid"];
+            this.pictureBinary = data["pictureBinary"];
+            this.mimeType = data["mimeType"];
+            this.seoFilename = data["seoFilename"];
+            this.fileSize = data["fileSize"];
+            this.isNew = data["isNew"];
+            this.width = data["width"];
+            this.height = data["height"];
+            this.pictureUrl = data["pictureUrl"];
+            this.thumbUrl = data["thumbUrl"];
+            this.mediaHost = data["mediaHost"];
+            this.ext = data["ext"];
+            this.path = data["path"];
+            this.pathUrl = data["pathUrl"];
+        }
+    }
+
+    static fromJS(data: any): Picture {
+        data = typeof data === 'object' ? data : {};
+        let result = new Picture();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["guid"] = this.guid;
+        data["pictureBinary"] = this.pictureBinary;
+        data["mimeType"] = this.mimeType;
+        data["seoFilename"] = this.seoFilename;
+        data["fileSize"] = this.fileSize;
+        data["isNew"] = this.isNew;
+        data["width"] = this.width;
+        data["height"] = this.height;
+        data["pictureUrl"] = this.pictureUrl;
+        data["thumbUrl"] = this.thumbUrl;
+        data["mediaHost"] = this.mediaHost;
+        data["ext"] = this.ext;
+        data["path"] = this.path;
+        data["pathUrl"] = this.pathUrl;
+        return data; 
+    }
+
+    clone(): Picture {
+        const json = this.toJSON();
+        let result = new Picture();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPicture {
+    id: number | undefined;
+    guid: string | undefined;
+    pictureBinary: string | undefined;
+    mimeType: string | undefined;
+    seoFilename: string | undefined;
+    fileSize: number | undefined;
+    isNew: boolean | undefined;
+    width: number | undefined;
+    height: number | undefined;
+    pictureUrl: string | undefined;
+    thumbUrl: string | undefined;
+    mediaHost: string | undefined;
+    ext: string | undefined;
+    path: string | undefined;
+    pathUrl: string | undefined;
+}
+
+export class SocialMedia implements ISocialMedia {
+    url: string | undefined;
+    title: string | undefined;
+    description: string | undefined;
+    previewPicture: Picture | undefined;
+    previewPictureUrl: string | undefined;
+    embedHtml: string | undefined;
+    mediaId: string | undefined;
+    isSupported: boolean | undefined;
+    isGeneric: boolean | undefined;
+    provider: ISocialMediaProvider | undefined;
+    creationTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    id: number | undefined;
+
+    constructor(data?: ISocialMedia) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.url = data["url"];
+            this.title = data["title"];
+            this.description = data["description"];
+            this.previewPicture = data["previewPicture"] ? Picture.fromJS(data["previewPicture"]) : <any>undefined;
+            this.previewPictureUrl = data["previewPictureUrl"];
+            this.embedHtml = data["embedHtml"];
+            this.mediaId = data["mediaId"];
+            this.isSupported = data["isSupported"];
+            this.isGeneric = data["isGeneric"];
+            this.provider = data["provider"] ? ISocialMediaProvider.fromJS(data["provider"]) : <any>undefined;
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.tenantId = data["tenantId"];
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): SocialMedia {
+        data = typeof data === 'object' ? data : {};
+        let result = new SocialMedia();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["url"] = this.url;
+        data["title"] = this.title;
+        data["description"] = this.description;
+        data["previewPicture"] = this.previewPicture ? this.previewPicture.toJSON() : <any>undefined;
+        data["previewPictureUrl"] = this.previewPictureUrl;
+        data["embedHtml"] = this.embedHtml;
+        data["mediaId"] = this.mediaId;
+        data["isSupported"] = this.isSupported;
+        data["isGeneric"] = this.isGeneric;
+        data["provider"] = this.provider ? this.provider.toJSON() : <any>undefined;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["tenantId"] = this.tenantId;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): SocialMedia {
+        const json = this.toJSON();
+        let result = new SocialMedia();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface ISocialMedia {
+    url: string | undefined;
+    title: string | undefined;
+    description: string | undefined;
+    previewPicture: Picture | undefined;
+    previewPictureUrl: string | undefined;
+    embedHtml: string | undefined;
+    mediaId: string | undefined;
+    isSupported: boolean | undefined;
+    isGeneric: boolean | undefined;
+    provider: ISocialMediaProvider | undefined;
+    creationTime: moment.Moment | undefined;
+    tenantId: number | undefined;
+    id: number | undefined;
+}
+
 export class PostStatStatus implements IPostStatStatus {
     isHit: boolean | undefined;
     isReaction: boolean | undefined;
@@ -4916,6 +4858,183 @@ export interface IPostStatStatus {
     isRepost: boolean | undefined;
     isShare: boolean | undefined;
     reactionType: PostStatStatusReactionType | undefined;
+}
+
+export class ISocialMediaProvider implements IISocialMediaProvider {
+    provider: string | undefined;
+    systemName: string | undefined;
+    regExUrl: string | undefined;
+    regExMediaId: string | undefined;
+    embedHtml: string | undefined;
+    supportApi: boolean | undefined;
+    apiUrl: string | undefined;
+
+    constructor(data?: IISocialMediaProvider) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.provider = data["provider"];
+            this.systemName = data["systemName"];
+            this.regExUrl = data["regExUrl"];
+            this.regExMediaId = data["regExMediaId"];
+            this.embedHtml = data["embedHtml"];
+            this.supportApi = data["supportApi"];
+            this.apiUrl = data["apiUrl"];
+        }
+    }
+
+    static fromJS(data: any): ISocialMediaProvider {
+        data = typeof data === 'object' ? data : {};
+        let result = new ISocialMediaProvider();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["provider"] = this.provider;
+        data["systemName"] = this.systemName;
+        data["regExUrl"] = this.regExUrl;
+        data["regExMediaId"] = this.regExMediaId;
+        data["embedHtml"] = this.embedHtml;
+        data["supportApi"] = this.supportApi;
+        data["apiUrl"] = this.apiUrl;
+        return data; 
+    }
+
+    clone(): ISocialMediaProvider {
+        const json = this.toJSON();
+        let result = new ISocialMediaProvider();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IISocialMediaProvider {
+    provider: string | undefined;
+    systemName: string | undefined;
+    regExUrl: string | undefined;
+    regExMediaId: string | undefined;
+    embedHtml: string | undefined;
+    supportApi: boolean | undefined;
+    apiUrl: string | undefined;
+}
+
+export class PagedResultDtoOfPostDetailDto implements IPagedResultDtoOfPostDetailDto {
+    totalCount: number | undefined;
+    items: PostDetailDto[] | undefined;
+
+    constructor(data?: IPagedResultDtoOfPostDetailDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.totalCount = data["totalCount"];
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(PostDetailDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PagedResultDtoOfPostDetailDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultDtoOfPostDetailDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+
+    clone(): PagedResultDtoOfPostDetailDto {
+        const json = this.toJSON();
+        let result = new PagedResultDtoOfPostDetailDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPagedResultDtoOfPostDetailDto {
+    totalCount: number | undefined;
+    items: PostDetailDto[] | undefined;
+}
+
+export class UserTimelinePostRequest implements IUserTimelinePostRequest {
+    userId: number | undefined;
+    userName: string | undefined;
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
+
+    constructor(data?: IUserTimelinePostRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.userId = data["userId"];
+            this.userName = data["userName"];
+            this.skipCount = data["skipCount"];
+            this.maxResultCount = data["maxResultCount"];
+        }
+    }
+
+    static fromJS(data: any): UserTimelinePostRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserTimelinePostRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["userId"] = this.userId;
+        data["userName"] = this.userName;
+        data["skipCount"] = this.skipCount;
+        data["maxResultCount"] = this.maxResultCount;
+        return data; 
+    }
+
+    clone(): UserTimelinePostRequest {
+        const json = this.toJSON();
+        let result = new UserTimelinePostRequest();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IUserTimelinePostRequest {
+    userId: number | undefined;
+    userName: string | undefined;
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
 }
 
 export class PostStatInput implements IPostStatInput {
@@ -5115,6 +5234,49 @@ export interface IRoleDto {
     id: number | undefined;
 }
 
+export class EntityDtoOfInt32 implements IEntityDtoOfInt32 {
+    id: number | undefined;
+
+    constructor(data?: IEntityDtoOfInt32) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): EntityDtoOfInt32 {
+        data = typeof data === 'object' ? data : {};
+        let result = new EntityDtoOfInt32();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): EntityDtoOfInt32 {
+        const json = this.toJSON();
+        let result = new EntityDtoOfInt32();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IEntityDtoOfInt32 {
+    id: number | undefined;
+}
+
 export class ListResultDtoOfPermissionDto implements IListResultDtoOfPermissionDto {
     items: PermissionDto[] | undefined;
 
@@ -5219,6 +5381,53 @@ export interface IPermissionDto {
     displayName: string | undefined;
     description: string | undefined;
     id: number | undefined;
+}
+
+export class PagedResultRequestDto implements IPagedResultRequestDto {
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
+
+    constructor(data?: IPagedResultRequestDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.skipCount = data["skipCount"];
+            this.maxResultCount = data["maxResultCount"];
+        }
+    }
+
+    static fromJS(data: any): PagedResultRequestDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultRequestDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["skipCount"] = this.skipCount;
+        data["maxResultCount"] = this.maxResultCount;
+        return data; 
+    }
+
+    clone(): PagedResultRequestDto {
+        const json = this.toJSON();
+        let result = new PagedResultRequestDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPagedResultRequestDto {
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
 }
 
 export class PagedResultDtoOfRoleDto implements IPagedResultDtoOfRoleDto {
@@ -5529,6 +5738,9 @@ export class UserProfileDto implements IUserProfileDto {
     viberNumber: string | undefined;
     user: UserInfoDto | undefined;
     gender: number | undefined;
+    studentProfile: StudentProfileDto | undefined;
+    userPages: UserPagesDto | undefined;
+    isMine: boolean | undefined;
 
     constructor(data?: IUserProfileDto) {
         if (data) {
@@ -5565,6 +5777,9 @@ export class UserProfileDto implements IUserProfileDto {
             this.viberNumber = data["viberNumber"];
             this.user = data["user"] ? UserInfoDto.fromJS(data["user"]) : <any>undefined;
             this.gender = data["gender"];
+            this.studentProfile = data["studentProfile"] ? StudentProfileDto.fromJS(data["studentProfile"]) : <any>undefined;
+            this.userPages = data["userPages"] ? UserPagesDto.fromJS(data["userPages"]) : <any>undefined;
+            this.isMine = data["isMine"];
         }
     }
 
@@ -5601,6 +5816,9 @@ export class UserProfileDto implements IUserProfileDto {
         data["viberNumber"] = this.viberNumber;
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["gender"] = this.gender;
+        data["studentProfile"] = this.studentProfile ? this.studentProfile.toJSON() : <any>undefined;
+        data["userPages"] = this.userPages ? this.userPages.toJSON() : <any>undefined;
+        data["isMine"] = this.isMine;
         return data; 
     }
 
@@ -5637,6 +5855,305 @@ export interface IUserProfileDto {
     viberNumber: string | undefined;
     user: UserInfoDto | undefined;
     gender: number | undefined;
+    studentProfile: StudentProfileDto | undefined;
+    userPages: UserPagesDto | undefined;
+    isMine: boolean | undefined;
+}
+
+export class StudentProfileDto implements IStudentProfileDto {
+    id: number | undefined;
+    guid: string | undefined;
+    userName: string | undefined;
+    name: string | undefined;
+    studentId: string | undefined;
+    pictureUrl: string | undefined;
+    birthday: moment.Moment | undefined;
+    mobile: string | undefined;
+    role: string | undefined;
+    address: string | undefined;
+    company: string | undefined;
+    occupation: string | undefined;
+    profession: string | undefined;
+    description: string | undefined;
+    studentYearId: number | undefined;
+    studentDeptId: number | undefined;
+    studentClass: string | undefined;
+    pictureId: number | undefined;
+    link: string | undefined;
+    status: number | undefined;
+    userId: number | undefined;
+    isRegistered: boolean | undefined;
+    studentYear: StudentYearDto | undefined;
+    studentDept: StudentDeptDto | undefined;
+
+    constructor(data?: IStudentProfileDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.guid = data["guid"];
+            this.userName = data["userName"];
+            this.name = data["name"];
+            this.studentId = data["studentId"];
+            this.pictureUrl = data["pictureUrl"];
+            this.birthday = data["birthday"] ? moment(data["birthday"].toString()) : <any>undefined;
+            this.mobile = data["mobile"];
+            this.role = data["role"];
+            this.address = data["address"];
+            this.company = data["company"];
+            this.occupation = data["occupation"];
+            this.profession = data["profession"];
+            this.description = data["description"];
+            this.studentYearId = data["studentYearId"];
+            this.studentDeptId = data["studentDeptId"];
+            this.studentClass = data["studentClass"];
+            this.pictureId = data["pictureId"];
+            this.link = data["link"];
+            this.status = data["status"];
+            this.userId = data["userId"];
+            this.isRegistered = data["isRegistered"];
+            this.studentYear = data["studentYear"] ? StudentYearDto.fromJS(data["studentYear"]) : <any>undefined;
+            this.studentDept = data["studentDept"] ? StudentDeptDto.fromJS(data["studentDept"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): StudentProfileDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new StudentProfileDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["guid"] = this.guid;
+        data["userName"] = this.userName;
+        data["name"] = this.name;
+        data["studentId"] = this.studentId;
+        data["pictureUrl"] = this.pictureUrl;
+        data["birthday"] = this.birthday ? this.birthday.toISOString() : <any>undefined;
+        data["mobile"] = this.mobile;
+        data["role"] = this.role;
+        data["address"] = this.address;
+        data["company"] = this.company;
+        data["occupation"] = this.occupation;
+        data["profession"] = this.profession;
+        data["description"] = this.description;
+        data["studentYearId"] = this.studentYearId;
+        data["studentDeptId"] = this.studentDeptId;
+        data["studentClass"] = this.studentClass;
+        data["pictureId"] = this.pictureId;
+        data["link"] = this.link;
+        data["status"] = this.status;
+        data["userId"] = this.userId;
+        data["isRegistered"] = this.isRegistered;
+        data["studentYear"] = this.studentYear ? this.studentYear.toJSON() : <any>undefined;
+        data["studentDept"] = this.studentDept ? this.studentDept.toJSON() : <any>undefined;
+        return data; 
+    }
+
+    clone(): StudentProfileDto {
+        const json = this.toJSON();
+        let result = new StudentProfileDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IStudentProfileDto {
+    id: number | undefined;
+    guid: string | undefined;
+    userName: string | undefined;
+    name: string | undefined;
+    studentId: string | undefined;
+    pictureUrl: string | undefined;
+    birthday: moment.Moment | undefined;
+    mobile: string | undefined;
+    role: string | undefined;
+    address: string | undefined;
+    company: string | undefined;
+    occupation: string | undefined;
+    profession: string | undefined;
+    description: string | undefined;
+    studentYearId: number | undefined;
+    studentDeptId: number | undefined;
+    studentClass: string | undefined;
+    pictureId: number | undefined;
+    link: string | undefined;
+    status: number | undefined;
+    userId: number | undefined;
+    isRegistered: boolean | undefined;
+    studentYear: StudentYearDto | undefined;
+    studentDept: StudentDeptDto | undefined;
+}
+
+export class UserPagesDto implements IUserPagesDto {
+    pageCredit: number | undefined;
+    userId: number | undefined;
+    pages: PageDetailDto[] | undefined;
+
+    constructor(data?: IUserPagesDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.pageCredit = data["pageCredit"];
+            this.userId = data["userId"];
+            if (data["pages"] && data["pages"].constructor === Array) {
+                this.pages = [];
+                for (let item of data["pages"])
+                    this.pages.push(PageDetailDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): UserPagesDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserPagesDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageCredit"] = this.pageCredit;
+        data["userId"] = this.userId;
+        if (this.pages && this.pages.constructor === Array) {
+            data["pages"] = [];
+            for (let item of this.pages)
+                data["pages"].push(item.toJSON());
+        }
+        return data; 
+    }
+
+    clone(): UserPagesDto {
+        const json = this.toJSON();
+        let result = new UserPagesDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IUserPagesDto {
+    pageCredit: number | undefined;
+    userId: number | undefined;
+    pages: PageDetailDto[] | undefined;
+}
+
+export class StudentYearDto implements IStudentYearDto {
+    id: number | undefined;
+    name: string | undefined;
+
+    constructor(data?: IStudentYearDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.name = data["name"];
+        }
+    }
+
+    static fromJS(data: any): StudentYearDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new StudentYearDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data; 
+    }
+
+    clone(): StudentYearDto {
+        const json = this.toJSON();
+        let result = new StudentYearDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IStudentYearDto {
+    id: number | undefined;
+    name: string | undefined;
+}
+
+export class StudentDeptDto implements IStudentDeptDto {
+    id: number | undefined;
+    name: string | undefined;
+    deptGroup: string | undefined;
+    listOrder: number | undefined;
+
+    constructor(data?: IStudentDeptDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+            this.name = data["name"];
+            this.deptGroup = data["deptGroup"];
+            this.listOrder = data["listOrder"];
+        }
+    }
+
+    static fromJS(data: any): StudentDeptDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new StudentDeptDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["deptGroup"] = this.deptGroup;
+        data["listOrder"] = this.listOrder;
+        return data; 
+    }
+
+    clone(): StudentDeptDto {
+        const json = this.toJSON();
+        let result = new StudentDeptDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IStudentDeptDto {
+    id: number | undefined;
+    name: string | undefined;
+    deptGroup: string | undefined;
+    listOrder: number | undefined;
 }
 
 export class StudentSearchInput implements IStudentSearchInput {
@@ -5810,227 +6327,6 @@ export class PagedResultDtoOfStudentProfileDto implements IPagedResultDtoOfStude
 export interface IPagedResultDtoOfStudentProfileDto {
     totalCount: number | undefined;
     items: StudentProfileDto[] | undefined;
-}
-
-export class StudentProfileDto implements IStudentProfileDto {
-    id: number | undefined;
-    name: string | undefined;
-    studentId: string | undefined;
-    pictureUrl: string | undefined;
-    birthday: moment.Moment | undefined;
-    mobile: string | undefined;
-    role: string | undefined;
-    address: string | undefined;
-    company: string | undefined;
-    occupation: string | undefined;
-    profession: string | undefined;
-    description: string | undefined;
-    studentYearId: number | undefined;
-    studentDeptId: number | undefined;
-    studentClass: string | undefined;
-    pictureId: number | undefined;
-    link: string | undefined;
-    status: number | undefined;
-    userId: number | undefined;
-    isRegistered: boolean | undefined;
-    studentYear: StudentYearDto | undefined;
-    studentDept: StudentDeptDto | undefined;
-
-    constructor(data?: IStudentProfileDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.name = data["name"];
-            this.studentId = data["studentId"];
-            this.pictureUrl = data["pictureUrl"];
-            this.birthday = data["birthday"] ? moment(data["birthday"].toString()) : <any>undefined;
-            this.mobile = data["mobile"];
-            this.role = data["role"];
-            this.address = data["address"];
-            this.company = data["company"];
-            this.occupation = data["occupation"];
-            this.profession = data["profession"];
-            this.description = data["description"];
-            this.studentYearId = data["studentYearId"];
-            this.studentDeptId = data["studentDeptId"];
-            this.studentClass = data["studentClass"];
-            this.pictureId = data["pictureId"];
-            this.link = data["link"];
-            this.status = data["status"];
-            this.userId = data["userId"];
-            this.isRegistered = data["isRegistered"];
-            this.studentYear = data["studentYear"] ? StudentYearDto.fromJS(data["studentYear"]) : <any>undefined;
-            this.studentDept = data["studentDept"] ? StudentDeptDto.fromJS(data["studentDept"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): StudentProfileDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new StudentProfileDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["studentId"] = this.studentId;
-        data["pictureUrl"] = this.pictureUrl;
-        data["birthday"] = this.birthday ? this.birthday.toISOString() : <any>undefined;
-        data["mobile"] = this.mobile;
-        data["role"] = this.role;
-        data["address"] = this.address;
-        data["company"] = this.company;
-        data["occupation"] = this.occupation;
-        data["profession"] = this.profession;
-        data["description"] = this.description;
-        data["studentYearId"] = this.studentYearId;
-        data["studentDeptId"] = this.studentDeptId;
-        data["studentClass"] = this.studentClass;
-        data["pictureId"] = this.pictureId;
-        data["link"] = this.link;
-        data["status"] = this.status;
-        data["userId"] = this.userId;
-        data["isRegistered"] = this.isRegistered;
-        data["studentYear"] = this.studentYear ? this.studentYear.toJSON() : <any>undefined;
-        data["studentDept"] = this.studentDept ? this.studentDept.toJSON() : <any>undefined;
-        return data; 
-    }
-
-    clone(): StudentProfileDto {
-        const json = this.toJSON();
-        let result = new StudentProfileDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IStudentProfileDto {
-    id: number | undefined;
-    name: string | undefined;
-    studentId: string | undefined;
-    pictureUrl: string | undefined;
-    birthday: moment.Moment | undefined;
-    mobile: string | undefined;
-    role: string | undefined;
-    address: string | undefined;
-    company: string | undefined;
-    occupation: string | undefined;
-    profession: string | undefined;
-    description: string | undefined;
-    studentYearId: number | undefined;
-    studentDeptId: number | undefined;
-    studentClass: string | undefined;
-    pictureId: number | undefined;
-    link: string | undefined;
-    status: number | undefined;
-    userId: number | undefined;
-    isRegistered: boolean | undefined;
-    studentYear: StudentYearDto | undefined;
-    studentDept: StudentDeptDto | undefined;
-}
-
-export class StudentYearDto implements IStudentYearDto {
-    id: number | undefined;
-    name: string | undefined;
-
-    constructor(data?: IStudentYearDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.name = data["name"];
-        }
-    }
-
-    static fromJS(data: any): StudentYearDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new StudentYearDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        return data; 
-    }
-
-    clone(): StudentYearDto {
-        const json = this.toJSON();
-        let result = new StudentYearDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IStudentYearDto {
-    id: number | undefined;
-    name: string | undefined;
-}
-
-export class StudentDeptDto implements IStudentDeptDto {
-    id: number | undefined;
-    name: string | undefined;
-
-    constructor(data?: IStudentDeptDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.id = data["id"];
-            this.name = data["name"];
-        }
-    }
-
-    static fromJS(data: any): StudentDeptDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new StudentDeptDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        return data; 
-    }
-
-    clone(): StudentDeptDto {
-        const json = this.toJSON();
-        let result = new StudentDeptDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IStudentDeptDto {
-    id: number | undefined;
-    name: string | undefined;
 }
 
 export class StudentProfileInput implements IStudentProfileInput {
@@ -6690,6 +6986,49 @@ export interface IUserDto {
     id: number | undefined;
 }
 
+export class EntityDtoOfInt64 implements IEntityDtoOfInt64 {
+    id: number | undefined;
+
+    constructor(data?: IEntityDtoOfInt64) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): EntityDtoOfInt64 {
+        data = typeof data === 'object' ? data : {};
+        let result = new EntityDtoOfInt64();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): EntityDtoOfInt64 {
+        const json = this.toJSON();
+        let result = new EntityDtoOfInt64();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IEntityDtoOfInt64 {
+    id: number | undefined;
+}
+
 export class ListResultDtoOfRoleDto implements IListResultDtoOfRoleDto {
     items: RoleDto[] | undefined;
 
@@ -6782,6 +7121,85 @@ export class ChangeUserLanguageDto implements IChangeUserLanguageDto {
 
 export interface IChangeUserLanguageDto {
     languageName: string;
+}
+
+export class UserTopDto implements IUserTopDto {
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    isActive: boolean | undefined;
+    fullName: string | undefined;
+    avatarPictureUrl: string | undefined;
+    coverPictureUrl: string | undefined;
+    statusMessage: string | undefined;
+    lastLoginTime: moment.Moment | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
+
+    constructor(data?: IUserTopDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.userName = data["userName"];
+            this.emailAddress = data["emailAddress"];
+            this.isActive = data["isActive"];
+            this.fullName = data["fullName"];
+            this.avatarPictureUrl = data["avatarPictureUrl"];
+            this.coverPictureUrl = data["coverPictureUrl"];
+            this.statusMessage = data["statusMessage"];
+            this.lastLoginTime = data["lastLoginTime"] ? moment(data["lastLoginTime"].toString()) : <any>undefined;
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): UserTopDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserTopDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["userName"] = this.userName;
+        data["emailAddress"] = this.emailAddress;
+        data["isActive"] = this.isActive;
+        data["fullName"] = this.fullName;
+        data["avatarPictureUrl"] = this.avatarPictureUrl;
+        data["coverPictureUrl"] = this.coverPictureUrl;
+        data["statusMessage"] = this.statusMessage;
+        data["lastLoginTime"] = this.lastLoginTime ? this.lastLoginTime.toISOString() : <any>undefined;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["id"] = this.id;
+        return data; 
+    }
+
+    clone(): UserTopDto {
+        const json = this.toJSON();
+        let result = new UserTopDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IUserTopDto {
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    isActive: boolean | undefined;
+    fullName: string | undefined;
+    avatarPictureUrl: string | undefined;
+    coverPictureUrl: string | undefined;
+    statusMessage: string | undefined;
+    lastLoginTime: moment.Moment | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 }
 
 export class PagedResultDtoOfUserDto implements IPagedResultDtoOfUserDto {
@@ -6992,108 +7410,6 @@ export interface IIdentityError {
     description: string | undefined;
 }
 
-export class UserPagesDto implements IUserPagesDto {
-    pageCredit: number | undefined;
-    userId: number | undefined;
-    pages: PageDetailDto[] | undefined;
-
-    constructor(data?: IUserPagesDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.pageCredit = data["pageCredit"];
-            this.userId = data["userId"];
-            if (data["pages"] && data["pages"].constructor === Array) {
-                this.pages = [];
-                for (let item of data["pages"])
-                    this.pages.push(PageDetailDto.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): UserPagesDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UserPagesDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["pageCredit"] = this.pageCredit;
-        data["userId"] = this.userId;
-        if (this.pages && this.pages.constructor === Array) {
-            data["pages"] = [];
-            for (let item of this.pages)
-                data["pages"].push(item.toJSON());
-        }
-        return data; 
-    }
-
-    clone(): UserPagesDto {
-        const json = this.toJSON();
-        let result = new UserPagesDto();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IUserPagesDto {
-    pageCredit: number | undefined;
-    userId: number | undefined;
-    pages: PageDetailDto[] | undefined;
-}
-
-export enum MyRole {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
-}
-
-export enum MyRole2 {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
-}
-
-export enum Role {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
-}
-
-export enum ReactionType {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
-    _4 = 4, 
-    _5 = 5, 
-    _6 = 6, 
-    _7 = 7, 
-}
-
-export enum ReactionType2 {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
-    _4 = 4, 
-    _5 = 5, 
-    _6 = 6, 
-    _7 = 7, 
-}
-
 export enum IsTenantAvailableOutputState {
     _1 = 1, 
     _2 = 2, 
@@ -7168,10 +7484,7 @@ export class SwaggerException extends Error {
 }
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
-    if(result !== null && result !== undefined)
-        return _observableThrow(result);
-    else
-        return _observableThrow(new SwaggerException(message, status, response, headers, null));
+    return _observableThrow(new SwaggerException(message, status, response, headers, result));
 }
 
 function blobToText(blob: any): Observable<string> {

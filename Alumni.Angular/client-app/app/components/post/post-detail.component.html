@@ -6,7 +6,7 @@
             <img [src]="post.author.pictureUrl" alt="author">
 
             <div class="author-date">
-                <a class="h6 post__author-name fn" href="javascript:;">{{post.author.fullName}}</a>
+                <user-link [user]="post.author" [linkClass]="'h6 post__author-name'"></user-link>
                 <div class="post__date" title=" {{post.dateCreated }}">
                     <span class="published">
                         {{post.dateCreated | amTimeAgo }}
@@ -15,53 +15,27 @@
             </div>
 
             <!--<div class="more">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="olymp-three-dots-icon">
-                    <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                </svg>
-                <ul class="more-dropdown">
-                    <li>
-                        <a href="#">Edit Post</a>
-                    </li>
-                    <li>
-                        <a href="#">Delete Post</a>
-                    </li>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="olymp-three-dots-icon">
+                <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+            </svg>
+            <ul class="more-dropdown">
+                <li>
+                    <a href="#">Edit Post</a>
+                </li>
+                <li>
+                    <a href="#">Delete Post</a>
+                </li>
 
 
-                </ul>
-            </div>-->
+            </ul>
+        </div>-->
 
         </div>
 
-        <div [innerHtml]="post.contentText ">
-           
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 1">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="full-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 2">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="half-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="half-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 3">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="full-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="half-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[2].pictureUrl" class="half-width"><img [src]="post.postData.pictures[2].thumbUrl" alt="photo"></a>
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 4">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="full-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[2].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[2].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[3].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[3].thumbUrl" alt="photo"></a>
+        <div class="content-text" [innerHtml]="post.contentText "></div>
 
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount > 4">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="half-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="half-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[2].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[2].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[3].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[3].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[4].pictureUrl" class="col col-3-width" [ngClass]="{'more-photos': postImageCount > 5}"><img [src]="post.postData.pictures[4].thumbUrl" alt="photo"> <span class="h2" *ngIf="postImageCount > 5">+{{postImageCount-4}}</span></a>
-            <a *ngFor="let p of post.postData.pictures.slice(5)" [href]="p.pictureUrl" class="d-none"><img [src]="p.thumbUrl" alt="photo"></a>
-        </div>
+        <widget-post-gallery [pictures]="post.postData.pictures"></widget-post-gallery>
+
         <div class="post-video" *ngIf="false">
             <div class="video-thumb">
                 <img src="theme/img/video5.jpg" alt="photo">
@@ -83,9 +57,7 @@
     <div class="post-additional-info inline-items">
 
         <a href="javascript:void(0);" class="post-add-icon inline-items" [ngClass]="{'active':post.stats.stats.isReaction}" (click)="updateStat(2)">
-            <svg class="olymp-heart-icon">
-                <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-heart-icon"></use>
-            </svg>
+            <i class="fas fa-thumbs-up"></i> 
             <span>{{post.stats.reacts}}</span>
         </a>
 
@@ -98,7 +70,7 @@
     <ul class="comments-list">
         <post-comment-detail *ngFor="let item of post.comments" [post]="post" [comment]="item"></post-comment-detail>
     </ul>
-    <post-comment-editor [post]="post" (onPostCommentAdded)="addParentComment($event)"></post-comment-editor>
+    <post-comment-editor [post]="post" (onPostCommentAdded)="addParentComment($event)"  *ngIf="appSession.user"></post-comment-editor>
     <div class="d-none" mediaType></div>
     <!-- .. end Post -->
 </div>

@@ -13,7 +13,7 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
     ) {
         super(injector);
         
-        console.log("start app...");
+       // console.log("start app...");
     }
 
     ngOnInit(): void {

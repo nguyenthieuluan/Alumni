@@ -4240,6 +4240,10 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
+ng-sidebar@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/ng-sidebar/-/ng-sidebar-8.0.0.tgz#c9d170aea9831116f807e557aa32f2eb063163bb"
+
 ng2-material-dropdown@0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/ng2-material-dropdown/-/ng2-material-dropdown-0.10.1.tgz#0120ce1bbabfb065c62610fe3b572cd09f61b1e1"
@@ -4255,6 +4259,12 @@ ngx-chips@^1.9.3:
   resolved "https://registry.yarnpkg.com/ngx-chips/-/ngx-chips-1.9.3.tgz#0ebc13b4868d9cd480478ed93fd56bcc3b68ea66"
   dependencies:
     ng2-material-dropdown "0.10.1"
+    tslib "^1.9.0"
+
+ngx-component-outlet@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/ngx-component-outlet/-/ngx-component-outlet-0.0.8.tgz#ac6807f438dd8314a407e31360d6e90808a9f8ed"
+  dependencies:
     tslib "^1.9.0"
 
 ngx-img-cropper@^0.10.4:

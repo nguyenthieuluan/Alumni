@@ -1,0 +1,27 @@
+﻿<a  class="{{linkClass||''}}" [routerLink]="['/app/user',user.userName]"  [popover]="popTemplate" triggers="" [outsideClick]="true"  #pop="bs-popover" (mouseenter)="showProfile(pop)" (mouseleave)="hideProfile(pop)"  placement="top" container="body">{{user.fullName}}</a>
+<ng-template #popTemplate>
+    <div class="friend-item user-link" (mouseenter)="hoverPop(true)" (mouseleave)="hoverPop(false)">
+        <div class="friend-header-thumb">
+            <img [src]="user.pictureCoverUrl || ''" alt="friend's cover" style="width:100%; height: auto;border-radius:0">
+        </div>
+
+        <div class="friend-item-content">
+
+            <div class="friend-avatar">
+                <div class="author-thumb">
+                    <img [src]="user.pictureUrl || ''" alt="friend's picture" style="width:100%;height:auto">
+                </div>
+                <div class="author-content">
+                    <a  [routerLink]="['/app/user',user.userName]" class="h5 author-name">{{user.fullName}}</a>
+                    <div class="country">Vien thong - (2000 - K42)</div>
+                    <div class="control-block-button">
+                        <button class="btn btn-normal m-0 mb-3" >
+                            <i class="fas  fa-user-plus"></i> Add Friend
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</ng-template>

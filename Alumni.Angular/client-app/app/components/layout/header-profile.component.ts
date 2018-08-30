@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewEncapsulation, Injector } from "@angular/core";
+﻿import { Component, OnInit, ViewEncapsulation, Injector, Input } from "@angular/core";
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from "@shared/app-component-base";
 import { AppAuthService } from "@shared/auth/app-auth.service";
@@ -10,13 +10,13 @@ import { ConfigurationServiceProxy } from "@shared/service-proxies/service-proxi
     styles: [` 
         .active{
             color: #ff5e3a;
-        }
+        } 
     `],
     encapsulation: ViewEncapsulation.None
 })
 
 export class HeaderProfileComponent extends AppComponentBase implements OnInit {
-
+    @Input() componentData: any;
     showLoginName: string = "";
 
     constructor(
@@ -31,8 +31,9 @@ export class HeaderProfileComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
+
         this.showLoginName = this.appSession.user.name;
-        console.log(this.activeRoute.snapshot.params);
+        console.log(this.componentData);
     }
     test() {
        // alert("this is test");

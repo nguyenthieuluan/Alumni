@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AbpHttpInterceptor } from '@abp/abpHttpInterceptor';
 
 import * as ApiServiceProxies from './service-proxies';
+import { CustomHttpInterceptor } from '@shared/customHttpInterceptor';
+import { Http, HttpModule } from '@angular/http';
+import { Observable,throwError as _observableThrow } from 'rxjs';
 
 @NgModule({
+    imports:[
+        HttpModule,
+    HttpClientModule,
+    ],
     providers: [
         ApiServiceProxies.RoleServiceProxy,
         ApiServiceProxies.SessionServiceProxy,
@@ -17,7 +24,12 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.UploadServiceProxy,
         ApiServiceProxies.UserProfileServiceProxy,
         ApiServiceProxies.StudentProfileServiceProxy,
-        { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true }
+        ApiServiceProxies.PageServiceProxy,
+        { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true }
     ]
 })
 export class ServiceProxyModule { }
+
+function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
+    return _observableThrow({});
+}

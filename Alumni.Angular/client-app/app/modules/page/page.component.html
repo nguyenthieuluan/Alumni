@@ -1,1 +1,12 @@
-﻿Page component
+﻿<page-header-profile [page]="pageService.activePage"></page-header-profile>
+<div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+        <widget-page-menu [page]="pageService.activePage"></widget-page-menu>
+    </div>
+
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+

@@ -18,7 +18,9 @@ import { RootComponent } from './root.component';
 import { AppPreBootstrap } from './AppPreBootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import { HttpClientModule, HttpResponse } from '@angular/common/http';
-
+import { NgxComponentOutletModule } from 'ngx-component-outlet';
+import { CustomHttpInterceptor, CustomHttpConfiguration } from '@shared/customHttpInterceptor';
+import { Http, HttpModule } from '@angular/http';
 export function appInitializerFactory(injector: Injector) {
   return () => {
 
@@ -56,16 +58,19 @@ export function getCurrentLanguage(): string {
     BrowserAnimationsModule,
     SharedModule.forRoot(),
     ModalModule.forRoot(),
+    NgxComponentOutletModule.forRoot(),
     AbpModule,
     ServiceProxyModule,
     RootRoutingModule,
-    HttpClientModule
+    HttpModule,
+    HttpClientModule,
   ],
   declarations: [
     RootComponent
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AbpHttpInterceptor, multi: true },
+    CustomHttpConfiguration,
+    { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },
     { provide: API_BASE_URL, useFactory: getRemoteServiceBaseUrl },
     {
       provide: APP_INITIALIZER,

@@ -1,0 +1,41 @@
+﻿<div class="ui-block" *ngIf="user">
+
+    <div class="ui-block-content">
+        <div class="widget w-list">
+            <h6 class="title">Sections</h6>
+            <ul>
+                <li>
+                    <a [routerLink]="['/app/user', user.userName]">Home</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/app/user', user.userName,'events']">Events</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/app/user', user.userName,'friends']">Friends</a>
+                </li>
+                <li *ngIf="user.isMine" >
+                    <a [routerLink]="['/app/user', user.userName,'pages']">Pages</a>
+                </li>
+                <li *ngIf="user.isMine">
+                    <a [routerLink]="['/app/user', user.userName,'settings']">Settings</a>
+                </li>
+                <li  *ngIf="false">
+                    <a [routerLink]="['/app/user', user.userName,'about']">About</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="widget w-list" *ngIf="user.isMine">
+            <h6 class="title">Shortcut</h6>
+            <ul>
+                <li>
+                    <a [routerLink]="['/app/home']">Homepage</a>
+                </li>
+                <li *ngFor="let p of userPage.pages">
+                    <a [routerLink]="['/app/page',p.userName]">{{p.name}} <i class="fa fa-check-circle c-twitter" *ngIf="p.isVerified"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
