@@ -15,54 +15,133 @@
             </div>
 
             <!--<div class="more">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="olymp-three-dots-icon">
-                    <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                </svg>
-                <ul class="more-dropdown">
-                    <li>
-                        <a href="#">Edit Post</a>
-                    </li>
-                    <li>
-                        <a href="#">Delete Post</a>
-                    </li>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="olymp-three-dots-icon">
+                <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+            </svg>
+            <ul class="more-dropdown">
+                <li>
+                    <a href="#">Edit Post</a>
+                </li>
+                <li>
+                    <a href="#">Delete Post</a>
+                </li>
 
 
-                </ul>
-            </div>-->
+            </ul>
+        </div>-->
 
         </div>
 
         <div [innerHtml]="post.contentText ">
-           
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 1">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="full-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 2">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="half-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="half-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 3">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="full-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="half-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[2].pictureUrl" class="half-width"><img [src]="post.postData.pictures[2].thumbUrl" alt="photo"></a>
-        </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount == 4">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="full-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[2].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[2].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[3].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[3].thumbUrl" alt="photo"></a>
 
         </div>
-        <div class="post-block-photo js-zoom-gallery" *ngIf="postImageCount > 4">
-            <a [href]="post.postData.pictures[0].pictureUrl" class="half-width"><img [src]="post.postData.pictures[0].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[1].pictureUrl" class="half-width"><img [src]="post.postData.pictures[1].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[2].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[2].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[3].pictureUrl" class="col col-3-width"><img [src]="post.postData.pictures[3].thumbUrl" alt="photo"></a>
-            <a [href]="post.postData.pictures[4].pictureUrl" class="col col-3-width" [ngClass]="{'more-photos': postImageCount > 5}"><img [src]="post.postData.pictures[4].thumbUrl" alt="photo"> <span class="h2" *ngIf="postImageCount > 5">+{{postImageCount-4}}</span></a>
-            <a *ngFor="let p of post.postData.pictures.slice(5)" [href]="p.pictureUrl" class="d-none"><img [src]="p.thumbUrl" alt="photo"></a>
+
+        <div class="block-photo js-zoom-gallery" *ngIf="postImageCount == 1">
+            <div class="row">
+                <div class="col-md-12 p">
+                    <a [href]="post.postData.pictures[0].pictureUrl">
+                        <img [src]="post.postData.pictures[0].thumbUrl"  class="r" alt="photo">
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="post-video" *ngIf="false">
+
+        <div class="block-photo js-zoom-gallery" *ngIf="postImageCount == 2">
+            <div class="row">
+                <div class="col-md-6 p">
+                    <a [href]="post.postData.pictures[0].pictureUrl">
+                        <img [src]="post.postData.pictures[0].thumbUrl" class="r1" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-6 p">
+                    <a [href]="post.postData.pictures[1].pictureUrl">
+                        <img [src]="post.postData.pictures[1].thumbUrl" class="r1" alt="photo">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-photo js-zoom-gallery" *ngIf="postImageCount == 3">
+            <div class="row">
+                <div class="col-md-12 p">
+                    <a [href]="post.postData.pictures[0].pictureUrl">
+                        <img [src]="post.postData.pictures[0].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-6 p">
+                    <a [href]="post.postData.pictures[1].pictureUrl">
+                        <img [src]="post.postData.pictures[1].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-6 p">
+                    <a [href]="post.postData.pictures[2].pictureUrl">
+                        <img [src]="post.postData.pictures[2].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-photo js-zoom-gallery" *ngIf="postImageCount == 4">
+            <div class="row">
+                <div class="col-md-12 p">
+                    <a [href]="post.postData.pictures[0].pictureUrl">
+                        <img [src]="post.postData.pictures[0].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-4 p">
+                    <a [href]="post.postData.pictures[2].pictureUrl">
+                        <img [src]="post.postData.pictures[2].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-4 p">
+                    <a [href]="post.postData.pictures[3].pictureUrl">
+                        <img [src]="post.postData.pictures[3].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-4 p">
+                    <a [href]="post.postData.pictures[1].pictureUrl">
+                        <img [src]="post.postData.pictures[1].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-photo js-zoom-gallery" *ngIf="postImageCount > 4">
+            <div class="row">
+                <div class="col-md-6 p">
+                    <a [href]="post.postData.pictures[0].pictureUrl">
+                        <img [src]="post.postData.pictures[0].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-6 p">
+                    <a [href]="post.postData.pictures[1].pictureUrl">
+                        <img [src]="post.postData.pictures[1].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-4 p">
+                    <a [href]="post.postData.pictures[2].pictureUrl">
+                        <img [src]="post.postData.pictures[2].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-4 p">
+                    <a [href]="post.postData.pictures[3].pictureUrl">
+                        <img [src]="post.postData.pictures[3].thumbUrl" class="r2" alt="photo">
+                    </a>
+                </div>
+                <div class="col-md-4 p">
+                    <a [href]="post.postData.pictures[4].pictureUrl" class="r2" [ngClass]="{'more-photos': postImageCount > 5}">
+                        <img [src]="post.postData.pictures[4].thumbUrl" class="r2" alt="photo">
+                        <span class="h2" *ngIf="postImageCount > 5">+{{postImageCount-4}}</span>
+                    </a>
+
+                    <a *ngFor="let p of post.postData.pictures.slice(5)" [href]="p.pictureUrl" class="d-none">
+                        <img [src]="p.thumbUrl" alt="photo">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-photo" *ngIf="false">
             <div class="video-thumb">
                 <img src="theme/img/video5.jpg" alt="photo">
                 <a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video">

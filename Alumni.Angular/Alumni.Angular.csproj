@@ -25,10 +25,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="client-app\app\components\post\post-detail.component.css" />
     <None Remove="client-app\app\modules\page\community\Layout\page-like.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="client-app\app\components\post\post-detail.component.css">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="client-app\app\modules\page\followers\page-likes.component.ts">
       <SubType>Code</SubType>
     </Compile>

@@ -10,12 +10,12 @@ import { debug } from "util";
 @Component({
     selector: 'post-detail',
     templateUrl: './post-detail.component.html',
+    styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent  implements OnInit {
     @Input() public post: PostDetailDto;
     postImageCount: number;
     pictures: Picture[];
-    
     constructor(
         private _postService: PostServiceProxy,
         private _tokenService: TokenService
@@ -27,6 +27,7 @@ export class PostDetailComponent  implements OnInit {
         this.post.contentText = this.post.contentText.replace(/\n/g, "<br />");
         this.postImageCount = this.post.postData.pictures.length;
     }
+
     updateStat(statType: PostStatInputStatType) {
         var model = new PostStatInput();
         model.postId = this.post.id;
@@ -34,6 +35,7 @@ export class PostDetailComponent  implements OnInit {
         model.statReactType = 1;
         this._postService.updateStat(model).subscribe(r=>this.post.stats = r);
     }
+
     addParentComment(comment: PostCommentDetailDto) {
         this.post.comments.push(comment);
     }
