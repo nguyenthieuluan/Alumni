@@ -42,6 +42,7 @@ import { UserWidgetMenuComponent } from '@app/modules/user/_components/user-widg
 import { UserWidgetIntroComponent } from '@app/modules/user/_components/user-widget-intro.component';
 import { UserWidgetFriendsComponent } from '@app/modules/user/_components/user-widget-friends.component';
 import { WidgetPostGalleryComponent } from '@app/modules/page/post/widget-post-gallery.component';
+import { EventDetailComponent } from '@app/components/event/event-detail/event-detail.component';
 
 @NgModule({
     imports: [
@@ -88,7 +89,8 @@ import { WidgetPostGalleryComponent } from '@app/modules/page/post/widget-post-g
         PostCommentDetailComponent,
         WidgetPostGalleryComponent,
         UserLinkComponent,
-       
+       //events
+       EventDetailComponent,
         //user
         UserHeaderProfileComponent, 
         UserWidgetMenuComponent,
@@ -139,6 +141,8 @@ import { WidgetPostGalleryComponent } from '@app/modules/page/post/widget-post-g
         WidgetPostGalleryComponent,
         UserLinkComponent,
         HeaderProfileComponent,
+        //events
+        EventDetailComponent,
         //user
         UserHeaderProfileComponent, 
         UserWidgetMenuComponent,

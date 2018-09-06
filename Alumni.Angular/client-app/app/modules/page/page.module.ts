@@ -15,6 +15,7 @@ import { PageSettingCategoryComponent } from './setting/page-setting-category.co
 import { PageFollowerComponent } from './follower/follower.component';
 import { PageEventComponent } from './event/event.component';
 import { PageSettingCategoryCreateComponent } from '@app/modules/page/setting/page-setting-category-create.component';
+import { PageEventDetailComponent } from '@app/modules/page/event/page-event-detail/page-event-detail.component';
 
 
 
@@ -30,6 +31,7 @@ import { PageSettingCategoryCreateComponent } from '@app/modules/page/setting/pa
         PageSettingPictureComponent,
         PageSettingCategoryComponent,
         PageSettingCategoryCreateComponent,
+        PageEventDetailComponent,
     ],
     imports: [
         SharedModule,

@@ -1,26 +1,27 @@
-import { Component, ViewContainerRef, Injector, OnInit, AfterViewInit } from '@angular/core';
-import { AppConsts } from '@shared/AppConsts';
-import { AppComponentBase } from '@shared/app-component-base';
+
+import { Component, OnInit, AfterViewInit, Injector } from "@angular/core";
+import { AppComponentBase } from "@shared/app-component-base";
+import { PostDetailDto, PostCommentDetailDto } from "@shared/service-proxies/service-proxies";
 
 
 @Component({
     templateUrl: './app.component.html'
 })
 export class AppComponent extends AppComponentBase implements OnInit, AfterViewInit {
-    
+
     constructor(
-        injector: Injector
+        injector: Injector,
+
     ) {
         super(injector);
-        
-       // console.log("start app...");
+
     }
 
     ngOnInit(): void {
-      
+
     }
 
     ngAfterViewInit(): void {
-       
+
     }
 }

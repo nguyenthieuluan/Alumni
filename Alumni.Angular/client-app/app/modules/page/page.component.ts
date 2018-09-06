@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class PageComponent extends AppComponentBase implements OnInit {
     model: PageDetailDto = new PageDetailDto();
+    ps: PageService;
     constructor(
         injector: Injector,
         private activeRoute: ActivatedRoute,
@@ -25,6 +26,7 @@ export class PageComponent extends AppComponentBase implements OnInit {
         if (!activePage) {
             this.router.navigate(['/app/home']);
         }
+        this.ps = this.pageService;
         this.pageService.setActivePage(activePage);
         this.model = this.pageService.activePage;
 

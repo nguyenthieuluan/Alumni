@@ -238,7 +238,24 @@ img.avatar {
     bottom: 0;
     left: 50px;
 }
-
+.form-group.has-error:after {
+    content: '\f00d';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #f92552;
+    color: #fff;
+    font-size: 9px;
+    right: 20px;
+    top: 50%;
+    margin-top: 2px;
+}
 .form-group.with-icon:after {
     content: '';
     position: absolute;
@@ -380,7 +397,9 @@ img.avatar {
 
 .post .content-text {
     color: #1d2129;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    text-align: justify;
+    padding: 0 10px;
 }
 
 .more-photos:after {

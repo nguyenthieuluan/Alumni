@@ -1,4 +1,5 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { PageEventDetailComponent } from '@app/modules/page/event/page-event-detail/page-event-detail.component';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRouteGuard } from '@shared/auth/auth-route-guard';
 import { PageComponent } from './page.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
             { path: '', component: PageTimelineComponent },
             { path: 'posts', component: PagePostsComponent },
             { path: 'events', component: PageEventComponent },
+            { path: 'event/:id', component: PageEventDetailComponent },
             { path: 'followers', component: PageFollowerComponent },
             {
                 path: 'setting', component: PageSettingComponent ,

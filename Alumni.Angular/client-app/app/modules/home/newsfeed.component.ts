@@ -37,4 +37,8 @@ export class NewsFeedComponent extends AppComponentBase  {
         });
 
     }
+    addPost(p:PostDetailDto){
+        
+        this.posts.unshift(p);
+    }
 }
