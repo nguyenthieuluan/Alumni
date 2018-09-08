@@ -1,0 +1,54 @@
+﻿<div class="container" *ngIf="user">
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="ui-block">
+                <div class="top-header top-header-favorit">
+                    <div class="top-header-thumb">
+                        <img [src]="user.coverUrl || ''" alt="cover">
+                        <div class="top-header-author">
+                            <div class="author-thumb">
+                                <img [src]="user.pictureUrl || ''" alt="avatar">
+                            </div>
+                            <div class="author-content">
+                                <a [routerLink]="['/app/user',user.userName,'timeline']" class="h3 author-name">{{ user.name }}</a>
+                                <div class="country">@{{user.userName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-12"></div>
+                        <div class="col-lg-9 col-md-12">
+                            <div class="ui-block top-header-command">
+                                <button class="btn btn-normal f-right" routerLink="./likes" routerLinkActive="active">
+                                    <i class="fas fa-rss"></i> Follow
+                                </button>
+                                <!--<div class="btn-group m-0 ml-3 mr-3" dropdown>
+                                    <button id="button-basic" dropdownToggle type="button" class="btn btn-normal dropdown-toggle" aria-controls="dropdown-basic">
+                                        <i class="fas fa-check"></i> Following <i class="fas fa-caret-down"></i>
+                                    </button>
+                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                                        <li role="menuitem"><a class="dropdown-item" href="#">Unfollow</a></li>
+                                    </ul>
+                                </div>-->
+                                <button class="btn btn-normal f-right" routerLink="./likes" routerLinkActive="active">
+                                    <i class="fas  fa-user-plus"></i> Add Friend
+                                </button>
+                                <!--<div class="btn-group m-0 mr-3" dropdown>
+                                    <button id="button-basic" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
+                                            aria-controls="dropdown-basic">
+                                        <i class="fas fa-check"></i> Friends <i class="fas fa-caret-down"></i>
+                                    </button>
+                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                                        <li role="menuitem"><a class="dropdown-item" href="#">Unfollow</a></li>
+                                    </ul>
+                                </div>-->
+                              
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

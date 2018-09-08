@@ -21,7 +21,7 @@
                         <span class="title">Preview</span>
                         <div class="text">
 
-                            <div class="img-picture"><img alt="author" [src]="profile.pictureUrl"></div>
+                            <div class="img-picture"><img alt="author" [src]="profile.pictureUrl || ''"></div>
                         </div>
                     </li>
                 </ul>
@@ -37,7 +37,7 @@
                     <li>
                         <span class="title">Preview</span>
                         <div class="text">
-                            <div class="img-cover-half"><img [src]="profile.coverUrl" alt="photo"></div>
+                            <div class="img-cover-half"><img [src]="profile.coverUrl || ''" alt="photo"></div>
                         </div>
                     </li>
                 </ul>

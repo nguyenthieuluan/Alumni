@@ -57,4 +57,11 @@ export abstract class AppComponentBase {
     isLoggedin(): boolean {
         return this.appSession.user !== undefined;
     }
+    loading(state?: number) {
+        if (state === 0) {
+            abp.ui.clearBusy();
+        } else {
+            abp.ui.setBusy();
+        }
+    }
 }

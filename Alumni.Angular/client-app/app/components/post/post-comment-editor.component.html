@@ -1,4 +1,4 @@
-﻿<form  #f="ngForm" class="comment-form inline-items">
+﻿<form  #f="ngForm" class="comment-form inline-items" *ngIf="appSession.user">
 
     <div class="post__author author vcard inline-items">
         <img [src]="appSession.user.profile.pictureUrl" alt="author">

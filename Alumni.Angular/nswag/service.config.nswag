@@ -23,7 +23,7 @@
       "generateClientClasses": true,
       "generateClientInterfaces": false,
       "generateOptionalParameters": false,
-      "wrapDtoExceptions": false,
+      "wrapDtoExceptions": true,
       "wrapResponses": false,
       "generateResponseClasses": true,
       "responseClass": "SwaggerResponse",

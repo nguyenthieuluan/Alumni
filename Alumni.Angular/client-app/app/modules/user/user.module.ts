@@ -3,28 +3,43 @@ import { AccordionModule } from 'ngx-bootstrap';
 import { SharedModule } from '@shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
-import { UserSettingProfileComponent } from '@app/modules/user/setting/profile/setting-profile.component';
-import { UserSettingAccountComponent } from '@app/modules/user/setting/profile/setting-account.component';
-import { UserSettingProfilePictureComponent } from '@app/modules/user/setting/profile/setting-profile-picture.component';
-import { UserSettingEducationComponent } from '@app/modules/user/setting/profile/setting-education.component';
-import { UserSettingPagesComponent } from '@app/modules/user/setting/page/setting-pages.component';
-import { UserSettingCreatePageComponent } from '@app/modules/user/setting/page/setting-create-page.component';
+import { UserFriendComponent } from './friend/friend.component';
+import { UserTimelineComponent } from './timeline/timeline.component';
+import { UserEventComponent } from './event/event.component';
+import { UserHeaderProfileComponent } from './_components/user-header-profile.component';
+import { UserWidgetMenuComponent } from './_components/user-widget-menu.component';
+import { UserWidgetFriendsComponent } from './_components/user-widget-friends.component';
+import { UserWidgetIntroComponent } from './_components/user-widget-intro.component';
+import { UserService } from './user.service';
+import { UserSettingComponent } from './setting/setting.component';
+import { UserSettingAccountComponent } from './setting/profile/setting-account.component';
+import { UserSettingProfileComponent } from './setting/profile/setting-profile.component';
+import { UserSettingProfilePictureComponent } from './setting/profile/setting-profile-picture.component';
+import { UserSettingEducationComponent } from './setting/profile/setting-education.component';
+import { UserCreatePageComponent } from './page/create-page.component';
+import { UserPagesComponent } from './page/pages.component';
 
 @NgModule({
     declarations: [
         UserComponent,
+        UserFriendComponent,
+        UserTimelineComponent,
+        UserEventComponent,
+        UserSettingComponent,
         UserSettingProfileComponent,
         UserSettingAccountComponent,
         UserSettingProfilePictureComponent,
         UserSettingEducationComponent,
-        UserSettingPagesComponent,
-        UserSettingCreatePageComponent,
+        UserPagesComponent,
+        UserCreatePageComponent,
+
     ],
     imports: [
         SharedModule,
         UserRoutingModule,
     ],
     providers: [
+        UserService
     ]
 })
 export class UserModule { }

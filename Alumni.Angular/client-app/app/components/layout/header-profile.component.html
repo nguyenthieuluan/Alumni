@@ -4,13 +4,13 @@
             <div class="ui-block">
                 <div class="top-header top-header-favorit">
                     <div class="top-header-thumb">
-                        <img [src]="appSession.user.profile.coverUrl" alt="nature">
+                        <img [src]="appSession.user.profile.coverUrl || ''" alt="nature">
                         <div class="top-header-author">
                             <div class="author-thumb">
-                                <img [src]="appSession.user.profile.pictureUrl" alt="author">
+                                <img [src]="appSession.user.profile.pictureUrl || ''" alt="author">
                             </div>
                             <div class="author-content">
-                                <a href="#" class="h3 author-name">{{ appSession.user.name }}</a>
+                                <a [routerLink]="['/app/user',appSession.user.userName ,'timeline']"  class="h3 author-name">{{ appSession.user.name }}</a>
                                 <div class="country">@{{appSession.user.userName}}</div>
                             </div>
                         </div>

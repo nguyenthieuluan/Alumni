@@ -1,122 +1,74 @@
-<div class="ui-block">
+﻿<div class="ui-block w-intro">
     <div class="ui-block-title">
-        <h6 class="title">Page Information</h6>
+        <h6 class="title">Information settings</h6>
     </div>
     <div class="ui-block-content">
 
-        <!-- Page Information Form  -->
 
-        <div>
-            <div class="row">
-
-                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="form-group  small-input">
-                        <label class="control-label">Page Name</label>
-                        <input class="form-control" placeholder="" type="text" [(ngModel)]="model.name">
-                    </div>
-
-
-                    <!--<div class="form-group  small-input is-select">
-                        <label class="control-label">Your Gender</label>
-                        <select class=" form-control" [(ngModel)]="profile.gender">
-                            <option value="0">Unspecified</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
-                        </select>
-                    </div>-->
-                    <div class="form-group  small-input is-empty">
-                        <label class="control-label">Phone Number</label>
-                        <input class="form-control" placeholder="" type="text" [(ngModel)]="model.phone">
-                    </div>
-
-                    <!--<div class="form-group date-time-picker  small-input">
-                        <label class="control-label">Your Birthday</label>
-                        <input name="datetimepicker" #doBPicker />
-                        <span class="input-group-addon">
-                            <svg class="olymp-month-calendar-icon icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
-                        </span>
-                    </div>-->
-
+        <div class="row">
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">Name</label>
+                    <input class="form-control" placeholder="" type="text" [(ngModel)]="page.name">
                 </div>
 
-                <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="form-group  small-input">
-                        <label class="control-label">Email</label>
-                        <input class="form-control" placeholder="" type="email" [(ngModel)]="model.email" disabled>
-                    </div>
-                    <!--<div class="form-group  small-input is-select">
-                        <label class="control-label">Status</label>
-                        <select class=" form-control" [(ngModel)]="profile.marriedStatus">
-                            <option value="0">Not Married</option>
-                            <option value="1">Married</option>
-                        </select>
-                    </div>-->
-                    <div class="form-group  small-input">
-                        <label class="control-label">Occupation</label>
-                        <input class="form-control" placeholder="" type="text" [(ngModel)]="model.occupation">
-                    </div>
 
-
-
-                </div>
-
-                <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="form-group  small-input">
-                        <label class="control-label">About</label>
-                        <textarea class="form-control" placeholder="" [(ngModel)]="model.about"></textarea>
-                    </div>
-
-                    <div class="form-group  small-input">
-                        <label class="control-label">description</label>
-                        <textarea class="form-control" placeholder="" [(ngModel)]="model.description"></textarea>
-                    </div>
-
-
-                </div>
-                <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="form-group with-icon  small-input">
-                        <label class="control-label">Address</label>
-                        <input class="form-control" placeholder="" type="text" [(ngModel)]="model.address">
-                        <i class="fas fa-location-arrow c-facebook" aria-hidden="true"></i>
-                    </div>
-                    <div class="form-group with-icon  small-input">
-                        <label class="control-label">website</label>
-                        <input class="form-control" placeholder="" type="text" [(ngModel)]="model.websiteUrl">
-                        <i class="fas fa-globe c-globe" aria-hidden="true"></i>
-                    </div>
-                    <div class="form-group with-icon  small-input">
-                        <label class="control-label">Facebook Fanpage</label>
-                        <input class="form-control" type="text" [(ngModel)]="model.facebookUrl">
-                        <i class="fab fa-facebook-f c-facebook" aria-hidden="true"></i>
-                    </div>
-                    <div class="form-group with-icon  small-input">
-                        <label class="control-label">Twitter</label>
-                        <input class="form-control" type="text" [(ngModel)]="model.twitterUrl">
-                        <i class="fab fa-twitter c-twitter" aria-hidden="true"></i>
-                    </div>
-                    <div class="form-group with-icon  small-input is-empty">
-                        <label class="control-label">Skype</label>
-                        <input class="form-control" type="text" [(ngModel)]="model.skypeName">
-                        <i class="fab fa-skype c-twitter" aria-hidden="true"></i>
-                    </div>
-                    <div class="form-group with-icon  small-input is-empty">
-                        <label class="control-label">ViberNumber</label>
-                        <input class="form-control" type="text" [(ngModel)]="model.viberNumber">
-                        <i class="fab fa-viber c-viber" aria-hidden="true"></i>
-                    </div>
-                </div>
-
-                <div class="col col-lg-9 col-md-9 col-sm-12 col-12">
-                </div>
-
-                <div class="col col-lg-3 col-md-3 col-sm-12 col-12">
-                    <button class="btn btn-primary btn-lg full-width" (click)="save()">Save</button>
+                <div class="form-group  small-input is-empty">
+                    <label class="control-label">Phone Number</label>
+                    <input class="form-control" placeholder="" type="text" [(ngModel)]="page.phone">
                 </div>
 
             </div>
+
+            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">Username</label>
+                    <input class="form-control" placeholder="" type="text" [(ngModel)]="page.userName" disabled>
+                </div>
+
+                <div class="form-group  small-input">
+                    <label class="control-label">Your Email</label>
+                    <input class="form-control" placeholder="" type="email" [(ngModel)]="page.email">
+                </div>
+            </div>
+
+
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group  small-input">
+                    <label class="control-label">About</label>
+                    <textarea class="form-control" placeholder="" [(ngModel)]="page.about"></textarea>
+                </div>
+                <div class="form-group with-icon  small-input">
+                    <label class="control-label">Your Address</label>
+                    <input class="form-control" placeholder="" type="text" [(ngModel)]="page.address">
+                    <i class="fas fa-location-arrow c-facebook" aria-hidden="true"></i>
+                </div>
+                <div class="form-group with-icon  small-input is-empty">
+                    <label class="control-label">Website</label>
+                    <input class="form-control" type="text" [(ngModel)]="page.websiteUrl">
+                    <i class="fab fa-internet-explorer c-twitter" aria-hidden="true"></i>
+                </div>
+                <div class="form-group with-icon  small-input">
+                    <label class="control-label">Facebook</label>
+                    <input class="form-control" type="text" [(ngModel)]="page.facebookUrl">
+                    <i class="fab fa-facebook-f c-facebook" aria-hidden="true"></i>
+                </div>
+                <div class="form-group with-icon  small-input">
+                    <label class="control-label">Twitter</label>
+                    <input class="form-control" type="text" [(ngModel)]="page.twitterUrl">
+                    <i class="fab fa-twitter c-twitter" aria-hidden="true"></i>
+                </div>
+            </div>
+
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                <button class="btn btn-primary f-right" (click)="save()">Update</button>
+            </div>
+
+
         </div>
 
-        <!-- ... end Page Information Form  -->
+
     </div>
-    <div materialInput bsEl></div>
 </div>
+
+<div materialInput bsEl></div>

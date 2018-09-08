@@ -1,32 +1,39 @@
 ﻿import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AppRouteGuard } from '@shared/auth/auth-route-guard';
+import { RouterModule, Routes } from '@angular/router';
+import { UserEventComponent } from './event/event.component';
+import { UserFriendComponent } from './friend/friend.component';
+import { UserCreatePageComponent } from './page/create-page.component';
+import { UserPagesComponent } from './page/pages.component';
+import { UserSettingAccountComponent } from './setting/profile/setting-account.component';
+import { UserSettingEducationComponent } from './setting/profile/setting-education.component';
+import { UserSettingProfilePictureComponent } from './setting/profile/setting-profile-picture.component';
+import { UserSettingProfileComponent } from './setting/profile/setting-profile.component';
+import { UserSettingComponent } from './setting/setting.component';
+import { UserTimelineComponent } from './timeline/timeline.component';
 import { UserComponent } from './user.component';
-import { SettingComponent } from '@app/modules/user/setting/setting.component';
-import { UserSettingPagesComponent } from '@app/modules/user/setting/page/setting-pages.component';
-import { UserSettingCreatePageComponent } from '@app/modules/user/setting/page/setting-create-page.component';
-import { UserSettingProfileComponent } from '@app/modules/user/setting/profile/setting-profile.component';
-import { UserSettingAccountComponent } from '@app/modules/user/setting/profile/setting-account.component';
-import { UserSettingProfilePictureComponent } from '@app/modules/user/setting/profile/setting-profile-picture.component';
-import { UserSettingEducationComponent } from '@app/modules/user/setting/profile/setting-education.component';
+import { ActiveUserResolver } from './user.service';
 
 const routes: Routes = [
     {
-        path: ':username', component: UserComponent,
+        path: ':userName', component: UserComponent,
+        resolve: { activeProfile: ActiveUserResolver },
         children: [
-            { path: 'settings',  component: SettingComponent,
+            { path: '', component: UserTimelineComponent },
+            { path: 'timeline', component: UserTimelineComponent },
+            { path: 'friends', component: UserFriendComponent },
+            { path: 'events', component: UserEventComponent },
+            { path: 'pages', component: UserPagesComponent },
+            { path: 'page/create', component: UserCreatePageComponent },
+            {
+                path: 'settings', component: UserSettingComponent,
                 children: [
                     { path: '', component: UserSettingProfileComponent },
                     { path: 'profile', component: UserSettingProfileComponent },
                     { path: 'account', component: UserSettingAccountComponent },
                     { path: 'picture', component: UserSettingProfilePictureComponent },
                     { path: 'education', component: UserSettingEducationComponent },
-                    { path: 'pages', component: UserSettingPagesComponent },
-                    { path: 'create-page', component: UserSettingCreatePageComponent },
-        
-                ]},
-            { path: '**', pathMatch:'full', redirectTo:'/' },
-            
+                ]
+            },
         ]
     }
 ]
@@ -35,6 +42,7 @@ const routes: Routes = [
     imports: [
         RouterModule.forChild(routes)
     ],
+    providers: [ActiveUserResolver],
     exports: [RouterModule]
 })
 export class UserRoutingModule { }

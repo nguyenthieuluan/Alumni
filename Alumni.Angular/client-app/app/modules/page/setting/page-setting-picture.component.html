@@ -5,8 +5,6 @@
     <div class="ui-block-content">
 
 
-        <!-- Personal Account Settings Form -->
-
         <div class="row">
 
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
@@ -21,7 +19,7 @@
                         <span class="title">Preview</span>
                         <div class="text">
 
-                            <div class="img-picture"><img alt="author" [src]="model.pictureUrl"></div>
+                            <div class="img-picture"><img alt="author" [src]="page.pictureUrl || ''"></div>
                         </div>
                     </li>
                 </ul>
@@ -37,7 +35,7 @@
                     <li>
                         <span class="title">Preview</span>
                         <div class="text">
-                            <div class="img-cover-half"><img [src]="model.coverUrl" alt="photo"></div>
+                            <div class="img-cover-half"><img [src]="page.coverUrl || ''" alt="photo"></div>
                         </div>
                     </li>
                 </ul>
@@ -53,8 +51,6 @@
 
         </div>
 
-
-        <!-- ... end Personal Account Settings Form  -->
 
     </div>
 </div>

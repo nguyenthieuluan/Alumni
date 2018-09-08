@@ -280,6 +280,58 @@ export class PageServiceProxy {
     }
 
     /**
+     * @return Success
+     */
+    getHomePage(): Observable<PageDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Page/GetHomePage";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetHomePage(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetHomePage(<any>response_);
+                } catch (e) {
+                    return <Observable<PageDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetHomePage(response: HttpResponseBase): Observable<PageDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PageDetailDto.fromJS(resultData200) : new PageDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageDetailDto>(<any>null);
+    }
+
+    /**
      * @model (optional) 
      * @return Success
      */
@@ -337,6 +389,186 @@ export class PageServiceProxy {
             }));
         }
         return _observableOf<PageDetailDto>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    createPageCategory(model: PageCategory | null | undefined): Observable<PageCategory> {
+        let url_ = this.baseUrl + "/api/services/app/Page/CreatePageCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processCreatePageCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processCreatePageCategory(<any>response_);
+                } catch (e) {
+                    return <Observable<PageCategory>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageCategory>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processCreatePageCategory(response: HttpResponseBase): Observable<PageCategory> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PageCategory.fromJS(resultData200) : new PageCategory();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageCategory>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    updatePageCategory(model: PageCategory | null | undefined): Observable<PageCategory> {
+        let url_ = this.baseUrl + "/api/services/app/Page/UpdatePageCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdatePageCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdatePageCategory(<any>response_);
+                } catch (e) {
+                    return <Observable<PageCategory>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PageCategory>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdatePageCategory(response: HttpResponseBase): Observable<PageCategory> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PageCategory.fromJS(resultData200) : new PageCategory();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PageCategory>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    removePageCategory(model: PageCategory | null | undefined): Observable<boolean> {
+        let url_ = this.baseUrl + "/api/services/app/Page/RemovePageCategory";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processRemovePageCategory(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processRemovePageCategory(<any>response_);
+                } catch (e) {
+                    return <Observable<boolean>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<boolean>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processRemovePageCategory(response: HttpResponseBase): Observable<boolean> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 !== undefined ? resultData200 : <any>null;
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<boolean>(<any>null);
     }
 
     /**
@@ -846,7 +1078,7 @@ export class PostServiceProxy {
     /**
      * @return Success
      */
-    getNewsFeedPosts(): Observable<PostDetailDto[]> {
+    getNewsFeedPosts(): Observable<PagedResultDtoOfPostDetailDto> {
         let url_ = this.baseUrl + "/api/services/app/Post/GetNewsFeedPosts";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -866,14 +1098,14 @@ export class PostServiceProxy {
                 try {
                     return this.processGetNewsFeedPosts(<any>response_);
                 } catch (e) {
-                    return <Observable<PostDetailDto[]>><any>_observableThrow(e);
+                    return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<PostDetailDto[]>><any>_observableThrow(response_);
+                return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetNewsFeedPosts(response: HttpResponseBase): Observable<PostDetailDto[]> {
+    protected processGetNewsFeedPosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -884,11 +1116,7 @@ export class PostServiceProxy {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (resultData200 && resultData200.constructor === Array) {
-                result200 = [];
-                for (let item of resultData200)
-                    result200.push(PostDetailDto.fromJS(item));
-            }
+            result200 = resultData200 ? PagedResultDtoOfPostDetailDto.fromJS(resultData200) : new PagedResultDtoOfPostDetailDto();
             return _observableOf(result200);
             }));
         } else if (status === 401) {
@@ -900,7 +1128,59 @@ export class PostServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<PostDetailDto[]>(<any>null);
+        return _observableOf<PagedResultDtoOfPostDetailDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getHomepagePosts(): Observable<PagedResultDtoOfPostDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetHomepagePosts";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetHomepagePosts(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetHomepagePosts(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetHomepagePosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PagedResultDtoOfPostDetailDto.fromJS(resultData200) : new PagedResultDtoOfPostDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfPostDetailDto>(<any>null);
     }
 
     /**
@@ -3672,6 +3952,7 @@ export class PageDetailDto implements IPageDetailDto {
     isAdmin: boolean | undefined;
     isEditor: boolean | undefined;
     isModerator: boolean | undefined;
+    categories: PageCategory[] | undefined;
 
     constructor(data?: IPageDetailDto) {
         if (data) {
@@ -3716,6 +3997,11 @@ export class PageDetailDto implements IPageDetailDto {
             this.isAdmin = data["isAdmin"];
             this.isEditor = data["isEditor"];
             this.isModerator = data["isModerator"];
+            if (data["categories"] && data["categories"].constructor === Array) {
+                this.categories = [];
+                for (let item of data["categories"])
+                    this.categories.push(PageCategory.fromJS(item));
+            }
         }
     }
 
@@ -3760,6 +4046,11 @@ export class PageDetailDto implements IPageDetailDto {
         data["isAdmin"] = this.isAdmin;
         data["isEditor"] = this.isEditor;
         data["isModerator"] = this.isModerator;
+        if (this.categories && this.categories.constructor === Array) {
+            data["categories"] = [];
+            for (let item of this.categories)
+                data["categories"].push(item.toJSON());
+        }
         return data; 
     }
 
@@ -3804,6 +4095,66 @@ export interface IPageDetailDto {
     isAdmin: boolean | undefined;
     isEditor: boolean | undefined;
     isModerator: boolean | undefined;
+    categories: PageCategory[] | undefined;
+}
+
+export class PageCategory implements IPageCategory {
+    guid: string | undefined;
+    page: string | undefined;
+    code: string | undefined;
+    name: string | undefined;
+    listOrder: number | undefined;
+
+    constructor(data?: IPageCategory) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.guid = data["guid"];
+            this.page = data["page"];
+            this.code = data["code"];
+            this.name = data["name"];
+            this.listOrder = data["listOrder"];
+        }
+    }
+
+    static fromJS(data: any): PageCategory {
+        data = typeof data === 'object' ? data : {};
+        let result = new PageCategory();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["guid"] = this.guid;
+        data["page"] = this.page;
+        data["code"] = this.code;
+        data["name"] = this.name;
+        data["listOrder"] = this.listOrder;
+        return data; 
+    }
+
+    clone(): PageCategory {
+        const json = this.toJSON();
+        let result = new PageCategory();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPageCategory {
+    guid: string | undefined;
+    page: string | undefined;
+    code: string | undefined;
+    name: string | undefined;
+    listOrder: number | undefined;
 }
 
 export class PageMemberDto implements IPageMemberDto {
@@ -3951,6 +4302,7 @@ export interface IUserInfoDto {
 export class PostDetailDto implements IPostDetailDto {
     id: number | undefined;
     contentText: string | undefined;
+    category: string | undefined;
     title: string | undefined;
     comments: PostCommentDetailDto[] | undefined;
     postData: PostData | undefined;
@@ -3972,6 +4324,7 @@ export class PostDetailDto implements IPostDetailDto {
         if (data) {
             this.id = data["id"];
             this.contentText = data["contentText"];
+            this.category = data["category"];
             this.title = data["title"];
             if (data["comments"] && data["comments"].constructor === Array) {
                 this.comments = [];
@@ -3997,6 +4350,7 @@ export class PostDetailDto implements IPostDetailDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["contentText"] = this.contentText;
+        data["category"] = this.category;
         data["title"] = this.title;
         if (this.comments && this.comments.constructor === Array) {
             data["comments"] = [];
@@ -4022,6 +4376,7 @@ export class PostDetailDto implements IPostDetailDto {
 export interface IPostDetailDto {
     id: number | undefined;
     contentText: string | undefined;
+    category: string | undefined;
     title: string | undefined;
     comments: PostCommentDetailDto[] | undefined;
     postData: PostData | undefined;
@@ -4258,18 +4613,20 @@ export interface IPostStatDto {
 
 export class Picture implements IPicture {
     id: number | undefined;
+    guid: string | undefined;
     pictureBinary: string | undefined;
     mimeType: string | undefined;
     seoFilename: string | undefined;
     fileSize: number | undefined;
     isNew: boolean | undefined;
-    pictureUrl: string | undefined;
     width: number | undefined;
     height: number | undefined;
+    pictureUrl: string | undefined;
     thumbUrl: string | undefined;
-    guid: string | undefined;
     mediaHost: string | undefined;
     ext: string | undefined;
+    path: string | undefined;
+    pathUrl: string | undefined;
 
     constructor(data?: IPicture) {
         if (data) {
@@ -4283,18 +4640,20 @@ export class Picture implements IPicture {
     init(data?: any) {
         if (data) {
             this.id = data["id"];
+            this.guid = data["guid"];
             this.pictureBinary = data["pictureBinary"];
             this.mimeType = data["mimeType"];
             this.seoFilename = data["seoFilename"];
             this.fileSize = data["fileSize"];
             this.isNew = data["isNew"];
-            this.pictureUrl = data["pictureUrl"];
             this.width = data["width"];
             this.height = data["height"];
+            this.pictureUrl = data["pictureUrl"];
             this.thumbUrl = data["thumbUrl"];
-            this.guid = data["guid"];
             this.mediaHost = data["mediaHost"];
             this.ext = data["ext"];
+            this.path = data["path"];
+            this.pathUrl = data["pathUrl"];
         }
     }
 
@@ -4308,18 +4667,20 @@ export class Picture implements IPicture {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
+        data["guid"] = this.guid;
         data["pictureBinary"] = this.pictureBinary;
         data["mimeType"] = this.mimeType;
         data["seoFilename"] = this.seoFilename;
         data["fileSize"] = this.fileSize;
         data["isNew"] = this.isNew;
-        data["pictureUrl"] = this.pictureUrl;
         data["width"] = this.width;
         data["height"] = this.height;
+        data["pictureUrl"] = this.pictureUrl;
         data["thumbUrl"] = this.thumbUrl;
-        data["guid"] = this.guid;
         data["mediaHost"] = this.mediaHost;
         data["ext"] = this.ext;
+        data["path"] = this.path;
+        data["pathUrl"] = this.pathUrl;
         return data; 
     }
 
@@ -4333,18 +4694,20 @@ export class Picture implements IPicture {
 
 export interface IPicture {
     id: number | undefined;
+    guid: string | undefined;
     pictureBinary: string | undefined;
     mimeType: string | undefined;
     seoFilename: string | undefined;
     fileSize: number | undefined;
     isNew: boolean | undefined;
-    pictureUrl: string | undefined;
     width: number | undefined;
     height: number | undefined;
+    pictureUrl: string | undefined;
     thumbUrl: string | undefined;
-    guid: string | undefined;
     mediaHost: string | undefined;
     ext: string | undefined;
+    path: string | undefined;
+    pathUrl: string | undefined;
 }
 
 export class SocialMedia implements ISocialMedia {
@@ -4564,61 +4927,6 @@ export interface IISocialMediaProvider {
     apiUrl: string | undefined;
 }
 
-export class UserTimelinePostRequest implements IUserTimelinePostRequest {
-    userId: number | undefined;
-    userName: string | undefined;
-    skipCount: number | undefined;
-    maxResultCount: number | undefined;
-
-    constructor(data?: IUserTimelinePostRequest) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(data?: any) {
-        if (data) {
-            this.userId = data["userId"];
-            this.userName = data["userName"];
-            this.skipCount = data["skipCount"];
-            this.maxResultCount = data["maxResultCount"];
-        }
-    }
-
-    static fromJS(data: any): UserTimelinePostRequest {
-        data = typeof data === 'object' ? data : {};
-        let result = new UserTimelinePostRequest();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["userId"] = this.userId;
-        data["userName"] = this.userName;
-        data["skipCount"] = this.skipCount;
-        data["maxResultCount"] = this.maxResultCount;
-        return data; 
-    }
-
-    clone(): UserTimelinePostRequest {
-        const json = this.toJSON();
-        let result = new UserTimelinePostRequest();
-        result.init(json);
-        return result;
-    }
-}
-
-export interface IUserTimelinePostRequest {
-    userId: number | undefined;
-    userName: string | undefined;
-    skipCount: number | undefined;
-    maxResultCount: number | undefined;
-}
-
 export class PagedResultDtoOfPostDetailDto implements IPagedResultDtoOfPostDetailDto {
     totalCount: number | undefined;
     items: PostDetailDto[] | undefined;
@@ -4672,6 +4980,61 @@ export class PagedResultDtoOfPostDetailDto implements IPagedResultDtoOfPostDetai
 export interface IPagedResultDtoOfPostDetailDto {
     totalCount: number | undefined;
     items: PostDetailDto[] | undefined;
+}
+
+export class UserTimelinePostRequest implements IUserTimelinePostRequest {
+    userId: number | undefined;
+    userName: string | undefined;
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
+
+    constructor(data?: IUserTimelinePostRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.userId = data["userId"];
+            this.userName = data["userName"];
+            this.skipCount = data["skipCount"];
+            this.maxResultCount = data["maxResultCount"];
+        }
+    }
+
+    static fromJS(data: any): UserTimelinePostRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserTimelinePostRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["userId"] = this.userId;
+        data["userName"] = this.userName;
+        data["skipCount"] = this.skipCount;
+        data["maxResultCount"] = this.maxResultCount;
+        return data; 
+    }
+
+    clone(): UserTimelinePostRequest {
+        const json = this.toJSON();
+        let result = new UserTimelinePostRequest();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IUserTimelinePostRequest {
+    userId: number | undefined;
+    userName: string | undefined;
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
 }
 
 export class PostStatInput implements IPostStatInput {
@@ -7121,10 +7484,7 @@ export class SwaggerException extends Error {
 }
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
-    if(result !== null && result !== undefined)
-        return _observableThrow(result);
-    else
-        return _observableThrow(new SwaggerException(message, status, response, headers, null));
+    return _observableThrow(new SwaggerException(message, status, response, headers, result));
 }
 
 function blobToText(blob: any): Observable<string> {

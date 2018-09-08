@@ -1,160 +1,59 @@
 ﻿
-<div class="container">
-    <div class="row">
-        <!-- Main Content -->
-        <div class="col-8">
-            <div class="row">
-                <div class="col-12 col-md-12">
-                <div id="newsfeed-items-grid ">
+<div class="row">
 
-                    <div class="ui-block">
-
-                        <!-- News Feed Form  -->
-                        <div class="news-feed-form">
-                            <page-post-editor (onPostAdded)="addPost($event)"></page-post-editor>
-
-                        </div>
-
-                        <!-- ... end News Feed Form  -->
-                    </div>
-
-                </div>
-                <!--<post-detail *ngFor="let item of posts" [post]="item"></post-detail>-->
-                
-                <div class="col-12 col-md-12">
-
-                    <a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid">
-                        <svg class="olymp-three-dots-icon">
-                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-                        </svg>
-                    </a>
-                </div>
-                    </div>
-            </div>
+    <div class="col-8 col-xl-8 col-lg-8 col-md-12">
+        <div id="post-list">
+            <post-detail *ngFor="let item of posts" [post]="item"></post-detail>
         </div>
-        <!-- ... end Main Content -->
-        <!-- Right Sidebar -->
-
-        <div class="col-4">
-
-            <div class="ui-block">
-                <div class="ui-block-title">
-                    <h6 class="title">Visitor Posts</h6>
-                </div>
-                <div class="ui-block-content">
-
-                </div>
+        <div id="no-post" *ngIf="!posts || posts.length == 0">
+            <div class="ui-block p-5 m-auto text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></div>
+        </div>
+    </div>
+    <div class="col-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pl-0">
+        <div class="ui-block" style="padding: 0;">
+            <div class="ui-block-title" style="padding: 15px 15px;">
+                <h6 class="title">Intro</h6>
             </div>
-
-            <div class="ui-block">
-                <div class="ui-block-title">
-                    <h6 class="title">Favourite Pages</h6>
-                </div>
-
-                <!-- W-Friend-Pages-Added -->
-
-                <ul class="widget w-friend-pages-added notification-list friend-requests">
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar41-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">The Marina Bar</a>
-                            <span class="chat-message-item">Restaurant / Bar</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
-                            <a href="#">
-                                <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                            </a>
-                        </span>
-
+            <div class="ui-block-content" style="padding: 0px 15px;">
+                <ul class="widget w-personal-info item-block">
+                    <li>
+                        <span class="title">About:</span>
+                        <span class="text"> Admin cua trang web nay </span>
                     </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar42-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Tapronus Rock</a>
-                            <span class="chat-message-item">Rock Band</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
-                            <a href="#">
-                                <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                            </a>
-                        </span>
-
+                    <li>
+                        <span class="title">Phone:</span>
+                        <span class="text"> 0987654321</span>
                     </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar43-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Pixel Digital Design</a>
-                            <span class="chat-message-item">Company</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
-                            <a href="#">
-                                <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                            </a>
-                        </span>
+                    <li>
+                        <span class="title">Email:</span>
+                        <span class="text"> admin@defaulttenant.com</span>
                     </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar44-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Thompson’s Custom Clothing Boutique</a>
-                            <span class="chat-message-item">Clothing Store</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
-                            <a href="#">
-                                <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                            </a>
-                        </span>
-
+                    <li>
+                        <span class="title">Occupation:</span>
+                        <span class="text"> IT</span>
                     </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar45-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Crimson Agency</a>
-                            <span class="chat-message-item">Company</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
-                            <a href="#">
-                                <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                            </a>
-                        </span>
+                    <li>
+                        <span class="title">Student Code:</span>
+                        <span class="text"> 124324342</span>
                     </li>
-
-                    <li class="inline-items">
-                        <div class="author-thumb">
-                            <img src="theme/img/avatar46-sm.jpg" alt="author">
-                        </div>
-                        <div class="notification-event">
-                            <a href="#" class="h6 notification-friend">Mannequin Angel</a>
-                            <span class="chat-message-item">Clothing Store</span>
-                        </div>
-                        <span class="notification-icon" data-toggle="tooltip" data-placement="top" data-original-title="ADD TO YOUR FAVS">
-                            <a href="#">
-                                <svg class="olymp-star-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-star-icon"></use></svg>
-                            </a>
-                        </span>
+                    <li>
+                        <span class="title">Student Real Name:</span>
+                        <span class="text"> Đỗ Mạnh Cường</span>
+                    </li>
+                    <li>
+                        <span class="title">Student Class:</span>
+                        <span class="text"> Kỹ Thuật Viễn Thông K42</span>
+                    </li>
+                    <li>
+                        <span class="title">Student Department:</span>
+                        <span class="text"> Ngành Điện Tử Viễn Thông</span>
+                    </li>
+                    <li>
+                        <span class="title">Student Year:</span>
+                        <span class="text"> K42</span>
                     </li>
                 </ul>
-
-                <!-- .. end W-Friend-Pages-Added -->
             </div>
-
         </div>
-
-        <!-- ... end Right Sidebar -->
-
     </div>
 </div>
-

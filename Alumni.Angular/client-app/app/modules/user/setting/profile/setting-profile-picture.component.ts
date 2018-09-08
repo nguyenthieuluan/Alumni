@@ -3,6 +3,7 @@ import { UserProfileServiceProxy, UserProfileDto } from "@shared/service-proxies
 import { AppComponentBase } from "@shared/app-component-base";
 
 import { ImageCropperComponent, CropperSettings, Bounds } from "ngx-img-cropper";
+import { UserService } from "@app/modules/user/user.service";
 @Component({
     selector: '',
     templateUrl: './setting-profile-picture.component.html',
@@ -21,6 +22,7 @@ export class UserSettingProfilePictureComponent  extends AppComponentBase implem
 
     constructor(
         injector: Injector,
+        private userService: UserService,
         private _userProfileService: UserProfileServiceProxy
     ) {
         super(injector);
@@ -59,14 +61,14 @@ export class UserSettingProfilePictureComponent  extends AppComponentBase implem
     }
     getCoverSettings() {
         this.csC = new CropperSettings();
-        this.csC.width = 1048;
-        this.csC.height = 400;
+        this.csC.width = 1010;
+        this.csC.height = 386;
 
-        this.csC.croppedWidth = 1048;
-        this.csC.croppedHeight = 400;
+        this.csC.croppedWidth = 1010;
+        this.csC.croppedHeight = 386;
 
-        this.csC.canvasWidth = 524;
-        this.csC.canvasHeight = 200;
+        this.csC.canvasWidth = 416;
+        this.csC.canvasHeight = 159;
 
 
         this.csC.rounded = false;
@@ -104,5 +106,6 @@ export class UserSettingProfilePictureComponent  extends AppComponentBase implem
         this.dC = {
             image: { image: p.coverUrl }
         };
+        this.userService.setActiveProfile(p);
     }
 }

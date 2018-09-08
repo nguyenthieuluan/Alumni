@@ -1,0 +1,27 @@
+﻿<page-header-profile [page]="pageService.activePage"></page-header-profile>
+<div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+        <widget-page-menu [page]="pageService.activePage"></widget-page-menu>
+    
+    </div>
+
+    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+       
+        <div class="row">
+
+            <div class="col-8 col-xl-8 col-lg-8 col-md-12">
+                <div id="post-list">
+                    <post-detail *ngFor="let item of posts" [post]="item"></post-detail>
+                </div>
+                <div id="no-post" *ngIf="!posts || posts.length == 0">
+                    <div class="ui-block p-5 m-auto text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></div>
+                </div>
+            </div>
+            <div class="col-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pl-0">
+                <widget-page-intro></widget-page-intro>
+            </div>
+        </div>
+    </div>
+</div>
+
+

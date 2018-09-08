@@ -1,74 +1,134 @@
 ﻿<!-- Header-BP -->
 
-<header class="header" style="position: relative;" id="site-header">
-   <!-- <div class="">-->
+<header class="header" style="position: sticky;" id="site-header">
 
-        <div class="header-logo">
-            <img src="assets/logo.png" alt="Alumni">
-        </div>
-        <div class="page-title">
-            <p class="head-title">Trường ĐH GTVT CS2</p>
-            <p class="head-info">BAN LIÊN LẠC CỰU SINH VIÊN</p>
-        </div>
-        <div class="header-content-wrapper">
-            <form class="search-bar w-search notification-list friend-requests" #searchForm="ngForm" method="post" novalidate (ngSubmit)="headerSearch()">
-                <div class="form-group with-button">
-                    <input class="form-control" placeholder="Search here people or pages..." type="text" [(ngModel)]="searchModel.keyword" name="keyword">
-                    <button type="submit">
-                        <svg class="olymp-magnifying-glass-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
-                    </button>
-                </div>
-            </form>
+    <div class="header-logo">
+        <img src="assets/logo.png" alt="Alumni">
+    </div>
+    <div class="page-title">
 
-            <a [routerLink]="['home']" class="header-link">HOME</a>
-            <a [routerLink]="['channels']" class="header-link">DIRECTORIES</a>
-            <a [routerLink]="['users']" class="header-link">FAQ</a>
-            <a href="#" class="header-link">CONTACT</a>
+        <p class="head-title">
+            UNIVERSITY OF TRANSPORT AND COMMUNICATIONS
+        </p>
+        <p class="head-info text-bold">CAMPUS IN HO CHI MINH CITY</p>
+        <p class="head-info">ALUMNI ASSIOSIATION</p>
+    </div>
+    <div class="header-content-wrapper">
+        <form class="search-bar w-search notification-list friend-requests" #searchForm="ngForm" method="post" novalidate (ngSubmit)="headerSearch()">
+            <div class="form-group with-button">
+                <input class="form-control" placeholder="Search here people or pages..." type="text" [(ngModel)]="searchModel.keyword" name="keyword">
+                <button type="submit">
+                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+                </button>
+            </div>
+        </form>
 
-            <div class="control-block">
+        <a [routerLink]="['/app/home']" class="header-link">HOMEPAGE</a>
+        <a [routerLink]="['/app/newsfeed']" class="header-link">NEWSFEED</a>
+        <a [routerLink]="['/app/directory']" class="header-link">DIRECTORIES</a>
 
-                <div class="author-page author vcard inline-items more" *ngIf="isLoggedin()">
-                    <div class="author-thumb">
-                        <img [src]="appSession.user.profile.pictureUrl" alt="author" class="avatar">
-                        <span class="icon-status online"></span>
-                        <div class="more-dropdown more-with-triangle">
-                            <div class="mCustomScrollbar" data-mcs-theme="dark">
-                                <div class="ui-block-title ui-block-title-small">
-                                    <h6 class="title">Your Account</h6>
-                                </div>
+        <div class="control-block">
 
-                                <ul class="account-settings">
-                                    <li>
-                                        <a href="javascript:void(0);">
-
-                                            <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-
-                                            <span>Profile Settings</span>
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="javascript:void(0);" (click)="logout()">
-                                            <svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
-
-                                            <span>Log Out</span>
-                                        </a>
-                                    </li>
-                                </ul>
-
+            <div class="author-page author vcard inline-items more" *ngIf="isLoggedin()">
+                <div class="author-thumb">
+                    <img [src]="appSession.user.profile.pictureUrl" alt="author" class="avatar">
+                    <span class="icon-status online"></span>
+                    <div class="more-dropdown more-with-triangle">
+                        <div class="mCustomScrollbar" data-mcs-theme="dark">
+                            <div class="ui-block-title ui-block-title-small">
+                                <h6 class="title">Your Account</h6>
                             </div>
+
+                            <ul class="account-settings">
+                                <li>
+                                    <a href="javascript:void(0);">
+
+                                        <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+
+                                        <span>Profile Settings</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="javascript:void(0);" (click)="logout()">
+                                        <svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
+
+                                        <span>Log Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+
                         </div>
                     </div>
-                    <a href="javascript:void(0);" class="author-name fn">
-                        <div class="author-title">
-                            {{shownLoginName}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
-                        </div>
-                        <span class="author-subtitle"></span>
-                    </a>
                 </div>
+                <a href="javascript:void(0);" class="author-name fn">
+                    <div class="author-title">
+                        {{shownLoginName}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                    </div>
+                    <span class="author-subtitle"></span>
+                </a>
             </div>
         </div>
+    </div>
     <!--</div>-->
 </header>
+<span class="control-icon has-items d-sm-none" (click)="_toggleOpened()">
+    <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+</span>
 
-<!-- ... end Header-BP -->
+<ng-sidebar-container (onBackdropClicked)="_onBackdropClicked()" style="position:absolute">
+    <ng-sidebar [(opened)]="_opened"
+                [mode]="_MODES[0]"
+                [keyClose]="_keyClose"
+                [position]="_POSITIONS[_positionNum]"
+                [dock]="_dock"
+                [dockedSize]="'50px'"
+                [autoCollapseHeight]="_autoCollapseHeight"
+                [autoCollapseWidth]="_autoCollapseWidth"
+                [closeOnClickOutside]="_closeOnClickOutside"
+                [closeOnClickBackdrop]="_closeOnClickBackdrop"
+                [showBackdrop]="_showBackdrop"
+                [animate]="_animate"
+                [trapFocus]="_trapFocus"
+                [autoFocus]="_autoFocus"
+                [sidebarClass]="'demo-sidebar'"
+                [ariaLabel]="'My sidebar'"
+                (onOpenStart)="_onOpenStart()"
+                (onOpened)="_onOpened()"
+                (onCloseStart)="_onCloseStart()"
+                (onClosed)="_onClosed()"
+                (onTransitionEnd)="_onTransitionEnd()">
+
+        <div class="profile-settings-responsive d-block aside-menu" style="">
+
+            <div class="ui-block">
+                <div class="your-profile">
+                    <div class="ui-block-title ui-block-title-small">
+                        <h6 class="title">Menu</h6>
+                    </div>
+
+                    <ul class="your-profile-menu">
+                        <li>
+                            <a href="28-YourAccount-PersonalInformation.html">Personal Information</a>
+                        </li>
+                        <li>
+                            <a href="29-YourAccount-AccountSettings.html">Account Settings</a>
+                        </li>
+                        <li>
+                            <a href="30-YourAccount-ChangePassword.html">Change Password</a>
+                        </li>
+                        <li>
+                            <a href="31-YourAccount-HobbiesAndInterests.html">Hobbies and Interests</a>
+                        </li>
+                        <li>
+                            <a href="32-YourAccount-EducationAndEmployement.html">Education and Employement</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </ng-sidebar>
+
+</ng-sidebar-container>

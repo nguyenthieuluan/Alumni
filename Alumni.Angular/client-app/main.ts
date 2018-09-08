@@ -4,15 +4,14 @@ import { environment } from './environments/environment';
 import { RootModule } from './root.module';
 import { hmrBootstrap } from './hmr';
 
-import * as moment from 'moment';
+//import * as moment from 'moment';
 
-import 'moment/min/locales.min';
-import 'moment-timezone';
+//import 'moment/min/locales.min';
+//import 'moment-timezone';
 
 if (environment.production) {
     enableProdMode();
 }
-console.log("start main app...");
 const bootstrap = () => {
     return platformBrowserDynamic().bootstrapModule(RootModule);
 };
@@ -31,5 +30,3 @@ if (environment.hmr) {
 } else {
     bootstrap(); //Regular bootstrap
 }
-
-console.log("finish main app...");

@@ -1,0 +1,104 @@
+﻿<div class="block-photo js-zoom-gallery" *ngIf="pictures.length == 1">
+    <div class="row">
+        <div class="col-md-12 p">
+            <a [href]="pictures[0].pictureUrl">
+                <img [src]="pictures[0].thumbUrl" class="r" alt="photo">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="block-photo js-zoom-gallery" *ngIf="pictures.length == 2">
+    <div class="row">
+        <div class="col-md-6 p">
+            <a [href]="pictures[0].pictureUrl">
+                <img [src]="pictures[0].thumbUrl" class="r1" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-6 p">
+            <a [href]="pictures[1].pictureUrl">
+                <img [src]="pictures[1].thumbUrl" class="r1" alt="photo">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="block-photo js-zoom-gallery" *ngIf="pictures.length == 3">
+    <div class="row">
+        <div class="col-md-12 p">
+            <a [href]="pictures[0].pictureUrl">
+                <img [src]="pictures[0].thumbUrl" class="r2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-6 p">
+            <a [href]="pictures[1].pictureUrl">
+                <img [src]="pictures[1].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-6 p">
+            <a [href]="pictures[2].pictureUrl">
+                <img [src]="pictures[2].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="block-photo js-zoom-gallery" *ngIf="pictures.length == 4">
+    <div class="row">
+        <div class="col-md-12 p">
+            <a [href]="pictures[0].pictureUrl">
+                <img [src]="pictures[0].thumbUrl" class="r2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-4 p">
+            <a [href]="pictures[2].pictureUrl">
+                <img [src]="pictures[2].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-4 p">
+            <a [href]="pictures[3].pictureUrl">
+                <img [src]="pictures[3].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-4 p">
+            <a [href]="pictures[1].pictureUrl">
+                <img [src]="pictures[1].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="block-photo js-zoom-gallery" *ngIf="pictures.length > 4">
+    <div class="row">
+        <div class="col-md-6 p">
+            <a [href]="pictures[0].pictureUrl">
+                <img [src]="pictures[0].thumbUrl" class="r2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-6 p">
+            <a [href]="pictures[1].pictureUrl">
+                <img [src]="pictures[1].thumbUrl" class="r2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-4 p">
+            <a [href]="pictures[2].pictureUrl">
+                <img [src]="pictures[2].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-4 p">
+            <a [href]="pictures[3].pictureUrl">
+                <img [src]="pictures[3].thumbUrl" class="r2-2" alt="photo">
+            </a>
+        </div>
+        <div class="col-md-4 p">
+            <a [href]="pictures[4].pictureUrl" class="r2-2" [ngClass]="{'more-photos': pictures.length > 5}">
+                <img [src]="pictures[4].thumbUrl" class="r2-2" alt="photo">
+                <span class="h2" *ngIf="pictures.length > 5">+{{pictures.length-4}}</span>
+            </a>
+
+            <a *ngFor="let p of pictures.slice(5)" [href]="p.pictureUrl" class="d-none">
+                <img [src]="p.thumbUrl" alt="photo">
+            </a>
+        </div>
+    </div>
+</div>
