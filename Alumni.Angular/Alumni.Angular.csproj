@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DevExpress.Xpo" Version="18.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
   </ItemGroup>
@@ -25,10 +26,14 @@
 
   <ItemGroup>
     <None Remove="client-app\app\modules\page\community\Layout\page-like.component.ts" />
+    <None Remove="client-app\app\modules\user\friend\friend-item.component.html" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Include="client-app\app\modules\page\followers\page-likes.component.ts">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="client-app\app\modules\user\friend\friend-item.component.html">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
