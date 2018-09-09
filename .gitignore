@@ -255,3 +255,4 @@ paket-files/
 /Alumni.Angular/.angulardoc.json
 /Alumni.code-workspace
 Alumni.Angular/client-app/assets/appconfig.json
+.vs/slnx.sqlite
