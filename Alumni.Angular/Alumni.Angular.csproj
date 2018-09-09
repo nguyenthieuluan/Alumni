@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="package-lock.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="client-app\app\components\event\" />
     <Folder Include="client-app\app\modules\directory\" />
     <Folder Include="client-app\app\modules\page\about\" />
