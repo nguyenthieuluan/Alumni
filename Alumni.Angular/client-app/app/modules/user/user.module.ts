@@ -3,7 +3,6 @@ import { AccordionModule } from 'ngx-bootstrap';
 import { SharedModule } from '@shared/shared.module';
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
-import { UserFriendComponent } from './friend/friend.component';
 import { UserTimelineComponent } from './timeline/timeline.component';
 import { UserEventComponent } from './event/event.component';
 import { UserHeaderProfileComponent } from './_components/user-header-profile.component';
@@ -18,6 +17,8 @@ import { UserSettingProfilePictureComponent } from './setting/profile/setting-pr
 import { UserSettingEducationComponent } from './setting/profile/setting-education.component';
 import { UserCreatePageComponent } from './page/create-page.component';
 import { UserPagesComponent } from './page/pages.component';
+import { UserFriendItemComponent } from '@app/modules/user/friend/friend-item.component';
+import { UserFriendComponent } from '@app/modules/user/friend/friend.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { UserPagesComponent } from './page/pages.component';
         UserSettingEducationComponent,
         UserPagesComponent,
         UserCreatePageComponent,
+        UserFriendItemComponent,
 
     ],
     imports: [

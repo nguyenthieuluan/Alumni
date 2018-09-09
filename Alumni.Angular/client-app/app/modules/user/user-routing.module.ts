@@ -1,7 +1,6 @@
-﻿import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserEventComponent } from './event/event.component';
-import { UserFriendComponent } from './friend/friend.component';
 import { UserCreatePageComponent } from './page/create-page.component';
 import { UserPagesComponent } from './page/pages.component';
 import { UserSettingAccountComponent } from './setting/profile/setting-account.component';
@@ -12,6 +11,7 @@ import { UserSettingComponent } from './setting/setting.component';
 import { UserTimelineComponent } from './timeline/timeline.component';
 import { UserComponent } from './user.component';
 import { ActiveUserResolver } from './user.service';
+import { UserFriendComponent } from '@app/modules/user/friend/friend.component';
 
 const routes: Routes = [
     {

@@ -11,12 +11,12 @@ import { AppComponentBase } from "@shared/app-component-base";
 @Component({
     selector: 'post-detail',
     templateUrl: './post-detail.component.html',
+    styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent extends AppComponentBase implements OnInit {
     @Input() public post: PostDetailDto;
     postImageCount: number;
     pictures: Picture[];
-    
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -29,6 +29,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         this.post.contentText = this.post.contentText.replace(/\n/g, "<br />");
         this.postImageCount = this.post.postData.pictures.length;
     }
+
     updateStat(statType: PostStatInputStatType) {
         var model = new PostStatInput();
         model.postId = this.post.id;
@@ -36,6 +37,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         model.statReactType = 1;
         this._postService.updateStat(model).subscribe(r=>this.post.stats = r);
     }
+
     addParentComment(comment: PostCommentDetailDto) {
         this.post.comments.push(comment);
     }

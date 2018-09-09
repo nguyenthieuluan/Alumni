@@ -1,4 +1,4 @@
-﻿<div class="ui-block">
+<div class="ui-block">
     <tabset class="friend-items">
         <tab heading="All friends" id="tab1">
 
@@ -12,7 +12,9 @@
                         <span class="chat-message-item">Works at Ho Chi Minh City</span>
                     </div>
                     <span class="notification-icon">
-                        <button class="btn btn-primary btn-sm"><i class="fa fa-1x fa-user-plus"></i> Add Friend </button>
+                        <button class="btn btn-primary btn-sm" (click)="addFriend()" *ngIf="false"> 
+                            <i class="fa fa-1x fa-user-plus"></i> Add Friend 
+                        </button>
                     </span>
 
                 </li>
@@ -23,7 +25,15 @@
                 <svg class="olymp-happy-faces-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
                 <span>There are no mutual friends right now</span>
             </div>
-           
+
+        </tab>
+        <tab heading="Requests" id="tab1">
+
+            <div class="no-friends">
+                <svg class="olymp-happy-faces-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+                <span>There are no request right now</span>
+            </div>
+
         </tab>
     </tabset>
    

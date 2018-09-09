@@ -254,4 +254,4 @@ paket-files/
 /Alumni.Angular/.vscode
 /Alumni.Angular/.angulardoc.json
 /Alumni.code-workspace
-/Alumni.Angular/package-lock.json
+Alumni.Angular/client-app/assets/appconfig.json
