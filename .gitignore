@@ -256,3 +256,5 @@ paket-files/
 /Alumni.code-workspace
 Alumni.Angular/client-app/assets/appconfig.json
 .vs/slnx.sqlite
+Alumni.Angular/client-app/assets/appconfig.json
+.gitignore
