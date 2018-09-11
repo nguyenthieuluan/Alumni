@@ -1,13 +1,16 @@
-﻿import { Component, OnInit, Injector } from "@angular/core";
+﻿import { Component, OnInit, Injector, OnChanges } from "@angular/core";
 import { PageService } from "@app/modules/page/page.service";
-import { PageDetailDto, PageServiceProxy } from "@shared/service-proxies/service-proxies";
+import {
+    PageDetailDto,
+    PageServiceProxy
+} from "@shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
 import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
-    selector: '',
-    templateUrl: './page.component.html',
-    styleUrls: ['./_styles/page.component.css'],
+    selector: "",
+    templateUrl: "./page.component.html",
+    styleUrls: ["./_styles/page.component.css"]
 })
 export class PageComponent extends AppComponentBase implements OnInit {
     model: PageDetailDto = new PageDetailDto();
@@ -22,13 +25,18 @@ export class PageComponent extends AppComponentBase implements OnInit {
         super(injector);
     }
     ngOnInit(): void {
-        var activePage = this.activeRoute.snapshot.data['activePage'];
-        if (!activePage) {
-            this.router.navigate(['/app/home']);
-        }
-        this.ps = this.pageService;
-        this.pageService.setActivePage(activePage);
-        this.model = this.pageService.activePage;
+        this.reload();
+    }
 
+    reload() {
+        this.activeRoute.data.subscribe(d => {
+            var activePage = d["activePage"];
+            if (!activePage) {
+                this.router.navigate(["/app/home"]);
+            }
+            this.pageService.setActivePage(activePage);
+            this.model = this.pageService.activePage;
+            this.pageService.onSetPage(p => (this.model = p));
+        });
     }
 }

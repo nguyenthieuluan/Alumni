@@ -1,16 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-12">
-            <event-detail></event-detail>
+            <event-detail [event]="model" (onAction)="processAction($event)"></event-detail>
         </div>
         <div class="col-lg-4 col-md-12 pl-0">
             <div class="ui-block">
-                <div class="ui-block-title "><span class="text-bold title">Going</span></div>
-                <user-widget-friends></user-widget-friends>
+                <widget-user-list [title]="'Participants ('+model.participantCount+')' " [users]="participantList"></widget-user-list>
             </div>
             <div class="ui-block">
-                <div class="ui-block-title "><span class="text-bold title">Interested</span></div>
-                <user-widget-friends></user-widget-friends>
+                <widget-user-list [title]="'Interested ('+model.interestedCount+')'" [users]="interestList"></widget-user-list>
             </div>
         </div>
     </div>

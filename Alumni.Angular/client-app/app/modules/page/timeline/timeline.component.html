@@ -1,7 +1,17 @@
-﻿
-<div class="row">
+﻿<div class="row">
 
     <div class="col-8 col-xl-8 col-lg-8 col-md-12">
+        <div class="ui-block">
+
+            <!-- News Feed Form  -->
+
+            <div class="news-feed-form" *ngIf="page.isEditor">
+                <post-editor (onPostAdded)="addPost($event)" [page]="page"></post-editor>
+
+            </div>
+
+            <!-- ... end News Feed Form  -->
+        </div>
         <div id="post-list">
             <post-detail *ngFor="let item of posts" [post]="item"></post-detail>
         </div>
@@ -10,6 +20,6 @@
         </div>
     </div>
     <div class="col-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pl-0">
-       <widget-page-intro></widget-page-intro>
+        <widget-page-intro></widget-page-intro>
     </div>
 </div>

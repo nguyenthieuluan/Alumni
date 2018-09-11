@@ -258,3 +258,4 @@ Alumni.Angular/client-app/assets/appconfig.json
 .vs/slnx.sqlite
 Alumni.Angular/client-app/assets/appconfig.json
 .gitignore
+Alumni.Angular/nswag/service.config.nswag

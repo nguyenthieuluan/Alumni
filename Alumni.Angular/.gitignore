@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/wwwroot
 /tmp
 
 # dependencies
@@ -41,3 +42,7 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+/.vs
+/client-app/assets/appconfig.json
+
+/nswag/service.config.nswag

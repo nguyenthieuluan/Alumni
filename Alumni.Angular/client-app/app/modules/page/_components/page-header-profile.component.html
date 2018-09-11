@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-3 col-xl-3 col-lg-3 col-md-3 col-sm-3">
         <div class="mt-3">
-            <img class="d-block mx-auto" id="avatar" alt="avatar" [src]="pageService.activePage.pictureUrl || ''">
-            <a class="h3 page-name-header" [routerLink]="['/app/page',pageService.activePage.userName]">{{pageService.activePage.name}} <i class="fa fa-check-circle c-twitter" *ngIf="page.isVerified"></i></a>
+            <img class="d-block mx-auto" id="avatar" alt="avatar" [src]="page.pictureUrl || ''">
+            <a class="h3 page-name-header" [routerLink]="['/app/page',page.userName]">{{page.name}}
+                <span *ngIf="page.isVerified"><i class="fa fa-check-circle c-twitter"></i></span></a>
             <div class="country text-center">@{{page.userName}}</div>
         </div>
     </div>
@@ -24,13 +25,15 @@
                     <div class="col col-xl-12 col-lg-12 col-md-12">
                         <div class="ui-block top-header-command pb-5 mb-3" *ngIf="appSession.user">
 
-                           
+
                             <div class="btn-group f-right m-0 ml-3 mr-3" dropdown>
 
-                                <button class="btn btn-normal" *ngIf="!page.isFollowed" (click)="follow()" routerLink="./likes" routerLinkActive="active">
+                                <button class="btn btn-normal" *ngIf="!page.isFollowed" (click)="follow()" routerLink="./likes"
+                                    routerLinkActive="active">
                                     <i class="fas fa-rss"></i> Follow
                                 </button>
-                                <button id="button-basic" *ngIf="page.isFollowed" dropdownToggle type="button" class="btn btn-normal dropdown-toggle" aria-controls="dropdown-basic">
+                                <button id="button-basic" *ngIf="page.isFollowed" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
+                                    aria-controls="dropdown-basic">
                                     <i class="fas fa-check"></i> Following <i class="fas fa-caret-down"></i>
                                 </button>
                                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
@@ -38,15 +41,16 @@
                                 </ul>
                             </div>
 
-                           
+
                             <div class="btn-group f-right m-0 mr-3" dropdown>
 
-                                <button class="btn btn-normal" *ngIf="!page.isLiked" (click)="like()" routerLink="./likes" routerLinkActive="active">
+                                <button class="btn btn-normal" *ngIf="!page.isLiked" (click)="like()" routerLink="./likes"
+                                    routerLinkActive="active">
                                     <i class="fas fa-thumbs-up"></i> Like
                                 </button>
 
                                 <button id="button-basic" *ngIf="page.isLiked" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
-                                        aria-controls="dropdown-basic">
+                                    aria-controls="dropdown-basic">
                                     <i class="fas  fa-check"></i> Liked <i class="fas fa-caret-down"></i>
                                 </button>
 
@@ -57,7 +61,8 @@
 
                         </div>
                         <div class="ui-block panel-success" *ngIf="!appSession.user">
-                            <h6 class="align-center p-3">Bạn vui lòng <a [routerLink]="['/account/login']">ĐĂNG NHẬP</a> hoặc  <a [routerLink]="['/account/register']">ĐĂNG KÝ</a> để xem được nhiều nội dung hơn</h6>
+                            <h6 class="align-center p-3">Bạn vui lòng <a [routerLink]="['/account/login']">ĐĂNG NHẬP</a>
+                                hoặc <a [routerLink]="['/account/register']">ĐĂNG KÝ</a> để xem được nhiều nội dung hơn</h6>
                         </div>
                     </div>
                 </div>
@@ -65,5 +70,3 @@
         </div>
     </div>
 </div>
-
-

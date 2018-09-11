@@ -4,38 +4,40 @@
 
             <ul class="widget w-friend-pages notification-list friend-requests">
 
-                <app-user-friend-item 
-                                      *ngFor="let model of friendList; let i = index" 
-                                      [model]="model" [isAllFriend]="true" (removeFriend)="onRemoveFriend(i)"
-                                      >
+                <app-user-friend-item *ngFor="let model of friendList; let i = index" [model]="model" [isAllFriend]="true"
+                    (removeFriend)="onRemoveFriend(i)">
 
                 </app-user-friend-item>
 
             </ul>
 
-            <div *ngIf="!friendList?.length>0" class="no-friends">
-                <svg class="olymp-happy-faces-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+            <div *ngIf="!(friendList?.length > 0)" class="no-friends">
+                <svg class="olymp-happy-faces-icon">
+                    <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use>
+                </svg>
                 <span>There are no friends right now</span>
             </div>
 
         </tab>
 
         <tab heading="Friends Request">
-            
+
             <ul *ngIf="true" class="widget w-friend-pages notification-list friend-requests">
-                <app-user-friend-item *ngFor="let model of friendResquestList; let i = index" 
-                                      [model]="model" [isRequest]="true" (removeFriend)="onRemoveFriendRequest(i)">
+                <app-user-friend-item *ngFor="let model of friendResquestList; let i = index" [model]="model"
+                    [isRequest]="true" (removeFriend)="onRemoveFriendRequest(i)">
 
                 </app-user-friend-item>
             </ul>
 
-            <div *ngIf="!friendResquestList?.length>0" class="no-friends">
-                <svg class="olymp-happy-faces-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use></svg>
+            <div *ngIf="!(friendResquestList.length > 0)" class="no-friends">
+                <svg class="olymp-happy-faces-icon">
+                    <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use>
+                </svg>
                 <span>There are no friends request right now</span>
             </div>
 
         </tab>
 
     </tabset>
-   
+
 </div>

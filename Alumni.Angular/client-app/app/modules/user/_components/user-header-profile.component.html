@@ -1,40 +1,46 @@
-<div class="container" *ngIf="user">
+<div class="container" *ngIf="currentUser">
     <div class="row">
         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
             <div class="ui-block">
                 <div class="top-header top-header-favorit">
                     <div class="top-header-thumb">
-                        <img [src]="user.coverUrl || ''" alt="cover">
+                        <img [src]="currentUser.coverUrl || ''" alt="cover">
                         <div class="top-header-author">
                             <div class="author-thumb">
-                                <img [src]="user.pictureUrl || ''" alt="avatar">
+                                <img [src]="currentUser.pictureUrl || ''" alt="avatar">
                             </div>
                             <div class="author-content">
-                                <a [routerLink]="['/app/user',user.userName,'timeline']" class="h3 author-name">{{ user.name }}</a>
-                                <div class="country">@{{user.userName}}</div>
+                                <a [routerLink]="['/app/user',currentUser.userName]" class="h3 author-name">{{
+                                    currentUser.name }}</a>
+                                <div class="country">@{{currentUser.userName}}</div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-3 col-md-12"></div>
                         <div class="col-lg-9 col-md-12">
-                            <div class="ui-block top-header-command" *ngIf="!isCurrent">
-                                <button type="button" class="btn btn-normal f-right" (click)="addFriend()" *ngIf="friendStatus==0||friendStatus==4">
-                                    <i class="fas  fa-user-plus"></i> Add Friend
-                                </button>
-
-                                <button type="button" class="btn btn-normal f-right" (click)="unFriend()" *ngIf="friendStatus==1||friendStatus==3">
-                                    <i class="fas  fa-user-plus"></i> Unfriend
-                                </button>
-
-                                <div class="btn-group m-0 mr-3 f-right" dropdown *ngIf="friendStatus==2">
-                                    <button id="button-basic" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
-                                            aria-controls="dropdown-basic">
-                                        <i class="fas fa-user-plus"></i>Friend Request Sent<i class="fas fa-caret-down"></i>
+                            <div class="ui-block top-header-command">
+                                <div *ngIf="!isCurrent">
+                                    <button type="button" class="btn btn-normal f-right" (click)="addFriend()" *ngIf="friendStatus==0||friendStatus==4">
+                                        <i class="fas  fa-user-plus"></i> Add Friend
                                     </button>
-                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                                        <li role="menuitem"><a class="dropdown-item" (click)="cancelRequest()" style="cursor: pointer">Cancel Request</a></li>
-                                    </ul>
+
+                                    <button type="button" class="btn btn-normal f-right" (click)="unFriend()" *ngIf="friendStatus==1||friendStatus==3">
+                                        <i class="fas  fa-user-plus"></i> Unfriend
+                                    </button>
+
+                                    <div class="btn-group m-0 mr-3 f-right" dropdown *ngIf="friendStatus==2">
+                                        <button id="button-basic" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
+                                            aria-controls="dropdown-basic">
+                                            <i class="fas fa-user-plus"></i>Friend Request Sent<i class="fas fa-caret-down"></i>
+                                        </button>
+                                        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
+                                            aria-labelledby="button-basic">
+                                            <li role="menuitem"><a class="dropdown-item" (click)="cancelRequest()"
+                                                    style="cursor: pointer">Cancel
+                                                    Request</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

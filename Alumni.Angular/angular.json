@@ -204,9 +204,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "client-admin/tsconfig.json"
-            ],
+            "tsConfig": ["client-admin/tsconfig.json"],
             "exclude": []
           }
         }
@@ -242,7 +240,7 @@
             ],
             "styles": [
               "client-app/assets/fonts/roboto/roboto.css",
-         
+
               "node_modules/simple-line-icons/css/simple-line-icons.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
@@ -357,6 +355,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
+            "optimization": false,
+            "sourceMap": false,
+            "vendorChunk": false,
             "browserTarget": "app:build"
           },
           "configurations": {
@@ -449,9 +450,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "client-app/tsconfig.json"
-            ],
+            "tsConfig": ["client-app/tsconfig.json"],
             "exclude": []
           }
         }
@@ -472,9 +471,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "e2e/tsconfig.json"
-            ],
+            "tsConfig": ["e2e/tsconfig.json"],
             "exclude": []
           }
         }

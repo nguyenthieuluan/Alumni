@@ -4,7 +4,9 @@
     ViewEncapsulation,
     Injector,
     Input,
-    Injectable
+    Injectable,
+    OnChanges,
+    SimpleChanges
 } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AppComponentBase } from "@shared/app-component-base";
@@ -23,12 +25,15 @@ import {
 })
 @Injectable()
 export class WidgetUserListComponent extends AppComponentBase
-    implements OnInit {
+    implements OnInit, OnChanges {
     @Input()
     title: string;
     @Input()
+    elClass: any;
+    @Input()
     users: UserProfileDto[];
-    model: any;
+    model: any = {};
+
     constructor(
         injector: Injector,
         private _authService: AppAuthService,
@@ -38,8 +43,10 @@ export class WidgetUserListComponent extends AppComponentBase
         super(injector);
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void {}
+    ngOnChanges(changes: SimpleChanges): void {
         this.model.title = this.title;
+        this.model.elClass = this.elClass;
         this.model.users = this.users;
     }
 }

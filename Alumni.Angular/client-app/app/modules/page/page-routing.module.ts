@@ -1,4 +1,5 @@
-﻿import { PageEventDetailComponent } from '@app/modules/page/event/page-event-detail/page-event-detail.component';
+﻿import { PageEventEditorComponent } from './event/page-event-editor/page-event-editor.component';
+import { PageEventDetailComponent } from '@app/modules/page/event/page-event-detail/page-event-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRouteGuard } from '@shared/auth/auth-route-guard';
@@ -21,6 +22,7 @@ const routes: Routes = [
             { path: '', component: PageTimelineComponent },
             { path: 'posts', component: PagePostsComponent },
             { path: 'events', component: PageEventComponent },
+            { path: 'event/editor', component: PageEventEditorComponent },
             { path: 'event/:id', component: PageEventDetailComponent },
             { path: 'followers', component: PageFollowerComponent },
             {

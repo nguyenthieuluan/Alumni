@@ -78,7 +78,7 @@ export class LoginService {
         var tokenExpireDate = rememberMe
             ? new Date(new Date().getTime() + 1000 * expireInSeconds)
             : undefined;
-
+        console.log(this._tokenService);
         this._tokenService.setToken(accessToken, tokenExpireDate);
 
         this._utilsService.setCookieValue(
@@ -87,12 +87,12 @@ export class LoginService {
             tokenExpireDate,
             abp.appPath
         );
-
         var initialUrl = UrlHelper.initialUrl;
         if (initialUrl.indexOf("/login") > 0) {
             initialUrl = AppConsts.appBaseAuthedUrl;
         }
-        this._router.navigate([initialUrl]);
+        location.href = initialUrl;
+        //this._router.navigate([initialUrl]);
     }
 
     private clear(): void {

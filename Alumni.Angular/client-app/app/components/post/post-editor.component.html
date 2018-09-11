@@ -1,16 +1,18 @@
 ﻿<form (ngSubmit)="f.form.valid && submitPost()" #f="ngForm" novalidate>
     <div class="post__author author-thumb">
-        <img [src]="appSession.user.profile.pictureUrl" alt="author">
+        <img [src]="authorPicture || ''" alt="author">
     </div>
     <div class="form-group with-icon label-floating is-empty">
 
-        <textarea  class="form-control" placeholder="Share what you are thinking here..." [(ngModel)]="post.contentText" name="content"></textarea>
+        <textarea class="form-control" placeholder="Share what you are thinking here..." [(ngModel)]="post.contentText"
+            name="content"></textarea>
     </div>
     <div class="add-options-message" *ngIf="files.length > 0">
         <ul #imgQueue class="widget  upload-img-holder">
-         
-            <li  *ngFor="let item of post.postData.pictures" (click)="removeFile(item.seoFilename)" tooltip="Click to remove" [ngClass]="{'upload-loading':item.thumbUrl.includes('ajax-loader')}">
-                <img [src]="item.thumbUrl" alt="{{item.id}}"  />
+
+            <li *ngFor="let item of post.postData.pictures" (click)="removeFile(item.seoFilename)" tooltip="Click to remove"
+                [ngClass]="{'upload-loading':item.thumbUrl.includes('ajax-loader')}">
+                <img [src]="item.thumbUrl" alt="{{item.id}}" />
             </li>
 
         </ul>
@@ -19,9 +21,12 @@
     <div class="add-options-message">
         <a href="javascript:void(0);" class="options-message" data-toggle="tooltip" data-placement="top" tooltip="ADD PHOTOS">
             <label class="upload-button" style="margin-bottom:0">
-                <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple style="display:none">
+                <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)"
+                    [uploadInput]="uploadInput" multiple style="display:none">
 
-                <svg class="olymp-camera-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-camera-icon"></use></svg>
+                <svg class="olymp-camera-icon">
+                    <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                </svg>
             </label>
         </a>
         <!--<a href="javascript;" class="options-message" tooltip="ADD VIDEO">

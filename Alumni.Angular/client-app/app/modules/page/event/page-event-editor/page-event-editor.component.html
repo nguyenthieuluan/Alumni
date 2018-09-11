@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 col-lg-8 col-md-12">
+            <div class="ui-block w-intro">
+                <div class="event-item pb-0">
+                    <div class="event-item-picture">
+                        <img mediaPreview [src]="event.eventPhoto || ''" [media]="mediaFile" (onRead)="setImgData($event)">
+                    </div>
+
+                    <div class="event-item-addtional border-bottom-0">
+
+                        <a href="javascript:void(0);" class="btn btn-normal m-0" data-toggle="tooltip" data-placement="top"
+                            tooltip="Best fit size: 489x256 (px)">
+                            <label class="upload-button" style="margin-bottom:0">
+                                <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)"
+                                    [uploadInput]="uploadInput" style="display:none">
+                                <i class="far fa-image"></i> Upload Picture
+                            </label>
+                        </a>
+
+                        <a href="javascript:void(0);" class="btn btn-normal m-0 ml-3" data-toggle="tooltip"
+                            data-placement="top" tooltip="Remove picture" (click)="removeFile()">
+                            <label class="upload-button" style="margin-bottom:0">
+
+                                <i class="far fa-times-circle"></i> Remove Picture
+                            </label>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="ui-block-content">
+
+                    <div class="row">
+                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                            <div class="form-group with-icon  small-input">
+                                <label class="control-label">Title</label>
+                                <input class="form-control" placeholder="" type="text" [(ngModel)]="event.eventName">
+                                <i class="far fa-edit" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group  small-input">
+                                <label class="control-label">From</label>
+                                <input name="datetimepicker" #doBPickerFrom />
+                                <span class="input-group-addon">
+                                    <i class="far fa-calendar" aria-hidden="true"></i>
+
+                                </span>
+                            </div>
+
+
+                        </div>
+
+                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group  small-input">
+                                <label class="control-label">To</label>
+                                <input name="datetimepicker" #doBPickerTo />
+                                <span class="input-group-addon">
+                                    <i class="far fa-calendar" aria-hidden="true"></i>
+
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                            <div class="form-group with-icon  small-input">
+                                <label class="control-label">Venue</label>
+                                <input class="form-control" placeholder="" type="text" [(ngModel)]="event.location">
+                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-group  small-input">
+                                <label class="control-label">Description</label>
+                                <textarea class="form-control" placeholder="" [(ngModel)]="event.description"></textarea>
+                            </div>
+
+                        </div>
+                        <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                            <button class="btn btn-primary f-right" (click)="save()">Update</button>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div materialInput bsEl></div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 pl-0">
+            <div class="ui-block">
+                <div class="your-profile">
+                    <div class="ui-block-title ">
+                        <span class="text-bold title">Manage Event</span>
+                    </div>
+
+                    <ul class="your-profile-menu">
+                        <li>
+                            <a [routerLink]="['/app/page',event.page.userName,'setting']">Event Information</a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

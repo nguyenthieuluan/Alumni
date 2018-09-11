@@ -1,14 +1,19 @@
 import { Component, OnInit, Injector, AfterViewInit } from "@angular/core";
 import { AppComponentBase } from "@shared/app-component-base";
-import { UserProfileServiceProxy, UserProfileDto, UserRelationshipDto } from "@shared/service-proxies/service-proxies";
+import {
+    UserProfileServiceProxy,
+    UserProfileDto,
+    UserRelationshipDto
+} from "@shared/service-proxies/service-proxies";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "@app/modules/user/user.service";
 
 @Component({
-    selector: '',
-    templateUrl: './friend.component.html',
+    selector: "",
+    templateUrl: "./friend.component.html"
 })
-export class UserFriendComponent extends AppComponentBase implements OnInit, AfterViewInit {
+export class UserFriendComponent extends AppComponentBase
+    implements OnInit, AfterViewInit {
     userRelationships: UserRelationshipDto[];
 
     friendResquestList: UserProfileDto[];
@@ -19,8 +24,7 @@ export class UserFriendComponent extends AppComponentBase implements OnInit, Aft
         injector: Injector,
         private activeRoute: ActivatedRoute,
         private router: Router,
-        private _userProfileService: UserProfileServiceProxy,
-
+        private _userProfileService: UserProfileServiceProxy
     ) {
         super(injector);
     }
@@ -28,45 +32,34 @@ export class UserFriendComponent extends AppComponentBase implements OnInit, Aft
     ngOnInit(): void {
         this._userProfileService.getCurrentProfile().subscribe(r => {
             this.getFriendRequestList(r);
-            this.getFriendList(r)
+            this.getFriendList(r);
         });
     }
 
-    ngAfterViewInit() {
-
-    }
+    ngAfterViewInit() {}
 
     getFriendRequestList(p: UserProfileDto) {
-        this._userProfileService.getFriendRequestList(p)
-            .subscribe(
-                r => {
-                    this.userRelationships = r;
-                   // console.log(r);
-                    this.friendResquestList = r.map(x => x.sourceUser);
-                }
-            );
+        this._userProfileService.getFriendRequestList(p).subscribe(r => {
+            this.userRelationships = r;
+            // console.log(r);
+            this.friendResquestList = r.map(x => x.sourceUser);
+        });
     }
 
     getFriendList(p: UserProfileDto) {
-        this._userProfileService.getFriendList(p)
-            .subscribe(
-                r => {
-                    this.userRelationships = r;
-                    //console.log(r);
-                    this.friendList = r.map(x => {
-                        //x.sourceUser
-                        if (x.sourceUser.userId != this.appSession.userId)
-                            return x.sourceUser
-                        else return x.targetUser;
-                    }                    
-                    );
-                }
-
-            );
+        this._userProfileService.getFriendList(p).subscribe(r => {
+            this.userRelationships = r;
+            //console.log(r);
+            this.friendList = r.map(x => {
+                //x.sourceUser
+                if (x.sourceUser.userId != this.appSession.userId)
+                    return x.sourceUser;
+                else return x.targetUser;
+            });
+        });
     }
 
-    onRemoveFriendRequest(index: number)
-    {
+    onRemoveFriendRequest(index: number) {
         if (index != -1) {
             this.friendResquestList.splice(index, 1);
         }

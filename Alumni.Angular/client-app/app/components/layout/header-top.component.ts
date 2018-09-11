@@ -1,14 +1,13 @@
-﻿import { Component, Injector, ViewEncapsulation, OnInit } from '@angular/core';
-import { AppComponentBase } from '@shared/app-component-base';
-import { ConfigurationServiceProxy} from '@shared/service-proxies/service-proxies';
+﻿import { Component, Injector, ViewEncapsulation, OnInit } from "@angular/core";
+import { AppComponentBase } from "@shared/app-component-base";
+import { ConfigurationServiceProxy } from "@shared/service-proxies/service-proxies";
 
-import { AppAuthService } from '@shared/auth/app-auth.service';
-
+import { AppAuthService } from "@shared/auth/app-auth.service";
 
 @Component({
-    templateUrl: './header-top.component.html',
-    selector: 'header-top',
-    styleUrls: ['./styles/styles.scss'],
+    templateUrl: "./header-top.component.html",
+    selector: "header-top",
+    styleUrls: ["./styles/styles.scss"],
     encapsulation: ViewEncapsulation.None
 })
 export class HeaderTopComponent extends AppComponentBase implements OnInit {
@@ -24,10 +23,9 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
     }
 
     ngOnInit(): void {
-   
         this.shownLoginName = this.appSession.getShownLoginName();
     }
-    
+
     headerSearch(): void {
         alert(this.searchModel.keyword);
     }
@@ -40,57 +38,55 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
         debugger;
         return a;
     }
-    private _opened: boolean = false;
-  private _modeNum: number = 0;
-  private _positionNum: number = 1;
-  private _dock: boolean = false;
-  private _closeOnClickOutside: boolean = true;
-  private _closeOnClickBackdrop: boolean = true;
-  private _showBackdrop: boolean = false;
-  private _animate: boolean = true;
-  private _trapFocus: boolean = true;
-  private _autoFocus: boolean = true;
-  private _keyClose: boolean = true;
-  private _autoCollapseHeight: number = null;
-  private _autoCollapseWidth: number = null;
-    private isClosing : boolean = false;
-  private _MODES: Array<string> = ['over', 'push', 'slide'];
-  private _POSITIONS: Array<string> = ['left', 'right', 'top', 'bottom'];
+    public _opened: boolean = false;
+    public _modeNum: number = 0;
+    public _positionNum: number = 1;
+    public _dock: boolean = false;
+    public _closeOnClickOutside: boolean = true;
+    public _closeOnClickBackdrop: boolean = true;
+    public _showBackdrop: boolean = false;
+    public _animate: boolean = true;
+    public _trapFocus: boolean = true;
+    public _autoFocus: boolean = true;
+    public _keyClose: boolean = true;
+    public _autoCollapseHeight: number = null;
+    public _autoCollapseWidth: number = null;
+    public isClosing: boolean = false;
+    public _MODES: Array<string> = ["over", "push", "slide"];
+    public _POSITIONS: Array<string> = ["left", "right", "top", "bottom"];
 
-  private _toggleOpened(): void {
-      if (this.isClosing) {
-          return;
-      }
-    this._opened = !this._opened;
-  }
+    public _toggleOpened(): void {
+        if (this.isClosing) {
+            return;
+        }
+        this._opened = !this._opened;
+    }
 
+    public _onOpenStart(): void {
+        // console.info('Sidebar opening');
+    }
 
-  private _onOpenStart(): void {
-   // console.info('Sidebar opening');
-  }
+    public _onOpened(): void {
+        //console.info('Sidebar opened');
+    }
 
-  private _onOpened(): void {
-    //console.info('Sidebar opened');
-  }
+    public _onCloseStart(): void {
+        this.isClosing = true;
+        //console.info('Sidebar closing');
+    }
 
-  private _onCloseStart(): void {
-      
-      this.isClosing= true;
-    //console.info('Sidebar closing');
-  }
+    public _onClosed(): void {
+        this._opened = false;
 
-  private _onClosed(): void {
-      this._opened= false;
-      
-      this.isClosing= false;
-   // console.info('Sidebar closed');
-  }
+        this.isClosing = false;
+        // console.info('Sidebar closed');
+    }
 
-  private _onTransitionEnd(): void {
-   // console.info('Transition ended');
-  }
+    public _onTransitionEnd(): void {
+        // console.info('Transition ended');
+    }
 
-  private _onBackdropClicked(): void {
-   // console.info('Backdrop clicked');
-  }
+    public _onBackdropClicked(): void {
+        // console.info('Backdrop clicked');
+    }
 }

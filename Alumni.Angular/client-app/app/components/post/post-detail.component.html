@@ -3,10 +3,12 @@
     <article class="post">
 
         <div class="post__author author vcard inline-items">
-            <img [src]="post.author.pictureUrl" alt="author">
+            <img [src]="post.author.pictureUrl" alt="author" *ngIf="post.publishType == 'user'">
+            <img [src]="post.page.pictureUrl" alt="author" *ngIf="post.publishType == 'page'">
 
             <div class="author-date">
-                <user-link [user]="post.author" [linkClass]="'h6 post__author-name'"></user-link>
+                <user-link [user]="post.author" [linkClass]="'h6 post__author-name'" *ngIf="post.publishType == 'user'"></user-link>
+                <user-link [page]="post.page" [linkClass]="'h6 post__author-name'" *ngIf="post.publishType == 'page'"></user-link>
                 <div class="post__date" title=" {{post.dateCreated }}">
                     <span class="published">
                         {{post.dateCreated | amTimeAgo }}
@@ -56,8 +58,9 @@
     </article>
     <div class="post-additional-info inline-items">
 
-        <a href="javascript:void(0);" class="post-add-icon inline-items" [ngClass]="{'active':post.stats.stats.isReaction}" (click)="updateStat(2)">
-            <i class="fas fa-thumbs-up"></i> 
+        <a href="javascript:void(0);" class="post-add-icon inline-items" [ngClass]="{'active':post.stats.stats.isReaction}"
+            (click)="updateStat(2)">
+            <i class="fas fa-thumbs-up"></i>
             <span>{{post.stats.reacts}}</span>
         </a>
 
@@ -70,7 +73,7 @@
     <ul class="comments-list">
         <post-comment-detail *ngFor="let item of post.comments" [post]="post" [comment]="item"></post-comment-detail>
     </ul>
-    <post-comment-editor [post]="post" (onPostCommentAdded)="addParentComment($event)"  *ngIf="appSession.user"></post-comment-editor>
+    <post-comment-editor [post]="post" (onPostCommentAdded)="addParentComment($event)" *ngIf="appSession.user"></post-comment-editor>
     <div class="d-none" mediaType></div>
     <!-- .. end Post -->
 </div>

@@ -1,22 +1,39 @@
-﻿import { Component, OnInit, ViewEncapsulation, Injector, Input } from "@angular/core";
-import { Router, ActivatedRoute } from '@angular/router';
+﻿import {
+    Component,
+    OnInit,
+    ViewEncapsulation,
+    Injector,
+    Input,
+    SimpleChanges,
+    OnChanges
+} from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AppComponentBase } from "@shared/app-component-base";
 import { AppAuthService } from "@shared/auth/app-auth.service";
-import { ConfigurationServiceProxy, UserInfoDto } from "@shared/service-proxies/service-proxies";
+import {
+    ConfigurationServiceProxy,
+    UserInfoDto,
+    PageDetailDto
+} from "@shared/service-proxies/service-proxies";
 
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/takeWhile'
+import "rxjs/add/observable/interval";
+import "rxjs/add/operator/takeWhile";
 import { interval } from "rxjs";
 @Component({
-    selector: 'user-link',
-    templateUrl: './user-link.component.html',
+    selector: "user-link",
+    templateUrl: "./user-link.component.html",
 
     encapsulation: ViewEncapsulation.None
 })
-
-export class UserLinkComponent extends AppComponentBase implements OnInit {
-    @Input() user: UserInfoDto;
-    @Input() linkClass?: string;
+export class UserLinkComponent extends AppComponentBase
+    implements OnInit, OnChanges {
+    @Input()
+    user?: UserInfoDto;
+    @Input()
+    page?: PageDetailDto;
+    @Input()
+    linkClass?: string;
+    model: any = {};
     delayPop;
     popHide;
     isHoverPop: boolean = false;
@@ -24,23 +41,36 @@ export class UserLinkComponent extends AppComponentBase implements OnInit {
         injector: Injector,
         private _authService: AppAuthService,
         private _configurationService: ConfigurationServiceProxy,
-        private activeRoute: ActivatedRoute,
-
-
+        private activeRoute: ActivatedRoute
     ) {
         super(injector);
     }
-
-    ngOnInit(): void {
-
+    ngOnChanges(changes: SimpleChanges): void {
+        //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+        //Add '${implements OnChanges}' to the class.
+        if (this.user) {
+            this.model.url = ["/app/user", this.user.userName];
+            this.model.title = this.user.fullName;
+            this.model.picture = this.user.pictureUrl;
+            this.model.cover = this.user.pictureCoverUrl;
+            this.model.isVerified = false;
+        }
+        if (this.page) {
+            this.model.url = ["/app/page", this.page.userName];
+            this.model.title = this.page.name;
+            this.model.picture = this.page.pictureUrl;
+            this.model.cover = this.page.coverUrl;
+            this.model.isVerified = this.page.isVerified;
+        }
     }
+    ngOnInit(): void {}
     hoverPop(isHover: boolean) {
         this.isHoverPop = isHover;
     }
     showProfile(pop: any) {
         this.delayPop = setTimeout(() => {
             pop.show();
-            
+
             this.isHoverPop = true;
         }, 1000);
     }
@@ -57,6 +87,6 @@ export class UserLinkComponent extends AppComponentBase implements OnInit {
                     clearTimeout(this.delayPop);
                     stopCondition = true;
                 }
-            })
+            });
     }
 }

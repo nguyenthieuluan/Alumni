@@ -107,5 +107,6 @@ export class UserSettingProfilePictureComponent  extends AppComponentBase implem
             image: { image: p.coverUrl }
         };
         this.userService.setActiveProfile(p);
+        
     }
 }
