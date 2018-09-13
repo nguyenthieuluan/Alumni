@@ -74,19 +74,20 @@ export abstract class AppComponentBase {
       return (
         start.format("ddd") +
         " at " +
-        start.format("hh:mma") +
+        start.format("HH:mma") +
         " - " +
         start.fromNow()
       );
     }
-    const sameDate = start.startOf("d") == end.startOf("d");
+    let sameDate = start.isSame(end, "day");
+
     if (sameDate) {
       return (
         start.format("ddd") +
         " at " +
-        start.format("hh:mma") +
+        start.format("HH:mma") +
         " - " +
-        end.format("hh:mma") +
+        end.format("HH:mma") +
         " - " +
         end.fromNow()
       );
@@ -94,13 +95,13 @@ export abstract class AppComponentBase {
     return (
       start.format("ddd") +
       " at " +
-      start.format("hh:mma") +
+      start.format("HH:mma") +
       " (" +
       start.format("DD/MM") +
       ") - " +
       end.format("ddd") +
       " at " +
-      end.format("hh:mma") +
+      end.format("HH:mma") +
       " (" +
       end.format("DD/MM") +
       ") - " +

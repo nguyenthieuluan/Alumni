@@ -38,12 +38,12 @@ export class PageEventComponent extends AppComponentBase implements OnInit {
       this.eventList = r.items;
       this.eventListF = r.items.filter(ev => {
         if (ev.startDate.toDate() >= new Date()) {
-          return ev;
+          return true;
         }
       });
       this.eventListP = r.items.filter(ev => {
         if (ev.startDate.toDate() < new Date()) {
-          return ev;
+          return true;
         }
       });
     });

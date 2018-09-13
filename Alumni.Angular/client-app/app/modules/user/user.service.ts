@@ -44,7 +44,6 @@ export class ActiveUserResolver implements Resolve<UserProfileDto> {
     let model: UserProfileDto = new UserProfileDto();
 
     model.userName = route.paramMap.get("userName");
-    console.log("uer service resolve ", model.userName);
     return this.remoteUserService.userPublicProfile(model);
   }
 }

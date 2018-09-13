@@ -28,8 +28,7 @@
 
                             <div class="btn-group f-right m-0 ml-3 mr-3" dropdown>
 
-                                <button class="btn btn-normal" *ngIf="!page.isFollowed" (click)="follow()" routerLink="./likes"
-                                    routerLinkActive="active">
+                                <button class="btn btn-normal" *ngIf="!page.isFollowed" (click)="follow()">
                                     <i class="fas fa-rss"></i> Follow
                                 </button>
                                 <button id="button-basic" *ngIf="page.isFollowed" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
@@ -44,8 +43,7 @@
 
                             <div class="btn-group f-right m-0 mr-3" dropdown>
 
-                                <button class="btn btn-normal" *ngIf="!page.isLiked" (click)="like()" routerLink="./likes"
-                                    routerLinkActive="active">
+                                <button class="btn btn-normal" *ngIf="!page.isLiked" (click)="like()">
                                     <i class="fas fa-thumbs-up"></i> Like
                                 </button>
 
