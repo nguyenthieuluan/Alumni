@@ -64,7 +64,7 @@ export class MediaPreviewDirective implements OnChanges {
 
                     that.onRead.emit(resizedData);
                 };
-                img.src = reader.result;
+                img.src = reader.result as string;
             };
         }
 

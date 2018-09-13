@@ -27,29 +27,34 @@
             </div>
             <div class="btn-group  ml-2" dropdown>
                 <button class="btn btn-normal ml-2" (click)="join()" *ngIf="!event.isJoined">
-                    <i class="fas fa-check"></i> Going
+                    <i class="fas fa-walking"></i> Going
                 </button>
-                <button id="button-basic" *ngIf="event.isInterested" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
+                <button id="button-basic" *ngIf="event.isJoined" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
                     aria-controls="dropdown-basic">
-                    <i class="fas fa-check"></i> Joined <i class="fas fa-caret-down"></i>
+                    <i class="fas fa-check"></i> Attended <i class="fas fa-caret-down"></i>
                 </button>
                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem"><a class="dropdown-item" (click)="notJoin()" style="cursor: pointer" *ngIf="!event.isHost">Not
-                            Going</a></li>
+                    <li role="menuitem"><a class="dropdown-item" (click)="notJoin()" style="cursor: pointer" *ngIf="!event.isHost">Cancel</a></li>
                 </ul>
             </div>
         </div>
         <div class="event-item-info ">
             <ul class="widget item-block">
-                <li><span class="title">When:</span><span class="text"> {{event.startDate| amDateFormat:'dddd,
-                        DD/MM/YYYY'}} <span *ngIf="event.endDate">- {{event.endDate| amDateFormat:'dddd, DD/MM/YYYY'}}</span></span>
+                <li><span class="title">When:</span><span class="text">{{formatEventDate(event.startDate,
+                        event.endDate)}}</span>
                 </li>
                 <li><span class="title">Where:</span><span class="text"> {{event.location}} </span></li>
                 <li><span class="title">Hosted by:</span><span class="text">
                         <user-link [user]="event.user" [page]="event.page"></user-link>
                     </span></li>
-                <li><span class="title">Description:</span><span class="text"> {{event.description}} </span></li>
+                <li><span class="title">Description:</span><span class="text" [innerHTML]="event.description | n2br">
+                    </span></li>
             </ul>
         </div>
+        <ul class="comments-list">
+            <h6>Comments</h6>
+            <event-comment-detail *ngFor="let item of event.comments" [event]="event" [comment]="item"></event-comment-detail>
+        </ul>
+        <event-comment-editor [event]="event" (onCommentAdded)="addParentComment($event)" *ngIf="appSession.user"></event-comment-editor>
     </div>
 </div>

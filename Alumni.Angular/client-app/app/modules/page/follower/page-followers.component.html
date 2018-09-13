@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <div class="ui-block" *ngIf="users.length == 0">
+                <div class="no-friends">
+                    <svg class="olymp-happy-faces-icon">
+                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use>
+                    </svg>
+                    <span>There are no followers right now</span>
+                </div>
+            </div>
+            <div class="ui-block" *ngIf="users.length > 0">
+                <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">Followers of this page</h6>
+                </div>
+                <ul class="widget w-friend-pages notification-list friend-requests">
+                    <li class="inline-items" *ngFor="let item of users">
+                        <div class="author-thumb">
+                            <img [src]="item.pictureUrl || ''" alt="author">
+                        </div>
+                        <div class="notification-event">
+                            <user-link [user]="item" [linkClass]="'h6 notification-friend'"></user-link>
+                        </div>
+                        <span class="notification-icon">
+
+                        </span>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12 pl-0">
+            <div class="ui-block w-intro">
+                <div class="your-profile">
+                    <div class="ui-block-title ">
+                        <span class="text-bold title">People on this page</span>
+                    </div>
+
+                    <ul class="your-profile-menu">
+                        <li>
+                            <a [routerLink]="['..','followers']" [routerLinkActive]="['active']">Followers</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['..','likes']" [routerLinkActive]="['active']">Likes</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

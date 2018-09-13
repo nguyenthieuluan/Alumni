@@ -242,17 +242,17 @@
               "client-app/assets/fonts/roboto/roboto.css",
 
               "node_modules/simple-line-icons/css/simple-line-icons.css",
-              "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
               "node_modules/toastr/build/toastr.css",
               "node_modules/node-waves/dist/waves.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/ng-pick-datetime/assets/style/picker.min.css",
               "client-app/theme/css/bootstrap-reboot.css",
               "client-app/theme/css/bootstrap.css",
               "client-app/theme/css/bootstrap-grid.css",
               "client-app/theme/css/base.css",
               "client-app/theme/css/main.css",
-              "client-app/theme/css/fonts.min.css",
+              "client-app/theme/fonts/css/all.min.css",
               "client-app/shared/core.less"
             ],
             "scripts": [
@@ -271,8 +271,8 @@
               "node_modules/push.js/bin/push.min.js",
               "node_modules/jquery-slimscroll/jquery.slimscroll.min.js",
               "node_modules/node-waves/dist/waves.min.js",
-              "node_modules/jquery-countto/jquery.countTo.js",
               "node_modules/raphael/raphael.min.js",
+              "node_modules/jquery-countto/jquery.countTo.js",
               "node_modules/morris.js/morris.min.js",
               "node_modules/chart.js/dist/Chart.bundle.min.js",
               "node_modules/flot/jquery.flot.js",
@@ -321,7 +321,7 @@
               "client-app/theme/js/mediaelement-playlist-plugin.min.js",
               "client-app/theme/js/sticky-sidebar.js",
               "client-app/theme/js/base-init.js",
-              "client-app/theme/fonts/fontawesome-all.js"
+              "client-app/theme/fonts/js/all.min.js"
             ]
           },
           "configurations": {

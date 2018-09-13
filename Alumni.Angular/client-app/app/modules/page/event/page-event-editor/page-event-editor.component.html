@@ -42,8 +42,9 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group  small-input">
-                                <label class="control-label">From</label>
-                                <input name="datetimepicker" #doBPickerFrom />
+                                <label class="control-label">Start Date</label>
+                                <input [(ngModel)]="event.startDate" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+                                <owl-date-time #dt></owl-date-time>
                                 <span class="input-group-addon">
                                     <i class="far fa-calendar" aria-hidden="true"></i>
 
@@ -55,8 +56,9 @@
 
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group  small-input">
-                                <label class="control-label">To</label>
-                                <input name="datetimepicker" #doBPickerTo />
+                                <label class="control-label">End Date</label>
+                                <input [(ngModel)]="event.endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
+                                <owl-date-time #dt2></owl-date-time>
                                 <span class="input-group-addon">
                                     <i class="far fa-calendar" aria-hidden="true"></i>
 
@@ -101,7 +103,7 @@
 
                     <ul class="your-profile-menu">
                         <li>
-                            <a [routerLink]="['/app/page',event.page.userName,'setting']">Event Information</a>
+                            <a [routerLink]="['..','f034e7e123e744278a0df7ce68908e8b']">Event Information</a>
                         </li>
 
                     </ul>

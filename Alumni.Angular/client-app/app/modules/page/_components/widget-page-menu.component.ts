@@ -10,7 +10,6 @@ import { AppComponentBase } from "@shared/app-component-base";
 import { AppAuthService } from "@shared/auth/app-auth.service";
 import {
     ConfigurationServiceProxy,
-    UserInfoDto,
     UserProfileDto,
     PageDetailDto
 } from "@shared/service-proxies/service-proxies";

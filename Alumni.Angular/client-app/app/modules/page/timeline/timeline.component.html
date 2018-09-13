@@ -12,11 +12,15 @@
 
             <!-- ... end News Feed Form  -->
         </div>
-        <div id="post-list">
+        <div id="post-list" infinite-scroll (scrolled)="loadMore()">
             <post-detail *ngFor="let item of posts" [post]="item"></post-detail>
         </div>
-        <div id="no-post" *ngIf="!posts || posts.length == 0">
+        <div id="no-post" *ngIf="isLoading">
             <div class="ui-block p-5 m-auto text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></div>
+        </div>
+
+        <div id="no-post" *ngIf="!posts || posts.length == 0">
+            <div class="ui-block p-5 m-auto text-center">No post...</div>
         </div>
     </div>
     <div class="col-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pl-0">

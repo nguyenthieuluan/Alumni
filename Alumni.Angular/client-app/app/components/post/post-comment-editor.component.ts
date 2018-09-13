@@ -1,6 +1,6 @@
 ﻿import { Input, Component, EventEmitter, ElementRef, ViewChild, Output, OnInit, Injector } from "@angular/core";
 import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
-import { PostDetailDto, Picture, PostData, PostServiceProxy, PostCommentDetailDto, UserInfoDto } from "@shared/service-proxies/service-proxies";
+import { PostDetailDto, Picture, PostData, PostServiceProxy, PostCommentDetailDto } from "@shared/service-proxies/service-proxies";
 import { forEach } from "@angular/router/src/utils/collection";
 import { identifierModuleUrl } from "@angular/compiler";
 import { AppConsts } from "@shared/AppConsts";

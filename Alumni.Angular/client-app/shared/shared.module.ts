@@ -10,13 +10,13 @@ import { AppAuthService } from "./auth/app-auth.service";
 import { AppRouteGuard } from "./auth/auth-route-guard";
 import { MaterialInput } from "shared/directives/material-input.directive";
 import {
-    TooltipModule,
-    ModalModule,
-    AccordionModule,
-    CollapseModule,
-    TabsModule,
-    PopoverModule,
-    BsDropdownModule
+  TooltipModule,
+  ModalModule,
+  AccordionModule,
+  CollapseModule,
+  TabsModule,
+  PopoverModule,
+  BsDropdownModule
 } from "ngx-bootstrap";
 import { MomentModule } from "ngx-moment";
 import { TagInputModule } from "ngx-chips";
@@ -52,130 +52,167 @@ import { UserWidgetFriendsComponent } from "@app/modules/user/_components/user-w
 import { WidgetPostGalleryComponent } from "@app/modules/page/post/widget-post-gallery.component";
 import { EventDetailComponent } from "@app/components/event/event-detail/event-detail.component";
 import { WidgetUserListComponent } from "@app/components/user/widget-user-list.component";
-
+import { EventCommentEditorComponent } from "@app/components/event/event-comment-editor/event-comment-editor.component";
+import { EventCommentDetailComponent } from "@app/components/event/event-comment-detail/event-comment-detail.component";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import {
+  DateTimeAdapter,
+  OWL_DATE_TIME_FORMATS,
+  OWL_DATE_TIME_LOCALE
+} from "ng-pick-datetime";
+import {
+  MomentDateTimeAdapter,
+  OWL_MOMENT_DATE_TIME_FORMATS
+} from "ng-pick-datetime-moment";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { N2BrPipe } from "@shared/directives/n2br.pipe";
 @NgModule({
-    imports: [
-        //angular core
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        HttpClientModule,
-        JsonpModule,
-        //abp
-        AbpModule,
-        //ngx-bootstrap
-        BsDropdownModule.forRoot(),
-        ModalModule.forRoot(),
-        TooltipModule.forRoot(),
-        AccordionModule.forRoot(),
-        PopoverModule.forRoot(),
-        TabsModule.forRoot(),
-        SidebarModule.forRoot(),
-        TagInputModule,
-        ImageCropperModule,
-        NgxUploaderModule,
-        NgxPaginationModule,
-        NgxComponentOutletModule.forChild(),
-        //others
-        MomentModule,
+  imports: [
+    //angular core
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    HttpClientModule,
+    JsonpModule,
+    //abp
+    AbpModule,
+    //ngx-bootstrap
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
+    TooltipModule.forRoot(),
+    AccordionModule.forRoot(),
+    PopoverModule.forRoot(),
+    TabsModule.forRoot(),
+    SidebarModule.forRoot(),
+    TagInputModule,
+    ImageCropperModule,
+    NgxUploaderModule,
+    NgxPaginationModule,
+    NgxComponentOutletModule.forChild(),
+    //others
+    MomentModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    InfiniteScrollModule,
+    //webapi
+    ServiceProxyModule
+  ],
+  declarations: [
+    HeaderTopComponent,
+    BootstrapElementDirective,
+    MediaPreviewDirective,
+    MediaTypeDirective,
+    MaterialInput,
+    HeaderProfileComponent,
+    DynamicComponent,
+    NewsFeedComponent,
+    PostDetailComponent,
+    PostEditorComponent,
+    PostCommentEditorComponent,
+    PostCommentDetailComponent,
+    WidgetPostGalleryComponent,
+    UserLinkComponent,
+    WidgetUserListComponent,
+    //others
 
-        //webapi
-        ServiceProxyModule
-    ],
-    declarations: [
-        HeaderTopComponent,
-        BootstrapElementDirective,
-        MediaPreviewDirective,
-        MediaTypeDirective,
-        MaterialInput,
-        HeaderProfileComponent,
-        DynamicComponent,
-        NewsFeedComponent,
-        PostDetailComponent,
-        PostEditorComponent,
-        PostCommentEditorComponent,
-        PostCommentDetailComponent,
-        WidgetPostGalleryComponent,
-        UserLinkComponent,
-        WidgetUserListComponent,
-        //events
-        EventDetailComponent,
-        //user
-        UserHeaderProfileComponent,
-        UserWidgetMenuComponent,
-        UserWidgetIntroComponent,
-        UserWidgetFriendsComponent,
-        //page
-        WidgetPageMenuComponent,
-        WidgetPageIntroComponent,
-        PageHeaderProfileComponent
-    ],
-    exports: [
-        //angular core
-        CommonModule,
-        RouterModule,
-        FormsModule,
-        HttpClientModule,
-        JsonpModule,
-        //abp
-        AbpModule,
-        //ngx-bootstrap
-        BsDropdownModule,
-        ModalModule,
-        TooltipModule,
-        AccordionModule,
-        TabsModule,
-        PopoverModule,
-        TagInputModule,
-        NgxUploaderModule,
-        NgxPaginationModule,
+    N2BrPipe,
+    //events
+    EventDetailComponent,
+    EventCommentEditorComponent,
+    EventCommentDetailComponent,
+    //user
+    UserHeaderProfileComponent,
+    UserWidgetMenuComponent,
+    UserWidgetIntroComponent,
+    UserWidgetFriendsComponent,
+    //page
+    WidgetPageMenuComponent,
+    WidgetPageIntroComponent,
+    PageHeaderProfileComponent
+  ],
+  exports: [
+    //angular core
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    HttpClientModule,
+    JsonpModule,
+    //abp
+    AbpModule,
+    //ngx-bootstrap
+    BsDropdownModule,
+    ModalModule,
+    TooltipModule,
+    AccordionModule,
+    TabsModule,
+    PopoverModule,
+    TagInputModule,
+    NgxUploaderModule,
+    NgxPaginationModule,
 
-        //others
-        MomentModule,
-        //webapi
-        ServiceProxyModule,
-        DynamicComponent,
-        //Components, directives, pipes
-        HeaderTopComponent,
-        BootstrapElementDirective,
-        MediaPreviewDirective,
-        MediaTypeDirective,
-        ImageCropperModule,
-        MaterialInput,
-        NewsFeedComponent,
-        PostDetailComponent,
-        PostEditorComponent,
-        PostCommentEditorComponent,
-        PostCommentDetailComponent,
-        WidgetPostGalleryComponent,
-        UserLinkComponent,
-        WidgetUserListComponent,
-        HeaderProfileComponent,
-        //events
-        EventDetailComponent,
-        //user
-        UserHeaderProfileComponent,
-        UserWidgetMenuComponent,
-        UserWidgetIntroComponent,
-        UserWidgetFriendsComponent,
-        //page
-        WidgetPageMenuComponent,
-        WidgetPageIntroComponent,
-        PageHeaderProfileComponent
-    ],
-    providers: [PageService],
-    entryComponents: [HeaderProfileComponent]
+    //others
+    MomentModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    N2BrPipe,
+    InfiniteScrollModule,
+    //webapi
+    ServiceProxyModule,
+    DynamicComponent,
+    //Components, directives, pipes
+    HeaderTopComponent,
+    BootstrapElementDirective,
+    MediaPreviewDirective,
+    MediaTypeDirective,
+    ImageCropperModule,
+    MaterialInput,
+    NewsFeedComponent,
+    PostDetailComponent,
+    PostEditorComponent,
+    PostCommentEditorComponent,
+    PostCommentDetailComponent,
+    WidgetPostGalleryComponent,
+    UserLinkComponent,
+    WidgetUserListComponent,
+    HeaderProfileComponent,
+    //events
+    EventDetailComponent,
+    EventCommentEditorComponent,
+    EventCommentDetailComponent,
+    //user
+    UserHeaderProfileComponent,
+    UserWidgetMenuComponent,
+    UserWidgetIntroComponent,
+    UserWidgetFriendsComponent,
+    //page
+    WidgetPageMenuComponent,
+    WidgetPageIntroComponent,
+    PageHeaderProfileComponent
+  ],
+  providers: [
+    PageService,
+    // `MomentDateTimeAdapter` and `OWL_MOMENT_DATE_TIME_FORMATS` can be automatically provided by importing
+    // `OwlMomentDateTimeModule` in your applications root module. We provide it at the component level
+    // here, due to limitations of our example generation script.
+    {
+      provide: DateTimeAdapter,
+      useClass: MomentDateTimeAdapter,
+      deps: [OWL_DATE_TIME_LOCALE]
+    },
+    { provide: OWL_DATE_TIME_FORMATS, useValue: OWL_MOMENT_DATE_TIME_FORMATS }
+  ],
+  entryComponents: [HeaderProfileComponent]
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SharedModule,
-            providers: [
-                AppSessionService,
-                AppUrlService,
-                AppAuthService,
-                AppRouteGuard
-            ]
-        };
-    }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        AppSessionService,
+        AppUrlService,
+        AppAuthService,
+        AppRouteGuard
+      ]
+    };
+  }
 }

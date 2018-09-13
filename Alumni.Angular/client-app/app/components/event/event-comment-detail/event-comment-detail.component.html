@@ -1,0 +1,40 @@
+<li class="comment-item" [ngClass]="{'has-children':comment.children.length > 0}">
+    <div class="post__author author vcard inline-items">
+        <img [src]="comment.user.pictureUrl || ''" alt="author">
+
+        <div class="author-date comment-content">
+            <user-link [user]="comment.user" [linkClass]="'post__author-name'"></user-link>
+            <span class="comment-text" [innerHtml]="comment.commentText"></span>
+        </div>
+        <div class="comment-tools">
+            <span class="post__date">
+                <span class="published" title="{{comment.creationTime}}">
+                    {{comment.creationTime | amTimeAgo}}
+                </span>
+            </span>
+            <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)" *ngIf="appSession.user">Reply</a>
+        </div>
+    </div>
+
+    <ul class="children" *ngIf="comment.children.length > 0">
+        <li *ngFor="let ccm of comment.children" class="comment-item">
+            <div class="post__author author vcard inline-items">
+                <img [src]="ccm.user.pictureUrl || ''" alt="author">
+
+                <div class="author-date  comment-content">
+                    <user-link [user]="ccm.user" [linkClass]="'post__author-name'"></user-link>
+                    <span class="comment-text" [innerHTML]="ccm.commentText | n2br"></span>
+                </div>
+                <div class="comment-tools">
+                    <span class="post__date">
+                        <span class="published" title="{{ccm.creationTime}}">
+                            {{ccm.creationTime | amTimeAgo}}
+                        </span>
+                    </span>
+                    <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)" *ngIf="appSession.user">Reply</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <event-comment-editor [event]="event" [parentComment]="comment" (onCommentAdded)="addParentComment($event)" *ngIf="appSession.user && editor[comment.id]"></event-comment-editor>
+</li>

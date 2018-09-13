@@ -194,7 +194,9 @@ img.avatar {
     border-radius: 0;
     overflow: hidden;
 }
-
+.author-thumb img {
+    max-width: 100%;
+}
 .header-content-wrapper .header-link {
     padding: 25px 10px;
     color: #fff;
@@ -205,7 +207,8 @@ img.avatar {
 }
 
 .profile-menu li > div.active,
-.profile-menu li a.active {
+.profile-menu li a.active,
+li a.active {
     color: #ff5e3a;
 }
 
@@ -618,15 +621,16 @@ img.avatar {
 }
 
 .date-event .day {
-    font-size: 25px;
-    color: #515365;
-    font-weight: 700;
+    font-size: 22px;
+    color: #3f4257;
+    font-weight: 500;
     margin-bottom: 3px;
 }
 
 .date-event .month {
-    font-size: 10px;
+    font-size: 13px;
     text-transform: uppercase;
+    color: #ff5e3a;
 }
 
 .friends-left.w-faved-page {

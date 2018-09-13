@@ -2,7 +2,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppComponentBase } from "@shared/app-component-base";
 import { AppAuthService } from "@shared/auth/app-auth.service";
-import { ConfigurationServiceProxy, UserInfoDto, UserProfileDto } from "@shared/service-proxies/service-proxies";
+import { ConfigurationServiceProxy, UserProfileDto } from "@shared/service-proxies/service-proxies";
 
 @Component({
     selector: 'user-widget-intro',

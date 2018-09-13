@@ -15,12 +15,12 @@
                     </svg>
                     <span>There are no events <br>to show</span>
                 </div> -->
-                <div id="no-post" *ngIf="!eventList || eventList.length == 0">
+                <div id="no-post" *ngIf="!eventListF || eventListF.length == 0">
                     <div class="ui-block p-5 m-auto text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></div>
                 </div>
                 <table class="event-item-table">
                     <tbody>
-                        <tr class="event-item" *ngFor="let event of eventList">
+                        <tr class="event-item" *ngFor="let event of eventListF">
 
                             <td class="upcoming">
                                 <div class="date-event">
@@ -29,8 +29,8 @@
                                         <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
                                     </svg>
 
-                                    <span class="day">{{event.startDate | amDateFormat:'DD'}}</span>
                                     <span class="month">{{event.startDate | amDateFormat:'MMM'}}</span>
+                                    <span class="day">{{event.startDate | amDateFormat:'DD'}}</span>
                                 </div>
                             </td>
                             <td class="author">
@@ -39,17 +39,13 @@
                                         <a [routerLink]="['/app/page',event.page.userName,'event',event.guid]" class="author-name h6">{{event.eventName}}</a>
                                         hosted by <user-link [user]="event.user" [page]="event.page"></user-link>
                                         <time class="published">
-                                            {{event.startDate| amDateFormat:'dddd,
-                                            DD/MM/YYYY'}} <span *ngIf="event.endDate">- {{event.endDate|
-                                                amDateFormat:'dddd, DD/MM/YYYY'}}</span>
+                                            {{formatEventDate(event.startDate, event.endDate)}}
                                         </time>
                                     </div>
                                 </div>
                                 <div class="location">
                                     <div class="place inline-items">
-                                        <svg class="olymp-add-a-place-icon">
-                                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
-                                        </svg>
+
                                         <span>{{event.location}}</span>
                                     </div>
                                 </div>
@@ -62,17 +58,54 @@
 
                     </tbody>
                 </table>
-                <!-- 
+
                 <div class="ui-block-title ui-block-title-small">
                     <h6 class="title">PAST EVENTS</h6>
                 </div>
+                <div id="no-post" *ngIf="!eventListP || eventListP.length == 0">
+                    <div class="ui-block p-5 m-auto text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></div>
+                </div>
+                <table class="event-item-table">
+                    <tbody>
+                        <tr class="event-item" *ngFor="let event of eventListP">
 
-                <div class="no-past-events">
-                    <svg class="olymp-month-calendar-icon">
-                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use>
-                    </svg>
-                    <span>There are no past events <br>to show</span>
-                </div> -->
+                            <td class="upcoming">
+                                <div class="date-event">
+
+                                    <svg class="olymp-small-calendar-icon">
+                                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
+                                    </svg>
+
+                                    <span class="month">{{event.startDate | amDateFormat:'MMM'}}</span>
+                                    <span class="day">{{event.startDate | amDateFormat:'DD'}}</span>
+                                </div>
+                            </td>
+                            <td class="author">
+                                <div class="event-author inline-items">
+                                    <div class="author-date">
+                                        <a [routerLink]="['/app/page',event.page.userName,'event',event.guid]" class="author-name h6">{{event.eventName}}</a>
+                                        hosted by <user-link [user]="event.user" [page]="event.page"></user-link>
+                                        <time class="published">
+                                            {{formatEventDate(event.startDate, event.endDate)}}
+                                        </time>
+                                    </div>
+                                </div>
+                                <div class="location">
+                                    <div class="place inline-items">
+
+                                        <span>{{event.location}}</span>
+                                    </div>
+                                </div>
+                                <div class="description">
+                                    <p class="description">{{event.description}}</p>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
             </div>
         </div>
     </div>

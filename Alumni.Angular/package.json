@@ -16,6 +16,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.5",
+    "@angular/cdk": "^6.4.7",
     "@angular/common": "^6.0.5",
     "@angular/compiler": "^6.0.5",
     "@angular/core": "^6.0.5",
@@ -54,6 +55,8 @@
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.13",
     "morris.js": "^0.5.0",
+    "ng-pick-datetime": "^6.0.16",
+    "ng-pick-datetime-moment": "^1.0.7",
     "ng-sidebar": "^8.0.0",
     "ngx-bootstrap": "^3.0.0",
     "ngx-chips": "^1.9.3",

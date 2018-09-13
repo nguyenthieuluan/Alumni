@@ -9,12 +9,9 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { AppComponentBase } from "@shared/app-component-base";
 import { AppAuthService } from "@shared/auth/app-auth.service";
 import {
-    ConfigurationServiceProxy,
-    UserInfoDto,
     UserProfileDto,
     UserProfileServiceProxy
 } from "@shared/service-proxies/service-proxies";
-import { worker } from "cluster";
 import { UserService } from "@app/modules/user/user.service";
 
 @Component({

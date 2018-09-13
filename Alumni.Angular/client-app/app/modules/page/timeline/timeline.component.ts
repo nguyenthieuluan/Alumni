@@ -1,42 +1,58 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import {
-    PostDetailDto,
-    PostServiceProxy,
-    UserTimelinePostRequest,
-    PageDetailDto
+  PostDetailDto,
+  PostServiceProxy,
+  PagedPostRequest,
+  PageDetailDto
 } from "@shared/service-proxies/service-proxies";
 import { PageService } from "@app/modules/page/page.service";
 
 @Component({
-    selector: "",
-    templateUrl: "./timeline.component.html"
+  selector: "",
+  templateUrl: "./timeline.component.html"
 })
 export class PageTimelineComponent implements OnInit {
-    posts: PostDetailDto[];
-    page: PageDetailDto;
-    request: UserTimelinePostRequest = new UserTimelinePostRequest();
+  posts: PostDetailDto[] = [];
+  page: PageDetailDto;
+  request: PagedPostRequest = new PagedPostRequest();
+  isLoading = false;
+  totalLoaded = false;
+  constructor(
+    private _postService: PostServiceProxy,
+    public pageService: PageService
+  ) {}
 
-    constructor(
-        private _postService: PostServiceProxy,
-        public pageService: PageService
-    ) {}
+  ngOnInit(): void {
+    this.request.skipCount = 0;
+    this.request.maxResultCount = 10;
+    this.posts = [];
 
-    ngOnInit(): void {
-        this.refresh(this.pageService.activePage);
-        this.pageService.onSetPage(p => this.refresh(p));
+    this.isLoading = false;
+    this.totalLoaded = false;
+    this.refresh(this.pageService.activePage);
+
+    this.pageService.onSetPage(p => this.refresh(p));
+  }
+  refresh(r: PageDetailDto) {
+    if (this.totalLoaded) {
+      return;
     }
-    refresh(r: PageDetailDto) {
-        this.page = r;
-        this.request.maxResultCount = 10;
-        abp.ui.setBusy("#no-post");
-        this._postService
-            .getUserTimelinePosts(this.request)
-            .finally(abp.ui.clearBusy)
-            .subscribe(ps => {
-                this.posts = ps.items;
-            });
-    }
-    addPost(p: PostDetailDto) {
-        this.posts.unshift(p);
-    }
+    this.page = r;
+    this.isLoading = true;
+    this.request.pageId = r.id;
+    this._postService.getPageTimelinePosts(this.request).subscribe(ps => {
+      this.posts = this.posts.concat(ps.items);
+      this.request.skipCount += ps.items.length;
+      this.isLoading = false;
+      if (this.request.skipCount >= ps.totalCount) {
+        this.totalLoaded = true;
+      }
+    });
+  }
+  loadMore() {
+    this.refresh(this.pageService.activePage);
+  }
+  addPost(p: PostDetailDto) {
+    this.posts.unshift(p);
+  }
 }

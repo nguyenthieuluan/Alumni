@@ -13,27 +13,29 @@ import { PageSettingComponent } from "./setting/page-setting.component";
 import { PageSettingInfoComponent } from "./setting/page-setting-info.component";
 import { PageSettingPictureComponent } from "./setting/page-setting-picture.component";
 import { PageSettingCategoryComponent } from "./setting/page-setting-category.component";
-import { PageFollowerComponent } from "./follower/follower.component";
+import { PageFollowersComponent } from "./follower/page-followers.component";
+import { PageLikesComponent } from "./follower/page-likes.component";
 import { PageEventComponent } from "./event/event.component";
 import { PageSettingCategoryCreateComponent } from "@app/modules/page/setting/page-setting-category-create.component";
 import { PageEventDetailComponent } from "@app/modules/page/event/page-event-detail/page-event-detail.component";
 
 @NgModule({
-    declarations: [
-        PageComponent,
-        PagePostsComponent,
-        PageTimelineComponent,
-        PageEventComponent,
-        PageFollowerComponent,
-        PageSettingComponent,
-        PageSettingInfoComponent,
-        PageSettingPictureComponent,
-        PageSettingCategoryComponent,
-        PageSettingCategoryCreateComponent,
-        PageEventDetailComponent,
-        PageEventEditorComponent
-    ],
-    imports: [SharedModule, PageRoutingModule],
-    providers: [PageService]
+  declarations: [
+    PageComponent,
+    PagePostsComponent,
+    PageTimelineComponent,
+    PageEventComponent,
+    PageFollowersComponent,
+    PageLikesComponent,
+    PageSettingComponent,
+    PageSettingInfoComponent,
+    PageSettingPictureComponent,
+    PageSettingCategoryComponent,
+    PageSettingCategoryCreateComponent,
+    PageEventDetailComponent,
+    PageEventEditorComponent
+  ],
+  imports: [SharedModule, PageRoutingModule],
+  providers: [PageService]
 })
 export class PageModule {}

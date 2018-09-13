@@ -1,5 +1,5 @@
 ﻿import { Component, Input } from "@angular/core";
-import { PostDetailDto, PostServiceProxy, UserTimelinePostRequest, Picture } from "@shared/service-proxies/service-proxies";
+import { PostDetailDto, PostServiceProxy, Picture } from "@shared/service-proxies/service-proxies";
 import { PostDetailComponent } from "@app/components/post/post-detail.component";
 
 @Component({

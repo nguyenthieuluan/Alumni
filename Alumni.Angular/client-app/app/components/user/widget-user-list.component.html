@@ -9,12 +9,12 @@
     <!-- W-Action -->
 
     <ul class="widget w-friend-pages-added notification-list friend-requests">
-        <li class="inline-items" *ngFor="let u of model.users">
+        <li class="inline-items" *ngFor="let u of users">
             <div class="author-thumb">
                 <img [src]="u.pictureUrl || ''" alt="author">
             </div>
             <div class="notification-event">
-                <user-link [user]="u"></user-link>
+                <user-link [user]="u" [linkClass]="'h6 notification-friend'"></user-link>
                 <!-- <span class="chat-message-item">8 Friends in Common</span> -->
             </div>
             <!-- <span class="notification-icon">

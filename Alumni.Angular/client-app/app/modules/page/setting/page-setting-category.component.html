@@ -22,13 +22,14 @@
                             <th scope="row">{{c.listOrder}}</th>
                             <td>{{c.code}}</td>
                             <td>{{c.name}}</td>
-                            <td class="text-center"><a href="javascript:;" (click)="createCategory(c)"> <i class="fa fa-edit fa-1x c-orange"></i></a><span class="p-2"></span><a href="javascript:;" (click)="deleteCategory(c)"> <i class="fa fa-trash fa-1x c-orange"></i></a></td>
+                            <td class="text-center"><a href="javascript:;" (click)="createCategory(c)"> <i class="fa fa-edit fa-1x c-orange"></i></a><span
+                                    class="p-2"></span><a href="javascript:;" (click)="deleteCategory(c)"> <i class="fa fa-trash fa-1x c-orange"></i></a></td>
                         </tr>
-                       
+
                     </tbody>
                 </table>
             </div>
-            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12" *ngIf="page.categories.length <= 5">
 
                 <button class="btn btn-primary f-right" (click)="createCategory()">Create category</button>
             </div>
@@ -40,8 +41,8 @@
     </div>
 </div>
 
-<div class="modal fade" bsModal #editModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+<div class="modal fade" bsModal #editModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
     <div class="modal-dialog modal-sm" style="flex-direction:column">
         <div class="modal-content">
             <div class="modal-header">
@@ -56,7 +57,7 @@
                         <div class="form-group  small-input">
                             <label class="control-label">Code</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.code">
-                        </div>   
+                        </div>
                         <div class="form-group  small-input">
                             <label class="control-label">Name</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.name">
@@ -66,7 +67,7 @@
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.listOrder">
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
             <div class="modal-footer">

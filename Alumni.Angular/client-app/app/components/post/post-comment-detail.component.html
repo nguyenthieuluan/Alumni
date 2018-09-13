@@ -3,7 +3,7 @@
         <img [src]="comment.user.pictureUrl" alt="author">
 
         <div class="author-date comment-content">
-            <user-link [user]="comment.user"  [linkClass]="'post__author-name'"></user-link>
+            <user-link [user]="comment.user" [linkClass]="'post__author-name'"></user-link>
             <span class="comment-text" [innerHtml]="comment.commentText"></span>
         </div>
         <div class="comment-tools">
@@ -19,10 +19,10 @@
     <ul class="children" *ngIf="comment.children.length > 0">
         <li *ngFor="let ccm of comment.children" class="comment-item">
             <div class="post__author author vcard inline-items">
-                <img [src]="comment.user.pictureUrl" alt="author">
+                <img [src]="ccm.user.pictureUrl" alt="author">
 
                 <div class="author-date  comment-content">
-                   <user-link [user]="ccm.user" [linkClass]="'post__author-name'"></user-link>
+                    <user-link [user]="ccm.user" [linkClass]="'post__author-name'"></user-link>
                     <span class="comment-text">{{ccm.commentText}}</span>
                 </div>
                 <div class="comment-tools">

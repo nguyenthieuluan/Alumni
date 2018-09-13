@@ -1019,7 +1019,7 @@ export class EventPlanServiceProxy {
      * @model (optional) 
      * @return Success
      */
-    getPublicEventList(model: PagedResultRequestDto | null | undefined): Observable<PagedResultDtoOfEventPlanDetailDto> {
+    getPublicEventList(model: EventListInput | null | undefined): Observable<PagedResultDtoOfEventPlanDetailDto> {
         let url_ = this.baseUrl + "/api/services/app/EventPlan/GetPublicEventList";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1069,6 +1069,62 @@ export class EventPlanServiceProxy {
             }));
         }
         return _observableOf<PagedResultDtoOfEventPlanDetailDto>(<any>null);
+    }
+
+    /**
+     * @model (optional) 
+     * @return Success
+     */
+    getEventComments(model: EventListInput | null | undefined): Observable<PagedResultDtoOfEventCommentDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/EventPlan/GetEventComments";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetEventComments(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetEventComments(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfEventCommentDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfEventCommentDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetEventComments(response: HttpResponseBase): Observable<PagedResultDtoOfEventCommentDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PagedResultDtoOfEventCommentDetailDto.fromJS(resultData200) : new PagedResultDtoOfEventCommentDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfEventCommentDetailDto>(<any>null);
     }
 
     /**
@@ -1796,14 +1852,14 @@ export class PageServiceProxy {
     }
 
     /**
-     * @model (optional) 
+     * @request (optional) 
      * @return Success
      */
-    getPageFollowers(model: PageDetailDto | null | undefined): Observable<UserProfileDto[]> {
+    getPageFollowers(request: PagedPageRequest | null | undefined): Observable<PagedResultDtoOfUserProfileDto> {
         let url_ = this.baseUrl + "/api/services/app/Page/GetPageFollowers";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(model);
+        const content_ = JSON.stringify(request);
 
         let options_ : any = {
             body: content_,
@@ -1822,14 +1878,14 @@ export class PageServiceProxy {
                 try {
                     return this.processGetPageFollowers(<any>response_);
                 } catch (e) {
-                    return <Observable<UserProfileDto[]>><any>_observableThrow(e);
+                    return <Observable<PagedResultDtoOfUserProfileDto>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<UserProfileDto[]>><any>_observableThrow(response_);
+                return <Observable<PagedResultDtoOfUserProfileDto>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetPageFollowers(response: HttpResponseBase): Observable<UserProfileDto[]> {
+    protected processGetPageFollowers(response: HttpResponseBase): Observable<PagedResultDtoOfUserProfileDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -1840,11 +1896,7 @@ export class PageServiceProxy {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (resultData200 && resultData200.constructor === Array) {
-                result200 = [];
-                for (let item of resultData200)
-                    result200.push(UserProfileDto.fromJS(item));
-            }
+            result200 = resultData200 ? PagedResultDtoOfUserProfileDto.fromJS(resultData200) : new PagedResultDtoOfUserProfileDto();
             return _observableOf(result200);
             }));
         } else if (status === 401) {
@@ -1856,14 +1908,14 @@ export class PageServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<UserProfileDto[]>(<any>null);
+        return _observableOf<PagedResultDtoOfUserProfileDto>(<any>null);
     }
 
     /**
      * @model (optional) 
      * @return Success
      */
-    getPageUserLikes(model: PageDetailDto | null | undefined): Observable<UserProfileDto[]> {
+    getPageUserLikes(model: PagedPageRequest | null | undefined): Observable<PagedResultDtoOfUserProfileDto> {
         let url_ = this.baseUrl + "/api/services/app/Page/GetPageUserLikes";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1886,14 +1938,14 @@ export class PageServiceProxy {
                 try {
                     return this.processGetPageUserLikes(<any>response_);
                 } catch (e) {
-                    return <Observable<UserProfileDto[]>><any>_observableThrow(e);
+                    return <Observable<PagedResultDtoOfUserProfileDto>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<UserProfileDto[]>><any>_observableThrow(response_);
+                return <Observable<PagedResultDtoOfUserProfileDto>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetPageUserLikes(response: HttpResponseBase): Observable<UserProfileDto[]> {
+    protected processGetPageUserLikes(response: HttpResponseBase): Observable<PagedResultDtoOfUserProfileDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -1904,11 +1956,7 @@ export class PageServiceProxy {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (resultData200 && resultData200.constructor === Array) {
-                result200 = [];
-                for (let item of resultData200)
-                    result200.push(UserProfileDto.fromJS(item));
-            }
+            result200 = resultData200 ? PagedResultDtoOfUserProfileDto.fromJS(resultData200) : new PagedResultDtoOfUserProfileDto();
             return _observableOf(result200);
             }));
         } else if (status === 401) {
@@ -1920,7 +1968,7 @@ export class PageServiceProxy {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<UserProfileDto[]>(<any>null);
+        return _observableOf<PagedResultDtoOfUserProfileDto>(<any>null);
     }
 
     /**
@@ -2235,7 +2283,7 @@ export class PostServiceProxy {
      * @request (optional) 
      * @return Success
      */
-    getUserTimelinePosts(request: UserTimelinePostRequest | null | undefined): Observable<PagedResultDtoOfPostDetailDto> {
+    getUserTimelinePosts(request: PagedPostRequest | null | undefined): Observable<PagedResultDtoOfPostDetailDto> {
         let url_ = this.baseUrl + "/api/services/app/Post/GetUserTimelinePosts";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2266,6 +2314,66 @@ export class PostServiceProxy {
     }
 
     protected processGetUserTimelinePosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
+        const status = response.status;
+        const responseBlob = 
+            response instanceof HttpResponse ? response.body : 
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PagedResultDtoOfPostDetailDto.fromJS(resultData200) : new PagedResultDtoOfPostDetailDto();
+            return _observableOf(result200);
+            }));
+        } else if (status === 401) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("A server error occurred.", status, _responseText, _headers);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<PagedResultDtoOfPostDetailDto>(<any>null);
+    }
+
+    /**
+     * @request (optional) 
+     * @return Success
+     */
+    getPageTimelinePosts(request: PagedPostRequest | null | undefined): Observable<PagedResultDtoOfPostDetailDto> {
+        let url_ = this.baseUrl + "/api/services/app/Post/GetPageTimelinePosts";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(request);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetPageTimelinePosts(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetPageTimelinePosts(<any>response_);
+                } catch (e) {
+                    return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<PagedResultDtoOfPostDetailDto>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processGetPageTimelinePosts(response: HttpResponseBase): Observable<PagedResultDtoOfPostDetailDto> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -6793,11 +6901,11 @@ export interface IEventMemberList {
     maxResultCount: number | undefined;
 }
 
-export class PagedResultRequestDto implements IPagedResultRequestDto {
-    skipCount: number | undefined;
-    maxResultCount: number | undefined;
+export class PagedResultDtoOfEventCommentDetailDto implements IPagedResultDtoOfEventCommentDetailDto {
+    totalCount: number | undefined;
+    items: EventCommentDetailDto[] | undefined;
 
-    constructor(data?: IPagedResultRequestDto) {
+    constructor(data?: IPagedResultDtoOfEventCommentDetailDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -6808,36 +6916,44 @@ export class PagedResultRequestDto implements IPagedResultRequestDto {
 
     init(data?: any) {
         if (data) {
-            this.skipCount = data["skipCount"];
-            this.maxResultCount = data["maxResultCount"];
+            this.totalCount = data["totalCount"];
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(EventCommentDetailDto.fromJS(item));
+            }
         }
     }
 
-    static fromJS(data: any): PagedResultRequestDto {
+    static fromJS(data: any): PagedResultDtoOfEventCommentDetailDto {
         data = typeof data === 'object' ? data : {};
-        let result = new PagedResultRequestDto();
+        let result = new PagedResultDtoOfEventCommentDetailDto();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["skipCount"] = this.skipCount;
-        data["maxResultCount"] = this.maxResultCount;
+        data["totalCount"] = this.totalCount;
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
         return data; 
     }
 
-    clone(): PagedResultRequestDto {
+    clone(): PagedResultDtoOfEventCommentDetailDto {
         const json = this.toJSON();
-        let result = new PagedResultRequestDto();
+        let result = new PagedResultDtoOfEventCommentDetailDto();
         result.init(json);
         return result;
     }
 }
 
-export interface IPagedResultRequestDto {
-    skipCount: number | undefined;
-    maxResultCount: number | undefined;
+export interface IPagedResultDtoOfEventCommentDetailDto {
+    totalCount: number | undefined;
+    items: EventCommentDetailDto[] | undefined;
 }
 
 export class PageMemberDto implements IPageMemberDto {
@@ -6889,6 +7005,116 @@ export interface IPageMemberDto {
     pageUserName: string | undefined;
     role: PageMemberDtoRole | undefined;
     user: UserInfoDto | undefined;
+}
+
+export class PagedPageRequest implements IPagedPageRequest {
+    pageId: number | undefined;
+    pageUserName: string | undefined;
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
+
+    constructor(data?: IPagedPageRequest) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.pageId = data["pageId"];
+            this.pageUserName = data["pageUserName"];
+            this.skipCount = data["skipCount"];
+            this.maxResultCount = data["maxResultCount"];
+        }
+    }
+
+    static fromJS(data: any): PagedPageRequest {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedPageRequest();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["pageId"] = this.pageId;
+        data["pageUserName"] = this.pageUserName;
+        data["skipCount"] = this.skipCount;
+        data["maxResultCount"] = this.maxResultCount;
+        return data; 
+    }
+
+    clone(): PagedPageRequest {
+        const json = this.toJSON();
+        let result = new PagedPageRequest();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPagedPageRequest {
+    pageId: number | undefined;
+    pageUserName: string | undefined;
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
+}
+
+export class PagedResultDtoOfUserProfileDto implements IPagedResultDtoOfUserProfileDto {
+    totalCount: number | undefined;
+    items: UserProfileDto[] | undefined;
+
+    constructor(data?: IPagedResultDtoOfUserProfileDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.totalCount = data["totalCount"];
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(UserProfileDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PagedResultDtoOfUserProfileDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultDtoOfUserProfileDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["totalCount"] = this.totalCount;
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+
+    clone(): PagedResultDtoOfUserProfileDto {
+        const json = this.toJSON();
+        let result = new PagedResultDtoOfUserProfileDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPagedResultDtoOfUserProfileDto {
+    totalCount: number | undefined;
+    items: UserProfileDto[] | undefined;
 }
 
 export class PostDetailDto implements IPostDetailDto {
@@ -7582,13 +7808,16 @@ export interface IPagedResultDtoOfPostDetailDto {
     items: PostDetailDto[] | undefined;
 }
 
-export class UserTimelinePostRequest implements IUserTimelinePostRequest {
+export class PagedPostRequest implements IPagedPostRequest {
     userId: number | undefined;
     userName: string | undefined;
+    pageId: number | undefined;
+    pageUserName: string | undefined;
+    category: string | undefined;
     skipCount: number | undefined;
     maxResultCount: number | undefined;
 
-    constructor(data?: IUserTimelinePostRequest) {
+    constructor(data?: IPagedPostRequest) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -7601,14 +7830,17 @@ export class UserTimelinePostRequest implements IUserTimelinePostRequest {
         if (data) {
             this.userId = data["userId"];
             this.userName = data["userName"];
+            this.pageId = data["pageId"];
+            this.pageUserName = data["pageUserName"];
+            this.category = data["category"];
             this.skipCount = data["skipCount"];
             this.maxResultCount = data["maxResultCount"];
         }
     }
 
-    static fromJS(data: any): UserTimelinePostRequest {
+    static fromJS(data: any): PagedPostRequest {
         data = typeof data === 'object' ? data : {};
-        let result = new UserTimelinePostRequest();
+        let result = new PagedPostRequest();
         result.init(data);
         return result;
     }
@@ -7617,22 +7849,28 @@ export class UserTimelinePostRequest implements IUserTimelinePostRequest {
         data = typeof data === 'object' ? data : {};
         data["userId"] = this.userId;
         data["userName"] = this.userName;
+        data["pageId"] = this.pageId;
+        data["pageUserName"] = this.pageUserName;
+        data["category"] = this.category;
         data["skipCount"] = this.skipCount;
         data["maxResultCount"] = this.maxResultCount;
         return data; 
     }
 
-    clone(): UserTimelinePostRequest {
+    clone(): PagedPostRequest {
         const json = this.toJSON();
-        let result = new UserTimelinePostRequest();
+        let result = new PagedPostRequest();
         result.init(json);
         return result;
     }
 }
 
-export interface IUserTimelinePostRequest {
+export interface IPagedPostRequest {
     userId: number | undefined;
     userName: string | undefined;
+    pageId: number | undefined;
+    pageUserName: string | undefined;
+    category: string | undefined;
     skipCount: number | undefined;
     maxResultCount: number | undefined;
 }
@@ -7981,6 +8219,53 @@ export interface IPermissionDto {
     displayName: string | undefined;
     description: string | undefined;
     id: number | undefined;
+}
+
+export class PagedResultRequestDto implements IPagedResultRequestDto {
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
+
+    constructor(data?: IPagedResultRequestDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.skipCount = data["skipCount"];
+            this.maxResultCount = data["maxResultCount"];
+        }
+    }
+
+    static fromJS(data: any): PagedResultRequestDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new PagedResultRequestDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["skipCount"] = this.skipCount;
+        data["maxResultCount"] = this.maxResultCount;
+        return data; 
+    }
+
+    clone(): PagedResultRequestDto {
+        const json = this.toJSON();
+        let result = new PagedResultRequestDto();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPagedResultRequestDto {
+    skipCount: number | undefined;
+    maxResultCount: number | undefined;
 }
 
 export class PagedResultDtoOfRoleDto implements IPagedResultDtoOfRoleDto {
