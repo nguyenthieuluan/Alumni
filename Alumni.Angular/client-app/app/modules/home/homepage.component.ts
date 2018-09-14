@@ -57,7 +57,7 @@ export class HomePageComponent extends AppComponentBase implements OnInit {
     }
     this.isLoading = true;
     this.request.pageId = this.page.id;
-    this.postService.getPageTimelinePosts(this.request).subscribe(ps => {
+    this.postService.getHomepagePosts().subscribe(ps => {
       this.posts = this.posts.concat(ps.items);
       this.request.skipCount += ps.items.length;
       this.isLoading = false;
