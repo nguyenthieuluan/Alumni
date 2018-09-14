@@ -66,6 +66,5 @@ export class PageHeaderProfileComponent extends AppComponentBase
 
   setPage(p: PageDetailDto) {
     this.page = this.pageService.activePage;
-    //this.page = p;
   }
 }
