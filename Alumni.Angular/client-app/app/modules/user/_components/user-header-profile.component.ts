@@ -47,8 +47,7 @@ export class UserHeaderProfileComponent extends AppComponentBase
         });
     }
     checkFriend(u: UserProfileDto) {
-        this.currentUser = u;
-        if (u && u.userId != this.appSession.user.id) {
+        if (this.currentUser && this.currentUser.userId != this.appSession.user.id) {
             this._userProfileService.checkFriend(u).subscribe(r => {
                 this.friendStatus = r;
             });

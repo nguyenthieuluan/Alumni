@@ -38,7 +38,6 @@ export class UserWidgetMenuComponent extends AppComponentBase
   }
 
   ngOnInit(): void {
-    console.log(this.user);
     if (this.user.isMine) {
       this._userProfileService.getUserPagesDto().subscribe(r => {
         this.setPages(r);

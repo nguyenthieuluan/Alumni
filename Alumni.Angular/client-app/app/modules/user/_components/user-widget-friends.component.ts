@@ -5,13 +5,12 @@
   Injector,
   Input
 } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
 import { AppComponentBase } from "@shared/app-component-base";
-import { AppAuthService } from "@shared/auth/app-auth.service";
 import {
-  ConfigurationServiceProxy,
-  UserProfileDto
+  UserProfileDto,
+  UserProfileServiceProxy
 } from "@shared/service-proxies/service-proxies";
+import { UserService } from "@app/modules/user/user.service";
 
 @Component({
   selector: "user-widget-friends",
@@ -19,23 +18,31 @@ import {
 
   encapsulation: ViewEncapsulation.None
 })
-export class UserWidgetFriendsComponent extends AppComponentBase
-  implements OnInit {
-  @Input()
-  user?: UserProfileDto = new UserProfileDto();
-    model: UserProfileDto = new UserProfileDto();
-  showLoginName = "";
+export class UserWidgetFriendsComponent extends AppComponentBase implements OnInit {
+    
+  friendList: UserProfileDto[];
 
-  constructor(
-    injector: Injector,
-    private _authService: AppAuthService,
-    private _configurationService: ConfigurationServiceProxy,
-    private activeRoute: ActivatedRoute
-  ) {
-    super(injector);
-  }
+    constructor(
+        injector: Injector,
+        private _userProfileService: UserProfileServiceProxy,
+        private _userService: UserService,
+    ) {
+        super(injector);
+    }
 
-  ngOnInit(): void {
-    this.showLoginName = this.appSession.user.name;
-  }
+    ngOnInit(): void {
+            this.getFriendList(this._userService.activeUserProfile);
+    }
+
+    getFriendList(p: UserProfileDto) {
+        this._userProfileService.getFriendList(p).subscribe(r => {
+            this.friendList = r.map(x => {
+                if (x.sourceUser.userId != p.userId)
+                    return x.sourceUser;
+                else return x.targetUser;
+            });
+        });
+    }
 }
+
+

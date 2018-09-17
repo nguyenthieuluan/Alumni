@@ -54,6 +54,7 @@ import { EventDetailComponent } from "@app/components/event/event-detail/event-d
 import { WidgetUserListComponent } from "@app/components/user/widget-user-list.component";
 import { EventCommentEditorComponent } from "@app/components/event/event-comment-editor/event-comment-editor.component";
 import { EventCommentDetailComponent } from "@app/components/event/event-comment-detail/event-comment-detail.component";
+import { UserFriendItemComponent } from "@app/modules/user/_components/user-friend-item.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import {
   DateTimeAdapter,
@@ -125,6 +126,7 @@ import { N2BrPipe } from "@shared/directives/n2br.pipe";
     UserWidgetMenuComponent,
     UserWidgetIntroComponent,
     UserWidgetFriendsComponent,
+    UserFriendItemComponent,
     //page
     WidgetPageMenuComponent,
     WidgetPageIntroComponent,
@@ -184,6 +186,7 @@ import { N2BrPipe } from "@shared/directives/n2br.pipe";
     UserWidgetMenuComponent,
     UserWidgetIntroComponent,
     UserWidgetFriendsComponent,
+    UserFriendItemComponent,
     //page
     WidgetPageMenuComponent,
     WidgetPageIntroComponent,

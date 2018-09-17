@@ -1,52 +1,54 @@
 <div class="registration-login-form" id="RegistrationForm">
 
     <!-- Login-Registration Form  -->
-        <div class="title h6">ĐĂNG KÝ</div>
-        <form class="content pt-3">
-            <div class="row">
-                <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group  small-input mb-2">
-                        <label class="control-label">Họ và tên</label>
-                        <input class="form-control" placeholder="" type="text" name="name" [(ngModel)]="model.name">
-                    </div>
-                    <div class="form-group  small-input mb-2">
-                        <label class="control-label">Email</label>
-                        <input class="form-control" placeholder="" type="email" name="email" [(ngModel)]="model.emailAddress">
-                    </div>
-                    <div class="form-group  small-input mb-2">
-                        <label class="control-label">Username</label>
-                        <input class="form-control" placeholder="" type="text" name="userName" [(ngModel)]="model.userName">
-                    </div>
+    <div class="title h6">ĐĂNG KÝ</div>
+    <form class="content pt-3">
+        <div class="row">
+            <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group  small-input mb-2">
+                    <label class="control-label">Họ và tên</label>
+                    <input class="form-control" placeholder="" type="text" name="name" [(ngModel)]="model.name">
                 </div>
-                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group  small-input mb-2">
-                        <label class="control-label">Mật khâu</label>
-                        <input class="form-control" placeholder="" type="password" name="password" [(ngModel)]="model.password">
-                    </div>
+                <div class="form-group  small-input mb-2">
+                    <label class="control-label">Email</label>
+                    <input class="form-control" placeholder="" type="email" name="email" [(ngModel)]="model.emailAddress">
                 </div>
-                <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                    <div class="form-group  small-input mb-2">
-                        <label class="control-label">Xác nhận mật khẩu</label>
-                        <input class="form-control" placeholder="" type="password" name="password" [(ngModel)]="model.password">
-                    </div>
-                </div>
-                <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="remember">
-                        <div class="checkbox">
-                            <label>
-                                <input name="optionsCheckboxes" type="checkbox">
-                                Tôi xác nhận là cựu sinh viên của trường.
-                            </label>
-                        </div>
-                    </div>
-
-                    <button id="loginAction" (click)="register()" class="btn btn-lg btn-primary full-width" type="button">Đăng ký</button>
-                    <div class="or"></div>
-
-                    <p>Nếu đã có tài khoản? Vui lòng  <a [routerLink]="['../login']">Đăng nhập!</a></p>
+                <div class="form-group  small-input mb-2">
+                    <label class="control-label">Username</label>
+                    <input class="form-control" placeholder="" type="text" name="userName" [(ngModel)]="model.userName">
                 </div>
             </div>
-        </form>
+            <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group  small-input mb-2">
+                    <label class="control-label">Mật khâu</label>
+                    <input class="form-control" placeholder="" type="password" name="password" [(ngModel)]="model.password">
+                </div>
+            </div>
+            <div class="col col-12 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group  small-input mb-2">
+                    <label class="control-label">Xác nhận mật khẩu</label>
+                    <!-- Cuong edit -->
+                    <input class="form-control" placeholder="" type="password" name="password" [(ngModel)]="confirmPassword">
+                </div>
+            </div>
+            <div class="col col-12 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="remember">
+                    <div class="checkbox">
+                        <label>
+                            <input name="optionsCheckboxes" type="checkbox">
+                            Tôi xác nhận là cựu sinh viên của trường.
+                        </label>
+                    </div>
+                </div>
+
+                <button id="loginAction" (click)="register()" class="btn btn-lg btn-primary full-width" type="button">Đăng
+                    ký</button>
+                <div class="or"></div>
+
+                <p>Nếu đã có tài khoản? Vui lòng <a [routerLink]="['../login']">Đăng nhập!</a></p>
+            </div>
+        </div>
+    </form>
     <!-- ... end Login-Registration Form  -->
 </div>
 

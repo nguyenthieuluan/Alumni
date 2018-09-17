@@ -1,3 +1,63 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-12">
+            <div class="ui-block" *ngIf="friendList?.length == 0">
+                <div class="no-friends">
+                    <svg class="olymp-happy-faces-icon">
+                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use>
+                    </svg>
+                    <span>There are no friends right now</span>
+                </div>
+            </div>
+            <div class="ui-block" *ngIf="friendList?.length > 0">
+                <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">YOUR ALL FRIENDS</h6>
+                </div>
+                <ul class="widget w-friend-pages notification-list friend-requests">
+
+                    <app-user-friend-item *ngFor="let model of friendList; let i = index"
+                                        [model]="model" 
+                                        [isUnFriend]="isUnFriend"
+                                        (removeFriend)="onRemoveFriend(i)">
+                    </app-user-friend-item>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-12 pl-0">
+                <div class="ui-block">
+                        <div class="your-profile">
+                            <div class="ui-block-title ">
+                                <span class="text-bold title">Manage Friends</span>
+                            </div>
+            
+                            <ul class="your-profile-menu">
+                                <li>
+                                    <a [routerLink]="['../friends']">All Friends</a>
+                                </li>
+            
+                                <li>
+                                    <a *ngIf="isFriend; else friendRequest" [routerLink]="['../requests']">Mutual Friends</a>
+                                    <ng-template #friendRequest>
+                                        <a *ngIf="!isFriend" [routerLink]="['../requests']">Friends Request</a>
+                                    </ng-template>
+                                </li>
+
+                                
+                            </ul>
+            
+            
+                        </div>
+                    </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- 
 <div class="ui-block">
     <tabset class="friend-items">
         <tab heading="All friends" id="tab1">
@@ -40,4 +100,4 @@
 
     </tabset>
 
-</div>
+</div> -->
