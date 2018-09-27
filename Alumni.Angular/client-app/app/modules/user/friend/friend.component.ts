@@ -28,13 +28,16 @@ export class UserFriendComponent extends AppComponentBase implements OnInit {
 
     ngOnInit(): void {
         if(this.appSession.userId == this._userService.activeUserProfile.userId) {
+            this._userProfileService.getCurrentProfile().subscribe( r => {
+                this.getFriendList(r);
+            }               
+            )
                 this.isUnFriend = true;
         }
         else {
+            this.getFriendList(this._userService.activeUserProfile);
             this.isFriend = true;
         }
-
-        this.getFriendList(this._userService.activeUserProfile)
     }
 
     getFriendList (p: UserProfileDto) {

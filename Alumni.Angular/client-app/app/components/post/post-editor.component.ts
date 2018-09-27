@@ -184,6 +184,7 @@ export class PostEditorComponent extends AppComponentBase
       pi.seoFilename = output.file.id;
       pi.isNew = true;
       pi.thumbUrl = "/theme/img/ajax-loader.gif";
+      
       this.addPostPicture(pi);
     } else if (output.type === "done") {
       // remove file from array when removed

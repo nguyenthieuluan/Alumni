@@ -25,7 +25,6 @@ export class UserFriendItemComponent extends AppComponentBase implements OnInit 
         }
         
     ngOnInit(): void {
-        this.isAF();
     }
 
     acceptFriend() {
@@ -43,16 +42,7 @@ export class UserFriendItemComponent extends AppComponentBase implements OnInit 
             this.emitRemoveFriend();
         });
     }
-    addFriend() {
-        this._userProfileService.requestFriend(this.model).subscribe(r => {
-            this.isRequestSent = true;
-        });
-    }
-    isAF() {
-        if( this.appSession.userId === this.model.userId ) {
-            this.isAdd = false;
-        }
-    }
+   
 
     emitRemoveFriend() {
         this.removeFriend.emit();

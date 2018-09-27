@@ -50,17 +50,7 @@ export class UserFriendRequestComponent extends AppComponentBase implements OnIn
                 }
             );
     }
-    getFriendList (p: UserProfileDto): UserProfileDto[] {
-        this._userProfileService.getFriendList(p).subscribe(r => {
-            let friends = r.map(x => {
-                if (x.sourceUser.userId !== p.userId)
-                    return x.sourceUser;
-                else return x.targetUser;
-            });
-            return friends;
-        });
-        return;
-    }
+   
     onRemoveFriendRequest(index: number) {
         if (index != -1) {
             this.friendResquestList.splice(index, 1);

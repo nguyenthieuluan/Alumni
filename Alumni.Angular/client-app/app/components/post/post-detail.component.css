@@ -46,3 +46,10 @@
         overflow: auto;
     }
 }
+.modal-content {
+    width: 500px;
+}
+
+.rounded-0 {
+    border-radius: 0%;
+}

@@ -1,0 +1,33 @@
+<div class="col col-xl-4 col-lg-6 col-md-6 col-sm-6 col-6" *ngFor="let p of model.pages">
+        <div class="ui-block user-page-item">
+
+            <div class="upi-item-container">
+                <div class="upi-item-cover-img">
+                    <img [src]="p.coverUrl || ''" alt="cover">
+                </div>
+
+                <div class="upi-item-avatar-img">
+                    <img [src]="p.pictureUrl || ''" alt="avatar">
+
+                </div>
+
+                <div class="upi-page-info">
+                    <div class="name"><a [routerLink]="['/app/admin/',p.userName,'setting']" class="h6 author-name">{{p.name}}</a></div>
+                    <div class="description">{{p.description}}</div>
+                </div>
+                <div class="upi-page-stats">
+                    <div class="likes">
+                        <div class="h6">{{p.likeCount}}</div>
+                        <div class="title">Likes</div>
+                    </div>
+                    <div class="follows">
+                        <div class="h6">{{p.followCount}}</div>
+                        <div class="title">Followers</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>

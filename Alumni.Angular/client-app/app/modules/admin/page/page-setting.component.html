@@ -1,0 +1,93 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-9 col-lg-9 col-md-12">
+            <div class="ui-block w-intro">
+                <div class="ui-block-title">
+                    <h6 class="title">Information settings</h6>
+                </div>
+                <div class="ui-block-content">
+
+
+                    <div class="row">
+                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group  small-input">
+                                <label class="control-label">Name</label>
+                                <input class="form-control" placeholder="" type="text" [(ngModel)]="page.name">
+                            </div>
+
+                            <div class="form-group  small-input is-empty">
+                                <label class="control-label">Phone Number</label>
+                                <input class="form-control" placeholder="" type="text" [(ngModel)]="page.phone">
+                            </div>
+                        </div>
+
+                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="form-group  small-input">
+                                <label class="control-label">Username</label>
+                                <input class="form-control" placeholder="" type="text" [(ngModel)]="page.userName" disabled>
+                            </div>
+                            <div class="form-group  small-input">
+                                <label class="control-label">Your Email</label>
+                                <input class="form-control" placeholder="" type="email" [(ngModel)]="page.email">
+                            </div>
+                        </div>
+
+                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-group  small-input">
+                                <label class="control-label">About</label>
+                                <textarea class="form-control" placeholder="" [(ngModel)]="page.about"></textarea>
+                            </div>
+                            <div class="form-group with-icon  small-input">
+                                <label class="control-label">Your Address</label>
+                                <input class="form-control" placeholder="" type="text" [(ngModel)]="page.address">
+                                <i class="fas fa-location-arrow c-facebook" aria-hidden="true"></i>
+                            </div>
+                            <div class="form-group with-icon  small-input is-empty">
+                                <label class="control-label">Website</label>
+                                <input class="form-control" type="text" [(ngModel)]="page.websiteUrl">
+                                <i class="fab fa-internet-explorer c-twitter" aria-hidden="true"></i>
+                            </div>
+                            <div class="form-group with-icon  small-input">
+                                <label class="control-label">Facebook</label>
+                                <input class="form-control" type="text" [(ngModel)]="page.facebookUrl">
+                                <i class="fab fa-facebook-f c-facebook" aria-hidden="true"></i>
+                            </div>
+                            <div class="form-group with-icon  small-input">
+                                <label class="control-label">Twitter</label>
+                                <input class="form-control" type="text" [(ngModel)]="page.twitterUrl">
+                                <i class="fab fa-twitter c-twitter" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
+                            <button class="btn btn-primary f-right" (click)="save()">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div materialInput bsEl></div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 pl-0">
+            <div class="ui-block">
+                <div class="your-profile">
+                    <div class="ui-block-title ">
+                        <span class="text-bold title">Manage Page</span>
+                    </div>
+
+                    <ul class="your-profile-menu">
+                        <li>
+                            <a [routerLink]="['./']">Page Infor</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['member']">Members</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['role']">Page Roles</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

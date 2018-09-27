@@ -1,6 +1,6 @@
 ﻿import { Component, Injector, ViewEncapsulation, OnInit } from "@angular/core";
 import { AppComponentBase } from "@shared/app-component-base";
-import { ConfigurationServiceProxy } from "@shared/service-proxies/service-proxies";
+import { ConfigurationServiceProxy, RoleServiceProxy, EntityDtoOfInt32 } from "@shared/service-proxies/service-proxies";
 
 import { AppAuthService } from "@shared/auth/app-auth.service";
 
@@ -14,16 +14,23 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
     isLeftMenuCollapsed: boolean = true;
     shownLoginName: string = "";
     searchModel: any = {};
+    entityDtoInt32: EntityDtoOfInt32 = new EntityDtoOfInt32;
+
+
     constructor(
         injector: Injector,
         private _authService: AppAuthService,
-        private _configurationService: ConfigurationServiceProxy
+        private _configurationService: ConfigurationServiceProxy,
+        private _roleServiceProxy: RoleServiceProxy,
     ) {
         super(injector);
     }
 
     ngOnInit(): void {
+        this.entityDtoInt32.id = this.appSession.userId;
         this.shownLoginName = this.appSession.getShownLoginName();
+        //this._roleServiceProxy.get(this.entityDtoInt32).subscribe();
+        
     }
 
     headerSearch(): void {

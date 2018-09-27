@@ -12,6 +12,7 @@ import { UserTimelineComponent } from './timeline/timeline.component';
 import { UserComponent } from './user.component';
 import { ActiveUserResolver } from './user.service';
 import { UserFriendComponent } from '@app/modules/user/friend/friend.component';
+import { UserFriendRequestComponent } from '@app/modules/user/friend/friend-request.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,7 @@ const routes: Routes = [
             { path: '', component: UserTimelineComponent },
             { path: 'timeline', component: UserTimelineComponent },
             { path: 'friends', component: UserFriendComponent },
+            { path: 'requests', component: UserFriendRequestComponent },
             { path: 'events', component: UserEventComponent },
             { path: 'pages', component: UserPagesComponent },
             { path: 'page/create', component: UserCreatePageComponent },

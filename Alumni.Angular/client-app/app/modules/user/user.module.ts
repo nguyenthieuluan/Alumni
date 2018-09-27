@@ -17,13 +17,14 @@ import { UserSettingProfilePictureComponent } from './setting/profile/setting-pr
 import { UserSettingEducationComponent } from './setting/profile/setting-education.component';
 import { UserCreatePageComponent } from './page/create-page.component';
 import { UserPagesComponent } from './page/pages.component';
-import { UserFriendItemComponent } from '@app/modules/user/friend/friend-item.component';
 import { UserFriendComponent } from '@app/modules/user/friend/friend.component';
+import { UserFriendRequestComponent } from '@app/modules/user/friend/friend-request.component';
 
 @NgModule({
     declarations: [
         UserComponent,
         UserFriendComponent,
+        UserFriendRequestComponent,
         UserTimelineComponent,
         UserEventComponent,
         UserSettingComponent,
@@ -33,7 +34,6 @@ import { UserFriendComponent } from '@app/modules/user/friend/friend.component';
         UserSettingEducationComponent,
         UserPagesComponent,
         UserCreatePageComponent,
-        UserFriendItemComponent,
 
     ],
     imports: [

@@ -67,6 +67,7 @@ import {
 } from "ng-pick-datetime-moment";
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { N2BrPipe } from "@shared/directives/n2br.pipe";
+import { AdminWidgetMenuComponent } from "@app/modules/admin/_component/admin-widget-menu.component";
 @NgModule({
   imports: [
     //angular core

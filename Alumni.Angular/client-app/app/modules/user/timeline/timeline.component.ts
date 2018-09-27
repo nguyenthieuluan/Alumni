@@ -22,15 +22,18 @@ export class UserTimelineComponent implements OnInit {
     private userService: UserService
   ) {}
   ngOnInit(): void {
+    this.user = this.userService.activeUserProfile;
+    
     this.request.maxResultCount = 10;
-
+    this.request.userId = this.user.userId;
+    this.request.userName = this.user.userName;
+    
     abp.ui.setBusy("#no-post");
     this._postService
       .getUserTimelinePosts(this.request)
       .finally(abp.ui.clearBusy)
       .subscribe(ps => {
-        this.posts = ps.items;
-        this.user = this.userService.activeUserProfile;
+        this.posts = ps.items.filter(p=>p.author.userName=this.userService.activeUserProfile.userName);
       });
   }
 }

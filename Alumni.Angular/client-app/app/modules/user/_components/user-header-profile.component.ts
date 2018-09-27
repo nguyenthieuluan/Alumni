@@ -22,8 +22,7 @@ import { UserService } from "@app/modules/user/user.service";
 })
 export class UserHeaderProfileComponent extends AppComponentBase
     implements OnInit {
-    @Input()
-    user: UserProfileDto;
+    @Input() user: UserProfileDto;
     friendStatus: number = 0;
     currentUser: UserProfileDto;
     isCurrent: boolean = true;

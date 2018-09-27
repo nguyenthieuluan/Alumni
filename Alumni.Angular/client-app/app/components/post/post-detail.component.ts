@@ -1,12 +1,11 @@
-﻿import { Input, Component, EventEmitter, ElementRef, ViewChild, OnInit, Injector } from "@angular/core";
-import { UploadOutput, UploadInput, UploadFile, humanizeBytes, UploaderOptions } from 'ngx-uploader';
-import { PostDetailDto, Picture, PostData, PostServiceProxy, PostStatInputStatType, PostStatInput,PostCommentDetailDto } from "@shared/service-proxies/service-proxies";
-import { forEach } from "@angular/router/src/utils/collection";
-import { identifierModuleUrl } from "@angular/compiler";
+﻿import { Input, Component, EventEmitter, ElementRef, ViewChild, OnInit, Injector, Output } from "@angular/core";
+import { UploadOutput, UploadInput, UploadFile, UploaderOptions } from 'ngx-uploader';
+import { PostDetailDto, Picture, PostServiceProxy, PostStatInputStatType, PostStatInput, PostCommentDetailDto, UserProfileDto, UserProfileServiceProxy, UserServiceProxy } from "@shared/service-proxies/service-proxies";
 import { AppConsts } from "@shared/AppConsts";
 import { TokenService } from '@abp/auth/token.service';
-import { debug } from "util";
 import { AppComponentBase } from "@shared/app-component-base";
+import { UserService } from "@app/modules/user/user.service";
+import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
     selector: 'post-detail',
@@ -14,20 +13,47 @@ import { AppComponentBase } from "@shared/app-component-base";
     styleUrls: ['./post-detail.component.css']
 })
 export class PostDetailComponent extends AppComponentBase implements OnInit {
+    @ViewChild('createCategoryModal') modal: ModalDirective;
+    @ViewChild('modalContent') modalContent: ElementRef;
+
     @Input() public post: PostDetailDto;
     postImageCount: number;
     pictures: Picture[];
+    model: UserProfileDto;
+    isShowEdit: boolean = false;
+    files: UploadFile[];
+    uploadInput: EventEmitter<UploadInput>;
+    @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
+
+    active: boolean = false;
+    saving: boolean = false;
+    uploadRemains = 0;
+    options: UploaderOptions;
+
+    textChange: string = '';
+
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
-        private _tokenService: TokenService
+        private _tokenService: TokenService,
+        private _userService: UserService,
     ) {
         super(injector);
+        this.options = { concurrency: 8, maxUploads: 30 };
+        this.files = []; // local uploading files array
+        this.uploadInput = new EventEmitter<UploadInput>(); // input events, we use this to emit data to ngx-uploader
     }
     ngOnInit() {
         this.pictures = this.post.postData.pictures;
         this.post.contentText = this.post.contentText.replace(/\n/g, "<br />");
         this.postImageCount = this.post.postData.pictures.length;
+        
+        if(this._userService.activeUserProfile.userId === this.appSession.userId ) {
+            this.isShowEdit = true;
+        }
+        
+        this.textChange = this.post.contentText;
+        
     }
 
     updateStat(statType: PostStatInputStatType) {
@@ -41,4 +67,114 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
     addParentComment(comment: PostCommentDetailDto) {
         this.post.comments.push(comment);
     }
+
+    onDeletePost() {
+        this._postService.deletePost(this.post).subscribe( r=> { 
+            this.notify.success("Deleted!.", "", {
+                positionClass: "toast-top-right"
+            });
+            }
+        )
+    }
+
+    submitPost() {
+        this.post.contentText = this.textChange;
+        if (!this.post.contentText) {
+            if (!this.post.postData || !this.post.postData.pictures) {
+              this.notify.error("Please add content to post");
+              return;
+            }
+            this.post.contentText = "";
+          }
+        this._postService.editPost(this.post).subscribe( r=> { 
+            this.post = r;
+            this.notify.success("Your information is successfuly saved.", "", {
+                positionClass: "toast-top-right"
+            });
+            }
+        )
+    }
+    show() {
+        this.textChange = this.post.contentText;
+        this.active = true;
+        this.modal.show();
+    }
+    close() {
+        this.active = false;
+        this.modal.hide();
+    }
+
+    removePostPicture(pi: Picture) {
+        this.post.postData.pictures.filter(
+          (p: Picture) => p.seoFilename !== pi.seoFilename
+        );
+    }
+    removeFile(index: number) {
+        if ( index !== -1) {
+            this.post.postData.pictures.splice(index, 1);
+        }
+    }
+
+    onUploadOutput(output: UploadOutput): void {
+    const pi = new Picture();
+    if (output.type === "allAddedToQueue") {
+      // when all files added in queue
+      // uncomment this if you want to auto upload files when added
+
+      const token = this._tokenService.getToken();
+      const event: UploadInput = {
+        type: "uploadAll",
+        url: AppConsts.remoteServiceBaseUrl + "/api/Upload/UploadFile",
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + token
+        }
+        // data: { id: output.file.id }
+      };
+      this.uploadInput.emit(event);
+    } else if (
+      output.type === "addedToQueue" &&
+      typeof output.file !== "undefined"
+    ) {
+      if (output.file.type.startsWith("image/")) {
+        this.files.push(output.file);
+      }
+    } else if (output.type === "removed") {
+      // remove file from array when removed
+      this.files = this.files.filter(
+        (file: UploadFile) => file !== output.file
+      );
+    } else if (output.type === "start") {
+      // remove file from array when removed
+      this.uploadRemains++;
+      pi.seoFilename = output.file.id;
+      pi.isNew = true;
+      pi.thumbUrl = "/theme/img/ajax-loader.gif";
+      this.addPostPicture(pi);
+    } else if (output.type === "done") {
+      // remove file from array when removed
+      if (output.file.response.success) {
+        // debugger;
+        this.post.postData.pictures.filter(
+          (p: Picture) => p.seoFilename === output.file.id
+        )[0].guid = output.file.response.result.guid;
+        this.post.postData.pictures.filter(
+          (p: Picture) => p.seoFilename === output.file.id
+        )[0].thumbUrl = output.file.response.result.thumbUrl;
+        this.post.postData.pictures.filter(
+          (p: Picture) => p.seoFilename === output.file.id
+        )[0].pictureUrl = output.file.response.result.pictureUrl;
+      } else {
+        this.removePostPicture(pi);
+      }
+      this.uploadRemains--;
+    }
+  }
+    addPostPicture(pi: Picture) {
+        if (!this.post.postData.pictures) {
+        this.post.postData.pictures = [];
+        }
+        this.post.postData.pictures.push(pi);
+    }  
+
 }

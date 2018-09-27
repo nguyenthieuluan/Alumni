@@ -25,15 +25,21 @@ const test: Routes = [
                 canActivate: [AppRouteGuard],
                 loadChildren: '@app/modules/page/page.module#PageModule',
                 data: { preload: true }
+            },
+            {
+                path: 'admin',
+                canActivate: [AppRouteGuard],
+                loadChildren: '@app/modules/admin/admin.module#AdminModule',
+                data: { preload: true }
             }
         ]
     }
 ]
 @NgModule({
-
     imports: [
         RouterModule.forChild(test)
-    ],providers:[ActivePageResolver],
+    ],
+    providers:[ActivePageResolver],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
