@@ -6,6 +6,7 @@ import { TokenService } from '@abp/auth/token.service';
 import { AppComponentBase } from "@shared/app-component-base";
 import { UserService } from "@app/modules/user/user.service";
 import { ModalDirective } from 'ngx-bootstrap';
+import {PageService} from "@app/modules/page/page.service";
 
 @Component({
     selector: 'post-detail',
@@ -37,6 +38,8 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         private _postService: PostServiceProxy,
         private _tokenService: TokenService,
         private _userService: UserService,
+        private _pageService: PageService,
+        private _userPageService: UserProfileServiceProxy,
     ) {
         super(injector);
         this.options = { concurrency: 8, maxUploads: 30 };
@@ -48,12 +51,15 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         this.post.contentText = this.post.contentText.replace(/\n/g, "<br />");
         this.postImageCount = this.post.postData.pictures.length;
         
-        if(this._userService.activeUserProfile.userId === this.appSession.userId ) {
+        if(this._userService.activeUserProfile && this._userService.activeUserProfile.userId == this.appSession.userId)
             this.isShowEdit = true;
-        }
         
+        this._userPageService.getUserPagesDto().subscribe(r=> {
+            if (r.pages.length && r.pages.map(p=>p.id).indexOf(this._pageService.activePage.id) >= 0)
+                this.isShowEdit = true;     
+        });
+            
         this.textChange = this.post.contentText;
-        
     }
 
     updateStat(statType: PostStatInputStatType) {

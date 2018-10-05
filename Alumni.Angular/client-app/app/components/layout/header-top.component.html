@@ -14,18 +14,19 @@
         <p class="head-info">ALUMNI ASSIOSIATION</p>
     </div>
     <div class="header-content-wrapper">
-        <form class="search-bar w-search notification-list friend-requests" #searchForm="ngForm" method="post" novalidate (ngSubmit)="headerSearch()">
-            <div class="form-group with-button">
-                <input class="form-control" placeholder="Search here people or pages..." type="text" [(ngModel)]="searchModel.keyword" name="keyword">
-                <button type="submit">
+        <form class="search-bar w-search notification-list friend-requests mt-3 height-35 width-250" #searchForm="ngForm" method="post" novalidate (ngSubmit)="headerSearch()">
+            <div class="form-group with-button height-35" style="min-height: 35px;">
+                <input class="form-control" placeholder="Tìm Kiếm..." type="text" [(ngModel)]="searchModel.keyword" name="keyword">
+                <button class="height-35" type="submit">
                     <svg class="olymp-magnifying-glass-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-magnifying-glass-icon"></use></svg>
                 </button>
             </div>
         </form>
 
-        <a [routerLink]="['/app/home']" class="header-link">HOMEPAGE</a>
-        <a [routerLink]="['/app/newsfeed']" class="header-link">NEWSFEED</a>
-        <a [routerLink]="['/app/directory']" class="header-link">DIRECTORIES</a>
+        <a [routerLink]="['/app/home']" class="header-link text-center pt-3">TRANG <Br> CHỦ</a>
+        <a [routerLink]="['/app/kienthucchuyennganh']" class="header-link text-center pt-3">KIẾN THỨC <br> CHUYÊN NGÀNH</a>
+        <a [routerLink]="['/app/tamsucsv']" class="header-link text-center pt-3">TÂM SỰ <br> CSV</a>
+        <a [routerLink]="['/app/tracuu']" class="header-link text-center pt-3">TRA CỨU <br> THÔNG TIN</a>
 
         <div class="control-block">
 
@@ -41,23 +42,30 @@
 
                             <ul class="account-settings">
                                 <li>
+                                    <a [routerLink]="['/app/newsfeed', shownLoginName ,'settings']">
+                                        <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
+                                        <span>Bản Tin</span>
+                                    </a>
+                                </li>
+
+                                <li>
                                     <a [routerLink]="['/app/user', shownLoginName ,'settings']">
                                         <svg class="olymp-menu-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-                                        <span>Profile Settings</span>
+                                        <span>Cài đặt trang cá nhân</span>
                                     </a>
                                 </li>
 
                                 <li *ngIf="true">
                                     <a [routerLink]="['/app/admin']">
                                         <svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-menu-icon"></use></svg>
-                                        <span>Admin</span>
+                                        <span>Quản trị</span>
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="javascript:void(0);" (click)="logout()">
                                         <svg class="olymp-logout-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-logout-icon"></use></svg>
-                                        <span>Log Out</span>
+                                        <span>Đăng xuất</span>
                                     </a>
                                 </li>
                             </ul>
@@ -131,7 +139,6 @@
 
                 </div>
             </div>
-
         </div>
     </ng-sidebar>
 

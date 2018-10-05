@@ -29,14 +29,14 @@
                             <div class="btn-group f-right m-0 ml-3 mr-3" dropdown>
 
                                 <button class="btn btn-normal" *ngIf="!page.isFollowed" (click)="follow()">
-                                    <i class="fas fa-rss"></i> Follow
+                                    <i class="fas fa-rss"></i> Theo dõi
                                 </button>
                                 <button id="button-basic" *ngIf="page.isFollowed" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
                                     aria-controls="dropdown-basic">
-                                    <i class="fas fa-check"></i> Following <i class="fas fa-caret-down"></i>
+                                    <i class="fas fa-check"></i> Đang theo dõi <i class="fas fa-caret-down"></i>
                                 </button>
                                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                                    <li role="menuitem"><a class="dropdown-item" (click)="unFollow()" style="cursor: pointer">Unfollow</a></li>
+                                    <li role="menuitem"><a class="dropdown-item" (click)="unFollow()" style="cursor: pointer">Hủy theo dõi</a></li>
                                 </ul>
                             </div>
 
@@ -44,15 +44,15 @@
                             <div class="btn-group f-right m-0 mr-3" dropdown>
 
                                 <button class="btn btn-normal" *ngIf="!page.isLiked" (click)="like()">
-                                    <i class="fas fa-thumbs-up"></i> Like
+                                    <i class="fas fa-thumbs-up"></i> Thích
                                 </button>
 
                                 <button id="button-basic" *ngIf="page.isLiked" dropdownToggle type="button" class="btn btn-normal dropdown-toggle" aria-controls="dropdown-basic">
-                                    <i class="fas  fa-check"></i> Liked <i class="fas fa-caret-down"></i>
+                                    <i class="fas  fa-check"></i> Đã thích <i class="fas fa-caret-down"></i>
                                 </button>
 
                                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                                    <li role="menuitem"><a class="dropdown-item" (click)="unLike()" style="cursor: pointer">Unlike</a></li>
+                                    <li role="menuitem"><a class="dropdown-item" (click)="unLike()" style="cursor: pointer">Bỏ thích</a></li>
                                 </ul>
                             </div>
 

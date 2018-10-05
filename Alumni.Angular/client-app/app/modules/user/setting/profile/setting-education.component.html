@@ -12,15 +12,15 @@
 
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group  small-input is-empty">
-                        <label class="control-label">Code</label>
+                        <label class="control-label">Mã sinh viên</label>
                         <input class="form-control" placeholder="" type="text" [(ngModel)]="model.studentProfile.studentId">
                     </div>
                     <div class="form-group  small-input">
-                        <label class="control-label">Name</label>
+                        <label class="control-label">Họ tên</label>
                         <input class="form-control" placeholder="" type="text" [(ngModel)]="model.studentProfile.name">
                     </div>
                     <div class="form-group  small-input">
-                        <label class="control-label">Class</label>
+                        <label class="control-label">Lớp học</label>
                         <input class="form-control" placeholder="" type="text" [(ngModel)]="model.studentProfile.studentClass">
                     </div>
 
@@ -28,32 +28,32 @@
 
                 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                     <div class="form-group  small-input is-select">
-                        <label class="control-label">Type</label>
+                        <label class="control-label">Chức vụ</label>
                         <select class=" form-control" [(ngModel)]="model.studentProfile.profession">
                             <option *ngFor="let pl of professionList" [value]="pl.id">{{pl.name}}</option>
                         </select>
                     </div>
                     <div class="form-group  small-input is-select">
-                        <label class="control-label">Enrollment/Employment year</label>
+                        <label class="control-label">Năm bắt đầu làm việc</label>
                         <select class=" form-control" [(ngModel)]="model.studentProfile.studentYearId">
                             <option *ngFor="let yl of model.yearList" [value]="yl.id">{{yl.name}}</option>
                         </select>
                     </div>
                     <div class="form-group  small-input is-select">
-                        <label class="control-label">Department</label>
+                        <label class="control-label">Khoa</label>
                         <select class=" form-control" [(ngModel)]="model.studentProfile.studentDeptId">
                             <option *ngFor="let dl of model.deptList" [value]="dl.id">{{dl.name}}</option>
                         </select>
                     </div>
                     <div class="form-group  small-input">
-                        <label class="control-label">Title</label>
+                        <label class="control-label">Ghi chú</label>
                         <input class="form-control" placeholder="" type="text" [(ngModel)]="model.studentProfile.role">
                     </div>
                 </div>
 
                 <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="form-group  small-input">
-                        <label class="control-label">Description</label>
+                        <label class="control-label">Mô tả</label>
                         <textarea class="form-control" placeholder="" [(ngModel)]="model.studentProfile.description"></textarea>
                     </div>
 
@@ -61,7 +61,7 @@
                 </div>
              
                 <div class="col col-12">
-                    <button class="btn btn-primary f-right" (click)="save()">Save</button>
+                    <button class="btn btn-primary f-right" (click)="save()">Lưu</button>
                 </div>
             </div>
         </div>

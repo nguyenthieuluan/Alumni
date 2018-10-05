@@ -5,9 +5,8 @@
 
             <!-- News Feed Form  -->
 
-            <div class="news-feed-form" *ngIf="page.isEditor">
+            <div class="news-feed-form" *ngIf="page?.isEditor">
                 <post-editor (onPostAdded)="addPost($event)" [page]="page"></post-editor>
-
             </div>
 
             <!-- ... end News Feed Form  -->
@@ -20,7 +19,7 @@
         </div>
 
         <div id="no-post" *ngIf="!posts || posts.length == 0">
-            <div class="ui-block p-5 m-auto text-center">No post...</div>
+            <div class="ui-block p-5 m-auto text-center">Không có bài đăng nào...</div>
         </div>
     </div>
     <div class="col-4 col-xl-4 col-lg-4 col-md-12 col-sm-12 pl-0">

@@ -2,22 +2,22 @@
 
     <div class="ui-block-content">
         <div class="widget w-list">
-            <h6 class="title">Sections</h6>
+            <h6 class="title">Danh Mục</h6>
             <ul>
                 <li>
-                    <a [routerLink]="['/app/user', user.userName]">Home</a>
+                    <a [routerLink]="['/app/user', user.userName]">Trang Chủ</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/app/user', user.userName,'events']">Events</a>
+                    <a [routerLink]="['/app/user', user.userName,'events']">Sự Kiện</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/app/user', user.userName,'friends']">Friends</a>
+                    <a [routerLink]="['/app/user', user.userName,'friends']">Bạn Bè</a>
                 </li>
                 <li *ngIf="user.isMine" >
-                    <a [routerLink]="['/app/user', user.userName,'pages']">Pages</a>
+                    <a [routerLink]="['/app/user', user.userName,'pages']">Trang Của Tôi</a>
                 </li>
                 <li *ngIf="user.isMine">
-                    <a [routerLink]="['/app/user', user.userName,'settings']">Settings</a>
+                    <a [routerLink]="['/app/user', user.userName,'settings']">Cài Đặt</a>
                 </li>
                 <li  *ngIf="false">
                     <a [routerLink]="['/app/user', user.userName,'about']">About</a>
@@ -26,10 +26,10 @@
         </div>
 
         <div class="widget w-list" *ngIf="user.isMine">
-            <h6 class="title">Shortcut</h6>
+            <h6 class="title">Liên Kết Nhanh</h6>
             <ul>
                 <li>
-                    <a [routerLink]="['/app/home']">Homepage</a>
+                    <a [routerLink]="['/app/home']">Trang Chủ</a>
                 </li>
                 <li *ngFor="let p of userPage.pages">
                     <a [routerLink]="['/app/page',p.userName]">{{p.name}} <i class="fa fa-check-circle c-twitter" *ngIf="p.isVerified"></i></a>

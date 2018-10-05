@@ -1,28 +1,28 @@
 ﻿ <div class="ui-block" *ngIf="page">
     <div class="ui-block-content">
         <div class="widget w-list">
-            <h6 class="title">Sections</h6>
+            <h6 class="title">Danh mục</h6>
             <ul>
                 <li>
-                    <a [routerLink]="['/app/page',page.userName]">Home</a>
+                    <a [routerLink]="['/app/page',page.userName]">Trang Chủ</a>
                 </li>
                 <li *ngIf="false">
-                    <a  [routerLink]="['/app/page',page.userName,'about']">About</a>
+                    <a  [routerLink]="['/app/page',page.userName,'about']">Abount</a>
                 </li>
                 <li>
-                    <a  [routerLink]="['/app/page',page.userName,'events']">Events</a>
+                    <a  [routerLink]="['/app/page',page.userName,'events']">Sự Kiện</a>
                 </li>
                 <li>
-                    <a  [routerLink]="['/app/page',page.userName,'followers']">Followers</a>
+                    <a  [routerLink]="['/app/page',page.userName,'followers']">Người Đang Theo Dõi</a>
                 </li>
                 <li *ngIf="page.isAdmin">
-                    <a  [routerLink]="['/app/page',page.userName,'setting']">Settings</a>
+                    <a  [routerLink]="['/app/page',page.userName,'setting']">Cài đặt</a>
                 </li>
             </ul>
         </div>
 
         <div class="widget w-list" *ngIf="page.categories.length > 0">
-            <h6 class="title">Categories</h6>
+            <h6 class="title">Hạng Mục</h6>
             <ul>
                 <li *ngFor="let cat of page.categories">
                     <a  [routerLink]="['/app/page',page.userName,'category',cat.code]">{{cat.name}}</a>

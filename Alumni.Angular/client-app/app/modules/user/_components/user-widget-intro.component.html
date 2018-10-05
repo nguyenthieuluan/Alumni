@@ -8,13 +8,13 @@
 
         <ul class="widget w-personal-info item-block">
             <li *ngIf="user.bio">
-                <span class="title">About:</span>
+                <span class="title">Về tôi:</span>
                 <span class="text">
                     {{user.bio}}
                 </span>
             </li>
             <li *ngIf="user.phone">
-                <span class="title">Phone:</span>
+                <span class="title">Điện thoại:</span>
                 <span class="text"> {{user.phone}}</span>
             </li>
             <li *ngIf="user.email">
@@ -22,31 +22,31 @@
                 <span class="text"> {{user.email}}</span>
             </li>
             <li *ngIf="user.address">
-                <span class="title">Address:</span>
+                <span class="title">Địa chỉ:</span>
                 <span class="text"> {{user.address}}</span>
             </li>
             <li *ngIf="user.occupation">
-                <span class="title">Occupation:</span>
+                <span class="title">Nghề nghiệp:</span>
                 <span class="text"> {{user.occupation}}</span>
             </li>
             <li *ngIf="user.studentProfile?.studentId">
-                <span class="title">Student Code:</span>
+                <span class="title">Mã sinh viên:</span>
                 <span class="text"> {{user.studentProfile.studentId}}</span>
             </li>
             <li *ngIf="user.studentProfile?.name">
-                <span class="title">Student Real Name:</span>
+                <span class="title">Tên sinh viên:</span>
                 <span class="text"> {{user.studentProfile.name}}</span>
             </li>
             <li *ngIf="user.studentProfile?.studentClass">
-                <span class="title">Student Class:</span>
+                <span class="title">Lớp sinh viên:</span>
                 <span class="text"> {{user.studentProfile.studentClass}}</span>
             </li>
             <li *ngIf="user.studentProfile?.studentDept">
-                <span class="title">Student Department:</span>
+                <span class="title">Khoa:</span>
                 <span class="text"> {{user.studentProfile.studentDept.name}}</span>
             </li>
             <li *ngIf="user.studentProfile?.studentYear">
-                <span class="title">Student Year:</span>
+                <span class="title">Niên khóa:</span>
                 <span class="text"> {{user.studentProfile.studentYear.name}}</span>
             </li>
         </ul>

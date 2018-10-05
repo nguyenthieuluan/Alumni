@@ -7,8 +7,10 @@
             <img [src]="post.page.pictureUrl" alt="author" *ngIf="post.publishType == 'page'">
 
             <div class="author-date">
-                <user-link [user]="post.author" [linkClass]="'h6 post__author-name'" *ngIf="post.publishType == 'user'"></user-link>
-                <user-link [page]="post.page" [linkClass]="'h6 post__author-name'" *ngIf="post.publishType == 'page'"></user-link>
+                <user-link [user]="post.author" [linkClass]="'h6 post__author-name'"
+                           *ngIf="post.publishType == 'user'"></user-link>
+                <user-link [page]="post.page" [linkClass]="'h6 post__author-name'"
+                           *ngIf="post.publishType == 'page'"></user-link>
                 <div class="post__date" title=" {{post.dateCreated }}">
                     <span class="published">
                         {{post.dateCreated | amTimeAgo }}
@@ -16,78 +18,89 @@
                 </div>
             </div>
 
-            <div class="more">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="olymp-three-dots-icon">
-                <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
-            </svg>
+            <div class="more" *ngIf="isShowEdit">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     class="olymp-three-dots-icon">
+                    <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                </svg>
 
-            <div *ngIf="isShowEdit">
                 <ul class="more-dropdown">
                     <li>
-                        <a (click)="show()" style="cursor: pointer">Edit Post</a>
+                        <a (click)="show()" style="cursor: pointer">Chỉnh Sửa Bài Đăng</a>
                     </li>
                     <li>
-                        <a (click)="onDeletePost()" style="cursor: pointer">Delete Post</a>
+                        <a (click)="onDeletePost()" style="cursor: pointer">Xóa Bài Đăng</a>
                     </li>
                 </ul>
 
-                <div bsModal #createCategoryModal="bs-modal" class="modal fade" (onShown)="shown" tabindex="-1" role="dialog" aria-labelledby="createUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+                <div bsModal #createCategoryModal="bs-modal" class="modal fade" (onShown)="shown" tabindex="-1"
+                     role="dialog" aria-labelledby="createUserModal" aria-hidden="true" [config]="{backdrop: 'static'}">
                     <div class="modal-dialog">
                         <div #modalContent class="modal-content">
-                                <div class="modal-header">
-                                    <h6 class="modal-title">
-                                        <span>Edit Post</span>
-                                    </h6>
-                                    <button (click)="close()" type="button" class="close" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="news-feed-form">
-                                        <form (ngSubmit)="f.form.valid && submitPost()" #f="ngForm" novalidate>
+                            <div class="modal-header">
+                                <h6 class="modal-title">
+                                    <span>Sửa Bài Đăng</span>
+                                </h6>
+                                <button (click)="close()" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="news-feed-form">
+                                    <form (ngSubmit)="f.form.valid && submitPost()" #f="ngForm" novalidate>
                                         <div class="">
                                             <div class="post__author author-thumb d-inline-block f-left">
-                                                <img [src]="post.author.pictureUrl" alt="author" *ngIf="post.publishType == 'user'">
-                                                <img [src]="post.page.pictureUrl" alt="author" *ngIf="post.publishType == 'page'">
+                                                <img [src]="post.author.pictureUrl" alt="author"
+                                                     *ngIf="post.publishType == 'user'">
+                                                <img [src]="post.page.pictureUrl" alt="author"
+                                                     *ngIf="post.publishType == 'page'">
                                             </div>
                                             <div class="form-group with-icon label-floating is-empty">
-                                                <textarea class="form-control" placeholder="Share what you are thinking here..." [(ngModel)]="textChange"
-                                                name="content">
+                                                <textarea class="form-control"
+                                                          placeholder="Share what you are thinking here..."
+                                                          [(ngModel)]="textChange"
+                                                          name="content">
                                                 </textarea>
                                             </div>
                                         </div>
-                                        <div class="add-options-message d-inline-block f-left" *ngIf="post.postData.pictures?.length > 0">
+                                        <div class="add-options-message d-inline-block f-left"
+                                             *ngIf="post.postData.pictures?.length > 0">
                                             <ul #imgQueue class="widget  upload-img-holder">
-                                                <li *ngFor="let item of post.postData.pictures; let i = index" (click)="removeFile(i)" tooltip="Click to remove"
+                                                <li *ngFor="let item of post.postData.pictures; let i = index"
+                                                    (click)="removeFile(i)" tooltip="Click to remove"
                                                     [ngClass]="{'upload-loading':item.thumbUrl.includes('ajax-loader')}">
-                                                    <img class="rounded-0" [src]="item.thumbUrl" alt="{{item.id}}" />
+                                                    <img class="rounded-0" [src]="item.thumbUrl" alt="{{item.id}}"/>
                                                 </li>
                                             </ul>
-                                    
+
                                         </div>
                                         <div class="add-options-message">
-                                            <a href="javascript:void(0);" class="options-message" data-toggle="tooltip" data-placement="top" tooltip="ADD PHOTOS">
+                                            <a href="javascript:void(0);" class="options-message" data-toggle="tooltip"
+                                               data-placement="top" tooltip="ADD PHOTOS">
                                                 <label class="upload-button" style="margin-bottom:0">
-                                                    <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)"
-                                                        [uploadInput]="uploadInput" multiple style="display:none">
+                                                    <input type="file" ngFileSelect [options]="options"
+                                                           (uploadOutput)="onUploadOutput($event)"
+                                                           [uploadInput]="uploadInput" multiple style="display:none">
                                                     <svg class="olymp-camera-icon">
-                                                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
+                                                        <use
+                                                            xlink:href="theme/svg-icons/sprites/icons.svg#olymp-camera-icon"></use>
                                                     </svg>
                                                 </label>
                                             </a>
-                                    
-                                            <button type="submit" class="btn btn-primary btn-n" [disabled]="uploadRemains > 0">Save</button>
-                                    
+
+                                            <button type="submit" class="btn btn-primary btn-n"
+                                                    [disabled]="uploadRemains > 0">Lưu
+                                            </button>
+
                                         </div>
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
 
         </div>
 
@@ -107,7 +120,8 @@
 
             <div class="video-content">
                 <a href="#" class="h4 title">System of a Revenge - Nothing Else Matters (LIVE)</a>
-                <p>Lorem ipsum dolor sit amet, consectetur ipisicing elit, sed do eiusmod tempo incididunt ut labore..</p>
+                <p>Lorem ipsum dolor sit amet, consectetur ipisicing elit, sed do eiusmod tempo incididunt ut
+                    labore..</p>
                 <a href="#" class="link-site">YOUTUBE.COM</a>
             </div>
         </div>
@@ -115,8 +129,9 @@
     </article>
     <div class="post-additional-info inline-items">
 
-        <a href="javascript:void(0);" class="post-add-icon inline-items" [ngClass]="{'active':post.stats.stats.isReaction}"
-            (click)="updateStat(2)">
+        <a href="javascript:void(0);" class="post-add-icon inline-items"
+           [ngClass]="{'active':post.stats.stats.isReaction}"
+           (click)="updateStat(2)">
             <i class="fas fa-thumbs-up"></i>
             <span>{{post.stats.reacts}}</span>
         </a>
@@ -130,7 +145,8 @@
     <ul class="comments-list">
         <post-comment-detail *ngFor="let item of post.comments" [post]="post" [comment]="item"></post-comment-detail>
     </ul>
-    <post-comment-editor [post]="post" (onPostCommentAdded)="addParentComment($event)" *ngIf="appSession.user"></post-comment-editor>
+    <post-comment-editor [post]="post" (onPostCommentAdded)="addParentComment($event)"
+                         *ngIf="appSession.user"></post-comment-editor>
     <div class="d-none" mediaType></div>
     <!-- .. end Post -->
 </div>

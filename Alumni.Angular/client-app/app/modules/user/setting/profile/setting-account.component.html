@@ -11,7 +11,7 @@
 
             <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="form-group  small-input">
-                    <label class="control-label">Username</label>
+                    <label class="control-label">Tên đăng nhập</label>
                     <input class="form-control" placeholder="" type="text" [(ngModel)]="profile.userName" disabled>
                 </div>
 
@@ -35,7 +35,7 @@
 </div>
 <div class="ui-block">
     <div class="ui-block-title">
-        <h6 class="title">Password Settings</h6>
+        <h6 class="title">Cài Đặt Mật Khẩu</h6>
     </div>
     <div class="ui-block-content">
 
@@ -45,7 +45,7 @@
 
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="form-group  small-input">
-                    <label class="control-label">Current password</label>
+                    <label class="control-label">Mật khẩu hiện tại</label>
                     <input class="form-control" placeholder="" type="password" [(ngModel)]="passwordRequest.currentPassword">
                 </div>
 
@@ -53,7 +53,7 @@
 
             <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="form-group  small-input">
-                    <label class="control-label">New password</label>
+                    <label class="control-label">Mật khẩu mới</label>
                     <input class="form-control" placeholder="" type="password" [(ngModel)]="passwordRequest.newPassword">
                 </div>
 
@@ -61,7 +61,7 @@
 
             <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="form-group  small-input">
-                    <label class="control-label">Confirm new password</label>
+                    <label class="control-label">Nhập lại mật khẩu</label>
                     <input class="form-control" placeholder="" type="password" [(ngModel)]="confirmNewPassword">
                 </div>
 
@@ -69,7 +69,7 @@
             </div>
             
             <div class="col col-12">
-                <button class="btn btn-primary f-right" (click)="save()">Change password</button>
+                <button class="btn btn-primary f-right" (click)="save()">Lưu</button>
             </div>
         
 

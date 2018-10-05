@@ -10,13 +10,13 @@
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                 <ul class="widget w-personal-info item-block">
                     <li>
-                        <span class="h5 title">Avatar</span>
+                        <span class="h5 title">Ảnh đại diện</span>
                         <div class="text">
                             <img-cropper #cropperP [image]="dP" [settings]="csP" (onCrop)="croppedP($event)"></img-cropper>
                         </div>
                     </li>
                     <li>
-                        <span class="title">Preview</span>
+                        <span class="title">Xem trước</span>
                         <div class="text">
 
                             <div class="img-picture"><img alt="author" [src]="page.pictureUrl || ''"></div>
@@ -27,13 +27,13 @@
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                 <ul class="widget w-personal-info item-block">
                     <li>
-                        <span class="h5 title">Cover</span>
+                        <span class="h5 title">Ảnh bìa</span>
                         <div class="text">
                             <img-cropper #cropperC [image]="dC" [settings]="csC" (onCrop)="croppedC($event)"></img-cropper>
                         </div>
                     </li>
                     <li>
-                        <span class="title">Preview</span>
+                        <span class="title">Xem trước</span>
                         <div class="text">
                             <div class="img-cover-half"><img [src]="page.coverUrl || ''" alt="photo"></div>
                         </div>
@@ -43,7 +43,7 @@
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
 
                 <div class="col col-12">
-                    <button class="btn btn-primary f-right" (click)="save()">Update</button>
+                    <button class="btn btn-primary f-right" (click)="save()">Cập Nhật</button>
                 </div>
 
             </div>

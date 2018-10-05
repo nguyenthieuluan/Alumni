@@ -1,6 +1,6 @@
 ﻿<div class="ui-block w-intro" *ngIf="page">
     <div class="ui-block-title">
-        <h6 class="title">Intro</h6>
+        <h6 class="title">Giới Thiệu</h6>
     </div>
     <div class="ui-block-content">
 
@@ -8,13 +8,13 @@
 
         <ul class="widget w-personal-info item-block">
             <li *ngIf="page.about">
-                <span class="title">About:</span>
+                <span class="title">Về chúng tôi:</span>
                 <span class="text">
                     {{page.about}}
                 </span>
             </li>
             <li *ngIf="page.phone">
-                <span class="title">Phone:</span>
+                <span class="title">Điện thoại:</span>
                 <span class="text"> {{page.phone}}</span>
             </li>
             <li *ngIf="page.email">
@@ -22,11 +22,11 @@
                 <span class="text"> {{page.email}}</span>
             </li>
             <li *ngIf="page.address">
-                <span class="title">Address:</span>
+                <span class="title">Địa chỉ:</span>
                 <span class="text"> {{page.address}}</span>
             </li>
             <li *ngIf="page.websiteUrl">
-                <span class="title">Website:</span>
+                <span class="title">Trang web:</span>
                 <span class="text"><a [href]="page.websiteUrl" target="_blank">{{page.websiteUrl}}</a></span>
             </li>
             
@@ -34,7 +34,7 @@
         <!-- .. end W-Personal-Info -->
         <!-- W-Socials -->
         <div class="widget w-socials" *ngIf="page.facebookUrl || page.twitterUrl">
-            <h6 class="title">Social Networks:</h6>
+            <h6 class="title">Các trang xã hội:</h6>
             <a [href]="page.facebookUrl" class="social-item bg-facebook" *ngIf="page.facebookUrl">
                 <i class="fab fa-facebook-f" aria-hidden="true"></i>
                 Facebook

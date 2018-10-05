@@ -4,13 +4,13 @@
     </div>
     <div class="form-group with-icon label-floating is-empty">
 
-        <textarea class="form-control" placeholder="Share what you are thinking here..." [(ngModel)]="post.contentText"
+        <textarea class="form-control" placeholder="Bạn đang nghĩ gì?" [(ngModel)]="post.contentText"
             name="content"></textarea>
     </div>
     <div class="add-options-message" *ngIf="files.length > 0">
         <ul #imgQueue class="widget  upload-img-holder">
 
-            <li *ngFor="let item of post.postData.pictures" (click)="removeFile(item.seoFilename)" tooltip="Click to remove"
+            <li *ngFor="let item of post.postData.pictures" (click)="removeFile(item.seoFilename)" tooltip="Click để xóa"
                 [ngClass]="{'upload-loading':item.thumbUrl.includes('ajax-loader')}">
                 <img [src]="item.thumbUrl" alt="{{item.id}}" />
             </li>
@@ -19,7 +19,7 @@
 
     </div>
     <div class="add-options-message">
-        <a href="javascript:void(0);" class="options-message" data-toggle="tooltip" data-placement="top" tooltip="ADD PHOTOS">
+        <a href="javascript:void(0);" class="options-message" data-toggle="tooltip" data-placement="top" tooltip="Thêm hình ảnh">
             <label class="upload-button" style="margin-bottom:0">
                 <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)"
                     [uploadInput]="uploadInput" multiple style="display:none">
@@ -32,7 +32,7 @@
              <i class="fab fa-youtube" aria-hidden="true"></i> 
         </a>-->
 
-        <button type="submit" class="btn btn-primary btn-n" [disabled]="uploadRemains > 0">Post</button>
+        <button type="submit" class="btn btn-primary btn-n" [disabled]="uploadRemains > 0">Đăng</button>
 
     </div>
 </form>

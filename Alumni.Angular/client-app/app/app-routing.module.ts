@@ -6,6 +6,7 @@ import { AppRouteGuard } from '@shared/auth/auth-route-guard'
 import { NewsFeedComponent } from "@app/modules/home/newsfeed.component";
 import { HomePageComponent } from '@app/modules/home/homepage.component';
 import { ActivePageResolver } from '@app/modules/page/page.service';
+import { TraCuuComponent } from '@app/components/tracuu/tracuu.component';
 
 const test: Routes = [
     {
@@ -13,6 +14,8 @@ const test: Routes = [
         children: [
             { path: 'home', component: HomePageComponent, resolve: {homePage:  ActivePageResolver} },
             { path: 'newsfeed', component: NewsFeedComponent, canActivate: [AppRouteGuard] },
+            // { path: 'tamsucsv', component: TamSuCSVComponent, canActivate: [AppRouteGuard] },
+            { path: 'tracuu', component: TraCuuComponent, canActivate: [AppRouteGuard] },
             {
                 path: 'user',
                 canActivate: [AppRouteGuard],

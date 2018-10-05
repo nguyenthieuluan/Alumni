@@ -1,0 +1,106 @@
+<div class="container mt-3">
+    <div class="row">
+
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            <div class="ui-block">
+                <div class="ui-block-title">
+                    <h6 class="title">TRA CỨU THÔNG TIN SINH VIÊN</h6>
+                </div>
+                <div class="ui-block-content">
+                    <!-- Personal Information Form  -->
+                    <div>
+                        <div class="row">
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="form-group  small-input">
+                                    <label class="control-label">Khóa</label>
+                                    <select class="form-control" [(ngModel)]="input.yearList">
+                                        <option value="0">2013</option>
+                                        <option value="1">2014</option>
+                                        <option value="2">2015</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="form-group  small-input">
+                                        <label class="control-label">Lớp</label>
+                                        <select class="form-control">
+                                            <option value="0">CQ.50.GTCC</option>
+                                            <option value="0">CQ.50.CKOT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            <div class="col col-12">
+                                <button class="btn btn-primary f-right" (click)="search()">Tìm Kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ... end Personal Information Form  -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            <div class="ui-block" *ngIf="students?.length == 0">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Mã số SV</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">User Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let student of students; index as i">
+                            <th scope="row">{{ i+1 }}</th>
+                            <td>{{student.mobile}}</td>
+                            <td>{{student.name}}</td>
+                            <td>{{student.birthday}}</td>
+                        </tr>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>5051017027</td>
+                        <td>5051017029</td>
+                        <td>5051017025</td>
+                        <td>name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>nữ</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                        <td>Nam</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                        <td>@nu</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div materialInput bsEl></div>
