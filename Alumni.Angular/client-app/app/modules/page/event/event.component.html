@@ -4,9 +4,9 @@
             <div class="ui-block">
 
                 <div class="ui-block-title ui-block-title-small">
-                    <h6 class="title">UPCOMING EVENTS</h6>
+                    <h6 class="title">SỰ KIÊN SẮP DIỄN RA</h6>
                     <a [routerLink]="['../event/editor']" type="button" class="btn btn-normal f-right" *ngIf="page.isEditor">
-                        <i class="far fa-calendar-plus"></i> Add Event
+                        <i class="far fa-calendar-plus"></i> Thêm sự kiện
                     </a>
                 </div>
                 <!-- <div class="no-past-events" *ngIf="eventList.length == 0">
@@ -16,7 +16,7 @@
                     <span>There are no events <br>to show</span>
                 </div> -->
                 <div id="no-post" *ngIf="!eventListF || eventListF.length == 0">
-                    <div class="ui-block p-5 m-auto text-center">No upcoming events.</div>
+                    <div class="ui-block p-5 m-auto text-center">Không có sự kiện nào.</div>
                 </div>
                 <table class="event-item-table">
                     <tbody>
@@ -37,7 +37,7 @@
                                 <div class="event-author inline-items">
                                     <div class="author-date">
                                         <a [routerLink]="['/app/page',event.page.userName,'event',event.guid]" class="author-name h6">{{event.eventName}}</a>
-                                        hosted by <user-link [user]="event.user" [page]="event.page"></user-link>
+                                        tổ chức bởi <user-link [user]="event.user" [page]="event.page"></user-link>
                                         <time class="published">
                                             {{formatEventDate(event.startDate, event.endDate)}}
                                         </time>
@@ -60,10 +60,10 @@
                 </table>
 
                 <div class="ui-block-title ui-block-title-small">
-                    <h6 class="title">PAST EVENTS</h6>
+                    <h6 class="title">SỰ KIỆN ĐÃ QUA</h6>
                 </div>
                 <div id="no-post" *ngIf="!eventListP || eventListP.length == 0">
-                    <div class="ui-block p-5 m-auto text-center">No past event.</div>
+                    <div class="ui-block p-5 m-auto text-center">Không có sự kiện nào.</div>
                 </div>
                 <table class="event-item-table">
                     <tbody>
@@ -84,7 +84,7 @@
                                 <div class="event-author inline-items">
                                     <div class="author-date">
                                         <a [routerLink]="['/app/page',event.page.userName,'event',event.guid]" class="author-name h6">{{event.eventName}}</a>
-                                        hosted by <user-link [user]="event.user" [page]="event.page"></user-link>
+                                        tổ chức bởi <user-link [user]="event.user" [page]="event.page"></user-link>
                                         <time class="published">
                                             {{formatEventDate(event.startDate, event.endDate)}}
                                         </time>

@@ -1,44 +1,37 @@
-<div class="container">
+<div class="container mt-3">
     <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 pl-0 pr-0">
+                    <div class="ui-block">
+                            <div class="widget w-list ui-block-content">
+                                <h6 class="title">Quản Lý Trang</h6>
+                                <ul>
+                                    <li>
+                                        <a [routerLink]="['../']">Thông tin trang</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['./']">Thành viên</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['../role']">Vai trò trên trang</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
         <div class="col-xl-9 col-lg-9 col-md-12">
             <div class="ui-block">
                 <div class="ui-block-content">
                     <div class="row">
                         <div class="col col-12">
                             <div class="d-flex">
-
-                                <select class="p-2">
-                                    <option value="0">People Who Like This Page</option>
-                                    <option value="1">People Who Follow This Page</option>
-                                    <option value="2">Banned People</option>
+                                <select class="p-2 mr-2" (change)="filterChanged($event.target.value)" [(ngModel)]="selectedValue">
+                                    <option value="0">Những người thích trang này</option>
+                                    <option value="1">Những người theo dõi trang này</option>
+                                    <!--<option value="2">Banned People</option>-->
                                 </select>
-
-                                <input class="p-2" placeholder="Search" type="text" style="100px">
-
-                                <div class="btn-group" dropdown>
-                                    <button class="btn dropdown-toggle" dropdownToggle type="button"
-                                            aria-controls="dropdown-basic">
-                                        <i class="fas fa-cog"></i>
-                                    </button>
-                                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu"
-                                        aria-labelledby="button-basic">
-                                        <li role="menuitem">
-                                            <a class="dropdown-item" title="Select at least one person to perform this action" data-toggle="tooltip" data-placement="top" style="cursor: pointer">
-                                                Remove
-                                            </a>
-                                        </li>
-                                        <li role="menuitem">
-                                            <a class="dropdown-item" title="Select at least one person to perform this action" data-toggle="tooltip" data-placement="top" style="cursor: pointer">
-                                                Ban
-                                            </a>
-                                        </li>
-                                        <li role="menuitem" *ngIf="false">
-                                            <a class="dropdown-item" title="Select at least one person to perform this action" data-toggle="tooltip" data-placement="top" style="cursor: pointer">
-                                                Unban
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <form id="filter">
+                                    <input class="p-2" placeholder="Tiềm kiếm" type="text" [(ngModel)]="searchKey" name="searchKeyInput">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -47,49 +40,42 @@
             <div class="ui-block">
                 <div class="ui-block-content">
                     <div class="row">
-                        <div class="col col-12">
+                        <div class="col col-12">    
                             <ul class="widget w-friend-pages notification-list friend-requests">
-                                <li class="inline-items" *ngFor="let model of users">
-
+                                <li class="pl-0" *ngFor="let model of users | filter:searchKey ; trackBy: trackByIndex">
                                     <div class="author-thumb">
                                         <img [src]="model?.pictureUrl" width="36" height="36" alt="{{ model?.name }}">
                                     </div>
                                     <div class="notification-event">
-                                        <a class="h6 notification-friend">{{ model?.name }}</a>
+                                        <a [routerLink]="['/app/user/', model.userName]" class="h6 notification-friend">{{ model?.name | filter }}</a>
                                     </div>
                                     <span class="f-right">
-                                        <!--<button class="btn btn-normal f-right mx-1" (click)="block()"><i class="fas fa-ban"></i> Block </button>-->
+                                        <button class="btn btn-normal f-right mx-1" (click)="remove(model)"><i class="fas fa-ban"></i> Xóa </button>
                                     </span>
                                 </li>
                             </ul>
                             <div materialInput bsEl></div>
                         </div>
+                        <div class="col col-12" *ngIf="likes?.length < 1 && selectedValue == 0">
+                            <div class="no-friends">
+                                <svg class="olymp-happy-faces-icon">
+                                    <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use>
+                                </svg>
+                                <span>Chưa có lượt thích nào</span>
+                            </div>
+                        </div>
+                        <div class="col col-12" *ngIf="followers?.length < 1 && selectedValue == 1">
+                            <div class="no-friends">
+                                <svg class="olymp-happy-faces-icon">
+                                    <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-happy-faces-icon"></use>
+                                </svg>
+                                <span>Chưa có lượt theo dõi nào</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 pl-0">
-            <div class="ui-block">
-                <div class="your-profile">
-                    <div class="ui-block-title ">
-                        <span class="text-bold title">Manage Page</span>
-                    </div>
-
-                    <ul class="your-profile-menu">
-                        <li>
-                            <a [routerLink]="['../']">Page Infor</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['./']">Members</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['../role']">Page Roles</a>
-                        </li>
-                    </ul>
-
-
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>

@@ -14,11 +14,11 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'pages', pathMatch: 'full' },
             { path: 'pages', component: AdminPagesComponent },
-            { path: ':userName/setting', component: PageSettingComponent, resolve: { activePage: ActivePageResolver } },
-            { path: ':userName/setting/member', component: PageSettingMemberComponent, resolve: { activePage: ActivePageResolver } },
-            { path: ':userName/setting/role', component: PageSettingRoleComponent, resolve: { activePage: ActivePageResolver } }
         ]
-    }
+    },
+    { path: ':userName/setting', component: PageSettingComponent, resolve: { activePage: ActivePageResolver } },
+    { path: ':userName/setting/member', component: PageSettingMemberComponent, resolve: { activePage: ActivePageResolver } },
+    { path: ':userName/setting/role', component: PageSettingRoleComponent, resolve: { activePage: ActivePageResolver } }
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@
         <div #modalContent class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title">
-                    <span>Create category</span>
+                    <span>Tạo Hạng Mục</span>
                 </h6>
                 <button type="button" class="close" (click)="close()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -13,7 +13,7 @@
                 <div class="row clearfix" style="margin-top:10px;">
                     <div class="col-sm-12">
                         <div class="form-group  small-input">
-                            <label class="control-label">Code</label>
+                            <label class="control-label">Mã</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.code">
                         </div>   
                         <div class="form-group  small-input">
@@ -21,7 +21,7 @@
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.name">
                         </div>
                         <div class="form-group  small-input">
-                            <label class="control-label">Display Order</label>
+                            <label class="control-label">Tên khác</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.listOrder">
                         </div>
                     </div>
@@ -29,10 +29,11 @@
             </div>
             <div class="modal-footer">
                 <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
-                    {{l("Cancel")}}
+                    <!--{{l("Cancel")}}-->
+                    {{l("Hủy bỏ")}}
                 </button>
                 <button (click)="save()" class="btn btn-primary waves-effect">
-                    {{l("Save")}}
+                    {{l("Lưu")}}
                 </button>
             </div>
         </div>

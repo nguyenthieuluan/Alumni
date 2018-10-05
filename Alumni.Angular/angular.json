@@ -247,6 +247,7 @@
               "node_modules/node-waves/dist/waves.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "node_modules/ng-pick-datetime/assets/style/picker.min.css",
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
               "client-app/theme/css/bootstrap-reboot.css",
               "client-app/theme/css/bootstrap.css",
               "client-app/theme/css/bootstrap-grid.css",

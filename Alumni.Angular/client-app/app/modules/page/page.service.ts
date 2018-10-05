@@ -44,7 +44,7 @@ export class ActivePageResolver implements Resolve<PageDetailDto> {
         if (!model.userName) {
             return this.remotePageService.getHomePage();
         } else {
-            console.log(this.remotePageService.getPage(model));
+            return this.remotePageService.getPage(model);
         }
     }
 }

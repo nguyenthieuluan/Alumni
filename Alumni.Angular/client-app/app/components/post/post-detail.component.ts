@@ -55,7 +55,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
             this.isShowEdit = true;
         
         this._userPageService.getUserPagesDto().subscribe(r=> {
-            if (r.pages.length && r.pages.map(p=>p.id).indexOf(this._pageService.activePage.id) >= 0)
+            if (r.pages.length > 0 && this._pageService.activePage && r.pages.map(p=>p.id).indexOf(this._pageService.activePage.id) >= 0)
                 this.isShowEdit = true;     
         });
             

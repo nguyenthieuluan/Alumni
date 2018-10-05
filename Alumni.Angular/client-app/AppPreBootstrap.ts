@@ -55,8 +55,8 @@ export class AppPreBootstrap {
 
             abp.clock.provider = this.getCurrentClockProvider(result.clock.provider);
 
-            moment.locale(abp.localization.currentLanguage.name);
-
+            //moment.locale(abp.localization.currentLanguage.name);
+            moment.locale('vi');
             if (abp.clock.provider.supportsMultipleTimezone) {
                 moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
             }

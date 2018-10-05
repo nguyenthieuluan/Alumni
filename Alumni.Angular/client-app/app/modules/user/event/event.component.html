@@ -1,73 +1,130 @@
 <div class="container">
     <div class="row">
         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
-               
-            
             <div class="ui-block">
-
                 <div class="ui-block-title ui-block-title-small">
-                    <h6 class="title">UPCOMING EVENTS 2016</h6>
-                    <button class="btn btn-normal f-right" data-toggle="modal" data-target="#create-event">
+                    <h6 class="title">SỰ KIÊN SẮP DIỄN RA 2016</h6>
+                    <button class="btn btn-normal f-right" type="button" (click)="show()">
                         <i class="fa fa-plus"></i>
-                        Create Event
+                        Tạo Sự Kiện
                     </button>
                 </div>
 
-                <div class="modal" id="create-event" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog window-popup create-event" role="document">
-                        <div class="modal-content">
-
+                <!-- modal -->
+                <div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createUserModal"
+                    aria-hidden="true" [config]="{backdrop: 'static'}">
+                    <div class="modal-dialog">
+                        <div #modalContent class="modal-content w-100">
                             <div class="modal-header">
-                                <h6 class="title">Create an Event</h6>
+                                <h6 class="modal-title">
+                                    <span>Tạo sự kiện</span>
+                                </h6>
+                                <button (click)="close()" type="button" class="close" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-
                             <div class="modal-body">
-                                <div class="form-group label-floating">
-                                    <select class="">
-                                        <option value="MA">Private Event</option>
-                                        <option value="FE">Personal Event</option>
-                                    </select>
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12">
+                                            <div class="ui-block w-intro">
+                                                <div class="event-item pb-0">
+                                                    <div class="event-item-picture">
+                                                        <img mediaPreview [src]="event.eventPhoto || ''" [media]="mediaFile"
+                                                            (onRead)="setImgData($event)">
+                                                    </div>
+
+                                                    <div class="event-item-addtional border-bottom-0">
+
+                                                        <a href="javascript:void(0);" class="btn btn-normal m-0"
+                                                            data-toggle="tooltip" data-placement="top" tooltip="Best fit size: 489x256 (px)">
+                                                            <label class="upload-button" style="margin-bottom:0">
+                                                                <input type="file" ngFileSelect [options]="options"
+                                                                    (uploadOutput)="onUploadOutput($event)"
+                                                                    [uploadInput]="uploadInput" style="display:none">
+                                                                <i class="far fa-image"></i> Tải ảnh lên
+                                                            </label>
+                                                        </a>
+
+                                                        <a href="javascript:void(0);" class="btn btn-normal m-0 ml-3"
+                                                            data-toggle="tooltip" data-placement="top" tooltip="Remove picture"
+                                                            (click)="removeFile()">
+                                                            <label class="upload-button" style="margin-bottom:0">
+
+                                                                <i class="far fa-times-circle"></i> Xóa ảnh
+                                                            </label>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="ui-block-content">
+
+                                                    <div class="row">
+                                                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                            <div class="form-group with-icon  small-input">
+                                                                <label class="control-label">Tiêu đề</label>
+                                                                <input class="form-control" placeholder="" type="text">
+                                                                <i class="far fa-edit" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="form-group  small-input">
+                                                                <label class="control-label">Thời gian bắt đầu</label>
+                                                                <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+                                                                <owl-date-time #dt></owl-date-time>
+                                                                <span class="input-group-addon">
+                                                                    <i class="far fa-calendar" aria-hidden="true"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="form-group  small-input">
+                                                                <label class="control-label">Thới gian kết thúc</label>
+                                                                <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
+                                                                <owl-date-time #dt2></owl-date-time>
+                                                                <span class="input-group-addon">
+                                                                    <i class="far fa-calendar" aria-hidden="true"></i>
+                                                                </span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                                            <div class="form-group with-icon  small-input">
+                                                                <label class="control-label">Địa điểm</label>
+                                                                <input class="form-control" placeholder="" type="text">
+                                                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                            <div class="form-group  small-input">
+                                                                <label class="control-label">Mô tả</label>
+                                                                <textarea class="form-control" placeholder=""></textarea>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                            <button class="btn btn-primary f-right" (click)="save()">Tạo
+                                                                sự kiện</button>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div materialInput bsEl></div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Event Host</label>
-                                    <input class="form-control" placeholder="" value="terinarian" type="text">
-                                </div>
-
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Event Name</label>
-                                    <input class="form-control" placeholder="" value="Take Querty to the Veterinarian" type="text">
-                                </div>
-
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Event Location</label>
-                                    <input class="form-control" placeholder="" value="" type="text">
-                                </div>
-
-                                <div class="form-group date-time-picker label-floating">
-                                    <label class="control-label">Event Date</label>
-                                    <input class="form-control" type="date" name="eventDate">
-                                </div>
-
-                                <div class="form-group date-time-picker label-floating">
-                                    <label class="control-label">Event Time</label>
-                                    <input class="form-control" type="time" name="eventTime">
-                                </div>
-
-
-                                <div class="form-group label-floating">
-                                    <label class="control-label">Event Description</label>
-                                    <textarea class="form-control" placeholder="">I need to take Querty for a check up and ask the doctor if he needs a new tank.</textarea>
-                                </div>
-
-                                <button class="btn btn-breez btn-lg full-width">Create Event</button>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
 
                 <table class="event-item-table">
                     <tbody>
@@ -76,7 +133,9 @@
                             <td class="upcoming">
                                 <div class="date-event">
 
-                                    <svg class="olymp-small-calendar-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
+                                    <svg class="olymp-small-calendar-icon">
+                                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
+                                    </svg>
 
                                     <span class="day">28</span>
                                     <span class="month">August</span>
@@ -88,18 +147,22 @@
                             <img src="theme/img/avatar66-sm.jpg" alt="author">
                         </div>-->
                                     <div class="author-date">
-                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> hosted by <a href="#" class="author-name h6">Admin</a>
+                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> được tổ chức bởi <a
+                                            href="#" class="author-name h6">Admin</a>
                                         <time class="published" datetime="2017-03-24T18:18">Saturday at 9:00pm</time>
                                     </div>
                                 </div>
                                 <div class="location">
                                     <div class="place inline-items">
-                                        <svg class="olymp-add-a-place-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+                                        <svg class="olymp-add-a-place-icon">
+                                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                        </svg>
                                         <span>Gotham Bar</span>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a great time with us! Entry: $12</p>
+                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a
+                                        great time with us! Entry: $12</p>
                                 </div>
                             </td>
                             <td class="picture">
@@ -112,7 +175,9 @@
                             <td class="upcoming">
                                 <div class="date-event">
 
-                                    <svg class="olymp-small-calendar-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
+                                    <svg class="olymp-small-calendar-icon">
+                                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
+                                    </svg>
 
                                     <span class="day">28</span>
                                     <span class="month">August</span>
@@ -124,18 +189,22 @@
                             <img src="theme/img/avatar66-sm.jpg" alt="author">
                         </div>-->
                                     <div class="author-date">
-                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> hosted by <a href="#" class="author-name h6">Admin</a>
+                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> được tổ chức bởi <a
+                                            href="#" class="author-name h6">Admin</a>
                                         <time class="published" datetime="2017-03-24T18:18">Saturday at 9:00pm</time>
                                     </div>
                                 </div>
                                 <div class="location">
                                     <div class="place inline-items">
-                                        <svg class="olymp-add-a-place-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+                                        <svg class="olymp-add-a-place-icon">
+                                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                        </svg>
                                         <span>Gotham Bar</span>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a great time with us! Entry: $12</p>
+                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a
+                                        great time with us! Entry: $12</p>
                                 </div>
                             </td>
                             <td class="picture">
@@ -148,7 +217,9 @@
                             <td class="upcoming">
                                 <div class="date-event">
 
-                                    <svg class="olymp-small-calendar-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
+                                    <svg class="olymp-small-calendar-icon">
+                                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
+                                    </svg>
 
                                     <span class="day">28</span>
                                     <span class="month">August</span>
@@ -160,18 +231,22 @@
                             <img src="theme/img/avatar66-sm.jpg" alt="author">
                         </div>-->
                                     <div class="author-date">
-                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> hosted by <a href="#" class="author-name h6">Admin</a>
+                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> được tổ chức bởi <a
+                                            href="#" class="author-name h6">Admin</a>
                                         <time class="published" datetime="2017-03-24T18:18">Saturday at 9:00pm</time>
                                     </div>
                                 </div>
                                 <div class="location">
                                     <div class="place inline-items">
-                                        <svg class="olymp-add-a-place-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+                                        <svg class="olymp-add-a-place-icon">
+                                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                        </svg>
                                         <span>Gotham Bar</span>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a great time with us! Entry: $12</p>
+                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a
+                                        great time with us! Entry: $12</p>
                                 </div>
                             </td>
                             <td class="picture">
@@ -184,7 +259,9 @@
                             <td class="upcoming">
                                 <div class="date-event">
 
-                                    <svg class="olymp-small-calendar-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use></svg>
+                                    <svg class="olymp-small-calendar-icon">
+                                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-small-calendar-icon"></use>
+                                    </svg>
 
                                     <span class="day">28</span>
                                     <span class="month">August</span>
@@ -196,18 +273,22 @@
                             <img src="theme/img/avatar66-sm.jpg" alt="author">
                         </div>-->
                                     <div class="author-date">
-                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> hosted by <a href="#" class="author-name h6">Admin</a>
+                                        <a href="#" class="author-name h6">Green Goo in Gotham</a> được tổ chức bởi <a
+                                            href="#" class="author-name h6">Admin</a>
                                         <time class="published" datetime="2017-03-24T18:18">Saturday at 9:00pm</time>
                                     </div>
                                 </div>
                                 <div class="location">
                                     <div class="place inline-items">
-                                        <svg class="olymp-add-a-place-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use></svg>
+                                        <svg class="olymp-add-a-place-icon">
+                                            <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-add-a-place-icon"></use>
+                                        </svg>
                                         <span>Gotham Bar</span>
                                     </div>
                                 </div>
                                 <div class="description">
-                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a great time with us! Entry: $12</p>
+                                    <p class="description">We’ll be playing in the Gotham Bar in May. Come and have a
+                                        great time with us! Entry: $12</p>
                                 </div>
                             </td>
                             <td class="picture">
@@ -219,12 +300,14 @@
                 </table>
 
                 <div class="ui-block-title ui-block-title-small">
-                    <h6 class="title">PAST EVENTS</h6>
+                    <h6 class="title">SỰ KIỆN ĐÃ QUA</h6>
                 </div>
 
                 <div class="no-past-events">
-                    <svg class="olymp-month-calendar-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use></svg>
-                    <span>There are no past events <br>to show</span>
+                    <svg class="olymp-month-calendar-icon">
+                        <use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-month-calendar-icon"></use>
+                    </svg>
+                    <span>Không có sự kiện nào <br>to show</span>
                 </div>
             </div>
         </div>

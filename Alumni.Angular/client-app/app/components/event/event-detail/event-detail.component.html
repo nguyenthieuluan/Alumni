@@ -7,31 +7,31 @@
             <div class="ei-date"><span class="ei-date-m">{{event.startDate | amDateFormat:'MMM' }}</span>
                 <span class="ei-date-d">{{event.startDate | amDateFormat:'DD' }}</span></div>
             <div class="ei-title">{{event.eventName}}
-                <div class="ei-desc">Public · Hosted by <user-link [user]="event.user" [page]="event.page"></user-link>
+                <div class="ei-desc">Công khai · Tổ chức bởi <user-link [user]="event.user" [page]="event.page"></user-link>
                 </div>
             </div>
         </div>
         <div class="event-item-addtional">
             <div class="btn-group  m-0" dropdown>
                 <button class="btn btn-normal" (click)="interest()" *ngIf="!event.isInterested">
-                    <i class="fas fa-star"></i> Interested
+                    <i class="fas fa-star"></i>Đã Quan tâm
                 </button>
                 <button id="button-basic" *ngIf="event.isInterested" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
                     aria-controls="dropdown-basic">
-                    <i class="fas fa-check"></i> Interested <i class="fas fa-caret-down"></i>
+                    <i class="fas fa-check"></i>Đã Quan tâm <i class="fas fa-caret-down"></i>
                 </button>
                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
                     <li role="menuitem"><a class="dropdown-item" (click)="notInterest()" style="cursor: pointer" *ngIf="!event.isHost">Not
-                            Interested</a></li>
+                            Đã quan tâm</a></li>
                 </ul>
             </div>
             <div class="btn-group  ml-2" dropdown>
                 <button class="btn btn-normal ml-2" (click)="join()" *ngIf="!event.isJoined">
-                    <i class="fas fa-walking"></i> Going
+                    <i class="fas fa-walking"></i> Sẽ tham gia
                 </button>
                 <button id="button-basic" *ngIf="event.isJoined" dropdownToggle type="button" class="btn btn-normal dropdown-toggle"
                     aria-controls="dropdown-basic">
-                    <i class="fas fa-check"></i> Attended <i class="fas fa-caret-down"></i>
+                    <i class="fas fa-check"></i> Đã tham gia <i class="fas fa-caret-down"></i>
                 </button>
                 <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
                     <li role="menuitem"><a class="dropdown-item" (click)="notJoin()" style="cursor: pointer" *ngIf="!event.isHost">Cancel</a></li>
@@ -40,19 +40,19 @@
         </div>
         <div class="event-item-info ">
             <ul class="widget item-block">
-                <li><span class="title">When:</span><span class="text">{{formatEventDate(event.startDate,
+                <li><span class="title">Thời gian:</span><span class="text">{{formatEventDate(event.startDate,
                         event.endDate)}}</span>
                 </li>
-                <li><span class="title">Where:</span><span class="text"> {{event.location}} </span></li>
-                <li><span class="title">Hosted by:</span><span class="text">
+                <li><span class="title">Địa điểm:</span><span class="text"> {{event.location}} </span></li>
+                <li><span class="title">Tô chức bởi:</span><span class="text">
                         <user-link [user]="event.user" [page]="event.page"></user-link>
                     </span></li>
-                <li><span class="title">Description:</span><span class="text" [innerHTML]="event.description | n2br">
+                <li><span class="title">Mô tả:</span><span class="text" [innerHTML]="event.description | n2br">
                     </span></li>
             </ul>
         </div>
         <ul class="comments-list">
-            <h6>Comments</h6>
+            <h6>Bình luận</h6>
             <event-comment-detail *ngFor="let item of event.comments" [event]="event" [comment]="item"></event-comment-detail>
         </ul>
         <event-comment-editor [event]="event" (onCommentAdded)="addParentComment($event)" *ngIf="appSession.user"></event-comment-editor>

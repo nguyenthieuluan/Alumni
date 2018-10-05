@@ -9,10 +9,18 @@ import { Subject } from "rxjs";
 export class PageService {
     private _activePage: PageDetailDto;
     private _observableActivePage = new Subject<PageDetailDto>();
-
+    constructor(
+        private remotePageService: PageServiceProxy
+    ) {}
     get activePage() {
         return this._activePage;
     }
+    getPageAdmins(input) {
+        return this.remotePageService.getPageUserLikes(input);
+    };
+    getPageEditors(input) {
+        return this.remotePageService.getPageFollowers(input);
+    };
     setActivePage(page: PageDetailDto) {
         this._activePage = page;
         this._observableActivePage.next(page);

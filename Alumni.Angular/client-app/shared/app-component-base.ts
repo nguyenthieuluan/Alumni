@@ -67,14 +67,15 @@ export abstract class AppComponentBase {
     }
   }
   formatEventDate(start: Moment, end: Moment) {
+    let at = ' lúc ';
     if (!start) {
       return "";
     }
     if (!end) {
       return (
         start.format("ddd") +
-        " at " +
-        start.format("HH:mma") +
+        at +
+        start.format("HH:mm") +
         " - " +
         start.fromNow()
       );
@@ -84,24 +85,24 @@ export abstract class AppComponentBase {
     if (sameDate) {
       return (
         start.format("ddd") +
-        " at " +
-        start.format("HH:mma") +
+         at +
+        start.format("HH:mm") +
         " - " +
-        end.format("HH:mma") +
+        end.format("HH:mm") +
         " - " +
         end.fromNow()
       );
     }
     return (
       start.format("ddd") +
-      " at " +
-      start.format("HH:mma") +
+       at  +
+      start.format("HH:mm") +
       " (" +
       start.format("DD/MM") +
       ") - " +
       end.format("ddd") +
-      " at " +
-      end.format("HH:mma") +
+      at  +
+      end.format("HH:mm") +
       " (" +
       end.format("DD/MM") +
       ") - " +

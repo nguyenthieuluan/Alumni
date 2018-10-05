@@ -1,6 +1,6 @@
 ﻿<div class="ui-block">
     <div class="ui-block-title">
-        <h6 class="title">Category settings</h6>
+        <h6 class="title">Hạng Mục</h6>
     </div>
     <div class="ui-block-content">
 
@@ -31,7 +31,7 @@
             </div>
             <div class="col col-lg-12 col-md-12 col-sm-12 col-12" *ngIf="page.categories.length <= 5">
 
-                <button class="btn btn-primary f-right" (click)="createCategory()">Create category</button>
+                <button class="btn btn-primary f-right" (click)="createCategory()">Thêm hạng mục</button>
             </div>
 
 
@@ -46,7 +46,7 @@
     <div class="modal-dialog modal-sm" style="flex-direction:column">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 id="dialog-static-name" class="modal-title pull-left">Create category</h6>
+                <h6 id="dialog-static-name" class="modal-title pull-left">Tạo Hạng Mục</h6>
                 <button type="button" class="close pull-right" aria-label="Close" (click)="editModal.hide()">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -55,15 +55,15 @@
                 <div class="row clearfix" style="margin-top:10px;">
                     <div class="col-sm-12">
                         <div class="form-group  small-input">
-                            <label class="control-label">Code</label>
+                            <label class="control-label">STT</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.code">
                         </div>
                         <div class="form-group  small-input">
-                            <label class="control-label">Name</label>
+                            <label class="control-label">Mã</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.name">
                         </div>
                         <div class="form-group  small-input">
-                            <label class="control-label">Display Order</label>
+                            <label class="control-label">Tên</label>
                             <input class="form-control" placeholder="" type="text" [(ngModel)]="pageCategory.listOrder">
                         </div>
                     </div>
@@ -72,10 +72,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" (click)="close()">
-                    {{l("Cancel")}}
+                    <!--{{l("Cancel")}}-->
+                    {{l("Hủy")}}
                 </button>
                 <button (click)="save()" class="btn btn-primary">
-                    {{l("Save")}}
+                    {{l("Lưu")}}
                 </button>
             </div>
         </div>

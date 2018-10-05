@@ -1,9 +1,10 @@
 
-import { Component,Injector, OnInit } from "@angular/core";
+import { Component, Injector, OnInit } from "@angular/core";
 import { AppComponentBase } from "@shared/app-component-base";
 import { PageDetailDto, UserProfileDto, PagedPageRequest, PageServiceProxy } from "@shared/service-proxies/service-proxies";
 import { PageService } from "@app/modules/page/page.service";
 import {ActivatedRoute, Router} from "@node_modules/@angular/router";
+
 @Component({
     selector: '',
     templateUrl: './page-setting-member.component.html',
@@ -11,8 +12,10 @@ import {ActivatedRoute, Router} from "@node_modules/@angular/router";
 export class PageSettingMemberComponent  extends AppComponentBase implements OnInit {
     page: PageDetailDto;
     users: UserProfileDto[];
-    admins: UserProfileDto[] = [];
-    editors: UserProfileDto[] = [];
+    likes: UserProfileDto[];
+    followers: UserProfileDto[];
+    selectedValue = 0;
+    searchKey: string;
     constructor(
         injector: Injector,
         private pageService: PageService,
@@ -22,17 +25,30 @@ export class PageSettingMemberComponent  extends AppComponentBase implements OnI
     ) {
         super(injector);
     }
-
     ngOnInit(): void {
         this.reload();
-        this.users = [];
         const input = new PagedPageRequest();
         input.maxResultCount = 10;
         input.pageId = this.page.id;
         input.pageUserName = this.page.userName;
         this.remotePageService.getPageFollowers(input).subscribe(r => {
-        this.users = r.items;
+            this.followers = r.items;
         });
+        this.remotePageService.getPageUserLikes(input).subscribe(r => {
+           this.likes = r.items;
+           this.users = this.likes;
+        });
+    }
+    
+    //list selected change
+    filterChanged(value) {
+        if (value == 0) {
+            this.users = this.likes;
+            this.selectedValue = 0;
+        } else {
+            this.users = this.followers;
+            this.selectedValue = 1;
+        }
     }
     reload() {
         this.activeRoute.data.subscribe(d => {
@@ -45,10 +61,16 @@ export class PageSettingMemberComponent  extends AppComponentBase implements OnI
             this.pageService.onSetPage(p => (this.page = p));
         });
     }
-    block() {
-        alert("block");
+    
+    //remove member
+    remove(model) {
+        if (this.selectedValue == 0) {
+            this.likes.splice(this.likes.indexOf(model), 1);
+        } else {
+            this.followers.splice(this.followers.indexOf(model), 1);
+        }
     }
-    edit() {
-        alert("edit")
+    trackByIndex(index: number, obj: any): any {
+        return index;
     }
 }

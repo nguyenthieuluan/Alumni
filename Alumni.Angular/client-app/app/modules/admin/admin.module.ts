@@ -10,6 +10,10 @@ import { PageSettingMemberComponent } from "@app/modules/admin/page/page-setting
 import { PageService } from "@app/modules/admin/page/page.service";
 import {UserService} from "@app/modules/admin/user.service";
 import {PageSettingRoleComponent} from "@app/modules/admin/page/page-setting-role.component";
+import {NgbModule} from "@node_modules/@ng-bootstrap/ng-bootstrap";
+import {FilterPipe} from "@app/modules/admin/filter.pipe";
+import {NgSelectModule} from "@node_modules/@ng-select/ng-select";
+import {FormsModule} from "@node_modules/@angular/forms";
 
 @NgModule({
     declarations: [
@@ -19,10 +23,14 @@ import {PageSettingRoleComponent} from "@app/modules/admin/page/page-setting-rol
         PageSettingComponent,
         PageSettingMemberComponent,
         PageSettingRoleComponent,
+        FilterPipe
     ],
     imports: [
         SharedModule,
-        AdminRoutingModule
+        AdminRoutingModule,
+        NgbModule,
+        NgSelectModule,
+        FormsModule
     ],
     providers: [PageService, UserService],
 })

@@ -3,12 +3,12 @@
         <img [src]="model?.pictureUrl" width="36" height="36" alt="{{ model?.name }}">
     </div>
     <div class="notification-event">
-        <a class="h6 notification-friend">{{ model?.name }}</a>
+        <a [attr.href]="'/app/user/' + model.userName" class="h6 notification-friend">{{ model?.name }}</a>
         <span class="chat-message-item">{{ model.studentProfile?.userName }}</span>
     </div>
     <span class="f-right">
-        <button *ngIf="isDeline" class="btn btn-normal f-right mx-1" (click)="declineFriend()"><i class="fas fa-user-secret"></i> Decline </button>
-        <button *ngIf="isAccept" class="btn btn-normal f-right mx-1" (click)="acceptFriend()"><i class="fas fa-user-plus"></i> Accept </button>
-        <button *ngIf="isUnFriend" class="btn btn-normal f-right mx-1" (click)="unFriend()"><i class="fas fa-user-secret"></i> Unfriend </button>
+        <button *ngIf="isDeline" class="btn btn-normal f-right mx-1" (click)="declineFriend()"><i class="fas fa-user-secret"></i> Từ chối </button>
+        <button *ngIf="isAccept" class="btn btn-normal f-right mx-1" (click)="acceptFriend()"><i class="fas fa-user-plus"></i> Chấp nhận </button>
+        <button *ngIf="isUnFriend" class="btn btn-normal f-right mx-1" (click)="unFriend()"><i class="fas fa-user-secret"></i> Hủy kết bạn</button>
     </span>
 </li>

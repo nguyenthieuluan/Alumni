@@ -14,7 +14,7 @@
                             <label class="upload-button" style="margin-bottom:0">
                                 <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)"
                                     [uploadInput]="uploadInput" style="display:none">
-                                <i class="far fa-image"></i> Upload Picture
+                                <i class="far fa-image"></i> Tải ảnh lên
                             </label>
                         </a>
 
@@ -22,7 +22,7 @@
                             data-placement="top" tooltip="Remove picture" (click)="removeFile()">
                             <label class="upload-button" style="margin-bottom:0">
 
-                                <i class="far fa-times-circle"></i> Remove Picture
+                                <i class="far fa-times-circle"></i> Xóa ảnh
                             </label>
                         </a>
                     </div>
@@ -35,14 +35,14 @@
                         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                             <div class="form-group with-icon  small-input">
-                                <label class="control-label">Title</label>
+                                <label class="control-label">Tiêu đề</label>
                                 <input class="form-control" placeholder="" type="text" [(ngModel)]="event.eventName">
                                 <i class="far fa-edit" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group  small-input">
-                                <label class="control-label">Start Date</label>
+                                <label class="control-label">Thời gian bắt đầu</label>
                                 <input [(ngModel)]="event.startDate" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
                                 <owl-date-time #dt></owl-date-time>
                                 <span class="input-group-addon">
@@ -56,7 +56,7 @@
 
                         <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                             <div class="form-group  small-input">
-                                <label class="control-label">End Date</label>
+                                <label class="control-label">Thới gian kết thúc</label>
                                 <input [(ngModel)]="event.endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
                                 <owl-date-time #dt2></owl-date-time>
                                 <span class="input-group-addon">
@@ -69,26 +69,22 @@
                         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                             <div class="form-group with-icon  small-input">
-                                <label class="control-label">Venue</label>
+                                <label class="control-label">Địa điểm</label>
                                 <input class="form-control" placeholder="" type="text" [(ngModel)]="event.location">
                                 <i class="fa fa-location-arrow" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="form-group  small-input">
-                                <label class="control-label">Description</label>
+                                <label class="control-label">Mô tả</label>
                                 <textarea class="form-control" placeholder="" [(ngModel)]="event.description"></textarea>
                             </div>
 
                         </div>
                         <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
-                            <button class="btn btn-primary f-right" (click)="save()">Update</button>
+                            <button class="btn btn-primary f-right" (click)="save()">Tạo sự kiện</button>
                         </div>
-
-
                     </div>
-
-
                 </div>
             </div>
 
@@ -98,17 +94,14 @@
             <div class="ui-block">
                 <div class="your-profile">
                     <div class="ui-block-title ">
-                        <span class="text-bold title">Manage Event</span>
+                        <span class="text-bold title">Quản Lý Sự Kiện</span>
                     </div>
 
                     <ul class="your-profile-menu">
                         <li>
-                            <a [routerLink]="['..','f034e7e123e744278a0df7ce68908e8b']">Event Information</a>
+                            <a [routerLink]="['..','f034e7e123e744278a0df7ce68908e8b']">Thông tin sự kiện</a>
                         </li>
-
                     </ul>
-
-
                 </div>
             </div>
         </div>

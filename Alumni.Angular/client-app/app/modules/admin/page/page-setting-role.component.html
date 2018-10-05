@@ -1,53 +1,81 @@
-<div class="container">
+<div class="container mt-3">
     <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 pl-0 pr-0">
+                    <div class="ui-block">
+                        <div class="widget w-list ui-block-content">
+                            <h6 class="text-bold title">Quản Lý Trang</h6>
+                            <ul>
+                                <li>
+                                    <a [routerLink]="['../']">Thông tin trang</a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['../member']">Thành viên</a>
+                                </li>
+                                <li>
+                                    <a [routerLink]="['./']">Vai trò trên trang</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
         <div class="col-xl-9 col-lg-9 col-md-12">
             <div class="container">
                 <div class="row">
                     <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="ui-block">
-
                             <div class="ui-block-title">
-                                <h6 class="title">Assign a New Page Role</h6>
+                                <h6 class="title">Chỉ định một vai trò mới trên trang</h6>
                             </div>
-
                             <div class="ui-block-content">
                                 <div class="row">
                                     <div class="col col-12">
                                         <div class="d-flex">
-                                            <input class="p-2 w-100" type="text" placeholder="Type a name or email"/>
-                                            <select class="p-2" style="width: auto">
-                                                <option>Admin</option>
-                                                <option>Editor</option>
+                                            
+                                            <ng-select class="mr-auto w-100 h6 p-0" [items]="users" [(ngModel)]="selectedUser" bindLabel="name">
+                                                <ng-template ng-option-tmp let-item="item">
+                                                        <div class="inline-items">
+                                                                <div class="">
+                                                                    <img [src]="item?.pictureUrl" width="30" height="30"
+                                                                         alt="{{ item?.name }}">
+                                                                </div>
+                                                                <div class="ml-2">
+                                                                    <a class="h6 notification-friend" style="color: #888da8">{{ item?.name }}</a>
+                                                                </div>
+                                                        </div>
+                                                    </ng-template>
+                                            </ng-select>
+                                            
+                                            <select class="p-2 mr-2" style="width: auto" [(ngModel)]="selectedValueAdd">
+                                                <option value="1">Quản trị viên</option>
+                                                <option value="2">Editor</option>
                                             </select>
-                                            <button class="btn btn-normal m-0">Add</button>
+                                            <button class="btn btn-normal m-0" (click)="addRole()">Thêm</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="ui-block">
                             <div class="ui-block-title">
-                                <h6 class="title">Existing Page Roles</h6>
+                                <h6 class="title">Vai trò hiện tại trên trang</h6>
                             </div>
-                            <div *ngIf="admins?.length > 0">
+                            <div *ngIf="pageAdmins?.length > 0">
                                 <div class="ui-block-title ui-block-title-small">
-                                    <h6 class="title">Admins</h6>
+                                    <h6 class="title">Quản trị viên</h6>
                                 </div>
                                 <ul class="widget w-friend-pages notification-list friend-requests">
-                                    <li class="inline-items" *ngFor="let model of admins; let i = index">
-
+                                    <li class="inline-items" *ngFor="let model of pageAdmins; let i = index">
                                         <div class="author-thumb">
                                             <img [src]="model?.pictureUrl" width="36" height="36"
                                                  alt="{{ model?.name }}">
                                         </div>
                                         <div class="notification-event">
-                                            <a class="h6 notification-friend">{{ model?.name }}</a>
-                                            <p>Admin</p>
+                                            <a [routerLink]="['/app/user/', model.userName]" class="h6 notification-friend">{{ model?.name }}</a>
+                                            <p>Quản trị viên</p>
                                         </div>
                                         <span class="f-right">
-                                            <button class="btn btn-normal f-right mx-1" type="button" (click)="edit(i)"> <i
-                                                class="fa fa-edit"></i> Edit </button>
+                                            <button class="btn btn-normal f-right mx-1" type="button" (click)="editAdmin(i)"> <i
+                                                class="fa fa-edit"></i> Chỉnh sửa </button>
                                         </span>
 
                                     </li>
@@ -60,7 +88,7 @@
                                     <div #modalContent class="modal-content w-100">
                                         <div class="modal-header">
                                             <h6 class="modal-title">
-                                                <span>Edit Roles</span>
+                                                <span>Chỉnh sửa vai trò trên trang</span>
                                             </h6>
                                             <button (click)="close()" type="button" class="close" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -69,43 +97,43 @@
                                         <div class="modal-body">
                                             <div class="news-feed-form">
                                                 <form (ngSubmit)="f.form.valid && submitPost()" #f="ngForm" novalidate>
-                                                    <div class="">
-                                                        <select class="p-2" style="width: auto">
-                                                            <option>Admin</option>
-                                                            <option>Editor</option>
+                                                    <div class="d-flex">
+                                                        <h6 class="my-auto w-25">Vai trò</h6>    
+                                                        <select class="p-2 w-75" [(ngModel)]="selectedValueEdit" name="selectedValue">
+                                                                <!--(change)="filterChanged($event.target.value)"-->
+                                                            <option value="0">Quản trị viên</option>
+                                                            <option value="1">Biên tập viên</option>
                                                         </select>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn btn-primary mr-auto" (click)="removeEdit(i)">Remove
+                                            <button class="btn btn btn-primary mr-auto" (click)="removeRole()">Hủy vai trò
                                             </button>
-                                            <button class="btn btn-normal" (click)="close()">Cancel</button>
-                                            <button class="btn btn-normal" (click)="saveEdit()">Save</button>
+                                            <button class="btn btn-normal" (click)="close()">Hủy bỏ</button>
+                                            <button class="btn btn-normal" (click)="saveEdit()">Lưu</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div *ngIf="editors?.length > 0">
+                            <div *ngIf="pageEditors?.length > 0">
                                 <div class="ui-block-title ui-block-title-small">
-                                    <h5 class="title">Editors</h5>
+                                    <h5 class="title">Biên tập viên</h5>
                                 </div>
                                 <ul class="widget w-friend-pages notification-list friend-requests">
-                                    <li class="inline-items" *ngFor="let model of editors">
-
+                                    <li class="inline-items" *ngFor="let model of pageEditors; let i = index">
                                         <div class="author-thumb">
                                             <img [src]="model?.pictureUrl" width="36" height="36"
                                                  alt="{{ model?.name }}">
                                         </div>
                                         <div class="notification-event">
                                             <a class="h6 notification-friend">{{ model?.name }}</a>
-                                            <p>Editor</p>
+                                            <p>Biên tập viên</p>
                                         </div>
                                         <span class="f-right">
-                                        <button class="btn btn-normal f-right mx-1"><i
-                                            class="fa fa-edit"></i> Edit </button>
+                                        <button class="btn btn-normal f-right mx-1" (click)="editEditor(i)"><i
+                                            class="fa fa-edit"></i> Chỉnh sửa </button>
                                     </span>
                                     </li>
                                 </ul>
@@ -115,30 +143,7 @@
                 </div>
             </div>
             <div materialInput bsEl></div>
-
         </div>
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 pl-0">
-            <div class="ui-block">
-                <div class="your-profile">
-                    <div class="ui-block-title ">
-                        <span class="text-bold title">Manage Page</span>
-                    </div>
-
-                    <ul class="your-profile-menu">
-                        <li>
-                            <a [routerLink]="['../']">Page Infor</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['../member']">Members</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['./']">Page Roles</a>
-                        </li>
-                    </ul>
-
-
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
