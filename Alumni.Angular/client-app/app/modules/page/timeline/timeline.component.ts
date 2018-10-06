@@ -28,7 +28,7 @@ export class PageTimelineComponent implements OnInit {
     this.posts = [];
     
     this.isLoading = false;
-    this.totalLoaded = false; console.log(this.pageService.activePage);
+    this.totalLoaded = false;
     this.refresh(this.pageService.activePage);
 
     this.pageService.onSetPage(p => this.refresh(p));
