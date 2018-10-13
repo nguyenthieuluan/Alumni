@@ -67,7 +67,7 @@ export class PageSettingCategoryComponent extends AppComponentBase
                     this.editModal.hide();
                     abp.ui.clearBusy();
                     this.notify.success(
-                        "Your information is successfuly saved.",
+                        "Lưu thành công.",
                         "",
                         { positionClass: "toast-top-right" }
                     );
@@ -81,7 +81,7 @@ export class PageSettingCategoryComponent extends AppComponentBase
                     this.editModal.hide();
                     abp.ui.clearBusy();
                     this.notify.success(
-                        "Your information is successfuly saved.",
+                        "Lưu thành công.",
                         "",
                         { positionClass: "toast-top-right" }
                     );

@@ -31,7 +31,13 @@ export class UserWidgetFriendsComponent extends AppComponentBase implements OnIn
     }
 
     ngOnInit(): void {
+        if(this._userService.activeUserProfile) {
             this.getFriendList(this._userService.activeUserProfile);
+        } else {
+            this._userProfileService.getCurrentProfile().subscribe(r => {
+                this.getFriendList(r);
+            });
+        }
     }
 
     getFriendList(p: UserProfileDto) {

@@ -2,9 +2,9 @@
     <div class="col-3 col-xl-3 col-lg-3 col-md-3 col-sm-3">
         <div class="mt-3">
             <img class="d-block mx-auto" id="avatar" alt="avatar" [src]="page.pictureUrl || ''">
-            <a class="h3 page-name-header" [routerLink]="['/app/page',page.userName]">{{page.name}}
+            <a class="h3 page-name-header" [routerLink]="['/app/page',page.userName]">{{currentPage.name}}
                 <span *ngIf="page.isVerified"><i class="fa fa-check-circle c-twitter"></i></span></a>
-            <div class="country text-center">@{{page.userName}}</div>
+            <div class="country text-center">@{{currentPage.userName}}</div>
         </div>
     </div>
 

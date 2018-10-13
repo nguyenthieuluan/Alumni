@@ -25,14 +25,15 @@ export class UserWidgetMenuComponent extends AppComponentBase
   implements OnInit {
   @Input()
   user: UserProfileDto;
-
+  isActive = false;
   userPage: UserPagesDto = new UserPagesDto();
   constructor(
     injector: Injector,
     private _authService: AppAuthService,
     private _configurationService: ConfigurationServiceProxy,
     private activeRoute: ActivatedRoute,
-    private _userProfileService: UserProfileServiceProxy
+    private _userProfileService: UserProfileServiceProxy,
+    private router: Router
   ) {
     super(injector);
   }

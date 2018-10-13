@@ -27,13 +27,18 @@ export class UserTimelineComponent implements OnInit {
     this.request.maxResultCount = 10;
     this.request.userId = this.user.userId;
     this.request.userName = this.user.userName;
-    
+
     abp.ui.setBusy("#no-post");
     this._postService
       .getUserTimelinePosts(this.request)
       .finally(abp.ui.clearBusy)
       .subscribe(ps => {
-        this.posts = ps.items.filter(p=>p.author.userName=this.userService.activeUserProfile.userName);
+        this.posts = ps.items.filter(p => p.author.id == this.userService.activeUserProfile.userId);
       });
+  }
+  onRemovePost(index) {
+    if (index != -1) {
+      this.posts.splice(index, 1);
+    }
   }
 }

@@ -57,7 +57,6 @@ export class AppPreBootstrap {
             abp.clock.provider = this.getCurrentClockProvider(result.clock.provider);
 
             moment.locale('vi');
-                console.log(moment())
             if (abp.clock.provider.supportsMultipleTimezone) {
                 moment.tz.setDefault(abp.timing.timeZoneInfo.iana.timeZoneId);
             }

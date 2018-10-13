@@ -6,13 +6,13 @@
                                 <h6 class="title">Quản Lý Trang</h6>
                                 <ul>
                                     <li>
-                                        <a [routerLink]="['../']">Thông tin trang</a>
+                                        <a [routerLink]="['../']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Thông tin trang</a>
                                     </li>
                                     <li>
-                                        <a [routerLink]="['./']">Thành viên</a>
+                                        <a [routerLink]="['./']" routerLinkActive="active" >Thành viên</a>
                                     </li>
                                     <li>
-                                        <a [routerLink]="['../role']">Vai trò trên trang</a>
+                                        <a [routerLink]="['../role']" routerLinkActive="active" >Vai trò trên trang</a>
                                     </li>
                                 </ul>
                             </div>
@@ -30,7 +30,7 @@
                                     <!--<option value="2">Banned People</option>-->
                                 </select>
                                 <form id="filter">
-                                    <input class="p-2" placeholder="Tiềm kiếm" type="text" [(ngModel)]="searchKey" name="searchKeyInput">
+                                    <input class="p-2" placeholder="Tìm kiếm" type="text" [(ngModel)]="searchKey" name="searchKeyInput">
                                 </form>
                             </div>
                         </div>
@@ -49,9 +49,9 @@
                                     <div class="notification-event">
                                         <a [routerLink]="['/app/user/', model.userName]" class="h6 notification-friend">{{ model?.name | filter }}</a>
                                     </div>
-                                    <span class="f-right">
+                                    <!-- <span class="f-right" *ngIf="isAdmin">
                                         <button class="btn btn-normal f-right mx-1" (click)="remove(model)"><i class="fas fa-ban"></i> Xóa </button>
-                                    </span>
+                                    </span> -->
                                 </li>
                             </ul>
                             <div materialInput bsEl></div>

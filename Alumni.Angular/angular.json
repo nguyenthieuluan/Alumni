@@ -240,7 +240,6 @@
             ],
             "styles": [
               "client-app/assets/fonts/roboto/roboto.css",
-
               "node_modules/simple-line-icons/css/simple-line-icons.css",
               "node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.css",
               "node_modules/toastr/build/toastr.css",

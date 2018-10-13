@@ -12,7 +12,7 @@
             <div class="col-8 col-xl-8 col-lg-8 col-md-12">
 
                 <div id="post-list" infinite-scroll (scrolled)="loadMore()">
-                    <post-detail *ngFor="let item of posts" [post]="item"></post-detail>
+                    <post-detail *ngFor="let item of posts; let i = index" (removePost)="onRemovePost(i)" [post]="item"></post-detail>
                 </div>
                 <div id="no-post" *ngIf="isLoading">
                     <div class="ui-block p-5 m-auto text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></div>

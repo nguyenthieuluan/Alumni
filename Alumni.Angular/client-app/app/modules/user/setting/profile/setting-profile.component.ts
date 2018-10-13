@@ -32,7 +32,9 @@ export class UserSettingProfileComponent extends AppComponentBase
         super(injector);
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        //this.setProfile(this.userService.activeUserProfile.clone());
+    }
     ngAfterViewInit() {
         this._userProfileService.getCurrentProfile().subscribe(r => {
             this.setProfile(r);
@@ -49,7 +51,7 @@ export class UserSettingProfileComponent extends AppComponentBase
                 this.setProfile(r);
 
                 this.notify.success(
-                    "Your information is successfuly saved.",
+                    "Cập nhật thông tin thành công.",
                     "",
                     { positionClass: "toast-top-right" }
                 );

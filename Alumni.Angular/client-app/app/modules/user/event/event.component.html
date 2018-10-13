@@ -31,7 +31,7 @@
                                             <div class="ui-block w-intro">
                                                 <div class="event-item pb-0">
                                                     <div class="event-item-picture">
-                                                        <img mediaPreview [src]="event.eventPhoto || ''" [media]="mediaFile"
+                                                        <img mediaPreview [src]="event?.eventPhoto || ''" [media]="mediaFile"
                                                             (onRead)="setImgData($event)">
                                                     </div>
 

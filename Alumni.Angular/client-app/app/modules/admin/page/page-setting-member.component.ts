@@ -16,6 +16,7 @@ export class PageSettingMemberComponent  extends AppComponentBase implements OnI
     followers: UserProfileDto[];
     selectedValue = 0;
     searchKey: string;
+    isAdmin = false;
     constructor(
         injector: Injector,
         private pageService: PageService,
@@ -38,6 +39,12 @@ export class PageSettingMemberComponent  extends AppComponentBase implements OnI
            this.likes = r.items;
            this.users = this.likes;
         });
+        // this.remotePageService.getMembers(this.pageService.activePage).subscribe( r => {
+        //     if ( r.filter( x => x.role == 1 ).map( y => y.user.id ).indexOf(this.appSession.userId) !== -1) {
+        //         this.
+        //     }
+        // }
+        //);
     }
     
     //list selected change

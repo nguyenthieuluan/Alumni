@@ -33,10 +33,11 @@ export class UserSettingProfilePictureComponent  extends AppComponentBase implem
     }
 
     ngOnInit() {
+        this.setProfile(this.userService.activeUserProfile.clone());
         
-        this._userProfileService.getCurrentProfile().subscribe(r => {
-            this.setProfile(r);
-        });
+        // this._userProfileService.getCurrentProfile().subscribe(r => {
+        //     this.setProfile(r);
+        // });
     }
     getPictureSettings() {
         this.csP = new CropperSettings();
@@ -95,7 +96,7 @@ export class UserSettingProfilePictureComponent  extends AppComponentBase implem
         this._userProfileService.updateUserProfile(this.profile).subscribe(r => {
             this.setProfile(r);
             this.appSession.user.profile = r;
-            this.notify.success("Your information is successfuly saved.", "", { positionClass: 'toast-top-right' });
+            this.notify.success("Cập nhật hình ảnh thành công.", "", { positionClass: 'toast-top-right' });
         });
     }
     setProfile(p: UserProfileDto) {

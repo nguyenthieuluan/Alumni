@@ -22,7 +22,7 @@ import { PageService } from "@app/modules/page/page.service";
 })
 export class PageSettingInfoComponent extends AppComponentBase
     implements OnInit, AfterViewInit {
-    page: PageDetailDto;
+    page: PageDetailDto = new PageDetailDto();
 
     constructor(
         injector: Injector,
@@ -33,20 +33,19 @@ export class PageSettingInfoComponent extends AppComponentBase
     }
 
     ngOnInit() {
-        this.page = this.pageService.activePage;
+        this.page = this.pageService.activePage.clone();
     }
-
-    ngAfterViewInit() {}
+    ngAfterViewInit() {
+    }
     save() {
         this._remotePageService.updatePage(this.page).subscribe(r => {
             this.setPage(r);
-            this.notify.success("Your information is successfuly saved.", "", {
+            this.notify.success("Lưu thành công.", "", {
                 positionClass: "toast-top-right"
             });
         });
     }
     setPage(p: PageDetailDto) {
-        //this.page = p;
         this.pageService.setActivePage(p);
     }
 }

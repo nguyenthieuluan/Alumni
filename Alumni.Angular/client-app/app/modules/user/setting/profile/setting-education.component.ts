@@ -32,6 +32,7 @@ export class UserSettingEducationComponent   extends AppComponentBase {
                 id: "others",
                 name: "Khác"
             },];
+            
         this._studentProfileService.getStudentProfile().subscribe(r => {
             this.model = r;
         });
@@ -41,7 +42,7 @@ export class UserSettingEducationComponent   extends AppComponentBase {
        
         this._studentProfileService.updateStudentProfile(this.model).subscribe(r => {
 
-            this.notify.success("Your password is successfuly changed.", "", { positionClass: 'toast-top-right' });
+            this.notify.success("Cập nhật thông tin thành công.", "", { positionClass: 'toast-top-right' });
         });
     }
 }

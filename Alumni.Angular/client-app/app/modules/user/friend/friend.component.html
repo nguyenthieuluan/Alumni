@@ -31,7 +31,7 @@
 
                     <ul class="your-profile-menu">
                         <li>
-                            <a [routerLink]="['../friends']">Tất cả bạn bè</a>
+                            <a [routerLink]="['../friends']" routerLinkActive="active">Tất cả bạn bè</a>
                         </li>
                         <li>
                             <a *ngIf="isFriend; else friendRequest" [routerLink]="['../requests']">Bạn chung</a>

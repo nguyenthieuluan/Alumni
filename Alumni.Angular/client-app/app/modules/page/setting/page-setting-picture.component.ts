@@ -31,7 +31,7 @@ export class PageSettingPictureComponent extends AppComponentBase implements OnI
     }
 
     ngOnInit() {
-        this.page = this.pageService.activePage;
+        this.page = this.pageService.activePage.clone();
     }
     getPictureSettings() {
         this.csP = new CropperSettings();
@@ -89,7 +89,7 @@ export class PageSettingPictureComponent extends AppComponentBase implements OnI
     save() {
         this._remotePageService.updatePage(this.page).subscribe(r => {
             this.setPage(r);
-            this.notify.success("Your information is successfuly saved.", "", { positionClass: 'toast-top-right' });
+            this.notify.success("Lưu thành công.", "", { positionClass: 'toast-top-right' });
         });
     }
     setPage(p: PageDetailDto) {

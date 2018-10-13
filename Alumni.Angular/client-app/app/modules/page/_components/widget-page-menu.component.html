@@ -4,19 +4,22 @@
             <h6 class="title">Danh mục</h6>
             <ul>
                 <li>
-                    <a [routerLink]="['/app/page',page.userName]">Trang Chủ</a>
+                    <a [routerLink]="['/app/page',page.userName]" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" >Trang Chủ</a>
                 </li>
                 <li *ngIf="false">
-                    <a  [routerLink]="['/app/page',page.userName,'about']">Abount</a>
+                    <a  [routerLink]="['/app/page',page.userName,'about']" routerLinkActive="active" >Abount</a>
                 </li>
                 <li>
-                    <a  [routerLink]="['/app/page',page.userName,'events']">Sự Kiện</a>
+                    <a  [routerLink]="['/app/page',page.userName,'events']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Sự Kiện</a>
                 </li>
                 <li>
-                    <a  [routerLink]="['/app/page',page.userName,'followers']">Đang Theo Dõi</a>
+                    <a  [routerLink]="['/app/page',page.userName,'followers']" routerLinkActive #followersActive="routerLinkActive" [ngClass]="{'active': likesActive.isActive || followersActive.isActive }">Đang Theo Dõi</a>
+                </li>
+                <li>
+                    <a  [routerLink]="['/app/page',page.userName,'likes']" routerLinkActive #likesActive="routerLinkActive" style="display: none">Đang Theo Dõi</a>
                 </li>
                 <li *ngIf="page.isAdmin">
-                    <a  [routerLink]="['/app/page',page.userName,'setting']">Cài đặt</a>
+                    <a  [routerLink]="['/app/page',page.userName,'setting']" routerLinkActive="active">Cài đặt</a>
                 </li>
             </ul>
         </div>

@@ -68,6 +68,7 @@ import {
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { N2BrPipe } from "@shared/directives/n2br.pipe";
 import { AdminWidgetMenuComponent } from "@app/modules/admin/_component/admin-widget-menu.component";
+import { UserService } from "@app/modules/user/user.service";
 @NgModule({
   imports: [
     //angular core
@@ -215,7 +216,7 @@ export class SharedModule {
         AppSessionService,
         AppUrlService,
         AppAuthService,
-        AppRouteGuard
+        AppRouteGuard,
       ]
     };
   }

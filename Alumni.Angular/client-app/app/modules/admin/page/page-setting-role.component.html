@@ -6,13 +6,13 @@
                             <h6 class="text-bold title">Quản Lý Trang</h6>
                             <ul>
                                 <li>
-                                    <a [routerLink]="['../']">Thông tin trang</a>
+                                    <a [routerLink]="['../']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Thông tin trang</a>
                                 </li>
                                 <li>
-                                    <a [routerLink]="['../member']">Thành viên</a>
+                                    <a [routerLink]="['../member']" routerLinkActive="active">Thành viên</a>
                                 </li>
                                 <li>
-                                    <a [routerLink]="['./']">Vai trò trên trang</a>
+                                    <a [routerLink]="['./']" routerLinkActive="active">Vai trò trên trang</a>
                                 </li>
                             </ul>
                         </div>
@@ -47,7 +47,7 @@
                                             
                                             <select class="p-2 mr-2" style="width: auto" [(ngModel)]="selectedValueAdd">
                                                 <option value="1">Quản trị viên</option>
-                                                <option value="2">Editor</option>
+                                                <option value="2">Biên tập viên</option>
                                             </select>
                                             <button class="btn btn-normal m-0" (click)="addRole()">Thêm</button>
                                         </div>

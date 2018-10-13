@@ -42,7 +42,6 @@ export class HomePageComponent extends AppComponentBase implements OnInit {
     }
     this.pageService.setActivePage(activePage);
     this.page = this.pageService.activePage;
-
     this.request.skipCount = 0;
     this.request.maxResultCount = 10;
     this.posts = [];
@@ -68,5 +67,10 @@ export class HomePageComponent extends AppComponentBase implements OnInit {
   }
   loadMore() {
     this.refresh();
+  }
+  onRemovePost(index) {
+    if (index != -1) {
+      this.posts.splice(index, 1);
+    }
   }
 }

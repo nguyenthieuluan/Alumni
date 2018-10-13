@@ -45,7 +45,7 @@ export class PageSettingCategoryCreateComponent extends AppComponentBase impleme
         this.modalSave.emit(null);
                 this.close();
         this.saving = false;
-                this.notify.info(this.l('SavedSuccessfully'));
+                this.notify.info(this.l('Lưu thành công.'));
       
     }
 

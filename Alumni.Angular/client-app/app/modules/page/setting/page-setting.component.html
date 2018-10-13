@@ -12,13 +12,13 @@
 
                     <ul class="your-profile-menu">
                         <li>
-                            <a [routerLink]="['/app/page',model.userName,'setting']">Thông Tin Trang</a>
+                            <a [routerLink]="['/app/page',model.userName,'setting']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Thông Tin Trang</a>
                         </li>
                         <li>
-                            <a [routerLink]="['/app/page',model.userName,'setting','picture']">Hình Ảnh</a>
+                            <a [routerLink]="['/app/page',model.userName,'setting','picture']" routerLinkActive="active">Hình Ảnh</a>
                         </li>
                         <li>
-                            <a [routerLink]="['/app/page',model.userName,'setting','category']">Hạng Mục</a>
+                            <a [routerLink]="['/app/page',model.userName,'setting','category']" routerLinkActive="active">Hạng Mục</a>
                         </li>
                     </ul>
                   

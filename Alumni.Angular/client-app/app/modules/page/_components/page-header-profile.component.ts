@@ -28,8 +28,9 @@ import { PageService } from "@app/modules/page/page.service";
 })
 export class PageHeaderProfileComponent extends AppComponentBase
   implements OnInit, OnChanges {
-  @Input()
-  page: PageDetailDto = new PageDetailDto();
+  @Input() page: PageDetailDto;
+  currentPage: PageDetailDto;
+
   constructor(
     injector: Injector,
     public pageService: PageService,
@@ -40,9 +41,13 @@ export class PageHeaderProfileComponent extends AppComponentBase
   ) {
     super(injector);
   }
-
-  ngOnInit(): void {}
-  ngOnChanges(changes: SimpleChanges) {}
+  
+  ngOnInit() {
+    this.currentPage = this.page;
+  }
+  ngOnChanges(changes: SimpleChanges) {
+  }
+  
   like() {
     this._remotePageService.like(this.page).subscribe(r => {
       this.page.isLiked = r.isLiked;

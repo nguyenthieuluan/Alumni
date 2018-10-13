@@ -18,6 +18,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
     @ViewChild('modalContent') modalContent: ElementRef;
 
     @Input() public post: PostDetailDto;
+    @Output() removePost: EventEmitter<boolean> = new EventEmitter<boolean>();
     postImageCount: number;
     pictures: Picture[];
     model: UserProfileDto;
@@ -33,6 +34,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
 
     textChange: string = '';
 
+    quantityComment = 5;
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -74,27 +76,20 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         this.post.comments.push(comment);
     }
 
-    onDeletePost() {
-        this._postService.deletePost(this.post).subscribe( r=> { 
-            this.notify.success("Deleted!.", "", {
-                positionClass: "toast-top-right"
-            });
-            }
-        )
-    }
+    
 
     submitPost() {
         this.post.contentText = this.textChange;
         if (!this.post.contentText) {
             if (!this.post.postData || !this.post.postData.pictures) {
-              this.notify.error("Please add content to post");
+              this.notify.error("Vui lòng nhập nội dung bài đăng");
               return;
             }
             this.post.contentText = "";
           }
         this._postService.editPost(this.post).subscribe( r=> { 
             this.post = r;
-            this.notify.success("Your information is successfuly saved.", "", {
+            this.notify.success("Thành công.", "", {
                 positionClass: "toast-top-right"
             });
             }
@@ -181,6 +176,24 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         this.post.postData.pictures = [];
         }
         this.post.postData.pictures.push(pi);
-    }  
+    }
+    
+    onDeletePost() {
+        this._postService.deletePost(this.post).subscribe( r=> { 
+            this.emitRemovePost();
+            this.notify.success("Deleted!.", "", {
+                positionClass: "toast-top-right"
+            });
+        })
+    }
+    // onRemoveComment(index) {
 
+    //     if (index != -1) {
+    //         this.post.comments.splice(index, 1);
+    //     }
+    // }
+
+    emitRemovePost() {
+        this.removePost.emit();
+    }
 }

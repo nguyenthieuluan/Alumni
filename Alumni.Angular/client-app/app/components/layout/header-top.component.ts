@@ -3,11 +3,15 @@ import { AppComponentBase } from "@shared/app-component-base";
 import { ConfigurationServiceProxy, RoleServiceProxy, EntityDtoOfInt32 } from "@shared/service-proxies/service-proxies";
 
 import { AppAuthService } from "@shared/auth/app-auth.service";
+import { UserService } from "@app/modules/user/user.service";
+import { Router } from "@angular/router";
+import { AppComponent } from "@app/app.component";
 
 @Component({
     templateUrl: "./header-top.component.html",
     selector: "header-top",
     styleUrls: ["./styles/styles.scss"],
+    providers: [UserService],
     encapsulation: ViewEncapsulation.None
 })
 export class HeaderTopComponent extends AppComponentBase implements OnInit {
@@ -15,13 +19,14 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
     shownLoginName: string = "";
     searchModel: any = {};
     entityDtoInt32: EntityDtoOfInt32 = new EntityDtoOfInt32;
-
+    isCurrent = true;
 
     constructor(
         injector: Injector,
         private _authService: AppAuthService,
         private _configurationService: ConfigurationServiceProxy,
         private _roleServiceProxy: RoleServiceProxy,
+        private _userService: UserService,
     ) {
         super(injector);
     }
@@ -30,9 +35,12 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
         this.entityDtoInt32.id = this.appSession.userId;
         this.shownLoginName = this.appSession.getShownLoginName();
         //this._roleServiceProxy.get(this.entityDtoInt32).subscribe();
+        // if(this._userService.activeUserProfile){
+        //     if(this._userService.activeUserProfile.userId != this.appSession.userId)
+        //         this.isCurrent = false;
+        // }
         
     }
-
     headerSearch(): void {
         alert(this.searchModel.keyword);
     }

@@ -41,4 +41,9 @@ export class NewsFeedComponent extends AppComponentBase {
   addPost(p: PostDetailDto) {
     this.posts.unshift(p);
   }
+  onRemovePost(index) {
+    if (index != -1) {
+      this.posts.splice(index, 1);
+    }
+  }
 }

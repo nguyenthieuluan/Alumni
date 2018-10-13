@@ -55,4 +55,9 @@ export class PageTimelineComponent implements OnInit {
   addPost(p: PostDetailDto) {
     this.posts.unshift(p);
   }
+  onRemovePost(index) {
+    if (index != -1) {
+      this.posts.splice(index, 1);
+    }
+  }
 }

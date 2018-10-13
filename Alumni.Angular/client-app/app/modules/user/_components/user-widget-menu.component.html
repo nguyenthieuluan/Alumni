@@ -5,22 +5,25 @@
             <h6 class="title">Danh Mục</h6>
             <ul>
                 <li>
-                    <a [routerLink]="['/app/user', user.userName]">Trang Chủ</a>
+                    <a [routerLink]="['/app/user', user.userName]" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Trang Chủ</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/app/user', user.userName,'events']">Sự Kiện</a>
+                    <a [routerLink]="['/app/user', user.userName,'events']" routerLinkActive="active">Sự Kiện</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/app/user', user.userName,'friends']">Bạn Bè</a>
+                    <a [routerLink]="['/app/user', user.userName,'friends']"  routerLinkActive #friendsActive="routerLinkActive" [ngClass]="{'active': friendsActive.isActive || friendRequestsActive.isActive }">Bạn Bè</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/app/user', user.userName,'requests']" routerLinkActive #friendRequestsActive="routerLinkActive" style="display: none">Requests</a>
                 </li>
                 <li *ngIf="user.isMine" >
-                    <a [routerLink]="['/app/user', user.userName,'pages']">Trang Của Tôi</a>
+                    <a [routerLink]="['/app/user', user.userName,'pages']" routerLinkActive="active">Trang</a>
                 </li>
                 <li *ngIf="user.isMine">
-                    <a [routerLink]="['/app/user', user.userName,'settings']">Cài Đặt</a>
+                    <a [routerLink]="['/app/user', user.userName,'settings']" routerLinkActive="active">Cài Đặt</a>
                 </li>
                 <li  *ngIf="false">
-                    <a [routerLink]="['/app/user', user.userName,'about']">About</a>
+                    <a [routerLink]="['/app/user', user.userName,'about']" routerLinkActive="active">About</a>
                 </li>
             </ul>
         </div>

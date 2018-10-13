@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Injector, inject } from "@angular/core";
-import { UserProfileServiceProxy, UserProfileDto, ChangePasswordInput, UserPagesDto } from "@shared/service-proxies/service-proxies";
+import { UserProfileServiceProxy, UserProfileDto, ChangePasswordInput, UserPagesDto, PageServiceProxy } from "@shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
 
 @Component({
@@ -11,7 +11,7 @@ export class UserPagesComponent  extends AppComponentBase implements OnInit, Aft
     model: UserPagesDto = new UserPagesDto();
     constructor(
         injector: Injector,
-        private _userProfileService: UserProfileServiceProxy
+        private _userProfileService: UserProfileServiceProxy,
     ) {
         super(injector);
     }

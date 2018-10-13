@@ -14,7 +14,7 @@
         <p class="head-info">ALUMNI ASSIOSIATION</p>
     </div>
     <div class="header-content-wrapper">
-        <form class="search-bar w-search notification-list friend-requests mt-3 height-35 width-250" #searchForm="ngForm" method="post" novalidate (ngSubmit)="headerSearch()">
+        <form *ngIf="appSession.user" class="search-bar w-search notification-list friend-requests mt-3 height-35 width-250" #searchForm="ngForm" method="post" novalidate (ngSubmit)="headerSearch()">
             <div class="form-group with-button height-35" style="min-height: 35px;">
                 <input class="form-control" placeholder="Tìm Kiếm..." type="text" [(ngModel)]="searchModel.keyword" name="keyword">
                 <button class="height-35" type="submit">
@@ -24,8 +24,8 @@
         </form>
 
         <a [routerLink]="['/app/home']" class="header-link text-center pt-3">TRANG <Br> CHỦ</a>
-        <a [routerLink]="['/app/kienthucchuyennganh']" class="header-link text-center pt-3">KIẾN THỨC <br> CHUYÊN NGÀNH</a>
-        <a [routerLink]="['/app/tamsucsv']" class="header-link text-center pt-3">TÂM SỰ <br> CSV</a>
+        <a [attr.href]="'/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81'" class="header-link text-center pt-3">KIẾN THỨC <br> CHUYÊN NGÀNH</a>
+        <a [attr.href]="'/app/page/09e9650f82ba4b019123dafed039e77e'" class="header-link text-center pt-3">TÂM SỰ <br> CSV</a>
         <a [routerLink]="['/app/tracuu']" class="header-link text-center pt-3">TRA CỨU <br> THÔNG TIN</a>
 
         <div class="control-block">
@@ -73,7 +73,19 @@
                         </div>
                     </div>
                 </div>
-                <a href="javascript:void(0);" class="author-name fn">
+                <!-- <a href="javascript:void(0);" class="author-name fn">
+                    <div class="author-title">
+                        {{shownLoginName}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                    </div>
+                    <span class="author-subtitle"></span>
+                </a> -->
+                <!-- <a (click)="onNavigate(shownLoginName)"class="author-name fn">
+                    <div class="author-title">
+                        {{shownLoginName}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+                    </div>
+                    <span class="author-subtitle"></span>
+                </a> -->
+                <a [attr.href]="'/app/user/'+ shownLoginName" class="author-name fn">
                     <div class="author-title">
                         {{shownLoginName}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                     </div>

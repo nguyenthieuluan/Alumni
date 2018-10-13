@@ -14,7 +14,6 @@ const test: Routes = [
         children: [
             { path: 'home', component: HomePageComponent, resolve: {homePage:  ActivePageResolver} },
             { path: 'newsfeed', component: NewsFeedComponent, canActivate: [AppRouteGuard] },
-            // { path: 'tamsucsv', component: TamSuCSVComponent, canActivate: [AppRouteGuard] },
             { path: 'tracuu', component: TraCuuComponent, canActivate: [AppRouteGuard] },
             {
                 path: 'user',
