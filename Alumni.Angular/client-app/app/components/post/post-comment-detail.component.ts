@@ -20,10 +20,11 @@ export class PostCommentDetailComponent extends AppComponentBase  implements OnI
     @Input() public comment: PostCommentDetailDto;
 
     @Output() removeComment: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() hideReplyEditor: EventEmitter<any> = new EventEmitter<boolean>();
     
     postImageCount: number;
     pictures: Picture[];
-    editor: any = {};
+    @Input() editor: any;
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -47,8 +48,7 @@ export class PostCommentDetailComponent extends AppComponentBase  implements OnI
     }
     showEditor(id: number) {
         if (!this.editor[id]) {
-            this.editor[id] = true;
-            console.log(this.editor);
+            this.hideReplyEditor.emit(id);
             return;
         }
         if(this.editor) {

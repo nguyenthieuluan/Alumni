@@ -147,6 +147,8 @@
             *ngFor="let item of post.comments|slice:0:quantityComment let i = index;" 
             [post]="post" [comment]="item"
             (removeComment)="onRemoveComment(i)"
+            (hideReplyEditor)="hideReplyEditor($event)"
+            [editor]="Editor"
             >
         </post-comment-detail>
         <span *ngIf="post.comments.length > 5 && quantityComment == 5" class="d-flex justify-content-around" style="cursor: pointer;" (click)="quantityComment = post.comments.length">Xem tất cả bình luận</span>
