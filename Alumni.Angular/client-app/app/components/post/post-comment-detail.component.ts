@@ -24,6 +24,10 @@ export class PostCommentDetailComponent extends AppComponentBase  implements OnI
     postImageCount: number;
     pictures: Picture[];
     editor: any = {};
+    
+    isShowUpdate = false; // show editor comment
+    selectedComment: PostCommentDetailDto; // comment được chọn chỉnh sửa
+
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -46,24 +50,53 @@ export class PostCommentDetailComponent extends AppComponentBase  implements OnI
         this.comment.children.push(comment);
     }
     showEditor(id: number) {
+        this.isShowUpdate = false;
         if (!this.editor[id]) {
             this.editor[id] = true;
-            console.log(this.editor);
-            return;
         }
-        if(this.editor) {
-            this.editor[id] = false;
-        }
+        // if(this.editor) {
+        //     this.editor[id] = false;
+        // }
     }
     onDeleteComment(comment) {
         this._postService.deletePostComment(comment).subscribe(() => {
             this.emitRemoveComment();
         },error => console.log(error) );
     }
-    onEditComment(comment) {
-        console.log(comment);
+    onDeleteChildComment(comment: PostCommentDetailDto, index: number) {
+        this._postService.deletePostComment(comment).subscribe(() => {
+            if (index != -1) {
+                this.comment.children.splice(index, 1);
+            }
+        },error => console.log(error) );
+    }
+    onEditComment(comment: PostCommentDetailDto, id: number) {
+        this.selectedComment = comment.clone();
+        //this.selectedComment = comment;
+        this.isShowUpdate = true;
+        if (!this.editor[id]) {
+            this.editor[id] = true;
+        }
+        // if (this.editor) {
+        //     this.editor[id] = false;
+        // }
     }
     emitRemoveComment() {
         this.removeComment.emit();
+    }
+    cancelEdit() {
+        this.isShowUpdate = false;
+    }
+    saveChangeEdit() {
+        if(this.comment.id === this.selectedComment.id) {
+            this.comment.commentText = this.selectedComment.commentText
+        } else {
+            for (let ccm of this.comment.children) {
+                if (ccm.id === this.selectedComment.id) {
+                    ccm.commentText = this.selectedComment.commentText
+                }
+            }
+        }
+        this.isShowUpdate = false;
     }
 }

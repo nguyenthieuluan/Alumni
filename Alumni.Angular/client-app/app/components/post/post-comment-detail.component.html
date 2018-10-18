@@ -15,13 +15,13 @@
             <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)" *ngIf="appSession.user">Trả lời</a>
             <div class="d-inline" *ngIf="comment.userId == appSession.userId">
                 <a href="javascript:void(0);" class="reply reply-more" (click)="onDeleteComment(comment)" *ngIf="appSession.user">Xóa</a>
-                <a href="javascript:void(0);" class="reply reply-more" (click)="onEditComment(comment)" *ngIf="appSession.user">Chỉnh sửa</a>
+                <a href="javascript:void(0);" class="reply reply-more" (click)="onEditComment(comment, comment.id)" *ngIf="appSession.user">Chỉnh sửa</a>
             </div>
         </div>
     </div>
 
     <ul class="children" *ngIf="comment.children.length > 0">
-        <li *ngFor="let ccm of comment.children" class="comment-item">
+        <li *ngFor="let ccm of comment.children; let i = index" class="comment-item">
             <div class="hover-more post__author author vcard inline-items">
                 <img [src]="ccm.user.pictureUrl" alt="author">
 
@@ -36,13 +36,21 @@
                         </span>
                     </span>
                     <a href="javascript:void(0);" class="reply" (click)="showEditor(comment.id)" *ngIf="appSession.user">Trả lời</a>
-                    <div class="d-inline" *ngIf="">
-                        <a href="javascript:void(0);" class="reply reply-more" (click)="onDeleteComment(ccm)" *ngIf="appSession.user">Xóa</a>
-                        <a href="javascript:void(0);" class="reply reply-more" (click)="onEditComment(ccm)" *ngIf="appSession.user">Chỉnh sửa</a>
+                    <div class="d-inline" *ngIf="ccm.userId == appSession.userId">
+                        <a href="javascript:void(0);" class="reply reply-more" (click)="onDeleteChildComment(ccm, i)" *ngIf="appSession.user">Xóa</a>
+                        <a href="javascript:void(0);" class="reply reply-more" (click)="onEditComment(ccm, comment.id)" *ngIf="appSession.user">Chỉnh sửa</a>
                     </div>
                 </div>
             </div>
         </li>
     </ul>
-    <post-comment-editor [post]="post" [parentComment]="comment" (onPostCommentAdded)="addParentComment($event)" *ngIf="appSession.user && editor[comment.id]"></post-comment-editor>
+    <post-comment-editor [post]="post" [parentComment]="comment" (onPostCommentAdded)="addParentComment($event)" *ngIf="appSession.user && editor[comment.id] && !isShowUpdate"></post-comment-editor>
+    <post-comment-update 
+        [post]="post" 
+        [parentComment]="comment" 
+        [comment] = "selectedComment"
+        (cancelEdit)="cancelEdit()" 
+        (saveChangeEdit)="saveChangeEdit()" 
+        *ngIf="appSession.user && editor[comment.id] && isShowUpdate">
+    </post-comment-update>
 </li>

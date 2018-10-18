@@ -186,12 +186,12 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
             });
         })
     }
-    // onRemoveComment(index) {
 
-    //     if (index != -1) {
-    //         this.post.comments.splice(index, 1);
-    //     }
-    // }
+    onRemoveComment(index) {
+        if (index != -1) {
+            this.post.comments.splice(index, 1);
+        }
+    }
 
     emitRemovePost() {
         this.removePost.emit();
