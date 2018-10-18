@@ -55,12 +55,12 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         
         if(this._userService.activeUserProfile && this._userService.activeUserProfile.userId == this.appSession.userId)
             this.isShowEdit = true;
-        
-        this._userPageService.getUserPagesDto().subscribe(r=> {
-            if (r.pages.length > 0 && this._pageService.activePage && r.pages.map(p=>p.id).indexOf(this._pageService.activePage.id) >= 0)
-                this.isShowEdit = true;     
-        });
-            
+        if (this.appSession.user) {
+            this._userPageService.getUserPagesDto().subscribe(r=> {
+                if (r.pages.length > 0 && this._pageService.activePage && r.pages.map(p=>p.id).indexOf(this._pageService.activePage.id) >= 0)
+                    this.isShowEdit = true;     
+            });
+        }
         this.textChange = this.post.contentText;
     }
 
