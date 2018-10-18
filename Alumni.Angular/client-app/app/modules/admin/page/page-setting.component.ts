@@ -37,4 +37,15 @@ export class PageSettingComponent  extends AppComponentBase implements OnInit {
             this.pageService.onSetPage(p => (this.page = p));
         });
     }
+    save() {
+        this.remotePageService.updatePage(this.page).subscribe(r => {
+            this.setPage(r);
+            this.notify.success("Lưu thành công.", "", {
+                positionClass: "toast-top-right"
+            });
+        });
+    }
+    setPage(p: PageDetailDto) {
+        this.pageService.setActivePage(p);
+    }
 }
