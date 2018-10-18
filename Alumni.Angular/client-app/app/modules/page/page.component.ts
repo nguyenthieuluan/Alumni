@@ -19,9 +19,10 @@ export class PageComponent extends AppComponentBase implements OnInit {
         private activeRoute: ActivatedRoute,
         private router: Router,
         private pageService: PageService,
-        private remotePageService: PageServiceProxy
+        private remotePageService: PageServiceProxy,
     ) {
         super(injector);
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false; // force route reload whenever params change;
     }
     ngOnInit(): void {
         this.reload();
