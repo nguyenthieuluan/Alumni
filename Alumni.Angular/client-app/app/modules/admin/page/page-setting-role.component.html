@@ -31,11 +31,11 @@
                                     <div class="col col-12">
                                         <div class="d-flex">
                                             
-                                            <ng-select class="mr-auto w-100 h6 p-0" [items]="users" [(ngModel)]="selectedUser" bindLabel="name">
+                                            <ng-select class="mr-auto w-100 h6 p-0" [items]="users" bindLabel="name" [(ngModel)]="selectedUser">
                                                 <ng-template ng-option-tmp let-item="item">
                                                         <div class="inline-items">
                                                                 <div class="">
-                                                                    <img [src]="item?.pictureUrl" width="30" height="30"
+                                                                    <img [src]="item.pictureUrl" width="30" height="30"
                                                                          alt="{{ item?.name }}">
                                                                 </div>
                                                                 <div class="ml-2">
@@ -64,7 +64,7 @@
                                     <h6 class="title">Quản trị viên</h6>
                                 </div>
                                 <ul class="widget w-friend-pages notification-list friend-requests">
-                                    <li class="inline-items" *ngFor="let model of pageAdmins; let i = index">
+                                    <li class="inline-items" *ngFor="let model of pageAdmins ; let i = index">
                                         <div class="author-thumb">
                                             <img [src]="model?.pictureUrl" width="36" height="36"
                                                  alt="{{ model?.name }}">
@@ -122,7 +122,7 @@
                                     <h5 class="title">Biên tập viên</h5>
                                 </div>
                                 <ul class="widget w-friend-pages notification-list friend-requests">
-                                    <li class="inline-items" *ngFor="let model of pageEditors; let i = index">
+                                    <li class="inline-items" *ngFor="let model of pageEditors ; let i = index">
                                         <div class="author-thumb">
                                             <img [src]="model?.pictureUrl" width="36" height="36"
                                                  alt="{{ model?.name }}">
