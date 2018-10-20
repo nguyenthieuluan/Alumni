@@ -22,14 +22,7 @@
                 </button>
             </div>
         </form>
-
-            
-            <a [routerLink]="['/app/home']" class="header-link text-center pt-3">TRANG <Br *ngIf = "appSession.user"> CHỦ</a>
-            <a [attr.href]="'/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81'" class="header-link text-center pt-3">KIẾN THỨC <br *ngIf = "appSession.user"> CHUYÊN NGÀNH</a>
-            <a [attr.href]="'/app/page/09e9650f82ba4b019123dafed039e77e'" class="header-link text-center pt-3">TÂM SỰ <br *ngIf = "appSession.user"> CSV</a>
-            <a [routerLink]="['/app/tracuu']" class="header-link text-center pt-3">TRA CỨU <br *ngIf = "appSession.user"> THÔNG TIN</a>
-
-
+        
         <div class="control-block">
 
             <div class="author-page author vcard inline-items more" *ngIf="isLoggedin()">
@@ -95,6 +88,15 @@
                 </a>
             </div>
         </div>
+        <div [ngClass]="{'f-right': !appSession.user}">
+
+            <a [routerLink]="['/app/home']" class="header-link text-center pt-3">TRANG <Br *ngIf = "appSession.user"> CHỦ</a>
+            <a [attr.href]="'/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81'" class="header-link text-center pt-3">KIẾN THỨC <br *ngIf = "appSession.user"> CHUYÊN NGÀNH</a>
+            <a [attr.href]="'/app/page/09e9650f82ba4b019123dafed039e77e'" class="header-link text-center pt-3">TÂM SỰ <br *ngIf = "appSession.user"> CSV</a>
+            <a [routerLink]="['/app/tracuu']" class="header-link text-center pt-3">TRA CỨU <br *ngIf = "appSession.user"> THÔNG TIN</a>
+                
+        </div>
+                
     </div>
     <!--</div>-->
 </header>
