@@ -181,7 +181,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
     onDeletePost() {
         this._postService.deletePost(this.post).subscribe( r=> { 
             this.emitRemovePost();
-            this.notify.success("Deleted!.", "", {
+            this.notify.success("Xóa thành công!.", "", {
                 positionClass: "toast-top-right"
             });
         })
