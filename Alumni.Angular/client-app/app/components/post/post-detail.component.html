@@ -57,26 +57,26 @@
                                             </div>
                                             <div class="form-group with-icon label-floating is-empty">
                                                 <textarea class="form-control"
-                                                          placeholder="Share what you are thinking here..."
+                                                          placeholder="Cập nhật nội dung..."
                                                           [(ngModel)]="textChange"
                                                           name="content">
                                                 </textarea>
                                             </div>
                                         </div>
-                                        <div class="add-options-message d-inline-block f-left"
+                                        <!-- <div class="add-options-message d-inline-block f-left"
                                              *ngIf="post.postData.pictures?.length > 0">
                                             <ul #imgQueue class="widget  upload-img-holder">
                                                 <li *ngFor="let item of post.postData.pictures; let i = index"
-                                                    (click)="removeFile(i)" tooltip="Click to remove"
+                                                    (click)="removeFile(i)" tooltip="CLICK ĐỂ X"
                                                     [ngClass]="{'upload-loading':item.thumbUrl.includes('ajax-loader')}">
                                                     <img class="rounded-0" [src]="item.thumbUrl" alt="{{item.id}}"/>
                                                 </li>
                                             </ul>
 
-                                        </div>
-                                        <div class="add-options-message">
+                                        </div> -->
+                                        <!-- <div class="add-options-message">
                                             <a href="javascript:void(0);" class="options-message" data-toggle="tooltip"
-                                               data-placement="top" tooltip="ADD PHOTOS">
+                                               data-placement="top" tooltip="THÊM HÌNH ẢNH">
                                                 <label class="upload-button" style="margin-bottom:0">
                                                     <input type="file" ngFileSelect [options]="options"
                                                            (uploadOutput)="onUploadOutput($event)"
@@ -87,14 +87,13 @@
                                                     </svg>
                                                 </label>
                                             </a>
-
-                                            <button type="submit" class="btn btn-primary btn-n"
-                                                    [disabled]="uploadRemains > 0">Lưu
-                                            </button>
-
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" (click)="close()" class="btn btn-primary">Hủy bỏ</button>
+                                <button type="button" (click)="submitPost()" class="btn btn-normal">Lưu</button>
                             </div>
                         </div>
                     </div>
