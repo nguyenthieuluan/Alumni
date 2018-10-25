@@ -51,7 +51,7 @@ export class PageEventDetailComponent implements OnInit {
       this.participantList = r.map(ev => {
         return ev.participant;
       });
-      console.log(this.participantList);
+      //console.log(this.participantList);
     });
   }
   processAction(evt) {

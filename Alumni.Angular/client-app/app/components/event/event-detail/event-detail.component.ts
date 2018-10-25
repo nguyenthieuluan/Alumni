@@ -11,26 +11,39 @@ import {
   Output,
   Injector,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild,
+  ElementRef,
+  ViewEncapsulation
 } from "@angular/core";
 import { Moment } from "moment";
 import { EventPlanDetailDto } from "@shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
+import { Router } from "@angular/router";
+import { ModalDirective } from "ngx-bootstrap";
+import { UploadOutput } from "ngx-uploader";
 
 @Component({
   selector: "event-detail",
   templateUrl: "./event-detail.component.html",
-  styleUrls: ["./event-detail.component.css"]
+  styleUrls: ["./event-detail.component.css"],
+  encapsulation: ViewEncapsulation.None
 })
 export class EventDetailComponent extends AppComponentBase
   implements OnInit, OnChanges {
-  @Input()
-  event: EventPlanDetailDto;
+
+  @ViewChild('createModal') modal: ModalDirective;
+  @ViewChild('modalContent') modalContent: ElementRef;
+  @Input() event: EventPlanDetailDto;
+  
+  mediaFile: File;
+
   @Output()
     onAction = new EventEmitter<any>();
   constructor(
     injector: Injector,
-    private remoteEventService: EventPlanServiceProxy
+    private remoteEventService: EventPlanServiceProxy,
+    private router: Router
   ) {
     super(injector);
   }
@@ -89,4 +102,51 @@ export class EventDetailComponent extends AppComponentBase
       this.onAction.emit({ type: "join", member: r });
     });
   }
+  deleteEvent() {
+    const input = new EventMemberInput();
+    input.eventId = this.event.id;
+    input.userId = this.appSession.userId;
+
+    this.remoteEventService.removeEventHosts(input).subscribe( () => {
+      //this.onAction.emit({ type: "deleted", event: r });
+      this.router.navigate(['./app/page',this.event.page.userName,'events'])
+    }, error => console.log(error))
+  }
+
+  updateEvent() {
+    this.remoteEventService.updateEvent(this.event).subscribe( () => {
+      this.notify.success("Lưu thành công.","",{ positionClass: "toast-top-right" });
+      this.close();
+    })
+  }
+  show() {
+    this.modal.show();
+  }
+  close() {
+    this.modal.hide();
+  }
+  removeFile() {
+    this.event.eventPhoto = "";
+    this.mediaFile = null;
+  }
+  ///upload stuffs
+  onUploadOutput(output: UploadOutput): void {
+    if (output.type === "allAddedToQueue") {
+    } else if (
+      (output.type === "addedToQueue" || output.type === "rejected") &&
+      typeof output.file !== "undefined"
+    ) {
+      if (output.file.type.startsWith("image/")) {
+        this.mediaFile = output.file.nativeFile;
+      }
+    } else if (output.type === "removed") {
+    } else if (output.type === "start") {
+    } else if (output.type === "done") {
+    }
+  }
+  
+  setImgData(data: string): void {
+    this.event.eventPhoto = data;
+  }
+
 }
