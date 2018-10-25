@@ -36,6 +36,7 @@ export class EventDetailComponent extends AppComponentBase
   @ViewChild('modalContent') modalContent: ElementRef;
   @Input() event: EventPlanDetailDto;
   
+  eventUpdate: EventPlanDetailDto = new EventPlanDetailDto;
   mediaFile: File;
 
   @Output()
@@ -103,21 +104,23 @@ export class EventDetailComponent extends AppComponentBase
     });
   }
   deleteEvent() {
-    const input = new EventMemberInput();
-    input.eventId = this.event.id;
-    input.userId = this.appSession.userId;
-
-    this.remoteEventService.removeEventHosts(input).subscribe( () => {
-      //this.onAction.emit({ type: "deleted", event: r });
-      this.router.navigate(['./app/page',this.event.page.userName,'events'])
+    this.remoteEventService.deleteEvent(this.event).subscribe( () => {
+      this.router.navigate(['./app/page',this.event.page.userName,'events']);
+      this.notify.success("Xóa thành công!.", "", {positionClass: "toast-top-right"});
     }, error => console.log(error))
   }
 
   updateEvent() {
-    this.remoteEventService.updateEvent(this.event).subscribe( () => {
+    this.remoteEventService.updateEvent(this.eventUpdate).subscribe( () => {
       this.notify.success("Lưu thành công.","",{ positionClass: "toast-top-right" });
+      this.event = this.eventUpdate;
       this.close();
     })
+  }
+  showUpdate() {
+    this.eventUpdate = this.event.clone();
+    console.log(this.eventUpdate);
+    this.show();
   }
   show() {
     this.modal.show();
@@ -148,5 +151,7 @@ export class EventDetailComponent extends AppComponentBase
   setImgData(data: string): void {
     this.event.eventPhoto = data;
   }
-
+  setImgUpdateData(data: string): void {
+    this.eventUpdate.eventPhoto = data;
+  }
 }

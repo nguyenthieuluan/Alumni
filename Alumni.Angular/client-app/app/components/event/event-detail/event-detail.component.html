@@ -18,7 +18,7 @@
                                                         <div class="ui-block w-intro">
                                                             <div class="event-item pb-0">
                                                                 <div class="event-item-picture">
-                                                                    <img mediaPreview [src]="event.eventPhoto || ''" [media]="mediaFile" (onRead)="setImgData($event)">
+                                                                    <img mediaPreview [src]="eventUpdate.eventPhoto || ''" [media]="mediaFile" (onRead)="setImgUpdateData($event)">
                                                                 </div>
                                             
                                                                 <div class="event-item-addtional border-bottom-0">
@@ -50,14 +50,14 @@
                                             
                                                                         <div class="form-group with-icon  small-input">
                                                                             <label class="control-label">Tiêu đề</label>
-                                                                            <input class="form-control" placeholder="" type="text" [(ngModel)]="event.eventName">
+                                                                            <input class="form-control" placeholder="" type="text" [(ngModel)]="eventUpdate.eventName">
                                                                             <i class="far fa-edit" aria-hidden="true"></i>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                                                         <div class="form-group  small-input">
                                                                             <label class="control-label">Thời gian bắt đầu</label>
-                                                                            <input [(ngModel)]="event.startDate" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+                                                                            <input [(ngModel)]="eventUpdate.startDate" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
                                                                             <owl-date-time #dt></owl-date-time>
                                                                             <span class="input-group-addon">
                                                                                 <i class="far fa-calendar" aria-hidden="true"></i>
@@ -71,7 +71,7 @@
                                                                     <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                                                                         <div class="form-group  small-input">
                                                                             <label class="control-label">Thới gian kết thúc</label>
-                                                                            <input [(ngModel)]="event.endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
+                                                                            <input [(ngModel)]="eventUpdate.endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
                                                                             <owl-date-time #dt2></owl-date-time>
                                                                             <span class="input-group-addon">
                                                                                 <i class="far fa-calendar" aria-hidden="true"></i>
@@ -84,14 +84,14 @@
                                             
                                                                         <div class="form-group with-icon  small-input">
                                                                             <label class="control-label">Địa điểm</label>
-                                                                            <input class="form-control" placeholder="" type="text" [(ngModel)]="event.location">
+                                                                            <input class="form-control" placeholder="" type="text" [(ngModel)]="eventUpdate.location">
                                                                             <i class="fa fa-location-arrow" aria-hidden="true"></i>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                                                         <div class="form-group  small-input">
                                                                             <label class="control-label">Mô tả</label>
-                                                                            <textarea class="form-control" placeholder="" [(ngModel)]="event.description"></textarea>
+                                                                            <textarea class="form-control" placeholder="" [(ngModel)]="eventUpdate.description"></textarea>
                                                                         </div>
                                             
                                                                     </div>
@@ -128,7 +128,7 @@
 
                 <ul class="more-dropdown">
                     <li>
-                        <a (click)="show()" style="cursor: pointer">Chỉnh sửa sự kiện</a>
+                        <a (click)="showUpdate()" style="cursor: pointer">Chỉnh sửa sự kiện</a>
                     </li>
                     <li>
                         <a (click)="deleteEvent()" style="cursor: pointer">Xóa sự kiện</a>
