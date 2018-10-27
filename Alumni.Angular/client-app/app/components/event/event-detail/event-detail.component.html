@@ -1,3 +1,116 @@
+<div bsModal #createModal="bs-modal" class="modal fade" tabindex="-1" width="700px"
+                                 role="dialog" aria-labelledby="createUserModal" aria-hidden="true"
+                                 [config]="{backdrop: 'static'}">
+                                <div class="modal-dialog" style="max-width: 600px;">
+                                    <div #modalContent class="modal-content w-100">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">
+                                                <span>Chỉnh sửa sự kiện</span>
+                                            </h6>
+                                            <button (click)="close()" type="button" class="close" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                        <div class="ui-block w-intro">
+                                                            <div class="event-item pb-0">
+                                                                <div class="event-item-picture">
+                                                                    <img mediaPreview [src]="eventUpdate.eventPhoto || ''" [media]="mediaFile" (onRead)="setImgUpdateData($event)">
+                                                                </div>
+                                            
+                                                                <div class="event-item-addtional border-bottom-0">
+                                            
+                                                                    <a href="javascript:void(0);" class="btn btn-normal m-0" data-toggle="tooltip" data-placement="top"
+                                                                        tooltip="Best fit size: 489x256 (px)">
+                                                                        <label class="upload-button" style="margin-bottom:0">
+                                                                            <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)"
+                                                                                [uploadInput]="uploadInput" style="display:none">
+                                                                            <i class="far fa-image"></i> Tải ảnh lên
+                                                                        </label>
+                                                                    </a>
+                                            
+                                                                    <a href="javascript:void(0);" class="btn btn-normal m-0 ml-3" data-toggle="tooltip"
+                                                                        data-placement="top" tooltip="Remove picture" (click)="removeFile()">
+                                                                        <label class="upload-button" style="margin-bottom:0">
+                                            
+                                                                            <i class="far fa-times-circle"></i> Xóa ảnh
+                                                                        </label>
+                                                                    </a>
+                                                                </div>
+                                            
+                                                            </div>
+                                            
+                                                            <div class="ui-block-content">
+                                            
+                                                                <div class="row">
+                                                                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            
+                                                                        <div class="form-group with-icon  small-input">
+                                                                            <label class="control-label">Tiêu đề</label>
+                                                                            <input class="form-control" placeholder="" type="text" [(ngModel)]="eventUpdate.eventName">
+                                                                            <i class="far fa-edit" aria-hidden="true"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                                        <div class="form-group  small-input">
+                                                                            <label class="control-label">Thời gian bắt đầu</label>
+                                                                            <input [(ngModel)]="eventUpdate.startDate" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+                                                                            <owl-date-time #dt></owl-date-time>
+                                                                            <span class="input-group-addon">
+                                                                                <i class="far fa-calendar" aria-hidden="true"></i>
+                                            
+                                                                            </span>
+                                                                        </div>
+                                            
+                                            
+                                                                    </div>
+                                            
+                                                                    <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+                                                                        <div class="form-group  small-input">
+                                                                            <label class="control-label">Thới gian kết thúc</label>
+                                                                            <input [(ngModel)]="eventUpdate.endDate" [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2">
+                                                                            <owl-date-time #dt2></owl-date-time>
+                                                                            <span class="input-group-addon">
+                                                                                <i class="far fa-calendar" aria-hidden="true"></i>
+                                            
+                                                                            </span>
+                                                                        </div>
+                                            
+                                                                    </div>
+                                                                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            
+                                                                        <div class="form-group with-icon  small-input">
+                                                                            <label class="control-label">Địa điểm</label>
+                                                                            <input class="form-control" placeholder="" type="text" [(ngModel)]="eventUpdate.location">
+                                                                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                                        <div class="form-group  small-input">
+                                                                            <label class="control-label">Mô tả</label>
+                                                                            <textarea class="form-control" placeholder="" [(ngModel)]="eventUpdate.description"></textarea>
+                                                                        </div>
+                                            
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                            
+                                                        <div materialInput bsEl></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-primary" (click)="close()">Hủy bỏ</button>
+                                            <button class="btn btn-normal" (click)="updateEvent()">Lưu</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 <div class="ui-block">
     <div class="event-item" *ngIf="event">
         <div class="event-item-picture">
@@ -5,11 +118,30 @@
         </div>
         <div class="event-item-header">
             <div class="ei-date"><span class="ei-date-m">{{event.startDate | amDateFormat:'MMM' }}</span>
-                <span class="ei-date-d">{{event.startDate | amDateFormat:'DD' }}</span></div>
+                <span class="ei-date-d">{{event.startDate | amDateFormat:'DD' }}</span>
+            </div>
+            <div class="more f-right">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     class="olymp-three-dots-icon">
+                    <use xlink:href="/theme/svg-icons/sprites/icons.svg#olymp-three-dots-icon"></use>
+                </svg>
+
+                <ul class="more-dropdown">
+                    <li>
+                        <a (click)="showUpdate()" style="cursor: pointer">Chỉnh sửa sự kiện</a>
+                    </li>
+                    <li>
+                        <a (click)="deleteEvent()" style="cursor: pointer">Xóa sự kiện</a>
+                    </li>
+                </ul>
+            </div>
             <div class="ei-title">{{event.eventName}}
                 <div class="ei-desc">Công khai · Tổ chức bởi <user-link [user]="event.user" [page]="event.page"></user-link>
                 </div>
             </div>
+
+            
+            
         </div>
         <div class="event-item-addtional">
             <div class="btn-group  m-0" dropdown>
