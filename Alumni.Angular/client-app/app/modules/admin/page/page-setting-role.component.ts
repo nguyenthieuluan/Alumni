@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Component, Injector, OnInit } from "@angular/core";
-=======
 import { Component, Injector, OnInit, ViewEncapsulation} from "@angular/core";
->>>>>>> create-page
 import { AppComponentBase } from "@shared/app-component-base";
 import {
     PageDetailDto,
@@ -12,6 +8,7 @@ import {
     PageMemberDto,
     UserInfoDto
 } from "@shared/service-proxies/service-proxies";
+import { PageDetailDto, PageMemberDto, UserInfoDto } from "@shared/service-proxies/service-proxies";
 import { ActivatedRoute, Router } from "@node_modules/@angular/router";
 import { ElementRef, EventEmitter, Output, ViewChild } from "@node_modules/@angular/core";
 import { ModalDirective } from "@node_modules/ngx-bootstrap";

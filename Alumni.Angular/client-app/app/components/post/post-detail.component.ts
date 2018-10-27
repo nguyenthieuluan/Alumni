@@ -35,11 +35,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
     textChange: string = '';
 
     quantityComment = 5;
-<<<<<<< HEAD
     Editor: any = {};
-=======
-    
->>>>>>> edit-post
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
