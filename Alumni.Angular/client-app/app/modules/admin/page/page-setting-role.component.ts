@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, Injector, OnInit } from "@angular/core";
+=======
+import { Component, Injector, OnInit, ViewEncapsulation} from "@angular/core";
+>>>>>>> create-page
 import { AppComponentBase } from "@shared/app-component-base";
 import {
     PageDetailDto,
@@ -16,6 +20,13 @@ import { PageService } from "@app/modules/admin/page/page.service";
 @Component({
     selector: '',
     templateUrl: './page-setting-role.component.html',
+    styles: [`
+        .ng-input input {
+            padding: 0;
+            margin-top: 4px;
+        }
+    `],
+    encapsulation: ViewEncapsulation.None
 })
 export class PageSettingRoleComponent extends AppComponentBase implements OnInit {
     @ViewChild('createModal') modal: ModalDirective;

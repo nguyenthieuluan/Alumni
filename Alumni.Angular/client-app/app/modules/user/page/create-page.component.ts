@@ -2,7 +2,7 @@
 import { UserProfileServiceProxy, UserProfileDto, ChangePasswordInput, PageDetailDto, PageServiceProxy, PageCreateCredit } from "@shared/service-proxies/service-proxies";
 import { AppComponentBase } from "@shared/app-component-base";
 import { Router } from "@angular/router";
-import { UserService } from "@app/modules/admin/user.service";
+//import { UserService } from "@app/modules/admin/user.service";
 
 @Component({
     selector: '',
@@ -15,7 +15,7 @@ export class UserCreatePageComponent  extends AppComponentBase implements OnInit
         private router: Router,
         private _userProfileService: UserProfileServiceProxy,
         private _pageServiceProxy: PageServiceProxy,
-        private _userService: UserService,
+        //private _userService: UserService,
     ) {
         super(injector);
     }
