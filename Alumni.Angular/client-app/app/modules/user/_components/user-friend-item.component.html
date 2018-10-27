@@ -3,7 +3,7 @@
         <img [src]="model?.pictureUrl" width="36" height="36" alt="{{ model?.name }}">
     </div>
     <div class="notification-event">
-        <a [attr.href]="'/app/user/' + model.userName" class="h6 notification-friend">{{ model?.name }}</a>
+        <a [routerLink]="['/app/user', model.userName]" class="h6 notification-friend">{{ model?.name }}</a>
         <span class="chat-message-item">{{ model.studentProfile?.userName }}</span>
     </div>
     <span class="f-right">

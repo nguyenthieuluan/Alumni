@@ -21,6 +21,7 @@ export class UserComponent extends AppComponentBase implements OnInit {
     public userService: UserService
   ) {
     super(injector);
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false; // force route reload whenever params change;
   }
 
   ngOnInit(): void {

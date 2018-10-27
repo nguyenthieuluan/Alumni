@@ -29,7 +29,7 @@
                 </button>
             </div>
         </form>
-        
+
         <div class="control-block">
 
             <div class="author-page author vcard inline-items more" *ngIf="isLoggedin()">
@@ -87,7 +87,7 @@
                     </div>
                     <span class="author-subtitle"></span>
                 </a> -->
-                <a [attr.href]="'/app/user/'+ shownLoginName" class="author-name fn">
+                <a [routerLink]="['/app/user', shownLoginName]" class="author-name fn">
                     <div class="author-title">
                         {{shownLoginName}} <svg class="olymp-dropdown-arrow-icon"><use xlink:href="theme/svg-icons/sprites/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
                     </div>
@@ -98,8 +98,8 @@
         <div [ngClass]="{'f-right': !appSession.user}">
 
             <a [routerLink]="['/app/home']" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center" >TRANG <Br *ngIf = "appSession.user"> CHỦ</a>
-            <a [attr.href]="'/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81'" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">KIẾN THỨC <br *ngIf = "appSession.user"> CHUYÊN NGÀNH</a>
-            <a [attr.href]="'/app/page/09e9650f82ba4b019123dafed039e77e'" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">TÂM SỰ <br *ngIf = "appSession.user"> CSV</a>
+            <a [routerLink]="['/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81']" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">KIẾN THỨC <br *ngIf = "appSession.user"> CHUYÊN NGÀNH</a>
+            <a [routerLink]="['/app/page/09e9650f82ba4b019123dafed039e77e']" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">TÂM SỰ <br *ngIf = "appSession.user"> CSV</a>
             <a [routerLink]="['/app/tracuu']" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">TRA CỨU <br *ngIf = "appSession.user"> THÔNG TIN</a>
                 
         </div>
