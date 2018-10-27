@@ -35,6 +35,7 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
     textChange: string = '';
 
     quantityComment = 5;
+    Editor: any = {};
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -195,5 +196,9 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
 
     emitRemovePost() {
         this.removePost.emit();
+    }
+    hideReplyEditor(id: number) {
+        this.Editor = {};
+        this.Editor[id]=true;
     }
 }

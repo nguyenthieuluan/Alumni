@@ -20,14 +20,16 @@ export class PostCommentDetailComponent extends AppComponentBase  implements OnI
     @Input() public comment: PostCommentDetailDto;
 
     @Output() removeComment: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Output() hideReplyEditor: EventEmitter<any> = new EventEmitter<boolean>();
     
     postImageCount: number;
     pictures: Picture[];
-    editor: any = {};
+    //editor: any = {};
     
     isShowUpdate = false; // show editor comment
     selectedComment: PostCommentDetailDto; // comment được chọn chỉnh sửa
 
+    @Input() editor: any;
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -53,6 +55,11 @@ export class PostCommentDetailComponent extends AppComponentBase  implements OnI
         this.isShowUpdate = false;
         if (!this.editor[id]) {
             this.editor[id] = true;
+            this.hideReplyEditor.emit(id);
+            return;
+        }
+        if(this.editor) {
+            this.editor[id] = false;
         }
         // if(this.editor) {
         //     this.editor[id] = false;
