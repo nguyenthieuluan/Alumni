@@ -1,25 +1,31 @@
-﻿import { Component, Injector, ViewEncapsulation, OnInit } from "@angular/core";
+﻿import { Component, Injector, ViewEncapsulation, OnInit, ViewChild, Output, ElementRef } from "@angular/core";
 import { AppComponentBase } from "@shared/app-component-base";
-import { ConfigurationServiceProxy, RoleServiceProxy, EntityDtoOfInt32 } from "@shared/service-proxies/service-proxies";
+import { ConfigurationServiceProxy, RoleServiceProxy, EntityDtoOfInt32, SearchRequest, SeachServiceProxy, SearchResult, PageDetailDto, UserProfileDto } from "@shared/service-proxies/service-proxies";
 
 import { AppAuthService } from "@shared/auth/app-auth.service";
 import { UserService } from "@app/modules/user/user.service";
 import { Router } from "@angular/router";
 import { AppComponent } from "@app/app.component";
+import { ModalDirective } from "ngx-bootstrap";
 
 @Component({
     templateUrl: "./header-top.component.html",
     selector: "header-top",
     styleUrls: ["./styles/styles.scss"],
-    providers: [UserService],
+    providers: [UserService, SeachServiceProxy],
     encapsulation: ViewEncapsulation.None
 })
 export class HeaderTopComponent extends AppComponentBase implements OnInit {
+    @ViewChild('createModal') modal: ModalDirective;
+    @ViewChild('modalContent') modalContent: ElementRef;
+
     isLeftMenuCollapsed: boolean = true;
     shownLoginName: string = "";
     searchModel: any = {};
     entityDtoInt32: EntityDtoOfInt32 = new EntityDtoOfInt32;
     isCurrent = true;
+
+    searchResult: SearchResult = new SearchResult;
 
     constructor(
         injector: Injector,
@@ -27,6 +33,7 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
         private _configurationService: ConfigurationServiceProxy,
         private _roleServiceProxy: RoleServiceProxy,
         private _userService: UserService,
+        private _searchService: SeachServiceProxy
     ) {
         super(injector);
     }
@@ -42,7 +49,24 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
         
     }
     headerSearch(): void {
-        alert(this.searchModel.keyword);
+
+        if (this.searchModel.keyword === "") return;
+        this.show();
+        //this.searchResult = null;
+        
+
+        let searchRequest = new SearchRequest;
+        searchRequest.skipCount = 1;
+        searchRequest.maxResultCount = 5;
+        searchRequest.query = this.searchModel.keyword;
+
+        this._searchService.quickSearch(searchRequest).subscribe(r => {
+            this.searchResult = r;
+            //console.log(r)
+        })
+
+
+        //alert(this.searchModel.keyword);
     }
     logout(): void {
         this._authService.logout();
@@ -103,5 +127,12 @@ export class HeaderTopComponent extends AppComponentBase implements OnInit {
 
     public _onBackdropClicked(): void {
         // console.info('Backdrop clicked');
+    }
+    show() {
+        
+        this.modal.show();
+    }
+    close() {
+        this.modal.hide();
     }
 }
