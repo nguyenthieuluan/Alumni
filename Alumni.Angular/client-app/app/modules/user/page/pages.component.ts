@@ -19,10 +19,11 @@ export class UserPagesComponent  extends AppComponentBase implements OnInit, Aft
     ngOnInit() {
     }
     ngAfterViewInit() {
-
-        this._userProfileService.getUserPagesDto().subscribe(r => {
-            this.setPages(r);
-        });
+        if (this.appSession.user) {    
+            this._userProfileService.getUserPagesDto().subscribe(r => {
+                this.setPages(r);
+            });
+        }
     }
   
     setPages(p: UserPagesDto) {

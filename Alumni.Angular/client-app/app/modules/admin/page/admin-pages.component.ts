@@ -18,8 +18,10 @@ export class AdminPagesComponent extends AppComponentBase implements OnInit, Aft
     ngOnInit() {
     }
     ngAfterViewInit() {
-        this._userProfileService.getUserPagesDto().subscribe(r => {
-            this.model = r;
-        });
+        if (this.appSession.user) {
+            this._userProfileService.getUserPagesDto().subscribe(r => {
+                this.model = r;
+            });
+        }
     }
 }

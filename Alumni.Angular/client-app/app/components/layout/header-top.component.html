@@ -29,12 +29,7 @@
                 </button>
             </div>
         </form>
-
-        <a [routerLink]="['/app/home']" class="header-link text-center pt-3">TRANG <Br> CHỦ</a>
-        <a [attr.href]="'/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81'" class="header-link text-center pt-3">KIẾN THỨC <br> CHUYÊN NGÀNH</a>
-        <a [attr.href]="'/app/page/09e9650f82ba4b019123dafed039e77e'" class="header-link text-center pt-3">TÂM SỰ <br> CSV</a>
-        <a [routerLink]="['/app/tracuu']" class="header-link text-center pt-3">TRA CỨU <br> THÔNG TIN</a>
-
+        
         <div class="control-block">
 
             <div class="author-page author vcard inline-items more" *ngIf="isLoggedin()">
@@ -100,6 +95,15 @@
                 </a>
             </div>
         </div>
+        <div [ngClass]="{'f-right': !appSession.user}">
+
+            <a [routerLink]="['/app/home']" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center" >TRANG <Br *ngIf = "appSession.user"> CHỦ</a>
+            <a [attr.href]="'/app/page/5dd1ed7cd6ce433e85c38bacb6a75b81'" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">KIẾN THỨC <br *ngIf = "appSession.user"> CHUYÊN NGÀNH</a>
+            <a [attr.href]="'/app/page/09e9650f82ba4b019123dafed039e77e'" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">TÂM SỰ <br *ngIf = "appSession.user"> CSV</a>
+            <a [routerLink]="['/app/tracuu']" [ngClass]="{'pt-3': appSession.user}" class="header-link text-center">TRA CỨU <br *ngIf = "appSession.user"> THÔNG TIN</a>
+                
+        </div>
+                
     </div>
     <!--</div>-->
 </header>
@@ -130,7 +134,7 @@
                 (onClosed)="_onClosed()"
                 (onTransitionEnd)="_onTransitionEnd()">
 
-        <div class="profile-settings-responsive d-block aside-menu" style="">
+        <div class="profile-settings-responsive d-block aside-menu">
 
             <div class="ui-block">
                 <div class="your-profile">
