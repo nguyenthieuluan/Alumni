@@ -35,7 +35,11 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
     textChange: string = '';
 
     quantityComment = 5;
+<<<<<<< HEAD
     Editor: any = {};
+=======
+    
+>>>>>>> edit-post
     constructor(
         injector: Injector,
         private _postService: PostServiceProxy,
@@ -83,16 +87,15 @@ export class PostDetailComponent extends AppComponentBase implements OnInit {
         this.post.contentText = this.textChange;
         if (!this.post.contentText) {
             if (!this.post.postData || !this.post.postData.pictures) {
-              this.notify.error("Vui lòng nhập nội dung bài đăng");
+              this.notify.error("Vui lòng nhập nội dung chỉnh sửa");
               return;
             }
             this.post.contentText = "";
           }
         this._postService.editPost(this.post).subscribe( r=> { 
             this.post = r;
-            this.notify.success("Thành công.", "", {
-                positionClass: "toast-top-right"
-            });
+            this.notify.success("Thành công.", "", {positionClass: "toast-top-right"});
+            this.close();
             }
         )
     }
